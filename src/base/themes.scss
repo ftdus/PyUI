@@ -1,0 +1,48 @@
+/* 统一配置 */
+// 普通
+// medium中等 
+// small小的 
+// mini超小
+
+$height:34px;
+$medium-height:34px;
+$small-height:34px;
+$mini-height:34px;
+
+//  字体大小
+$font-size: 16px;
+$medium-font-size:34px;
+$small-font-size:34px;
+$mini-font-size:34px;
+
+// 字体颜色 、阴影颜色
+$color: #606266;
+$color-hover:#409eff;
+$color-active:#3a8ee6;
+$color-box-shadow:'#ccc';
+
+// 边框颜色 、阴影颜色
+$border-color: #dcdfe6;
+$border-color-hover: #409eff;
+$border-color-active: #3a8ee6;
+$border-box-shadow:'#ccc';
+
+// 背景颜色 、阴影颜色
+$bg-color: #fff;
+$bg-color-hover:#fff;
+$bg-color-active: #fff;
+$bg-box-shadow:'#ccc';
+
+
+// 错误字体、背景、边框、阴影颜色
+$error-color: red;
+
+// 圆角 
+$border-radius: 4px;
+
+// 字体大小
+$font-size: 16px;
+/* button-按钮 */
+
+// 默认字体的padding 
+$padding:0.5em 1em 0.46em;
