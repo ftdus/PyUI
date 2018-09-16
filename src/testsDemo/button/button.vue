@@ -1,11 +1,10 @@
 <template>
-    <div class="py-button">
-
+    <div>
+        <py-button>按钮</py-button>
     </div>
 </template>
 <script>
+export default {
 
-export default {};
+};
 </script>
-<style lang="scss" scoped>
-</style>
