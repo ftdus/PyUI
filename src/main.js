@@ -2,11 +2,11 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 
-import './base/style.scss';
+import './base/themes.scss';
 
-import index from './index';
+import module from './module';
 
-Vue.use(index);
+Vue.use(module);
 
 
 Vue.config.productionTip = false;
