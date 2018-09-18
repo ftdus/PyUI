@@ -7,12 +7,15 @@
         type="text" 
         :class="[
             !border && 'isBorder',  
-            disabled && 'isDisabled'
+            disabled && 'isDisabled',
+            size === 'large' && 'large',
+            size === 'small' && 'small'
         ]"
         :id="id"
         ref="input"
         v-if='type !== "textarea"'
         :name="name"
+        :size='size'
         :value="currValue"
         :disabled='disabled'
         :readonly='readonly'
@@ -29,10 +32,12 @@
         @change="onChange"/>
         
         <textarea 
-            :name="name" v-else :id="id" cols="30" :rows="row"
+            :name="name" v-else :id="id" cols="30" :rows="rows"
             :class="[
+                !border && 'isBorder',
                 disabled && 'isDisabled'
             ]"
+            :style='{overflow: autoHeight ? "hidden" : "auto"}'
             ref="textarea"
             :form='form'
             :value="currValue"
@@ -53,6 +58,8 @@
 </template>
 
 <script>
+var lastLength = 0;
+var lastHeight = 0;
 export default {
     data(){
         return {
@@ -60,6 +67,9 @@ export default {
         }
     },
     inheritAttrs: false,
+    mounted(){
+        this.resizeHeight()
+    },
     methods:{
         // 写入内容
         setCruuValue(newValue){
@@ -116,27 +126,45 @@ export default {
         },
         // 改变内容后触发
         onInput(e){
+            this.resizeHeight()
             let v = e.target.value
             this.currValue = v
             this.$emit('input', v)
             this.setCruuValue(v)
             this.onChange(v)
+        },
+        // 文本域自适应高度
+        resizeHeight(){
+            var el = this.$refs.textarea
+            if(el && this.autoHeight){
+                var currentLength = el.value.length;
+                if (currentLength < lastLength) {
+                    el.style.height = '';
+                }
+                var currentHeight = el.scrollHeight;
+                if (lastHeight !== currentHeight || !el.style.height) {
+                    el.style.height = currentHeight + 2 + 'px';
+                }
+                lastLength = currentLength;
+                lastHeight = currentHeight;
+            }
         }
     },
     watch:{
-        /*currValue: function(){
-            this.setCruuValue(this.currValue)
-        }, */
         value: function(val){
             this.setCruuValue(val)
         }
     },
     props:{
+        autoHeight: {
+            type: Boolean,
+            default: false
+        },
         id:{
             type: [String, Number]
         },
-        row:{
-            type: Number,
+        rows:{
+            type: [String, Number],
             default: 5
         },
         form:{
@@ -148,6 +176,9 @@ export default {
         },
         name: {
             type: [String, Number]
+        },
+        size: {
+            type: String
         },
         value: {
             type: [String, Number],
@@ -166,8 +197,7 @@ export default {
             default: false
         },
         maxlength:{
-            type: Number,
-            default:123
+            type: Number
         },
         readonly:{
             type: Boolean,
@@ -192,6 +222,7 @@ export default {
 <style lang="scss">
 .py-input{
     position: relative;
+    padding: 4px;
     *{
         box-sizing: border-box;
     }
@@ -201,7 +232,8 @@ export default {
         outline: none;
         transition: .1s;
         width:100%;
-            font-size: 14px;
+        font-size: 14px;
+        padding-right: 25px;
         border: 1px solid #ddd;
         &:focus, &:hover{
             border: 1px solid #4faff3;
@@ -209,8 +241,10 @@ export default {
         }
     }
     textarea{
-        min-width: 100px;
-        min-height: 30px;
+        overflow: hidden;
+        transition: 0s;
+        word-break: break-all;padding:6px;
+        line-height: 20px;
     }
     .isBorder{
         border: 1px solid transparent;
@@ -221,10 +255,11 @@ export default {
     .clearText{
         background: #464444;
         position: absolute;
-        right: 5px;
+        right: 10px;
         top: 0;
         display: block;
         height: 16px;
+        line-height: 15px;
         width: 16px;
         color: #fff;
         text-align: center;
@@ -237,6 +272,16 @@ export default {
     }
     .isDisabled{
         cursor: no-drop;
+    }
+    .large{
+        font-size: 16px;
+        padding: 8px;
+        padding-right: 25px;
+    }
+    .small{
+        font-size: 12px;
+        padding: 5px;
+        padding-right: 25px;
     }
 }
 </style>

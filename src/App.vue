@@ -26,12 +26,18 @@
       </div>
 
       <h3>页面加载input获取焦点</h3>
-      <div style="width:150px">
-        <Input :autofocus='true' ></Input>
+      <div style="width:200px">
+        <Input :autofocus='true' rows='1'></Input>
+      </div>
+
+      <h3>large(大) small（小）</h3>
+      <div style="width:200px">
+        <Input size='large' placeholder='large'></Input>
+        <Input size='small' placeholder='small'></Input>
       </div>
 
       <h3>禁用</h3>
-      <div style="width:150px">
+      <div style="width:200px">
         <Input :disabled='disabled' :value='789'></Input>
         <button @click="toggleDisabled">toggleDisabled</button>
       </div>
@@ -40,7 +46,7 @@
     <div style="width:40vw;float:left">
       <div style="width:500px">
         <h3>设置type为textarea</h3>
-        <Input name="" id="" cols="30" rows="10"
+        <Input name="" id="" cols="30" rows="6"
           ref='textarea'
           :value='textValue'
           type='textarea'
@@ -62,6 +68,11 @@
         <Input type='textarea' :placeholder='"disabled=true"' :disabled="textareaDisabled"></Input>
         <button @click='textareaToggleDisabled'>toggle</button>
         {{textareaDisabled}}
+      </div>
+
+      <div>
+        <h3>自适应高度, autoHeight=true</h3>
+        <Input type="textarea" :autoHeight='true'></Input>
       </div>
     </div>
   </div>
