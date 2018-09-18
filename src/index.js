@@ -1,8 +1,10 @@
 
 import Button from "./components/button/index";
+import ButtonGroup from './components/buttonGroup/index';
 
 const components = [
   Button,
+  ButtonGroup,
 ];
 
 const install = function (Vue) {

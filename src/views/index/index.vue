@@ -1,9 +1,11 @@
 <template>
   <div class="index">
     <router-link  to="/button">button</router-link>
+    <router-link to="/buttons">按钮</router-link>
   </div>
 </template>
 <script>
+
 export default {};
 </script>
 <style lang="scss" scoped>
