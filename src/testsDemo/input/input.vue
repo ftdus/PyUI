@@ -27,7 +27,7 @@
 
       <h3>页面加载input获取焦点</h3>
       <div style="width:200px">
-        <Input :autofocus='true' rows='1' />
+        <Input :autofocus='true'/>
       </div>
 
       <h3>large(大) small（小）</h3>

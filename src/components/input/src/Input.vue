@@ -34,7 +34,6 @@
                 !border && 'isBorder',
                 disabled && 'isDisabled'
             ]"
-            :style='{overflow: autoHeight ? "hidden" : "auto"}'
             ref="textarea"
             :form='form'
             :value="currValue"
@@ -137,13 +136,16 @@ export default {
     resizeHeight() {
       const el = this.$refs.textarea;
       if (el && this.autoHeight) {
-        const currentLength = el.value.length;
-        const currentHeight = el.scrollHeight;
-        if (currentLength < lastLength) {
+        let currentLength = el.value.length;
+        let currentHeight = el.scrollHeight;
+
+        if (currentLength <= lastLength) {
           el.style.height = "";
+          currentHeight = el.scrollHeight;
         }
         if (lastHeight !== currentHeight || !el.style.height) {
           el.style.height = `${currentHeight + 2}px`;
+          currentLength = el.value.length;
         }
         lastLength = currentLength;
         lastHeight = currentHeight;
@@ -172,7 +174,14 @@ export default {
     },
     type: {
       type: String,
-      default: "input",
+      validator (val) {
+        const tsType = ['text', 'textarea', 'password', 'url', 'email', 'date'];
+        if (tsType.indexOf(val) === -1) {
+          return false;
+        }
+        return true;
+      },
+      default: "text",
     },
     name: {
       type: [String, Number],
@@ -226,7 +235,7 @@ export default {
     background-color: #f3f3f3;
     opacity: 1;
     cursor: not-allowed;
-    color: #ccc;
+    color: $color;
   }
   * {
     box-sizing: border-box;
@@ -243,12 +252,12 @@ export default {
     border: 1px solid #ddd;
     &:focus,
     &:hover {
-      border: 1px solid #4faff3;
-      box-shadow: 0 0 4px #4faff3;
+      border: 1px solid $border-color-hover;
+      box-shadow: 0 0 4px $border-color-hover;
     }
   }
   textarea {
-    overflow: hidden;
+    overflow: auto;
     transition: 0s;
     word-break: break-all;
     padding: 6px;
@@ -261,7 +270,7 @@ export default {
     display: none;
   }
   .clearText {
-    background: #464444;
+    background: $color;
     position: absolute;
     right: 10px;
     top: 0;

@@ -5,9 +5,10 @@
 </template>
 <script>
 export default {
-  name: 'py-button'
+  name: 'py-button',
 };
 </script>
+
 <style lang="scss" scoped>
 @import "../../../base/themes.scss";
 .py-button {
