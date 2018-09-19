@@ -8,6 +8,7 @@ export default {
   name: 'py-button',
 };
 </script>
+
 <style lang="scss" scoped>
 @import "../../../base/themes.scss";
 .py-button {
