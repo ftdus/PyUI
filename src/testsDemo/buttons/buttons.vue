@@ -27,7 +27,7 @@
   <div class='demo'>
     <h3>基础用法</h3>
     <div class="py-button-box">
-      <py-button size="large">large</py-button>
+      <py-button size="large" @click="handleClick">large</py-button>
       <py-button size="default">default</py-button>
       <py-button size="small">small</py-button>
       <br><br>
@@ -101,26 +101,16 @@
 import PYButton from '../../components/button';
 import PYButtonGroup from '../../components/buttonGroup';
 
-// describe('PYButton', () => {
-//   it('has a created hook', () => {
-//     expect(typeof PYButton.created).toBe('function')
-//   })
-// });
-
 export default {
-  data() {
-    return {
-
-    };
-  },
   components: {
     'py-button': PYButton,
     'py-button-group': PYButtonGroup,
   },
-  mounted() {
-    const dis = document.getElementById('dis').children[1]
-    console.log(dis.getAttribute('disabled'))
-  }
+  methods: {
+    handleClick() {
+      console.log('large button');
+    },
+  },
 };
 
 </script>

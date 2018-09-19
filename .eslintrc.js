@@ -21,12 +21,9 @@ module.exports = {
     // 参数只有一个的时候不适用花括号
     'arrow-parens': ["error", "as-needed"],
     // 要求函数必须要有名字
-    // 'func-names': ["error", "as-needed"],
+    'func-names': ["error", "as-needed"],
     // 块元素开始和结束位置不需要空行
     'padded-blocks': 'off',
-
-    'no-param-reassign': 'off',
-    'no-unused-expressions': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint',

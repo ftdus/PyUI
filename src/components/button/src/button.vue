@@ -10,9 +10,9 @@ $padding: 6px 15px;
 $font-size-default: 14px;
 $font-size-small: 12px;
 
-$prefixCls: 'py-button';
-$element-separator: '__';
-$modifier-separator: '--';
+$prefixCls: "py-button";
+$element-separator: "__";
+$modifier-separator: "--";
 
 @mixin btnType($color: $color, $bgColor: $bgColor) {
     color: $color;
@@ -28,14 +28,14 @@ $modifier-separator: '--';
     line-height: 1.5;
     color: $color;
     background-color: #fff;
-    transition: .1s;
+    transition: 0.1s;
     span {
         margin-left: 4px;
     }
     &:hover {
-      color: $color-hover;
-      border-color: $border-color-hover;
-      cursor: pointer;
+        color: $color-hover;
+        border-color: $border-color-hover;
+        cursor: pointer;
     }
     &:active {
         color: $color-active;
@@ -43,45 +43,45 @@ $modifier-separator: '--';
     }
     &[disabled],
     &[disabled]:hover {
-      cursor: not-allowed;
-      background-color: #f7f7f7;
-      color: #c5c8ce;
-      border-color: #dcdee2;
+        cursor: not-allowed;
+        background-color: #f7f7f7;
+        color: #c5c8ce;
+        border-color: #dcdee2;
     }
     &#{$modifier-separator}large {
-      padding: 6px 15px;
-      font-size: $font-size-default;
+        padding: 6px 15px;
+        font-size: $font-size-default;
     }
     &#{$modifier-separator}small {
-      padding: 1px 7px 2px;
-      font-size: $font-size-small;
+        padding: 1px 7px 2px;
+        font-size: $font-size-small;
     }
     &#{$modifier-separator}primary {
-      @include btnType(#fff, $primary-color);
-      &:hover {
-          @include btnType(#fff, lighten($primary-color, 10%));
-      }
+        @include btnType(#fff, $primary-color);
+        &:hover {
+            @include btnType(#fff, lighten($primary-color, 10%));
+        }
     }
     &#{$modifier-separator}dashed {
         border: 1px dashed $border-color;
     }
     &#{$modifier-separator}text {
-      border: none;
-      background-color: transparent;
-      &:hover {
-          background-color: #fff;
-      }
-      &[disabled],
-      &[disabled]:hover {
-          background-color: transparent;
-      }
+        border: none;
+        background-color: transparent;
+        &:hover {
+            background-color: #fff;
+        }
+        &[disabled],
+        &[disabled]:hover {
+            background-color: transparent;
+        }
     }
     &#{$modifier-separator}info {
-      @include btnType(#fff, $info-color);
-      &:hover,
-      &:active {
-        @include btnType(#fff, lighten($info-color, 10%));
-      }
+        @include btnType(#fff, $info-color);
+        &:hover,
+        &:active {
+            @include btnType(#fff, lighten($info-color, 10%));
+        }
     }
     &#{$modifier-separator}success {
         @include btnType(#fff, $success-color);
@@ -117,40 +117,40 @@ $modifier-separator: '--';
     }
 }
 .py-icon {
-  display: inline-block;
-  font-style: normal;
-  vertical-align: baseline;
-  line-height: 1;
-  font-size: 14px;
-  &#{$modifier-separator}only {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    padding: 0;
-    font-size: 16px;
-  }
-  &#{$modifier-separator}loading {
-    animation: rotating 2s linear infinite;
-  }
-  @keyframes rotating {
-    0% {
-      transform: rotate(0deg);
+    display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    line-height: 1;
+    font-size: 14px;
+    &#{$modifier-separator}only {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        padding: 0;
+        font-size: 16px;
     }
-    100% {
-      transform: rotate(360deg);
+    &#{$modifier-separator}loading {
+        animation: rotating 2s linear infinite;
     }
-  }
-  &#{$modifier-separator}right {
-    span {
-      float: left;
-      margin-right: 4px;
-      margin-left: 0;
+    @keyframes rotating {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
-  }
+    &#{$modifier-separator}right {
+        span {
+            float: left;
+            margin-right: 4px;
+            margin-left: 0;
+        }
+    }
 }
 </style>
 <template>
-  <button class="iconfont" :class="classes" :disabled="disabled" v-on:click="handleClick">
+  <button class="iconfont" :class="classes" :disabled="disabled" @click="handleClick">
     <i v-if="icon" class="py-icon iconfont" :class="icon"></i>
     <i v-if="loading" class="iconfont py-icon--loading icon-loading"></i>
     <span v-if="slotShow">
@@ -224,8 +224,8 @@ export default {
     this.slotShow = this.$slots.default !== undefined;
   },
   methods: {
-    handleClick(val) {
-      this.$emit('click', val);
+    handleClick(evt) {
+      this.$emit('click', evt);
     },
   },
 };
