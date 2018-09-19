@@ -19,5 +19,10 @@ export default new Router({
       name: 'button',
       component: () => import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
     },
+    {
+      path: '/buttons',
+      name: '按钮',
+      component: () => import('./testsDemo/buttons/buttons.vue'),
+    },
   ],
 });
