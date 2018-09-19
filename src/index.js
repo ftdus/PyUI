@@ -1,9 +1,8 @@
 
 import Button from "./components/button/index";
-import Input from "./components/input/index";
 
 const components = [
-  Button,Input
+  Button,
 ];
 
 const install = function (Vue) {
