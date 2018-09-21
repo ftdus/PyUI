@@ -85,13 +85,13 @@
       </py-button-group>
       <br>
       <py-button-group>
-        <py-button type="primary" icon="icon-jiantou_zuo">上一页</py-button>
-        <py-button type="primary" icon="icon-jiantou" class="py-icon--right">下一页</py-button>
+        <py-button type="primary" icon="icon-return">上一页</py-button>
+        <py-button type="primary" icon="icon-entry" class="py-icon--right">下一页</py-button>
       </py-button-group>
       <py-button-group>
-        <py-button type="primary" icon="icon-edit"></py-button>
-        <py-button type="primary" icon="icon-fenxiang3"></py-button>
-        <py-button type="primary" icon="icon-delete"></py-button>
+        <py-button type="primary" icon="icon-brush"></py-button>
+        <py-button type="primary" icon="icon-share"></py-button>
+        <py-button type="primary" icon="icon-setup"></py-button>
       </py-button-group>
     </div>
   </div>

@@ -1,6 +1,5 @@
 <style lang='scss' scoped>
 @import "../../../base/themes.scss";
-@import url("../../../assets/font/iconfont.css");
 $primary-color: #2d8cf0;
 $info-color: #2db7f5;
 $success-color: #19be6b;
