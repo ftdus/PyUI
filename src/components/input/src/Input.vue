@@ -1,33 +1,45 @@
 <template>
-    <div class="py-input">
-        <span :class="(clearText && currValue !== '') && !disabled  && 'clearText'"
-          v-if='type !== "textarea"' @click="clearInput">x</span>
-        <input type="text"
-        :class="[
-            !border && 'isBorder',
-            disabled && 'isDisabled',
-            size === 'large' && 'large',
-            size === 'small' && 'small'
-        ]"
-        :id="id"
-        ref="input"
-        v-if='type !== "textarea"'
-        :name="name"
-        :size='size'
-        :value="currValue"
-        :disabled='disabled'
-        :readonly='readonly'
-        :autofocus='autofocus'
-        :maxlength='maxlength'
-        :placeholder='placeholder'
-        @blur="onBlur"
-        @input="onInput"
-        @focus="onFocus"
-        @keyup="onKeyup"
-        @keydown='onKeydown'
-        @keyup.enter="onEnter"
-        @keypress='onKeypress'
-        @change="onChange"/>
+    <div class="py-input" :class="containerClass">
+        <template class="input-group" v-if='type !== "textarea"'>
+          <span class="input-span" v-if="$slots.before">
+            <slot name="before" />
+          </span>
+          <div class="input-wrap">
+            <span
+            class="input-clear"
+            :class="(clearText && currValue !== '') && !disabled  && 'clearText'"
+            v-if='type !== "textarea"'
+            @click="clearInput" >x</span>
+            <input type="text"
+              :class="[
+                  !border && 'isBorder',
+                  disabled && 'isDisabled',
+                  size === 'large' && 'large',
+                  size === 'small' && 'small'
+              ]"
+              :id="id"
+              ref="input"
+              :name="name"
+              :size="size"
+              :value="currValue"
+              :disabled="disabled"
+              :readonly="readonly"
+              :autofocus="autofocus"
+              :maxlength="maxlength"
+              :placeholder="placeholder"
+              @blur="onBlur"
+              @input="onInput"
+              @focus="onFocus"
+              @keyup="onKeyup"
+              @keydown="onKeydown"
+              @keyup.enter="onEnter"
+              @keypress="onKeypress"
+              @change="onChange"/>
+          </div>
+          <span class="input-span" v-if="$slots.after">
+            <slot name="after" />
+          </span>
+        </template>
 
         <textarea :name="name" v-else :id="id" cols="30" :rows="rows"
             :class="[
@@ -35,20 +47,20 @@
                 disabled && 'isDisabled'
             ]"
             ref="textarea"
-            :form='form'
+            :form="form"
             :value="currValue"
-            :readonly='readonly'
-            :disabled='disabled'
+            :readonly="readonly"
+            :disabled="disabled"
             :autofocus="autofocus"
             :maxlength="maxlength"
-            :placeholder='placeholder'
+            :placeholder="placeholder"
             @blur="onBlur"
             @keyup="onKeyup"
             @input="onInput"
-            @focus='onFocus'
-            @keydown='onKeydown'
+            @focus="onFocus"
+            @keydown="onKeydown"
             @keyup.enter="onEnter"
-            @keypress='onKeypress'
+            @keypress="onKeypress"
             ></textarea>
     </div>
 </template>
@@ -57,10 +69,11 @@
 let lastLength = 0;
 let lastHeight = 0;
 export default {
-  name: "Input",
+  name: 'py-input',
   data() {
     return {
       currValue: this.value,
+      containerClass: (this.$slots.before ? 'input-before ' : '') + (this.$slots.after ? 'input-after' : ''),
     };
   },
   inheritAttrs: false,
@@ -70,11 +83,8 @@ export default {
   methods: {
     // 写入内容
     setCruuValue(newValue) {
-      if (newValue === "") {
-        return false;
-      }
       this.currValue = newValue;
-      this.$emit("input", newValue);
+      this.$emit('input', newValue);
       return newValue;
     },
     // 获取内容
@@ -83,29 +93,29 @@ export default {
     },
     // 清空内容
     clearInput() {
-      this.$emit("input", "");
-      this.$emit("on-change", "");
-      this.setCruuValue("");
-      (this.$refs.input || this.$refs.textarea).value = "";
+      this.$emit('input', '');
+      this.$emit('on-change', '');
+      this.setCruuValue('');
+      (this.$refs.input || this.$refs.textarea).value = '';
     },
     // 松开键盘键
     onKeyup(e) {
-      this.$emit("on-keyup", e);
+      this.$emit('on-keyup', e);
     },
     // 按下回车
     onEnter() {
-      this.$emit("on-enter", this.currValue);
+      this.$emit('on-enter', this.currValue);
     },
     // 按下键盘键,并至少产生一个字符时发生
     onKeypress(e) {
-      this.$emit("on-keypress", e);
+      this.$emit('on-keypress', e);
     },
     onKeydown(e) {
-      this.$emit("on-keydown", e);
+      this.$emit('on-keydown', e);
     },
     // 改变文本内容后失去焦点触发
     onChange(e) {
-      this.$emit("on-change", e);
+      this.$emit('on-change', e);
     },
     // 手动触发焦点
     focus() {
@@ -113,7 +123,7 @@ export default {
     },
     // 触发焦点
     onFocus(e) {
-      this.$emit("on-focus", e);
+      this.$emit('on-focus', e);
     },
     // 手动触发失去焦点
     blur() {
@@ -121,35 +131,38 @@ export default {
     },
     // 触发失去焦点
     onBlur(e) {
-      this.$emit("on-blur", e);
+      this.$emit('on-blur', e);
     },
     // 改变内容后触发
     onInput(e) {
-      this.resizeHeight();
       const v = e.target.value;
       this.currValue = v;
-      this.$emit("input", v);
+      this.$emit('input', v);
       this.setCruuValue(v);
       this.onChange(v);
+      this.resizeHeight();
     },
     // 文本域自适应高度
     resizeHeight() {
       const el = this.$refs.textarea;
       if (el && this.autoHeight) {
-        let currentLength = el.value.length;
+        const currentLength = el.value.length;
+        // 初始高度
         let currentHeight = el.scrollHeight;
-
+        // 判断字符的删除
         if (currentLength <= lastLength) {
           el.style.height = "";
           currentHeight = el.scrollHeight;
         }
-        if (lastHeight !== currentHeight || !el.style.height) {
-          el.style.height = `${currentHeight + 2}px`;
-          currentLength = el.value.length;
+        // 高度不小于初始高度时变化高度
+        if (lastHeight < currentHeight || !el.style.height) {
+          el.style.height = `${currentHeight}px`;
         }
+        el.style.overflow = (el.scrollHeight > currentHeight ? "auto" : "hidden");
         lastLength = currentLength;
         lastHeight = currentHeight;
       }
+      return true;
     },
   },
   watch: {
@@ -181,7 +194,7 @@ export default {
         }
         return true;
       },
-      default: "text",
+      default: 'text',
     },
     name: {
       type: [String, Number],
@@ -191,7 +204,7 @@ export default {
     },
     value: {
       type: [String, Number],
-      default: "",
+      default: '',
     },
     border: {
       type: false,
@@ -210,7 +223,7 @@ export default {
     },
     placeholder: {
       type: [String, Number],
-      default: "",
+      default: '',
     },
     readonly: {
       type: Boolean,
@@ -230,6 +243,11 @@ export default {
 .py-input {
   position: relative;
   padding: 4px;
+  display: inline-table;
+  .input-wrap{
+    flex:1;
+    position:relative
+  }
   input[disabled],
   textarea[disabled] {
     background-color: #f3f3f3;
@@ -245,14 +263,15 @@ export default {
     padding: 6px;
     border-radius: 5px;
     outline: none;
-    transition: 0.1s;
+    transition: 0.2s;
     width: 100%;
     font-size: 14px;
+    flex: 1;
     padding-right: 25px;
     border: 1px solid #ddd;
     &:focus,
     &:hover {
-      border: 1px solid $border-color-hover;
+      border-color: $border-color-hover;
       box-shadow: 0 0 4px $border-color-hover;
     }
   }
@@ -261,12 +280,29 @@ export default {
     transition: 0s;
     word-break: break-all;
     padding: 6px;
+    transition: 0.05s;
+    min-width: 350px;
     line-height: 20px;
   }
   .isBorder {
     border: 1px solid transparent;
   }
-  span {
+  .input-span{
+    line-height: 1.9em;
+    margin-right: 5px;
+    color: $color;
+    display: table-cell;
+    font-size: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+    cursor: context-menu;
+    transition: .4s;
+    &:hover{
+      background: $color-active;
+    }
+  }
+  .input-clear {
     display: none;
   }
   .clearText {
@@ -299,6 +335,49 @@ export default {
     font-size: 12px;
     padding: 5px;
     padding-right: 25px;
+  }
+}
+
+.input-before{
+  border-radius: 25px 0 0 25px;
+  overflow: hidden;
+  .input-span{
+    background: $border-color-hover;
+    color: #fff;
+    min-width: 35px;
+    text-align: center;
+    margin: 0;
+  }
+  input{
+    border-radius: 0 5px 5px 0;
+    border-left: 0;
+  }
+}
+
+.input-after{
+  border-radius:  0 25px 25px 0;
+  overflow: hidden;
+  .input-span{
+    background: $border-color-hover;
+    color: #fff;
+    min-width: 35px;
+    text-align: center;
+    margin: 0;
+  }
+  input{
+    border-radius: 5px 0 0 5px;
+    border-right: 0;
+  }
+  .clearText{
+    right:5px;
+  }
+}
+.input-before.input-after{
+  border-radius:  25px;
+  input{
+    border-radius: 0px;
+    border-right: 0;
+    border-left: 0;
   }
 }
 </style>
