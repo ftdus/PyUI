@@ -238,7 +238,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/base/themes.scss";
 .py-input {
   position: relative;
@@ -293,8 +293,8 @@ export default {
     color: $color;
     display: table-cell;
     font-size: 13px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     white-space: nowrap;
     cursor: context-menu;
     transition: .4s;
