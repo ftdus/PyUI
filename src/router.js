@@ -19,5 +19,15 @@ export default new Router({
       name: 'button',
       component: () => import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
     },
+    {
+      path: '/input',
+      name: 'input',
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/input/input.vue'),
+    },
+    {
+      path: '/loadingBar',
+      name: 'loadingBar',
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/loadingBar/loadingBar.vue'),
+    },
   ],
 });
