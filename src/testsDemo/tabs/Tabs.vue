@@ -39,21 +39,6 @@
         </py-tab-pane>
       </py-tabs>
     </section>
-
-    <!-- <h2>图标标签页</h2>
-    <section>
-      <py-tabs v-model="show4" type="card">
-        <py-tab-pane name="label1">
-          <span slot="label"><i class="fa fa-home">标签一</i></span>
-          标签一内容
-        </py-tab-pane>
-        <py-tab-pane name="label2">
-          <span slot="label"><i class="fa fa-home">标签一</i></span>
-          标签二内容
-        </py-tab-pane>
-        <py-tab-pane label="标签三" name="label3">标签三内容</py-tab-pane>
-      </py-tabs>
-    </section> -->
   </div>
 </template>
 
