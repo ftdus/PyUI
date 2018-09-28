@@ -1,12 +1,9 @@
 import {
   createTest,
   createVue,
-  destroyVM
+  destroyVM,
 } from './util';
 import PYInput from '@/components/input/index'
-
-const chai = require('chai');
-const expect = (typeof require === 'undefined') ? chai.expect : require('chai').expect;
 
 describe('PYInput', () => {
   let vm;
@@ -23,18 +20,17 @@ describe('PYInput', () => {
       maxlength: 5,
       value: 'value',
     }, true);
-    setTimeout(() => {
-      const inputEl = vm.$el.querySelector('input');
-      expect(inputEl.getAttribute('placeholder')).to.equal('这是placeholder');
-      expect(inputEl.getAttribute('name')).to.equal('input');
-      expect(inputEl.getAttribute('size')).to.equal('large');
-      expect(inputEl.getAttribute('maxlength')).to.equal('5');
-      expect(inputEl.value).to.equal('value');
-      return expect(inputEl.autofocus).to.be.true;
-    }, 20);
+
+    const inputEl = document.querySelector('.py-input').querySelector('input');
+    expect(inputEl.getAttribute('placeholder')).to.equal('这是placeholder');
+    expect(inputEl.getAttribute('name')).to.equal('input');
+    expect(inputEl.getAttribute('size')).to.equal('large');
+    expect(inputEl.getAttribute('maxlength')).to.equal('5');
+    expect(inputEl.value).to.equal('value');
+    return expect(inputEl.autofocus).to.be.true;
   });
 
-  it('hanleClick', () => {
+  it('hanleClick', done => {
     vm = createVue({
       template: `
         <py-input
@@ -50,9 +46,6 @@ describe('PYInput', () => {
         getValue() {
           return this.$refs.input.getValue();
         },
-        handleFocus() {
-          this.$refs.input.focus();
-        },
         clearValue() {
           this.$refs.textarea.clearInput();
         },
@@ -60,19 +53,19 @@ describe('PYInput', () => {
     }, true);
 
     setTimeout(() => {
-      const inputEl = vm.$el.querySelector('input');
-      vm.handleFocus();
-      
+      const inputEl = document.querySelector('input');
+      console.log(inputEl);
       expect(inputEl.value).to.equal('123');
       expect(vm.getValue()).to.equal('123');
 
       vm.clearValue();
       expect(inputEl.value).to.equal('');
-      return expect(inputEl.autofocus).to.be.true;
-    }, 20);
+      expect(inputEl.autofocus).to.be.true;
+      done()
+    }, 100);
   });
 
-  it('isShow', () => {
+  it('isShow', done => {
     vm = createVue({
       template: `
         <py-input :disabled='disabled' :readonly='readonly'>
@@ -97,8 +90,8 @@ describe('PYInput', () => {
     });
 
     setTimeout(() => {
-      const i = vm.$el.querySelectorAll('i').length;
-      const inputEl = vm.$el.querySelector('input');
+      const i = document.querySelectorAll('.py-input i').length;
+      const inputEl = document.querySelector('.py-input input');
       
       expect(i).to.equal(2);
       expect(inputEl.disabled).to.be.true;
@@ -108,12 +101,13 @@ describe('PYInput', () => {
       vm.toggleReadonly();
       
       expect(inputEl.readonly).to.be.false;
-      return expect(inputEl.disabled).to.be.false;
-    }, 20);
+      expect(inputEl.disabled).to.be.false;
+      done();
+    }, 100);
   });
 
   // textarea
-  it('createTextarea', () => {
+  it('createTextarea', done => {
     vm = createTest(PYInput, {
       type: 'textarea',
       autofocus: true,
@@ -124,18 +118,19 @@ describe('PYInput', () => {
     }, true);
 
     setTimeout(() => {
-      const inputEl = vm.$el.querySelector('textarea');
+      const inputEl = document.querySelector('.py-input textarea');
 
       expect(inputEl.value).to.equal('value');
       expect(inputEl.getAttribute('maxlength')).to.equal('5');
       expect(inputEl.getAttribute('name')).to.equal('textarea');
       expect(inputEl.getAttribute('placeholder')).to.equal('这是placeholder');
       expect(inputEl.type).to.equal('textarea');
-      return expect(inputEl.autofocus).to.be.true;
-    }, 20);
+      expect(inputEl.autofocus).to.be.true;
+      done()
+    }, 100);
   });
 
-  it('textareaClick', () => {
+  it('textareaClick', done => {
     vm = createVue({
       template: `
         <py-input
@@ -162,7 +157,7 @@ describe('PYInput', () => {
     }, true);
 
     setTimeout(() => {
-      const inputEl = vm.$el.querySelector('input');
+      const inputEl = document.querySelector('.py-input input');
       vm.handleFocus();
       
       expect(inputEl.type).to.equal('textarea');
@@ -171,11 +166,12 @@ describe('PYInput', () => {
 
       vm.clearValue();
       expect(inputEl.value).to.equal('');
-      return expect(inputEl.autofocus).to.be.true;
-    }, 20);
+      expect(inputEl.autofocus).to.be.true;
+      done();
+    }, 100);
   });
 
-  it('toggleShow', () => {
+  it('toggleShow', done => {
     vm = createVue({
       template: `
         <py-input type='textarea' :disabled='disabled' :readonly='readonly'>
@@ -184,7 +180,7 @@ describe('PYInput', () => {
       data() {
         return {
           disabled: true,
-          readonly: true
+          readonly: true,
         };
       },
       methods: {
@@ -198,7 +194,7 @@ describe('PYInput', () => {
     });
 
     setTimeout(() => {
-      const inputEl = vm.$el.querySelector('textarea');
+      const inputEl = document.querySelector('.py-input textarea');
       
       expect(inputEl.disabled).to.be.true;
       expect(inputEl.readonly).to.be.true;
@@ -206,7 +202,8 @@ describe('PYInput', () => {
       vm.toggleDisabled();
       vm.toggleReadonly();
       expect(inputEl.disabled).to.be.false;
-      return expect(inputEl.readonly).to.be.false;
-    }, 20);
+      expect(inputEl.readonly).to.be.false;
+      done();
+    }, 100);
   });
 });
