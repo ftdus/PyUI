@@ -19,7 +19,6 @@ export default {
     data = m.$children[0].$data;
     data = Object.assign(data, _props);
     document.body.appendChild(m.$el);
-
     InterTime = setInterval(() => {
       if (data.progress < 96) {
         data.progress += 1;
