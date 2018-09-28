@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       progress: 0,
-      color: '#f71212',
+      color: '#409eff',
     };
   },
   watch: {

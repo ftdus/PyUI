@@ -140,6 +140,9 @@ export default {
       textareaDisabled: true,
     };
   },
+  created(){
+    console.log(this)
+  },
   methods: {
     textareaToggleDisabled() {
       this.textareaDisabled = !this.textareaDisabled;
@@ -190,6 +193,9 @@ export default {
     // 获取焦点
     handleFocus() {
       this.$refs.input.focus();
+    },
+    handleFocusS() {
+      this.$refs.inputs.focus();
     },
     // 改变内容后失去焦点
     onChange(e) {
