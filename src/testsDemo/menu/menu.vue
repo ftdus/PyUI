@@ -3,7 +3,7 @@
     <div class="menu-1">
       <py-menu mode="horizontal">
         <py-menu-item index="1" disabled>菜单项1</py-menu-item>
-        <py-menu-item index="2">菜单项2</py-menu-item>
+        <py-menu-item index="2" route="/button">route跳转</py-menu-item>
         <py-submenu index="3">
           <template slot="title">子菜单3</template>
           <py-menu-item index="3-1">子菜单项3-1</py-menu-item>
@@ -25,14 +25,14 @@
       </py-menu>
     </div>
     <div class="menu-2">
-      <py-menu mode="vertical">
+      <py-menu mode="vertical" router>
         <py-submenu index="1" disabled>
           <template slot="title">子菜单1</template>
           <py-menu-item index="1-1">子菜单项1-1</py-menu-item>
           <py-menu-item index="1-2">子菜单项1-2</py-menu-item>
           <py-menu-item index="1-3" disabled>子菜单项1-3</py-menu-item>
         </py-submenu>
-        <py-menu-item index="2">菜单项2</py-menu-item>
+        <py-menu-item index="/button">index跳转</py-menu-item>
         <py-submenu index="3">
           <template slot="title">子菜单3</template>
           <py-menu-item index="3-1">子菜单项3-1</py-menu-item>
