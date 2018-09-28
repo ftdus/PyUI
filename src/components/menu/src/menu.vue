@@ -19,6 +19,10 @@ export default {
       default: 'vertical',
       validator: val => val === 'vertical' || val === 'horizontal',
     },
+    router: {
+      type: Boolean,
+      default: false,
+    },
   },
   provide() {
     return {
@@ -40,11 +44,19 @@ export default {
     this.$on('clickBubble', this.handleBubble);
   },
   methods: {
-    handleItemClick(index) {
+    handleItemClick(index, route) {
       this.activeItemIndex = index;
+      if (this.router) {
+        this.routeTo(index);
+      } else if (route) {
+        this.routeTo(route);
+      }
     },
     handleBubble(param) {
       this.activeSubmenuIndex = JSON.parse(param);
+    },
+    routeTo(url) {
+      this.$router.push(url);
     },
   },
 };
