@@ -3,6 +3,7 @@
     <router-link  to="/button">button</router-link>
     <router-link  to="/input">input</router-link>
     <router-link  to="/loadingBar">loadingBar</router-link>
+    <router-link  to="/card">card</router-link>
   </div>
 </template>
 <script>
