@@ -13,7 +13,6 @@
     <br />
     <py-button @click="startRed">red</py-button>
     <py-button @click="updataBlue">更换Blue颜色</py-button>
-
   </div>
 </template>
 
