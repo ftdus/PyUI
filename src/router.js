@@ -38,5 +38,10 @@ export default new Router({
       name: 'loadingBar',
       component: () => import(/* webpackChunkName: "button" */ './testsDemo/loadingBar/loadingBar.vue'),
     },
+    {
+      path: '/card',
+      name: 'card',
+      component: () => import(/* webpackChunkName: "card" */ './testsDemo/card/card.vue'),
+    },
   ],
 });
