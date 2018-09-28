@@ -69,7 +69,7 @@ export default {
     if (this.rootMenu.mode === 'horizontal') {
       this.$watch('collapse', this.parentMenuName === 'py-menu' ? this.singlePosition : this.multiplePosition);
     }
-    this.$watch('collapse', this.handleCollapseChange);
+    // this.$watch('collapse', this.handleCollapseChange);
   },
   methods: {
     mouseEnterCallback() {

@@ -7,7 +7,7 @@
       'active': rootMenu.activeItemIndex === index,
       'disabled': disabled,
     }"
-    @click="handleClick(index)"
+    @click="handleClick"
   >
     <slot></slot>
   </li>
@@ -31,13 +31,14 @@ export default {
     },
   },
   methods: {
-    handleClick(index) {
+    handleClick() {
       // item被禁用时不执行
       if (this.disabled) return;
       // 如果item包含于submenu，则同时向rootMenu和submenu触发事件
-      this.$parent.$options._componentTag === 'py-submenu' ? this.$parent.$emit('clickMenuItem', index) : this.rootMenu.$data.activeSubmenuIndex = [];
-      this.rootMenu.$emit('clickMenuItem', index);
-      this.$emit('clickMenuItem', index);
+      this.$parent.$options._componentTag === 'py-submenu' ? this.$parent.$emit('clickMenuItem', this.index) : this.rootMenu.$data.activeSubmenuIndex = [];
+      // 触发父菜单和根菜单的事件，传递index及route
+      this.rootMenu.$emit('clickMenuItem', this.index, this.route);
+      this.$emit('clickMenuItem', this.index);
     },
   },
 };
