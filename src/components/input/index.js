@@ -1,8 +1,8 @@
-import PYInput from './src/Input.vue';
+import Input from './src/Input.vue';
 
 /* istanbul ignore next */
-PYInput.install = function input(Vue) {
-  Vue.component(PYInput.name, PYInput);
+Input.install = function (Vue) {
+  Vue.component(Input.name, Input);
 };
 
-export default PYInput;
+export default Input;

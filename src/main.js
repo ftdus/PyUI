@@ -6,9 +6,15 @@ import './base/style.scss';
 
 import index from './index';
 
+// 使用组件
+import PyTabs from './components/tabs';
+import PyTabPane from './components/tabPane';
+
+
 Vue.use(index);
 
-
+Vue.use(PyTabs);
+Vue.use(PyTabPane);
 Vue.config.productionTip = false;
 
 new Vue({

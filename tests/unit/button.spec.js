@@ -1,13 +1,48 @@
-import { createTest, createVue, destroyVM } from './util';
-import PYButton from '@/components/button/index';
+
+import Vue from 'vue';
+import PYButton from './../../src/components/button/index';
 
 // const expect = require('chai').expect;
+const chai = require('chai');
+const expect = (typeof require === 'undefined') ? chai.expect : require('chai').expect;
 
+
+let id = 0;
+
+const createElm = function () {
+  const div = document.createElement('div');
+  id += 1;
+  div.id = 'app'.concat(id);
+  document.body.appendChild(div);
+  return div;
+};
+
+const destoryVM = function (vm) {
+  vm.$destory && vm.$destory();
+  vm.$el && vm.$el.parentNode && vm.$el.parentNode.removeChild(vm.$el);
+};
+
+const createVue = function(Compo, mounted = false) {
+  if (Object.prototype.toString.call(Compo) === '[object String]') {
+    Compo = { template: Compo };
+  }
+  return new Vue(Compo).$mount(mounted === false ? null : createElm());
+};
+
+const createTest = function (Compo, propsData = {}, mounted = false) {
+  if (propsData === true || propsData === false) {
+    mounted = propsData;
+    propsData = {};
+  }
+  const ele = createElm();
+  const Ctor = Vue.extend(Compo);
+  return new Ctor({ propsData }).$mount(mounted === false ? null : ele);
+};
 
 describe('PYButton', () => {
   let vm;
   afterEach(() => {
-    destroyVM(vm);
+    destoryVM(vm);
   });
   it('create', () => {
     vm = createTest(PYButton, { type: 'primary' }, true);
@@ -55,7 +90,6 @@ describe('PYButton', () => {
         },
       },
     }, true);
-    console.log(vm.$el.template);
     vm.$el.click();
     
     setTimeout(_ => {

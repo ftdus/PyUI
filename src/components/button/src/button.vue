@@ -1,5 +1,10 @@
 <style lang='scss' scoped>
 @import "../../../base/themes.scss";
+$primary-color: #2d8cf0;
+$info-color: #2db7f5;
+$success-color: #19be6b;
+$warning-color: #ff9900;
+$error-color: #ed4014;
 $padding: 6px 15px;
 $font-size-default: 14px;
 $font-size-small: 12px;
