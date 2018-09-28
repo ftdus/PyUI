@@ -17,6 +17,7 @@
     &-box {
         padding: 10px;
         border: 1px solid #eee;
+        padding-left: 0;
     }
     &-group {
         margin: 10px;
@@ -83,7 +84,6 @@
         <py-button>按钮</py-button>
         <py-button>按钮</py-button>
       </py-button-group>
-      <br>
       <py-button-group>
         <py-button type="primary" icon="icon-return">上一页</py-button>
         <py-button type="primary" icon="icon-entry" class="py-icon--right">下一页</py-button>
