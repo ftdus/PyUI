@@ -43,7 +43,13 @@
 </template>
 
 <script>
+import PyTabs from '@/components/tabs';
+import PyTabPane from '@/components/tabPane';
 export default {
+  components: {
+    'py-tabs': PyTabs,
+    'py-tab-pane': PyTabPane,
+  },
   data() {
     return {
       show1: 'label2',

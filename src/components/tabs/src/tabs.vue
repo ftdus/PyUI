@@ -1,7 +1,7 @@
 <template>
   <div :class="tabsClass">
     <div class="py-tabs__nav-wrap">
-      <div class="py-tabs__nav" :style="navBg">
+      <div class="py-tabs__nav">
         <!-- 标签页的标题 -->
         <div class="py-tabs__active-bar" :style="barStyle"></div>
         <div

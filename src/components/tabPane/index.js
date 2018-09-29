@@ -1,9 +1,7 @@
 import PyTabPane from '../tabs/src/tab-pane.vue';
 
-const TabPane = {
-  install(Vue) {
-    Vue.component('PyTabPane', PyTabPane);
-  },
+PyTabPane.install = function PyButton(Vue) {
+  Vue.component(PyTabPane.name, PyTabPane);
 };
 
-export default TabPane;
+export default PyTabPane;
