@@ -8,7 +8,6 @@ import index from './index';
 
 Vue.use(index);
 
-
 Vue.config.productionTip = false;
 
 new Vue({

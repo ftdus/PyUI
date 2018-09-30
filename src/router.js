@@ -43,5 +43,10 @@ export default new Router({
       name: 'card',
       component: () => import(/* webpackChunkName: "card" */ './testsDemo/card/card.vue'),
     },
+    {
+      path: '/tabs',
+      name: 'Tabs',
+      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
+    },
   ],
 });
