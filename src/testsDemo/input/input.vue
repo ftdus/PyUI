@@ -3,7 +3,7 @@
     <div style="width:45vw;float:left">
       <div style="width:200px">
         <h3>事件</h3>
-        <Input
+        <py-input
           :border='b'
           ref="input"
           v-model='value'
@@ -19,60 +19,107 @@
         <p>keydown: {{keydownValue}}</p>
         <p>v-model: {{value}}</p>
         <p>文本框中按下回车键 enter</p>
-        <button @click="handleFocus">获取焦点</button>
-        <button @click="setValue">改变内容</button>
-        <button @click="getValue">获取内容</button>
-        <button @click="clearInput">清空内容</button>
+        <py-button @click="handleFocus">获取焦点</py-button>
+        <py-button @click="setValue">改变内容</py-button>
+        <py-button @click="getValue">获取内容</py-button>
+        <py-button @click="clearInput">清空内容</py-button>
       </div>
+      <br>
 
       <h3>页面加载input获取焦点</h3>
       <div style="width:200px">
-        <Input :autofocus='true'/>
+        <py-input :autofocus='true'/>
+      </div>
+
+      <br>
+      <h3>large(大) small（小）</h3>
+      <div style="width:200px">
+        <py-input size='large' placeholder='large' />
+        <py-input size='small' placeholder='small' />
+      </div>
+
+      <br>
+      <h3>禁用</h3>
+      <div style="width:200px">
+        <py-input :disabled='disabled' :value='789' />
+        <py-button @click="toggleDisabled">toggleDisabled</py-button>
+      </div>
+
+      <br>
+      <h3>添加前后内容</h3>
+      <div style="width:300px">
+        <py-input>
+          <i class="iconfont  icon-coordinates" slot="before"></i>
+        </py-input>
+      </div>
+
+      <div style="width:300px">
+        <py-input>
+          <i class="iconfont  icon-coordinates" slot="after"></i>
+        </py-input>
+      </div>
+
+      <div style="width:300px">
+        <py-input>
+          <i class="iconfont  icon-coordinates" slot="before"></i>
+          <i class="iconfont  icon-coordinates" slot="after"></i>
+        </py-input>
+      </div>
+
+      <div style="width:300px">
+        <py-input>
+          <span slot="before">前置</span>
+          <span slot="after">后置</span>
+        </py-input>
       </div>
 
       <h3>large(大) small（小）</h3>
-      <div style="width:200px">
-        <Input size='large' placeholder='large' />
-        <Input size='small' placeholder='small' />
-      </div>
-
-      <h3>禁用</h3>
-      <div style="width:200px">
-        <Input :disabled='disabled' :value='789' />
-        <button @click="toggleDisabled">toggleDisabled</button>
+      <div style="width:300px">
+        <py-input size='large' placeholder='large' >
+          <span slot="before">前置内容</span>
+          <span slot="after">后置内容</span>
+        </py-input>
+        <py-input size='small' placeholder='small'>
+          <span slot="before">1231231</span>
+          <span slot="after">1qweqew</span>
+        </py-input>
       </div>
     </div>
 
-    <div style="width:40vw;float:left">
+    <div style="width:45vw;float:left">
       <div style="width:500px">
         <h3>设置type为textarea</h3>
-        <Input name="" id="" cols="30" rows="6"
+        <py-input name="" id="" cols="30" rows="6"
           ref='textarea'
-          :value='textValue'
+          v-model='textValue'
           type='textarea'
           @on-focus='onFocus'
          />
-        <button @click="textareaFocus">获取焦点</button>
-        <button @click="textareaValue">改变内容</button>
-        <button @click="getTextareaValue">获取内容</button>
-        <button @click="cleartextarea">清空内容</button>
+        <br>
+        <py-button @click="textareaFocus">获取焦点</py-button>
+        <py-button @click="textareaValue">改变内容</py-button>
+        <py-button @click="getTextareaValue">获取内容</py-button>
+        <py-button @click="cleartextarea">清空内容</py-button>
       </div>
+      <br>
       <div style="width:500px;">
         <h3>设置row控制行数,仅限textarea</h3>
         <h3>设置form,详见原生form用法</h3>
-        <Input type='textarea' :row='3' form='qwe' :placeholder='"row=3,form=qwe"' />
+        <py-input type='textarea' :row='3' form='qwe' :placeholder='"row=3,form=qwe"' />
       </div>
 
+      <br>
       <div style="width:500px;">
         <h3>设置readonly可读状态，disabled禁用状态</h3>
-        <Input type='textarea' :placeholder='"disabled=true"' :disabled="textareaDisabled" />
-        <button @click='textareaToggleDisabled'>toggle</button>
-        {{textareaDisabled}}
+        <py-input type='textarea' :placeholder='"disabled=true"' :disabled="textareaDisabled" />
+        <br>
+        <py-button @click='textareaToggleDisabled'>toggle</py-button>
       </div>
 
+      <br>
       <div>
         <h3>自适应高度, autoHeight=true</h3>
-        <Input type="textarea" :autoHeight='true' />
+        <py-input type="textarea" :autoHeight='true' />
       </div>
     </div>
   </div>
@@ -92,6 +139,9 @@ export default {
       keydownValue: "",
       textareaDisabled: true,
     };
+  },
+  created(){
+    console.log(this)
   },
   methods: {
     textareaToggleDisabled() {
@@ -144,6 +194,9 @@ export default {
     handleFocus() {
       this.$refs.input.focus();
     },
+    handleFocusS() {
+      this.$refs.inputs.focus();
+    },
     // 改变内容后失去焦点
     onChange(e) {
       console.log(e, "改变内容后失去焦点触发");
@@ -161,19 +214,3 @@ export default {
   },
 };
 </script>
-
-<style>
-button {
-  align-items: flex-start;
-  text-align: center;
-  cursor: default;
-  color: buttontext;
-  background-color: buttonface;
-  box-sizing: border-box;
-  padding: 2px 6px 3px;
-  border-width: 2px;
-  border-style: outset;
-  border-color: buttonface;
-  border-image: initial;
-}
-</style>
