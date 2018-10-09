@@ -19,8 +19,11 @@ export default new Router({
     {
       path: '/button',
       name: 'button',
-      component: () =>
-        import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
+    }, {
+      path: '/divider',
+      name: 'divider',
+      component: () => import(/* webpackChunkName: "divider" */ './testsDemo/divider/divider.vue'),
     },
     {
       path: '/badge',
@@ -42,6 +45,11 @@ export default new Router({
       path: '/card',
       name: 'card',
       component: () => import(/* webpackChunkName: "card" */ './testsDemo/card/card.vue'),
+    },
+    {
+      path: '/tabs',
+      name: 'Tabs',
+      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
   ],
 });
