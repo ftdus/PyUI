@@ -28,7 +28,7 @@ export default function upload(option) {
   }
 
   const xhr = new XMLHttpRequest();
-  const { action } = option.action;
+  const action = option.action;
 
   if (xhr.upload) {
     xhr.upload.onprogress = function progress(e) {
@@ -60,7 +60,6 @@ export default function upload(option) {
 
     return option.onSuccess(getBody(xhr));
   };
-
   xhr.open('post', action, true);
 
   if (option.withCredentials && 'withCredentials' in xhr) {

@@ -1,13 +1,23 @@
 <template>
     <div class="py-upload" @click.stop='inputClick'>
-      <input type="file" ref='input' @change="fileChange">
+      <input 
+        type='file' 
+        ref='input' 
+        :accept='accept'
+        @change='fileChange'>
       <slot></slot>
     </div>
 </template>
 
 <script>
+import ajax from './ajax';
 export default {
-  name: 'upload',
+  name: "upload",
+  data () {
+    return {
+      fileList: []
+    }
+  },
   methods: {
     inputClick () {
       this.$refs.input.click()
@@ -16,26 +26,99 @@ export default {
     fileChange () {
       const files = this.$refs.input.files;
       for(let i = 0;i < files.length; i++){
-        this.fileSelect(files[i], files)
+        this.fileList.push({
+          name: files[i].name,
+          size: files[i].size,
+          status: 'loading',
+          percentage: 0,
+          uid: files[i].size + Date.now()
+        })
+        this.fileSelect(files[i], this.fileList)
       }
     },
-    // 刚选择上传的文件
+    // 选择上传的文件
     fileSelect (file, fileList) {
-      this.$emit('fileSelect', file, fileList)
+      this.$emit('on-select', file, fileList)
 
-      this.fileFormat(file);
+      this.fileFormat(file, fileList);
+      
     },
-    // 文件后缀格式验证
-    fileFormat (file) {
+    // 验证文件后缀格式
+    fileFormat (file, fileList) {
+      if(this.format.length <= 0){return false;}
       const name = file.name ? file.name.split('.') : [];
       const fileType = name[name.length, name.length-1];
-      console.log(fileType)
+      if (this.format.indexOf(fileType) === -1) {
+        this.$emit('on-format-err', file, fileList)
+        return false;
+      }
+      this.fileMaxSize(file, fileList);
+    },
+    // 验证文件大小
+    fileMaxSize (file, fileList) {
+      if (this.maxSize !== undefined) {
+        if(file.size > this.maxSize * 1024){
+          this.$emit('on-size-err', file, fileList)
+          return false;
+        }
+      }
+      // 上传之前
+      this.$emit('before-upload', file, fileList)
+      this.fileStart(file, fileList)
+    },
+    // 开始上传文件
+    fileStart (file, fileList) {
+      if (!this.action) {
+        this.$emit('on-error', '上传地址必填!', file, fileList);
+        return false;
+      }
+      ajax({
+        headers: this.headers,
+        // cookie
+        withCredentials: this.withCredentials,
+        file,
+        data: this.data,
+        filename: this.name,
+        action: this.action,
+        onProgress: e => {
+          //this.handleProgress(e, file);
+        },
+        onSuccess: res => {
+          //this.handleSuccess(res, file);
+        },
+        onError: (err, response) => {
+          //this.handleError(err, response, file);
+        }
+      })
+    }
+  },
+  props: {
+    format: {
+      type: Array,
+      default: [],
+    },
+    accept: [String],
+    maxSize: [Number],
+    action: [String],
+    headers: {
+      type: Object,
+      default: () => {}
+    },
+    withCredentials: {
+      type: Boolean,
+      default: false,
+    },
+    data: [Object],
+    name: {
+      type: String,
+      default: 'file'
     }
   }
 };
 </script>
 
 <style lang='scss'>
+@import "@/base/themes.scss";
 .py-upload{
   input{
     display: none;

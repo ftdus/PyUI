@@ -79,6 +79,7 @@ export default {
   inheritAttrs: false,
   mounted() {
     this.resizeHeight();
+    console.log(this.$el.querySelector('input'))
   },
   methods: {
     // 写入内容

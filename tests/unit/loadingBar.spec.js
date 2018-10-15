@@ -1,4 +1,4 @@
-import Vue from 'vue';
+/* import Vue from 'vue';
 import {
   createTest,
   createVue,
@@ -60,10 +60,10 @@ describe('loadingBar', () => {
     }, 100);
 
 
-    /*vm.updataLoading();
+    vm.updataLoading();
     el = document.querySelector('.py-loaderBar');
     expect(el).to.exist;
     expect(el.style.background).to.equal('rgb(247, 18, 18)');
-    expect(el.style.width).to.equal('32%'); */
+    expect(el.style.width).to.equal('32%');
   });
-});
+});*/
