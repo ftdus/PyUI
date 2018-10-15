@@ -2,9 +2,10 @@
 import Button from "./components/button/index";
 import Input from "./components/input/index";
 import loadingBar from "./components/loadingBar/index";
+import upload from "./components/upload/index";
 
 const components = [
-  Button, Input,
+  Button, Input, upload,
 ];
 const install = function (Vue) {
   const vue = Vue;

@@ -51,5 +51,10 @@ export default new Router({
       name: 'Tabs',
       component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
+    {
+      path: '/upload',
+      name: 'upload',
+      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/upload/upload.vue'),
+    },
   ],
 });
