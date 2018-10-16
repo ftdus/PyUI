@@ -26,22 +26,19 @@ export default {
     fileChange () {
       const files = this.$refs.input.files;
       for(let i = 0;i < files.length; i++){
-        this.fileList.push({
-          name: files[i].name,
-          size: files[i].size,
-          status: 'loading',
+        Object.assign(files[i], {
+          uid: files[i].size + Date.now(),
           percentage: 0,
-          uid: files[i].size + Date.now()
+          status: 'status'
         })
+        this.fileList.push(files[i])
         this.fileSelect(files[i], this.fileList)
       }
     },
     // 选择上传的文件
     fileSelect (file, fileList) {
       this.$emit('on-select', file, fileList)
-
       this.fileFormat(file, fileList);
-      
     },
     // 验证文件后缀格式
     fileFormat (file, fileList) {
@@ -81,15 +78,41 @@ export default {
         filename: this.name,
         action: this.action,
         onProgress: e => {
-          //this.handleProgress(e, file);
+          this.handleProgress(e, file);
         },
         onSuccess: res => {
-          //this.handleSuccess(res, file);
+          this.handleSuccess(res, file);
         },
-        onError: (err, response) => {
-          //this.handleError(err, response, file);
+        onError: (err) => {
+          this.handleError(err, file);
         }
       })
+    },
+    // 返回数组中同一对象
+    getFile (file) {
+        const fileList = this.fileList;
+        let target;
+        fileList.every(item => {
+            target = file.uid === item.uid ? item : null;
+            return !target;
+        });
+        return target;
+    },
+    // 上传中 -- 
+    handleProgress (e, file) {
+      const _file = this.getFile(file)
+      _file.percentage = e.percent || 0
+      _file.status = 'progress'
+      this.$emit('on-progress', e, file)
+    },
+    // 上传成功回调
+    handleSuccess (res, file) {
+      console.log(file)
+      this.$emit('on-success', res, file)
+    },
+    // 上传失败
+    handleError (err, file) {
+      console.log(err, file)
     }
   },
   props: {
