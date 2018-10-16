@@ -98,7 +98,7 @@ export default {
         });
         return target;
     },
-    // 上传中 -- 
+    // 上传中 --
     handleProgress (e, file) {
       const _file = this.getFile(file)
       _file.percentage = e.percent || 0
