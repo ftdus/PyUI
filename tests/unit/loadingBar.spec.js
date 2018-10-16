@@ -1,4 +1,4 @@
-/* import Vue from 'vue';
+import Vue from 'vue';
 import {
   createTest,
   createVue,
@@ -66,4 +66,4 @@ describe('loadingBar', () => {
     expect(el.style.background).to.equal('rgb(247, 18, 18)');
     expect(el.style.width).to.equal('32%');
   });
-});*/
+});

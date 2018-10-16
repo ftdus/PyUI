@@ -1,11 +1,26 @@
 <template>
-    <div class="py-upload" @click.stop='inputClick'>
+    <div class="py-warp">
+      <div class="py-upload" @click.stop='inputClick'>
       <input 
         type='file' 
         ref='input' 
         :accept='accept'
         @change='fileChange'>
       <slot></slot>
+    </div>
+    {{fileList}}
+      <ul class="file-list" v-if='fileList.length > 0'>
+        <li v-for='(item, index) in fileList' :key='index'>
+          <span class="name">{{item.name}}</span>
+          <div class="upload-wrap">
+            <div class="upload-precc">
+              <li :style='{width: item.percentage+"%"}'></li>
+            </div>
+            <span class="del" ref='del'>{{item.percentage}}%</span>
+          </div>
+          
+        </li>
+      </ul>
     </div>
 </template>
 
@@ -31,7 +46,6 @@ export default {
           percentage: 0,
           status: 'status'
         })
-        this.fileList.push(files[i])
         this.fileSelect(files[i], this.fileList)
       }
     },
@@ -59,8 +73,15 @@ export default {
           return false;
         }
       }
-      // 上传之前
-      this.$emit('before-upload', file, fileList)
+      this.beforeUpload(file, fileList)
+    },
+    // 上传之前
+    beforeUpload (file, fileList) {
+      this.fileList.push(file)
+      if(!this.onBeforeUpload){
+        this.fileStart(file)
+        return false;
+      }
       this.fileStart(file, fileList)
     },
     // 开始上传文件
@@ -69,6 +90,7 @@ export default {
         this.$emit('on-error', '上传地址必填!', file, fileList);
         return false;
       }
+      const _file = this.getFile(file)
       ajax({
         headers: this.headers,
         // cookie
@@ -78,13 +100,13 @@ export default {
         filename: this.name,
         action: this.action,
         onProgress: e => {
-          this.handleProgress(e, file);
+          this.handleProgress(e, _file);
         },
         onSuccess: res => {
-          this.handleSuccess(res, file);
+          this.handleSuccess(res, _file);
         },
         onError: (err) => {
-          this.handleError(err, file);
+          this.handleError(err, _file);
         }
       })
     },
@@ -98,21 +120,23 @@ export default {
         });
         return target;
     },
-    // 上传中 --
+    // 上传中
     handleProgress (e, file) {
       const _file = this.getFile(file)
-      _file.percentage = e.percent || 0
+      this.fileList[0].percentage = e.percent || 0
+      console.log(this.fileList[0].percentage)
       _file.status = 'progress'
-      this.$emit('on-progress', e, file)
+      //this.$emit('on-progress', e, file)
     },
     // 上传成功回调
     handleSuccess (res, file) {
-      console.log(file)
+      file.status = 'success'
       this.$emit('on-success', res, file)
     },
     // 上传失败
     handleError (err, file) {
-      console.log(err, file)
+      file.status = 'fail'
+      this.$emit('on-error', err, file)
     }
   },
   props: {
@@ -132,6 +156,7 @@ export default {
       default: false,
     },
     data: [Object],
+    onBeforeUpload: Function,
     name: {
       type: String,
       default: 'file'
@@ -142,9 +167,56 @@ export default {
 
 <style lang='scss'>
 @import "@/base/themes.scss";
-.py-upload{
-  input{
-    display: none;
+.py-warp{
+  .py-upload{
+    input{
+      display: none;
+    }
   }
+
+  .file-list{
+      font-size: 15px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      display: flex;
+      li{
+        width: 100%;
+        border-radius: 3px;
+        transition: .3s;
+        &:hover{
+          background: rgba(123, 180, 240, 0.1);
+        }
+        .upload-wrap{
+          height: 20px;
+          line-height: 20px;
+          transition: .3s;
+          display: flex;
+          .upload-precc{
+            flex: 1;
+            height: 2px;
+            background: #ebebeb;
+            margin-top: 8px;
+            li{
+              width: 0%;
+              background: linear-gradient(to right, $border-color-hover, $success-color);
+              height: 100%;
+              z-index: 2;
+              transition: .3s;
+            }
+          }
+        }
+      }
+      .name{
+        width:100%;
+        font-size: 14px;
+      }
+      .del{
+        width:45px;
+        color:$color;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
 }
+
 </style>

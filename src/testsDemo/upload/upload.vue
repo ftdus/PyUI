@@ -7,7 +7,10 @@
           @on-format-err='onFormatErr'
           @on-error='onError'
           @on-size-err='onSizeErr'>
-          <py-button type="primary">上传文件</py-button>
+          <py-button type="primary">
+            <i class="iconfont  icon-addition"></i>
+            上传文件
+          </py-button>
         </py-upload>
     </div>
 </template>
@@ -38,7 +41,7 @@ export default {
       console.log('图片太大了，请重试!')
     },
     onError (err, file, fileList) {
-      alert(err)
+      console.log(err)
     }
   }
 };
