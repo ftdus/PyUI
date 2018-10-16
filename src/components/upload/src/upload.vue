@@ -69,6 +69,7 @@ export default {
         this.$emit('on-error', '上传地址必填!', file, fileList);
         return false;
       }
+      const _file = this.getFile(file)
       ajax({
         headers: this.headers,
         // cookie
@@ -78,13 +79,13 @@ export default {
         filename: this.name,
         action: this.action,
         onProgress: e => {
-          this.handleProgress(e, file);
+          this.handleProgress(e, _file);
         },
         onSuccess: res => {
-          this.handleSuccess(res, file);
+          this.handleSuccess(res, _file);
         },
         onError: (err) => {
-          this.handleError(err, file);
+          this.handleError(err, _file);
         }
       })
     },
@@ -98,21 +99,21 @@ export default {
         });
         return target;
     },
-    // 上传中 -- 
+    // 上传中
     handleProgress (e, file) {
-      const _file = this.getFile(file)
       _file.percentage = e.percent || 0
       _file.status = 'progress'
       this.$emit('on-progress', e, file)
     },
     // 上传成功回调
     handleSuccess (res, file) {
-      console.log(file)
+      file.status = 'success'
       this.$emit('on-success', res, file)
     },
     // 上传失败
     handleError (err, file) {
-      console.log(err, file)
+      file.status = 'fail'
+      this.$emit('on-error', err, file)
     }
   },
   props: {
