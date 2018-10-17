@@ -1,8 +1,7 @@
 <template>
     <div style='padding:20px;'>
         <py-upload
-          :format='format'
-          action='https://jsonplaceholder.typicode.com/posts/'
+          action='//jsonplaceholder.typicode.com/posts/'
           @on-select='onSelect'
           @on-format-err='onFormatErr'
           @on-error='onError'
@@ -26,7 +25,7 @@ export default {
   },
   data () {
     return {
-      format: ['jpg', 'png', 'txt']
+      format: ['jpg', 'png', 'txt', 'pptx']
     }
   },
   methods: {

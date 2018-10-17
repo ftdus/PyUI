@@ -8,11 +8,11 @@
         @change='fileChange'>
       <slot></slot>
     </div>
-    {{fileList}}
       <ul class="file-list" v-if='fileList.length > 0'>
         <li v-for='(item, index) in fileList' :key='index'>
           <span class="name">{{item.name}}</span>
-          <div class="upload-wrap">
+          {{item.percentage}}
+          <div class="upload-wrap" >
             <div class="upload-precc">
               <li :style='{width: item.percentage+"%"}'></li>
             </div>
@@ -46,7 +46,9 @@ export default {
           percentage: 0,
           status: 'status'
         })
-        this.fileSelect(files[i], this.fileList)
+        this.fileList.push(files[i])
+        this.fileStart(files[i])
+        //this.fileSelect(files[i], this.fileList)
       }
     },
     // 选择上传的文件
@@ -77,7 +79,6 @@ export default {
     },
     // 上传之前
     beforeUpload (file, fileList) {
-      this.fileList.push(file)
       if(!this.onBeforeUpload){
         this.fileStart(file)
         return false;
@@ -95,7 +96,7 @@ export default {
         headers: this.headers,
         // cookie
         withCredentials: this.withCredentials,
-        file,
+        file: file,
         data: this.data,
         filename: this.name,
         action: this.action,
@@ -103,10 +104,10 @@ export default {
           this.handleProgress(e, _file);
         },
         onSuccess: res => {
-          this.handleSuccess(res, _file);
+          //this.handleSuccess(res, _file);
         },
         onError: (err) => {
-          this.handleError(err, _file);
+          //this.handleError(err, _file);
         }
       })
     },
@@ -122,10 +123,9 @@ export default {
     },
     // 上传中
     handleProgress (e, file) {
-      const _file = this.getFile(file)
-      this.fileList[0].percentage = e.percent || 0
-      console.log(this.fileList[0].percentage)
-      _file.status = 'progress'
+      file.percentage = e.percent || 0
+      file.status = 'progress'
+      console.log(e.percent)
       //this.$emit('on-progress', e, file)
     },
     // 上传成功回调
@@ -136,13 +136,14 @@ export default {
     // 上传失败
     handleError (err, file) {
       file.status = 'fail'
+      //file.percentage = 100
       this.$emit('on-error', err, file)
     }
   },
   props: {
     format: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     accept: [String],
     maxSize: [Number],
@@ -179,10 +180,13 @@ export default {
       padding-top: 7px;
       padding-bottom: 7px;
       display: flex;
+      flex-wrap:wrap;
+      margin-left: -5px;
       li{
         width: 100%;
         border-radius: 3px;
         transition: .3s;
+        padding:6px;
         &:hover{
           background: rgba(123, 180, 240, 0.1);
         }
@@ -200,14 +204,16 @@ export default {
               width: 0%;
               background: linear-gradient(to right, $border-color-hover, $success-color);
               height: 100%;
+              padding:0;
               z-index: 2;
-              transition: .3s;
+              transition: 1s;
             }
           }
         }
       }
       .name{
         width:100%;
+        color:$color;
         font-size: 14px;
       }
       .del{
