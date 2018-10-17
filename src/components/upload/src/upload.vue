@@ -8,24 +8,14 @@
         @change='fileChange'>
       <slot></slot>
     </div>
-      <ul class="file-list" v-if='fileList.length > 0'>
-        <li v-for='(item, index) in fileList' :key='index'>
-          <span class="name">{{item.name}}</span>
-          {{item.percentage}}
-          <div class="upload-wrap" >
-            <div class="upload-precc">
-              <li :style='{width: item.percentage+"%"}'></li>
-            </div>
-            <span class="del" ref='del'>{{item.percentage}}%</span>
-          </div>
-          
-        </li>
-      </ul>
+
+    <uploadList :files='fileList'/>
     </div>
 </template>
 
 <script>
 import ajax from './ajax';
+import uploadList from './upload-list'
 export default {
   name: "upload",
   data () {
@@ -33,23 +23,30 @@ export default {
       fileList: []
     }
   },
+  components: { uploadList },
   methods: {
     inputClick () {
       this.$refs.input.click()
     },
     // 监听文件选择框change事件
-    fileChange () {
-      const files = this.$refs.input.files;
+    fileChange (e) {
+      const files = e.target.files;
+      if(!files){return false};
+
       for(let i = 0;i < files.length; i++){
-        Object.assign(files[i], {
-          uid: files[i].size + Date.now(),
-          percentage: 0,
-          status: 'status'
-        })
-        this.fileList.push(files[i])
-        this.fileStart(files[i])
-        //this.fileSelect(files[i], this.fileList)
-      }
+        const _file = {
+            status: 'status',
+            name: files[i].name,
+            size: files[i].size,
+            percentage: 0,
+            uid: files[i].size + Date.now(),
+            showProgress: true
+        };
+
+        this.fileList.push(_file)
+        this.fileStart(_file)
+      } 
+      this.$refs.input.value = null
     },
     // 选择上传的文件
     fileSelect (file, fileList) {
@@ -92,6 +89,8 @@ export default {
         return false;
       }
       const _file = this.getFile(file)
+      let formData = new FormData();
+      formData.append(this.name, file);
       ajax({
         headers: this.headers,
         // cookie
@@ -123,20 +122,21 @@ export default {
     },
     // 上传中
     handleProgress (e, file) {
-      file.percentage = e.percent || 0
+      const _file = this.getFile(file);
+      _file.percentage = parseInt(e.percent) || 0;
       file.status = 'progress'
-      console.log(e.percent)
       //this.$emit('on-progress', e, file)
     },
     // 上传成功回调
     handleSuccess (res, file) {
       file.status = 'success'
+      file.percentage = 100
       this.$emit('on-success', res, file)
     },
     // 上传失败
     handleError (err, file) {
       file.status = 'fail'
-      //file.percentage = 100
+      file.percentage = 100
       this.$emit('on-error', err, file)
     }
   },
@@ -167,62 +167,11 @@ export default {
 </script>
 
 <style lang='scss'>
-@import "@/base/themes.scss";
 .py-warp{
   .py-upload{
     input{
       display: none;
     }
   }
-
-  .file-list{
-      font-size: 15px;
-      padding-top: 7px;
-      padding-bottom: 7px;
-      display: flex;
-      flex-wrap:wrap;
-      margin-left: -5px;
-      li{
-        width: 100%;
-        border-radius: 3px;
-        transition: .3s;
-        padding:6px;
-        &:hover{
-          background: rgba(123, 180, 240, 0.1);
-        }
-        .upload-wrap{
-          height: 20px;
-          line-height: 20px;
-          transition: .3s;
-          display: flex;
-          .upload-precc{
-            flex: 1;
-            height: 2px;
-            background: #ebebeb;
-            margin-top: 8px;
-            li{
-              width: 0%;
-              background: linear-gradient(to right, $border-color-hover, $success-color);
-              height: 100%;
-              padding:0;
-              z-index: 2;
-              transition: 1s;
-            }
-          }
-        }
-      }
-      .name{
-        width:100%;
-        color:$color;
-        font-size: 14px;
-      }
-      .del{
-        width:45px;
-        color:$color;
-        font-size: 12px;
-        text-align: center;
-      }
-    }
 }
-
 </style>
