@@ -51,5 +51,10 @@ export default new Router({
       name: 'Tabs',
       component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
+    {
+      path: '/slider',
+      name: 'Slider',
+      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/slider/Slider.vue'),
+    },
   ],
 });
