@@ -52,9 +52,20 @@ export default new Router({
       component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
     {
-      path: '/ColorPicker',
-      name: 'ColorPicker',
-      component: () => import(/* webpackChunkName: "ColorPicker" */ './testsDemo/ColorPicker/ColorPicker.vue'),
+      path: '/slider',
+      name: 'Slider',
+      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/slider/Slider.vue'),
     },
+    {
+      path: '/switch',
+      name: 'Switch',
+      component: () => import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
+      feature/createWebAndCreateBaseCpont
+    },
+    {
+      path: '/colorPicker',
+      name: 'colorPicker',
+      component: () => import(/* webpackChunkName: "ColorPicker" */ './testsDemo/colorPicker/colorPicker.vue'),
+    }
   ],
 });

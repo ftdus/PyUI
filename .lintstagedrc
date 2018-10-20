@@ -1,0 +1,14 @@
+{
+  "linters": {
+    "website/**/*.{js,vue}": [
+        "prettier --write",
+        "node_modules/eslint/bin/eslint.js --fix",
+        "git add"
+    ],
+    "scripts/**/*.js": [
+        "prettier --write",
+        "git add"
+    ]
+  },
+  "ignore": []
+}
