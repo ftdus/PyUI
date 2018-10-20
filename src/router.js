@@ -51,5 +51,10 @@ export default new Router({
       name: 'Tabs',
       component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
+    {
+      path: '/cascader',
+      name: 'cascader',
+      component: () => import(/* webpackChunkName: "cascader" */ './testsDemo/cascader/cascader.vue'),
+    },
   ],
 });
