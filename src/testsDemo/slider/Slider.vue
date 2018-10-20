@@ -1,6 +1,6 @@
 <template>
   <div style="margin: 50px">
-    <py-slider v-model="value" :step="10"></py-slider>
+    <py-slider v-model="value" :step="5" show-stops></py-slider>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      value: 50,
+      value: 0,
     };
   },
   watch: {
