@@ -8,6 +8,7 @@
     <router-link to="/divider">divider</router-link>
     <router-link to="/slider">slider</router-link>
     <router-link to="/switch">switch</router-link>
+    <router-link to="/pagination">pagination</router-link>
   </div>
 </template>
 <script>
