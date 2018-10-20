@@ -51,5 +51,10 @@ export default new Router({
       name: 'Tabs',
       component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
+    {
+      path: '/rate',
+      name: 'rate',
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
+    },
   ],
 });
