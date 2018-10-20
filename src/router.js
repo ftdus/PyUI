@@ -51,5 +51,10 @@ export default new Router({
       name: 'Tabs',
       component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
+    {
+      path: '/ColorPicker',
+      name: 'ColorPicker',
+      component: () => import(/* webpackChunkName: "ColorPicker" */ './testsDemo/ColorPicker/ColorPicker.vue'),
+    },
   ],
 });
