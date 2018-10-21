@@ -47,7 +47,7 @@
         <div class="demo">
             <div class="title">区块间隔</div>
             <div class="demo-box">
-                <Row gutter="16">
+                <Row crevice="16">
                     <Col span="6">
                         <div>col-6</div>
                     </Col>
@@ -68,10 +68,11 @@
 </template>
 <script>
 import Grid from "../../components/grid/index";
+
 export default {
   components: {
     Row: Grid.Row,
-    Col: Grid.Col
+    Col: Grid.Col,
   }
 };
 </script>
