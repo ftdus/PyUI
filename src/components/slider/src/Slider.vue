@@ -1,7 +1,23 @@
 <template>
   <div class="py-slider" ref="wrap">
     <div class="py-slider__runway" ref="runway">
-      <div class="py-slider__runway--process" :style="{ width: `${process}px` }"></div>
+      <div
+        class="py-slider__stops--wrap"
+        v-if="showStops">
+        <div
+          v-for="(item, index) in stops"
+          v-if="index > 0 && index < stops.length - 1"
+          :style="{ left: `${item}%` }"
+          :key="item"
+          class="py-slider__stop"
+        >
+        </div>
+      </div>
+      <div
+        :class="{ 'py-slider__runway--process': true, disabled }"
+        :style="{ width: `${process}px` }"
+      >
+      </div>
       <div
         class="py-slider__button--wrap"
         ref="button"
@@ -10,7 +26,7 @@
         }"
       >
         <div
-          :class="{ 'py-slider__button': true, hover: dragStart }"
+          :class="{ 'py-slider__button': true, hover: dragStart, disabled }"
           @mousedown="handleMouseDown"
           @mouseenter="handleMouseEnter"
           @mouseleave="handleMouseLeave"
@@ -26,12 +42,9 @@
  *  @desc 滑块组件
  *  @author YuLinXi
  *  @todo
- *    - step
- *    - disabled
  *    - vertical
- *    - max
- *    - min
  *    - range
+ *    - showTooltip
  */
 export default {
   name: 'py-slider',
@@ -59,16 +72,19 @@ export default {
     height: {
       type: Number,
     },
-    vertical: {
+    // vertical: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // range: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // tooltipClass: {
+    //   type: String,
+    // },
+    showStops: {
       type: Boolean,
-      default: false,
-    },
-    range: {
-      type: Boolean,
-      default: false,
-    },
-    'tooltip-class': {
-      type: String,
     },
   },
   data() {
@@ -79,7 +95,15 @@ export default {
   },
   computed: {
     process() {
+      // 实际偏移量
       return (this.runWayWidth / 100) * this.value;
+    },
+    stops() {
+      const result = [];
+      for (let i = 0; i <= 100 / this.step; i++) {
+        result.push(i * this.step);
+      }
+      return result;
     },
   },
 
@@ -90,31 +114,62 @@ export default {
 
   methods: {
     handleMouseDown() {
+      if (this.disabled) { return; }
       this.dragStart = true;
       window.addEventListener('mousemove', this.onMouseMove);
       window.addEventListener('mouseup', this.onMouseUp);
     },
     handleMouseEnter() {
+      if (this.disabled) { return; }
       this.mouseEnter = true;
     },
     handleMouseLeave() {
-      console.log('leave')
+      if (this.disabled) { return; }
       this.mouseEnter = false;
     },
     onMouseMove(event) {
       if (this.mouseEnter) { return; }
-      let value;
-      if (event.clientX < this.$refs.runway.offsetLeft) {
-        value = 0;
-      } else if (event.clientX > (this.$refs.runway.offsetLeft + this.runWayWidth) - 15) {
-        value = 100;
+      let value = ((event.clientX - this.$refs.runway.offsetLeft) / this.runWayWidth) * 100;
+      if (value < this.min) {
+        value = this.min;
+      } else if (value > this.max) {
+        value = this.max;
       } else {
-        value = ((event.clientX - this.$refs.runway.offsetLeft) / this.runWayWidth) * 100;
+        const result = [];
+        for (let i = 0; i <= 100 / this.step; i++) {
+          result.push(i * this.step);
+        }
+        for (let i = 0; i < result.length; i++) {
+          if (value <= result[i]) {
+            if (!this.lastMoveEventValue) {
+              if (value > this.value) {
+                value = result[i];
+                break;
+              } else if (value < this.value) {
+                value = result[i - 1];
+              } else {
+                value = this.value;
+              }
+              break;
+            } else {
+              if (event.clientX > this.lastMoveEventValue) {
+                value = result[i];
+              } else if (event.clientX < this.lastMoveEventValue) {
+                value = result[i - 1];
+              } else {
+                value = this.value;
+              }
+              break;
+            }
+          }
+        }
       }
+      this.lastMoveEventValue = event.clientX;
       this.$emit('input', value);
     },
     onMouseUp() {
       this.dragStart = false;
+      this.lastMoveEventValue = null;
       this.removeWindowListener();
     },
     removeWindowListener() {
@@ -124,6 +179,9 @@ export default {
     onResize() {
       this.runWayWidth = this.$refs.runway.offsetWidth;
     },
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.onResize);
   },
 };
 </script>
@@ -135,12 +193,13 @@ export default {
   $runWayBgColor: #e4e7ed;
   $runWayRadio: 3px;
   $buttonBorderColor: $primary-color;
-  $buttonSize: 15px;
+  $buttonSize: 18px;
+  $runWayHeight: 5px;
 
   .#{$prefixCls} {
     width: 100%;
     &__runway {
-      height: 6px;
+      height: $runWayHeight;
       background-color: $runWayBgColor;
       border-radius: $runWayRadio;
       display: flex;
@@ -153,16 +212,19 @@ export default {
         height: 6px;
         background-color: $primary-color;
         border-radius: $runWayRadio;
+        &.disabled {
+          background-color: #c0c4cc;
+        }
       }
     }
     &__button {
       width: $buttonSize;
       height: $buttonSize;
       border-radius: 50%;
-      border: 1px solid $buttonBorderColor;
+      border: 2px solid $buttonBorderColor;
       user-select: none;
       cursor: pointer;
-      &.hover, &:hover {
+      &.hover, &:hover:not(.disabled) {
         transform: scale(1.2);
         transition: .3s;
       }
@@ -170,6 +232,25 @@ export default {
         width: $buttonSize;
         height: $buttonSize;
         background-color: rgba(255, 255, 255, 1);
+      }
+      &.disabled {
+        border-color: #c0c4cc;
+        cursor: not-allowed;
+      }
+    }
+    &__stop {
+      position: absolute;
+      width: 6px;
+      height: $runWayHeight;
+      background-color: rgba(255, 255, 255, 1);
+    }
+    &__stops {
+      &--wrap {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
       }
     }
   }
