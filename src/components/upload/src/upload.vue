@@ -9,7 +9,11 @@
         @change="fileChange">
       <slot></slot>
     </div>
-    <uploadList @on-remove="onRemove" :on-before-remove="onbeforeRemove" :files="fileList"/>
+    <uploadList 
+      @on-remove="onRemove"
+      @onItem="onItem"
+      :on-before-remove="onbeforeRemove"
+      :files="fileList"/>
   </div>
 </template>
 
@@ -29,8 +33,13 @@ export default {
     inputClick () {
       this.$refs.input.click();
     },
+    // 点击列表中的文件
+    onItem (index, item) {
+      this.$emit('on-item', index, item, this.fileList)
+    },
     // 删除fileList文件
     onRemove (item, index) {
+      this.fileList.splice(index, 1);
       this.$emit('on-remove', item, index);
     },
     // 监听文件选择框change事件
@@ -132,10 +141,10 @@ export default {
     // 上传中
     handleProgress (e, file) {
       const File = file;
-      File.percentage = parseInt(e.percent, 10) || 0;
       File.status = 'progress';
+      File.percentage = parseInt(e.percent, 10) || 0;
     },
-    // 上传成功回调
+    // 上传成功回调response
     handleSuccess (res, file) {
       const File = file;
       File.status = 'success';

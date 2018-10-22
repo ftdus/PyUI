@@ -140,9 +140,6 @@ export default {
       textareaDisabled: true,
     };
   },
-  created(){
-    console.log(this)
-  },
   methods: {
     textareaToggleDisabled() {
       this.textareaDisabled = !this.textareaDisabled;
