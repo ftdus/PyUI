@@ -1,9 +1,20 @@
+import 'highlight.js/styles/color-brewer.css';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
 import entry from './app.vue';
+import demoBlock from './components/demo-block.vue';
+
+import './assets/styles/common.scss';
+import './assets/styles/docs.scss';
+
+import '../src/base/style.scss';
+import PYUI from '../src/index';
+
+Vue.use(PYUI);
 
 Vue.use(VueRouter);
+Vue.component('demo-block', demoBlock);
 
 const router = new VueRouter({
   mode: 'hash',
