@@ -21,6 +21,8 @@ module.exports = {
     'func-names': ['error', 'as-needed'],
     // 块元素开始和结束位置不需要空行
     'padded-blocks': 'off',
+    // 允许匿名函数
+    'func-names': 'off',
   },
   parserOptions: {
     parser: 'babel-eslint',
