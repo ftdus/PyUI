@@ -34,6 +34,11 @@ function createTemplate(name) {
     __dirname,
     `./templates/components/src/name.vue`
   );
+  const sourceScss = path.resolve(
+    __dirname,
+    `./templates/components/name.scss`
+  );
+
   const distIndex = path.resolve(
     __dirname,
     `../src/components/${name}/index.js`
@@ -42,6 +47,7 @@ function createTemplate(name) {
     __dirname,
     `../src/components/${name}/src/${name}.vue`
   );
+  const distScss = path.resolve(__dirname, `../src/styles/${name}.scss`);
 
   if (fs.existsSync(router)) {
     spinner.fail(`组件 ${name} 已经存在,无法创建`);
@@ -66,6 +72,10 @@ function createTemplate(name) {
         `Py` + nameFormat(name)
       )
     );
+
+    // 输出默认的scss文件
+    fs.copyFileSync(sourceScss, distScss);
+
     spinner.succeed(`组件 ${name} 的目录结构已完成初始化`);
   }
 }
