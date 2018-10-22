@@ -4,11 +4,12 @@
       <input
         type="file"
         ref="input"
+        :multiple="multiple"
         :accept="accept"
         @change="fileChange">
       <slot></slot>
     </div>
-    <uploadList :files="fileList"/>
+    <uploadList @on-remove="onRemove" :on-before-remove="onbeforeRemove" :files="fileList"/>
   </div>
 </template>
 
@@ -27,6 +28,10 @@ export default {
   methods: {
     inputClick () {
       this.$refs.input.click();
+    },
+    // 删除fileList文件
+    onRemove (item, index) {
+      this.$emit('on-remove', item, index);
     },
     // 监听文件选择框change事件
     fileChange (e) {
@@ -51,12 +56,13 @@ export default {
     },
     // 选择上传的文件
     fileSelect (file, fileList) {
-      this.$emit('on-select', file, fileList);
       this.fileFormat(file, fileList);
+      this.$emit('on-select', file, fileList);
     },
     // 验证文件后缀格式
     fileFormat (file, fileList) {
       if (this.format.length <= 0) {
+        this.fileMaxSize(file, fileList);
         return false;
       }
       const name = file.name ? file.name.split('.') : [];
@@ -80,8 +86,7 @@ export default {
     // 上传之前
     beforeUpload (file, fileList) {
       if (!this.onBeforeUpload) {
-        this.fileStart(file);
-        return false;
+        return this.fileStart(file);
       }
       return this.fileStart(file, fileList);
     },
@@ -106,10 +111,10 @@ export default {
           this.handleProgress(e, File);
         },
         onSuccess: res => {
-          console.log(res);
+          this.handleSuccess(res, File);
         },
         onError: err => {
-          console.log(err);
+          this.handleError(err, File);
         },
       });
       return true;
@@ -146,13 +151,23 @@ export default {
     },
   },
   props: {
+    accept: [String],
+    maxSize: [Number],
+    action: [String],
+    onbeforeRemove: {
+      type: Function,
+      default: () => {},
+    },
+    onBeforeUpload: Function,
+    data: [Object],
     format: {
       type: Array,
       default: () => [],
     },
-    accept: [String],
-    maxSize: [Number],
-    action: [String],
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
     headers: {
       type: Object,
       default: () => {},
@@ -161,8 +176,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    data: [Object],
-    onBeforeUpload: Function,
     name: {
       type: String,
       default: 'file',

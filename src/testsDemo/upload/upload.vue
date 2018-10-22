@@ -5,6 +5,7 @@
           @on-select='onSelect'
           @on-format-err='onFormatErr'
           @on-error='onError'
+          multiple
           @on-size-err='onSizeErr'>
           <py-button type="primary">
             <i class="iconfont  icon-addition"></i>
