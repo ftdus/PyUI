@@ -55,6 +55,9 @@ export default {
   transition: .3s;
   padding:6px;
   list-style: none;
+  &:nth-child(1){
+    margin-top:5px;
+  }
   &:hover{
     background: rgba(123, 180, 240, 0.1);
   }

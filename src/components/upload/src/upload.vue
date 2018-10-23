@@ -143,6 +143,7 @@ export default {
       const File = file;
       File.status = 'progress';
       File.percentage = parseInt(e.percent, 10) || 0;
+      this.onProgress(e, file, this.fileList)
     },
     // 上传成功回调response
     handleSuccess (res, file) {
@@ -163,6 +164,7 @@ export default {
     accept: [String],
     maxSize: [Number],
     action: [String],
+    onProgress: Function,
     onbeforeRemove: {
       type: Function,
       default: () => {},
