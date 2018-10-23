@@ -1,14 +1,16 @@
 {
   "linters": {
     "website/**/*.{js,vue}": [
-        "prettier --write",
-        "node_modules/eslint/bin/eslint.js --fix",
-        "git add"
+      "prettier --write",
+      "node_modules/eslint/bin/eslint.js --fix",
+      "git add"
     ],
-    "scripts/**/*.js": [
-        "prettier --write",
-        "git add"
-    ]
+    "src/**/*.{js,vue}": [
+      "prettier --write",
+      "node_modules/eslint/bin/eslint.js --fix",
+      "git add"
+    ],
+    "scripts/**/*.js": ["prettier --write", "git add"]
   },
-  "ignore": []
+  "ignore": ["scripts/templates/**"]
 }
