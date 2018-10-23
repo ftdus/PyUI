@@ -26,9 +26,32 @@ export default {
   data () {
     return {
       fileList: [],
+      crrentFile: this.value,
     };
   },
   components: { uploadList },
+  watch: {
+    crrentFile (fileList) {
+      this.$emit('input', fileList)
+    },
+    value: {
+      immediate: true,
+      handler () {
+        if (this.value.length) {
+          this.value.forEach(item => {
+            if (item.name && item.url) {
+              item = Object.assign(item, {
+                percentage: 100,
+                status: 'success',
+                uid: item.name + Date.now(),
+              })
+            }
+          });
+          this.fileList = this.value
+        }
+      }
+    }
+  },
   methods: {
     inputClick () {
       this.$refs.input.click();
@@ -54,8 +77,7 @@ export default {
           name: Files[i].name,
           size: Files[i].size,
           percentage: 0,
-          uid: Files[i].size + Date.now(),
-          showProgress: true,
+          uid: Files[i].name + Date.now(),
         };
         this.fileList.push(File);
         this.fileSelect(File, this.fileList);
@@ -143,13 +165,15 @@ export default {
       const File = file;
       File.status = 'progress';
       File.percentage = parseInt(e.percent, 10) || 0;
-      this.onProgress(e, file, this.fileList)
+      this.onProgress && this.onProgress(e, File, this.fileList)
     },
     // 上传成功回调response
     handleSuccess (res, file) {
       const File = file;
       File.status = 'success';
       File.percentage = 100;
+      this.onSuccess && this.onSuccess(res, File, this.fileList)
+      this.crrentFile = this.fileList
       this.$emit('on-success', res, File);
     },
     // 上传失败
@@ -157,6 +181,7 @@ export default {
       const File = file;
       File.status = 'fail';
       File.percentage = 100;
+      this.onError && this.onError(err, File, this.fileList)
       this.$emit('on-error', err, File);
     },
   },
@@ -165,6 +190,12 @@ export default {
     maxSize: [Number],
     action: [String],
     onProgress: Function,
+    onSuccess: Function,
+    onError: Function,
+    value: {
+      type: Array,
+      default: [],
+    },
     onbeforeRemove: {
       type: Function,
       default: () => {},
