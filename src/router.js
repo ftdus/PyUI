@@ -61,5 +61,10 @@ export default new Router({
       name: 'Switch',
       component: () => import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
     },
+    {
+      path: '/colorPicker',
+      name: 'ColorPicker',
+      component: () => import(/* webpackChunkName: "colorPicker" */ './testsDemo/colorPicker/ColorPicker.vue'),
+    },
   ],
 });
