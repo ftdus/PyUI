@@ -8,6 +8,7 @@ Col.install = function ColFn(Vue) {
   Vue.component(Col.name, Col);
 };
 
-export default {
-  Row, Col,
+export {
+  Row,
+  Col,
 };

@@ -23,74 +23,158 @@ function findComponentUpward(context, componentName, componentNames) {
 }
 
 export default {
-  name: "col",
+  name: "pyCol",
   props: {
-    span: [Number, String]
+    span: [Number, String],
+    order: String,
+    push: String,
+    pull: String,
+    offset: [Number, String],
+    xs: [Number, Object],
+    sm: [Number, Object],
+    md: [Number, Object],
+    lg: [Number, Object],
   },
   data() {
     return {
-      crevice: 0
+      crevice: 0,
+      sizes: ["xs", "sm", "md", "lg"],
     };
   },
   computed: {
     classList() {
-      return [
+      const classses = [
         `${prefixCls}`,
         {
-          [`${prefixCls}-span-${this.span}`]: this.span
-        }
+          [`${prefixCls}-span-${this.span}`]: this.span,
+          [`${prefixCls}-push-${this.push}`]: this.push,
+          [`${prefixCls}-pull-${this.pull}`]: this.pull,
+          [`${prefixCls}-offset-${this.offset}`]: this.offset,
+        },
       ];
+      this.sizes.forEach(size => {
+        // if (typeof(size) === "number") {
+        //   console.log('number: '+size)
+        //   classses.push(`${prefixCls}-span-${size}-${this[size]}`);
+        // } else if (typeof(size) === "object") {
+        //   console.log('object: '+size)
+        // }
+        if (typeof this[size] === "number") {
+          classses.push(`${prefixCls}-span-${size}-${this[size]}`);
+        } else if (typeof this[size] === "object") {
+          let props = this[size];
+          Object.keys(props).forEach(prop => {
+            classses.push(prop !== "span" ? `${prefixCls}-${size}-${prop}-${props[prop]}`  : `${prefixCls}-span-${size}-${props[prop]}`);
+          });
+        }
+      });
+      return classses;
     },
     styles() {
       let style = {};
-      if (this.gutter !== 0) {
+      if (this.crevice !== 0) {
         style = {
-          paddingLeft: this.gutter / 2 + "px",
-          paddingRight: this.gutter / 2 + "px"
+          paddingLeft: (this.crevice / 2) + "px",
+          paddingRight: (this.crevice / 2) + "px"
         };
       }
+      if (this.order) {
+        style["order"] = this.order;
+      }
       return style;
-    },
+    }
   },
   methods: {
-    updateGutter() {
-      const Row = findComponentUpward(this, "Row");
+    updatecrevice() {
+      const Row = findComponentUpward(this, "pyRow");
       if (Row) {
-        Row.updateGutter(Row.gutter);
+        Row.uploadCrevice(Row.crevice);
       }
     }
   },
   mounted() {
-    this.updateGutter();
+    this.updatecrevice();
   },
   beforeDestroy() {
-    this.updateGutter();
+    this.updatecrevice();
   }
 };
 </script>
 
 <style lang="scss" scoped>
 $prefixCls: "py-col";
+
+$start: 1;
+$end: 24;
+$count: 100%/24;
+$name: -span-;
+
 .#{$prefixCls} {
-  background-color: rgba(0, 153, 229, 0.9);
+  position: relative;
   float: left;
   color: #fff;
   padding: 10px 0;
   text-align: center;
-  &:nth-child(odd) {
-    background-color: rgba(0, 153, 229, 0.7);
-  }
-  &-span-12 {
-    width: 50%;
-  }
-  &-span-8 {
-    width: 33.33%;
-  }
-  &-span-6 {
-    width: 25%;
-  }
-  &-span-4 {
-    width: 16.66%;
+
+  @for $s from $start to $end {
+    // &-span- {
+    &#{$name}#{$s} {
+      width: $count * $s;
+    }
+    @media (max-width: 767px) {
+      &#{$name}xs-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-xs {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+      &#{$name}sm-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-sm {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+      &#{$name}md-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-md {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    @media (min-width: 1200px) {
+      &#{$name}lg-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-lg {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    // }
+    &-offset-#{$s} {
+      margin-left: $count * $s;
+    }
+    &-push-#{$s} {
+      left: $count * $s;
+    }
+    &-pull-#{$s} {
+      right: $count * $s;
+    }
   }
 }
 </style>
