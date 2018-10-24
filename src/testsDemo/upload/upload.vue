@@ -6,6 +6,7 @@
           @on-format-err='onFormatErr'
           @on-error='onError'
           multiple
+          type='drap'
           v-model='defaultFileList'
           @on-size-err='onSizeErr'>
           <py-button type="primary">

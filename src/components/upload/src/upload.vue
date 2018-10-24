@@ -1,6 +1,11 @@
 <template>
   <div class="py-upload_container">
-    <div class="py-upload_item" @click.stop="inputClick">
+    <div class="py-upload_item"
+      :class="drapClass"
+      @click.stop="inputClick"
+      @dragover.prevent="drapFile = true"
+      @dragleave.prevent="drapFile = false"
+      @drop.prevent="onDrop">
       <input
         type="file"
         ref="input"
@@ -27,6 +32,8 @@ export default {
     return {
       fileList: [],
       crrentFile: this.value,
+      drapFile: false,
+      drapClass: ''
     };
   },
   components: { uploadList },
@@ -50,11 +57,26 @@ export default {
           this.fileList = this.value
         }
       }
-    }
+    },
+    drapFile: {
+      immediate: true,
+      handler () {
+        if (this.type === 'drap') {
+          this.drapClass += 'py-drap'
+          this.drapClass += this.drapFile ? ' py-drapover' : ''
+        }
+      }
+    },
   },
   methods: {
     inputClick () {
       this.$refs.input.click();
+    },
+    // 拖拽
+    onDrop (e) {
+      console.log(e)
+      this.dragOver = false;
+      this.fileChange(e.dataTransfer.files)
     },
     // 点击列表中的文件
     onItem (index, item) {
@@ -67,7 +89,7 @@ export default {
     },
     // 监听文件选择框change事件
     fileChange (e) {
-      const Files = e.target.files;
+      const Files = e.target ? e.target.files : e;
       if (!Files) {
         return false;
       }
@@ -196,6 +218,10 @@ export default {
       type: Array,
       default: [],
     },
+    type: {
+      type: String,
+      default: 'file'
+    },
     onbeforeRemove: {
       type: Function,
       default: () => {},
@@ -227,11 +253,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/base/themes.scss";
 .py-upload_container{
   .py-upload_item{
     input{
       display: none;
     }
+  }
+  .py-drap{
+    padding: 20px;
+    border: 1px dashed $color;
+    border-radius: 5px;
+    transition: .3s;
   }
 }
 </style>
