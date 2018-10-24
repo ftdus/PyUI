@@ -1,11 +1,13 @@
 <template>
-    <p>hello</p>
+    <py-colorPicker ></py-colorPicker>
 </template>
 
 <script>
 import PYColorPicker from "../../components/colorPicker";
 export default {
-    
+    components: {
+        "py-colorPicker": PYColorPicker,
+    },
 }
 </script>
 
