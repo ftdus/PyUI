@@ -1,12 +1,12 @@
-import Layout from './layout.vue';
-import Header from './header.vue';
-import Footer from './footer.vue';
-import Content from './content.vue';
-import Sider from './sider.vue';
+import PYLayout from './src/layout.vue';
+import PYHeader from './src/header.vue';
+import PYFooter from './src/footer.vue';
+import PYContent from './src/content.vue';
+import PYSider from './src/sider.vue';
 
-Layout.Header = Header;
-Layout.Content = Content;
-Layout.Footer = Footer;
-Layout.Sider = Sider;
+PYLayout.PYHeader = PYHeader;
+PYLayout.PYContent = PYContent;
+PYLayout.PYFooter = PYFooter;
+PYLayout.PYSider = PYSider;
 
-export default Layout;
+export default PYLayout;
