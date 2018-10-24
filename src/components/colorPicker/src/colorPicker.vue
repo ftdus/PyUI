@@ -1,5 +1,7 @@
 <template>
-    <div class="test"></div>
+    <div class="test">
+        <input type="color" value="#2D9900"/>
+    </div>
 </template>
 
 <script>
