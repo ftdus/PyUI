@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "PyCard",
+  name: 'PyCard',
   props: {
     header: {},
     bodyStyle: {},
@@ -23,12 +23,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../base/themes.scss";
+@import '@/base/themes.scss';
 
-$prefixCls: "py-card";
-$card-box-shadow:'rgba(0,0,0,.1)';
-$element-separator: "__";
-$modifier-separator: "-";
+$prefixCls: 'py-card';
+$card-box-shadow: 'rgba(0,0,0,.1)';
+$element-separator: '__';
+$modifier-separator: '-';
 .#{$prefixCls} {
   border-radius: $border-radius;
   border: 1px solid $border-color;
