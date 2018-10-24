@@ -47,7 +47,7 @@ function createTemplate(name) {
     __dirname,
     `../src/components/${name}/src/${name}.vue`
   );
-  const distScss = path.resolve(__dirname, `../src/styles/${name}.scss`);
+  const distScss = path.resolve(__dirname, `../src/styles/src/${name}.scss`);
 
   if (fs.existsSync(router)) {
     spinner.fail(`组件 ${name} 已经存在,无法创建`);
