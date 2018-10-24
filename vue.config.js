@@ -2,6 +2,8 @@ const path = require('path');
 const webpackDocConfig = require('./build/webpack.docs');
 const webpackMain = require('./build/webpack.main');
 
+const isMain = process.env.BUILD_TYPE === 'main';
+
 module.exports = {
   configureWebpack: config => {
     // let webpackConfig;
@@ -16,19 +18,26 @@ module.exports = {
     //   webpackConfig = websiteConfig;
     // }
     // return webpackConfig
-    return webpackMain;
+    if (isMain) {
+      return webpackMain;
+    }
+    return {};
   },
   chainWebpack: config => {
-    config.module
-      .rule('md')
-      .test(/\.md/)
-      .use('vue-loader')
-      .loader('vue-loader')
-      .end()
-      .use('vue-markdown-loader')
-      .loader('vue-markdown-loader/lib/markdown-compiler')
-      .options(webpackDocConfig);
+    if (isMain) {
+      config.module
+        .rule('md')
+        .test(/\.md/)
+        .use('vue-loader')
+        .loader('vue-loader')
+        .end()
+        .use('vue-markdown-loader')
+        .loader('vue-markdown-loader/lib/markdown-compiler')
+        .options(webpackDocConfig);
+    }
   },
-  outputDir: path.resolve(process.cwd(), './website/dist/'),
+  outputDir: isMain
+    ? path.resolve(process.cwd(), './website/dist/')
+    : path.resolve(process.cwd(), './dist'),
   baseUrl: process.env.CI_ENV || '',
 };
