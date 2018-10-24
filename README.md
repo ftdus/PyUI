@@ -24,7 +24,7 @@ npm run ci
 npm run new:comp
 ```
 
-> 组件内禁止书写 css,请在`styles`文件夹下对应组件的 scss 文件中进行书写,并且准守`BEM`规范
+> 组件内禁止书写 css,请在`styles/src`文件夹下对应组件的 scss 文件中进行书写,并且准守`BEM`规范
 
 ## 🚧 开发步骤 🚧
 
