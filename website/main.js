@@ -8,8 +8,8 @@ import demoBlock from './components/demo-block.vue';
 import './assets/styles/common.scss';
 import './assets/styles/docs.scss';
 
-import '../src/base/style.scss';
 import PYUI from '../src/index';
+import '../src/styles/src/index.scss';
 
 Vue.use(PYUI);
 
