@@ -1,4 +1,4 @@
 @charset "UTF-8";
 
-// 组件名 / class前缀
-$prefixCls: '{{__py_component_name__}}';
+// 组件class前缀
+$prefixCls: '{{__py_component_class_name__}}';

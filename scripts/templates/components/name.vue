@@ -1,11 +1,11 @@
 <template></template>
 
 <script>
-// 组件名 / class前缀
-const prefixCls = '{{__py_component_name__}}';
+// 组件class前缀
+const prefixCls = '{{__py_component_class_name__}}';
 
 export default {
-  name: prefixCls,
+  name: '{{__py_component_name__}}',
 
   inject: {},
 

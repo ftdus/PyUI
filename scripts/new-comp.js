@@ -60,7 +60,13 @@ function createTemplate(name) {
 
     // 输出默认的vue文件
     fs.createFileSync(distFiles.vue);
-    fs.writeFileSync(distFiles.vue, replaceCompName('vue', name));
+    fs.writeFileSync(
+      distFiles.vue,
+      replaceCompName('vue', name).replace(
+        /\{\{__py_component_name__\}\}/g,
+        `Py` + nameFormat(name)
+      )
+    );
 
     // 输出默认的scss文件
     fs.createFileSync(distFiles.scss);
@@ -77,7 +83,7 @@ function createTemplate(name) {
  */
 function replaceCompName(type, name) {
   return readText(sourceFiles[type]).replace(
-    /\{\{__py_component_name__\}\}/g,
+    /\{\{__py_component_class_name__\}\}/g,
     `py-${name}`
   );
 }
