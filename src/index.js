@@ -4,7 +4,6 @@ import ButtonGroup from './components/buttonGroup/index';
 import Card from './components/card/index';
 import Divider from './components/divider/index';
 import Input from './components/input/index';
-import Layout from './components/layout/index';
 import LoadingBar from './components/loadingBar/index';
 import Menu from './components/menu/index';
 import MenuItem from './components/menu-item/index';
@@ -12,7 +11,6 @@ import Slider from './components/slider/index';
 import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tabPane/index';
-import Tabs from './components/tabs/index';
 import Upload from './components/upload/index';
 
 const components = [
@@ -22,14 +20,12 @@ const components = [
   Card,
   Divider,
   Input,
-  Layout,
   Menu,
   MenuItem,
   Slider,
   Submenu,
   Switch,
   TabPane,
-  Tabs,
   Upload,
 ];
 const install = function(Vue) {
@@ -56,7 +52,6 @@ export default {
   Card,
   Divider,
   Input,
-  Layout,
   LoadingBar,
   Menu,
   MenuItem,
@@ -64,6 +59,5 @@ export default {
   Submenu,
   Switch,
   TabPane,
-  Tabs,
   Upload,
 };

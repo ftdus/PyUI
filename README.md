@@ -10,7 +10,7 @@
 
 ### ✨ 关于 commit 中 emoji 的使用
 
-为了优化`commit log`显示,本项目提交代码时,请使用如下命令替代`git commit`,并且选择合适的 `emoji` 进行提交说明,不符合格式的,`pr`将被驳回.
+为了优化`commit log`显示,本项目提交代码时,请使用如下命令替代`git commit`,并且选择合适的 `emoji` 进行提交说明,不符合格式的,`pr`将被驳回.
 
 ```shell
 npm run ci
