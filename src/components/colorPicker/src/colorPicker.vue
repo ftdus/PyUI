@@ -1,13 +1,21 @@
 <template>
     <div class="test">
         <input type="color" value="#2D9900"/>
+        <div class="div02">
+            <div class="bg-white"></div>
+            <div class="bg-black"></div>
+        </div>
+        <div class="div01"></div>
+        <div class="div03"></div>
     </div>
 </template>
 
-<script>
+<script>;
+
 export default {
-    
 }
+
+
 </script>
 <style>
     .test{
@@ -15,6 +23,38 @@ export default {
         height: 100px;
         border:1px solid red;
     }
+        .div01 {
+            width: 27px;
+            height: 350px;
+            background: linear-gradient(to bottom, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red 100%);
+        }
+
+        .bg-white {
+            width: 450px;
+            height: 350px;
+            position: absolute;
+            background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+        }
+
+        .bg-black {
+            width: 450px;
+            height: 350px;
+            position: absolute;
+            background: linear-gradient(to top, #000, transparent);
+        }
+
+        .div02 {
+            width: 450px;
+            height: 350px;
+            position: relative;
+            background: rgb(213, 0, 255);
+        }
+
+        .div03 {
+            height: 27px;
+            width: 450px;
+            background: linear-gradient(to right, rgba(213, 0, 255, 0) 0%, rgb(213, 0, 255) 100%);
+        }
 </style>
 
 
