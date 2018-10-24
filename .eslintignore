@@ -1,0 +1,10 @@
+website/routes/index.js
+scripts/
+*.sh
+node_modules
+lib
+coverage
+*.md
+*.scss
+*.woff
+*.ttf

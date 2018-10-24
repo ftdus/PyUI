@@ -56,5 +56,10 @@ export default new Router({
       name: 'Slider',
       component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/slider/Slider.vue'),
     },
+    {
+      path: '/switch',
+      name: 'Switch',
+      component: () => import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
+    },
   ],
 });
