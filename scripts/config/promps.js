@@ -71,4 +71,23 @@ module.exports = {
       return '文本必须输入!';
     },
   },
+  comptName: {
+    type: 'input',
+    name: 'name',
+    message: '请输入组件名称:',
+    validate: function(value) {
+      if (/^[\-a-z]+$/.test(value)) {
+        return true;
+      }
+      return '组件名称只能包含小写字母和横杠(-)!';
+    },
+  },
+  compConfig: [
+    {
+      type: 'confirm',
+      name: 'needConfig',
+      message: '是否需要组件配置文件',
+      default: false,
+    },
+  ],
 };
