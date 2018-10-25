@@ -1,61 +1,64 @@
 <template>
-  <div role="application" aria-label="Sketch color picker" :class="['py-sketch', disableAlpha ? 'py-sketch__disable-alpha' : '']">
-    <div class="py-sketch-saturation-wrap">
-      <saturation v-model="colors" @change="childChange"></saturation>
-    </div>
-    <div class="py-sketch-controls">
-      <div class="py-sketch-sliders">
-        <div class="py-sketch-hue-wrap">
-          <hue v-model="colors" @change="childChange"></hue>
+<div>
+    <div :aria-label="`Current color is ${activeColor}`" class="py-sketch-active-color" :style="{background: activeColor, width:width, height:height}"></div>
+    <div role="application" aria-label="Sketch color picker" :class="['py-sketch', disableAlpha ? 'py-sketch__disable-alpha' : '']">
+        <div class="py-sketch-saturation-wrap">
+        <saturation v-model="colors" @change="childChange"></saturation>
         </div>
-        <div class="py-sketch-alpha-wrap" v-if="!disableAlpha">
-          <alpha v-model="colors" @change="childChange"></alpha>
+        <div class="py-sketch-controls">
+        <div class="py-sketch-sliders">
+            <div class="py-sketch-hue-wrap">
+            <hue v-model="colors" @change="childChange"></hue>
+            </div>
+            <div class="py-sketch-alpha-wrap" v-if="!disableAlpha">
+            <alpha v-model="colors" @change="childChange"></alpha>
+            </div>
         </div>
-      </div>
-      <div class="py-sketch-color-wrap">
-        <div :aria-label="`Current color is ${activeColor}`" class="py-sketch-active-color" :style="{background: activeColor}"></div>
-        <checkboard></checkboard>
-      </div>
-    </div>
-    <div class="py-sketch-field" v-if="!disableFields">
-      <!-- rgba -->
-      <div class="py-sketch-field--double">
-        <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>
-      </div>
-      <div class="py-sketch-field--single">
-        <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
-      </div>
-      <div class="py-sketch-field--single">
-        <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
-      </div>
-      <div class="py-sketch-field--single">
-        <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
-      </div>
-      <div class="py-sketch-field--single" v-if="!disableAlpha">
-        <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
-      </div>
-    </div>
-    <div class="py-sketch-presets" role="group" aria-label="A color preset, pick one to set as current color">
-      <template v-for="c in presetColors">
-        <div
-          v-if="!isTransparent(c)"
-          class="py-sketch-presets-color"
-          :aria-label="'Color:' + c"
-          :key="c"
-          :style="{background: c}"
-          @click="handlePreset(c)">
+        <!-- <div class="py-sketch-color-wrap">
+            <div :aria-label="`Current color is ${activeColor}`" class="py-sketch-active-color" :style="{background: activeColor}"></div>
+            <checkboard></checkboard>
+        </div> -->
         </div>
-        <div
-          v-else
-          :key="c"
-          :aria-label="'Color:' + c"
-          class="py-sketch-presets-color"
-          @click="handlePreset(c)">
-          <checkboard />
+        <div class="py-sketch-field" v-if="!disableFields">
+        <!-- rgba -->
+        <div class="py-sketch-field--double">
+            <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>
         </div>
-      </template>
+        <div class="py-sketch-field--single">
+            <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
+        </div>
+        <div class="py-sketch-field--single">
+            <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
+        </div>
+        <div class="py-sketch-field--single">
+            <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
+        </div>
+        <div class="py-sketch-field--single" v-if="!disableAlpha">
+            <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+        </div>
+        </div>
+        <div class="py-sketch-presets" role="group" aria-label="A color preset, pick one to set as current color">
+        <template v-for="c in presetColors">
+            <div
+            v-if="!isTransparent(c)"
+            class="py-sketch-presets-color"
+            :aria-label="'Color:' + c"
+            :key="c"
+            :style="{background: c}"
+            @click="handlePreset(c)">
+            </div>
+            <div
+            v-else
+            :key="c"
+            :aria-label="'Color:' + c"
+            class="py-sketch-presets-color"
+            @click="handlePreset(c)">
+            <checkboard />
+            </div>
+        </template>
+        </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>;
@@ -82,6 +85,12 @@ export default {
     alpha,
     'ed-in': editableInput,
     checkboard
+  },
+  data () {
+    return {
+      width:"50px",
+      height:"50px"
+    }
   },
   props: {
     presetColors: {
@@ -147,7 +156,7 @@ export default {
 }
 
 </script>
-<style>
+<style  lang="scss">
 .py-sketch {
   position: relative;
   width: 200px;
@@ -201,13 +210,9 @@ export default {
 }
 
 .py-sketch-active-color {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   border-radius: 2px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15), inset 0 0 4px rgba(0, 0, 0, 0.15);
   z-index: 2;
 }
 
