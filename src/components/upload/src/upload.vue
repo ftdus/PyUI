@@ -12,7 +12,9 @@
         :multiple="multiple"
         :accept="accept"
         @change="fileChange">
-      <slot></slot>
+      <div style="display: inline-block;">
+        <slot></slot>
+      </div>
     </div>
     <uploadList 
       @on-remove="onRemove"
@@ -60,10 +62,13 @@ export default {
     },
     drapFile: {
       immediate: true,
-      handler () {
-        if (this.type === 'drap') {
-          this.drapClass += 'py-drap'
-          this.drapClass += this.drapFile ? ' py-drapover' : ''
+      handler (bol) {
+        console.log(this.type, bol)
+        if (this.type === 'drap' && !this.drapFile) {
+          this.drapClass = 'py-drap '
+          this.drapClass += this.drapFile ? 'py-drapover' : ''
+        } else {
+          this.drapClass = ''
         }
       }
     },
@@ -255,16 +260,21 @@ export default {
 <style lang="scss" scoped>
 @import "@/base/themes.scss";
 .py-upload_container{
+  position: relative;
   .py-upload_item{
     input{
       display: none;
     }
   }
   .py-drap{
-    padding: 20px;
-    border: 1px dashed $color;
+    border: 1px dashed #606266;
     border-radius: 5px;
     transition: .3s;
+    text-align: center;
+    padding: 30px 20px;
+    &:hover, &.py-drapover {
+      border-color: $color-hover;
+    }
   }
 }
 </style>
