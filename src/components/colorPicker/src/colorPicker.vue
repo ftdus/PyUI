@@ -1,45 +1,45 @@
 <template>
-  <div role="application" aria-label="Sketch color picker" :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
-    <div class="vc-sketch-saturation-wrap">
+  <div role="application" aria-label="Sketch color picker" :class="['py-sketch', disableAlpha ? 'py-sketch__disable-alpha' : '']">
+    <div class="py-sketch-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
-    <div class="vc-sketch-controls">
-      <div class="vc-sketch-sliders">
-        <div class="vc-sketch-hue-wrap">
+    <div class="py-sketch-controls">
+      <div class="py-sketch-sliders">
+        <div class="py-sketch-hue-wrap">
           <hue v-model="colors" @change="childChange"></hue>
         </div>
-        <div class="vc-sketch-alpha-wrap" v-if="!disableAlpha">
+        <div class="py-sketch-alpha-wrap" v-if="!disableAlpha">
           <alpha v-model="colors" @change="childChange"></alpha>
         </div>
       </div>
-      <div class="vc-sketch-color-wrap">
-        <div :aria-label="`Current color is ${activeColor}`" class="vc-sketch-active-color" :style="{background: activeColor}"></div>
+      <div class="py-sketch-color-wrap">
+        <div :aria-label="`Current color is ${activeColor}`" class="py-sketch-active-color" :style="{background: activeColor}"></div>
         <checkboard></checkboard>
       </div>
     </div>
-    <div class="vc-sketch-field" v-if="!disableFields">
+    <div class="py-sketch-field" v-if="!disableFields">
       <!-- rgba -->
-      <div class="vc-sketch-field--double">
+      <div class="py-sketch-field--double">
         <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>
       </div>
-      <div class="vc-sketch-field--single">
+      <div class="py-sketch-field--single">
         <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
       </div>
-      <div class="vc-sketch-field--single">
+      <div class="py-sketch-field--single">
         <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
       </div>
-      <div class="vc-sketch-field--single">
+      <div class="py-sketch-field--single">
         <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
       </div>
-      <div class="vc-sketch-field--single" v-if="!disableAlpha">
+      <div class="py-sketch-field--single" v-if="!disableAlpha">
         <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
-    <div class="vc-sketch-presets" role="group" aria-label="A color preset, pick one to set as current color">
+    <div class="py-sketch-presets" role="group" aria-label="A color preset, pick one to set as current color">
       <template v-for="c in presetColors">
         <div
           v-if="!isTransparent(c)"
-          class="vc-sketch-presets-color"
+          class="py-sketch-presets-color"
           :aria-label="'Color:' + c"
           :key="c"
           :style="{background: c}"
@@ -49,7 +49,7 @@
           v-else
           :key="c"
           :aria-label="'Color:' + c"
-          class="vc-sketch-presets-color"
+          class="py-sketch-presets-color"
           @click="handlePreset(c)">
           <checkboard />
         </div>
@@ -148,7 +148,7 @@ export default {
 
 </script>
 <style>
-.vc-sketch {
+.py-sketch {
   position: relative;
   width: 200px;
   padding: 10px 10px 0;
@@ -158,40 +158,40 @@ export default {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, .15), 0 8px 16px rgba(0, 0, 0, .15);
 }
 
-.vc-sketch-saturation-wrap {
+.py-sketch-saturation-wrap {
   width: 100%;
   padding-bottom: 75%;
   position: relative;
   overflow: hidden;
 }
 
-.vc-sketch-controls {
+.py-sketch-controls {
   display: flex;
 }
 
-.vc-sketch-sliders {
+.py-sketch-sliders {
   padding: 4px 0;
   flex: 1;
 }
 
-.vc-sketch-sliders .vc-hue,
-.vc-sketch-sliders .vc-alpha-gradient {
+.py-sketch-sliders .py-hue,
+.py-sketch-sliders .py-alpha-gradient {
   border-radius: 2px;
 }
 
-.vc-sketch-hue-wrap {
+.py-sketch-hue-wrap {
   position: relative;
   height: 10px;
 }
 
-.vc-sketch-alpha-wrap {
+.py-sketch-alpha-wrap {
   position: relative;
   height: 10px;
   margin-top: 4px;
   overflow: hidden;
 }
 
-.vc-sketch-color-wrap {
+.py-sketch-color-wrap {
   width: 24px;
   height: 24px;
   position: relative;
@@ -200,7 +200,7 @@ export default {
   border-radius: 3px;
 }
 
-.vc-sketch-active-color {
+.py-sketch-active-color {
   position: absolute;
   top: 0;
   left: 0;
@@ -211,16 +211,16 @@ export default {
   z-index: 2;
 }
 
-.vc-sketch-color-wrap .vc-checkerboard {
+.py-sketch-color-wrap .py-checkerboard {
   background-size: auto;
 }
 
-.vc-sketch-field {
+.py-sketch-field {
   display: flex;
   padding-top: 4px;
 }
 
-.vc-sketch-field .vc-input__input {
+.py-sketch-field .py-input__input {
   width: 90%;
   padding: 4px 0 3px 10%;
   border: none;
@@ -228,7 +228,7 @@ export default {
   font-size: 10px;
 }
 
-.vc-sketch-field .vc-input__label {
+.py-sketch-field .py-input__label {
   display: block;
   text-align: center;
   font-size: 11px;
@@ -238,16 +238,16 @@ export default {
   text-transform: capitalize;
 }
 
-.vc-sketch-field--single {
+.py-sketch-field--single {
   flex: 1;
   padding-left: 6px;
 }
 
-.vc-sketch-field--double {
+.py-sketch-field--double {
   flex: 2;
 }
 
-.vc-sketch-presets {
+.py-sketch-presets {
   margin-right: -10px;
   margin-left: -10px;
   padding-left: 10px;
@@ -255,7 +255,7 @@ export default {
   border-top: 1px solid #eee;
 }
 
-.vc-sketch-presets-color {
+.py-sketch-presets-color {
   border-radius: 3px;
   overflow: hidden;
   position: relative;
@@ -268,12 +268,12 @@ export default {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);
 }
 
-.vc-sketch-presets-color .vc-checkerboard {
+.py-sketch-presets-color .py-checkerboard {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);
   border-radius: 3px;
 }
 
-.vc-sketch__disable-alpha .vc-sketch-color-wrap {
+.py-sketch__disable-alpha .py-sketch-color-wrap {
   height: 10px;
 }
 </style>

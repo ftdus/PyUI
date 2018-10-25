@@ -1,15 +1,15 @@
 <template>
-  <div class="vc-editable-input">
+  <div class="py-editable-input">
     <input
       :aria-labelledby="labelId"
-      class="vc-input__input"
+      class="py-input__input"
       v-model="val"
       @keydown="handleKeyDown"
       @input="update"
       ref="input"
     >
-    <span :for="label" class="vc-input__label" :id="labelId">{{labelSpanText}}</span>
-    <span class="vc-input__desc">{{desc}}</span>
+    <span :for="label" class="py-input__label" :id="labelId">{{labelSpanText}}</span>
+    <span class="py-input__desc">{{desc}}</span>
   </div>
 </template>
 
@@ -100,15 +100,15 @@ export default {
 </script>
 
 <style>
-.vc-editable-input {
+.py-editable-input {
   position: relative;
 }
-.vc-input__input {
+.py-input__input {
   padding: 0;
   border: 0;
   outline: none;
 }
-.vc-input__label {
+.py-input__label {
   text-transform: capitalize;
 }
 </style>
