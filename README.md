@@ -26,6 +26,54 @@ npm run new:comp
 
 > 组件内禁止书写 css,请在`styles/src`文件夹下对应组件的 scss 文件中进行书写,并且准守`BEM`规范
 
+### ✨ 组件配置文件 (index.json)
+
+为了自动生成`index.js`,需要每个组件根目录下增加`index.json`(默认可以没有,主要针对特殊组件)
+支持的参数列表如下:
+
+|   参数    | 默认值 | 类型    | 说明                        |
+| :-------: | :----- | :------ | --------------------------- |
+|    dev    | true   | Boolean | 是否开发中,为`true`时不导出 |
+| prototype | false  | Boolean | 是否需要绑定到 vue 原型     |
+|    map    | []     | Array   | 绑定到原型的映射数组        |
+
+参考 messageBox 配置文件:
+
+```json
+{
+  "prototype": true,
+  "map": [
+    {
+      "key": "$msgbox",
+      "value": "${moduleName}"
+    },
+    {
+      "key": "$alert",
+      "value": "${moduleName}.alert"
+    },
+    {
+      "key": "$confirm",
+      "value": "${moduleName}.confirm"
+    },
+    {
+      "key": "$prompt",
+      "value": "${moduleName}.prompt"
+    }
+  ]
+}
+```
+
+导出内容:
+
+```js
+vue.prototype.$msgbox = MessageBox;
+vue.prototype.$alert = MessageBox.alert;
+vue.prototype.$confirm = MessageBox.confirm;
+vue.prototype.$prompt = MessageBox.prompt;
+```
+
+---
+
 ## 🚧 开发步骤 🚧
 
 ### 安装依赖

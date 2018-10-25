@@ -12,7 +12,7 @@
     "new:comp": "node scripts/new-comp.js",
     "serve:main": "cross-env BUILD_TYPE=main  vue-cli-service serve website/main.js",
     "build:main": "vue-cli-service build website/main.js",
-    "build:style": "gulp build --gulpfile src/styles/gulpfile.js --color "
+    "build:style": "gulp build --gulpfile src/styles/gulpfile.js --color"
   },
   "dependencies": {
     "highlight.js": "^9.13.1",
