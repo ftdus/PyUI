@@ -6,48 +6,48 @@ const ora = require('ora');
 const { readText, nameFormat } = require('./utils/tools');
 const Version = require('./utils/Version');
 
-const updateOra = ora('[PYUI] 组件依赖更新中...').start();
-
-const src = path.resolve(__dirname, '../src/components');
+const components = path.resolve(__dirname, '../src/components');
 const indexPath = path.resolve(__dirname, '../src/index.js');
-
 let template = readText(
   path.resolve(__dirname, './templates/srcIndex/index.js')
 );
 
-/**
- * 配置全局组件
- */
-const globals = {
-  loadingBar: {
-    key: '$loading',
-    value: 'LoadingBar',
-  },
-};
+const updateOra = ora('[PYUI] 组件依赖更新中...').start();
 
 let comps = [];
 
-const loadAllComp = src => {
-  const files = fs.readdirSync(src);
-  files.map(file => {
-    let filePath = `${src}/${file}`;
-    let stat = fs.statSync(filePath);
-    if (stat.isDirectory()) {
-      comps.push({
-        path: file,
-        name: nameFormat(file),
-      });
+// 读取所有组件信息
+const files = fs.readdirSync(components);
+files.map(file => {
+  let compDir = path.resolve(components, file);
+  let stat = fs.statSync(compDir);
+  if (stat.isDirectory()) {
+    let compConfig = {};
+    const jsonPath = path.resolve(compDir, `index.json`);
+    if (fs.existsSync(jsonPath)) {
+      compConfig = fs.readJsonSync(jsonPath);
     }
-  });
-};
 
-loadAllComp(src);
+    if (!compConfig.dev) {
+      comps.push(
+        Object.assign(
+          {
+            path: file,
+            name: nameFormat(file),
+          },
+          compConfig
+        )
+      );
+    }
+  }
+});
 
 // 组件导入函数
 template = template.replace(
   /\{\{__components_imports__\}\}/g,
   comps
-    .map(f => `import ${f.name} from './components/${f.path}/index'`)
+    .filter(comp => comp.dev !== false)
+    .map(comp => `import ${comp.name} from './components/${comp.path}/index'`)
     .join(';\n')
 );
 
@@ -61,20 +61,21 @@ template = template.replace(
 template = template.replace(
   /\{\{__components__\}\}/g,
   comps
-    .filter(f => globals[f.path] === void 0)
-    .map(f => f.name)
+    .filter(comp => comp.prototype !== true)
+    .map(comp => comp.name)
     .join(',')
 );
 
 // 全局组件
 template = template.replace(/\{\{__components_globals__\}\}/g, () => {
   let globalsCode = [];
-  for (const compPath in globals) {
-    if (globals.hasOwnProperty(compPath)) {
-      const { key, value } = globals[compPath];
+  comps.filter(comp => comp.prototype && comp.map.length).map(comp => {
+    comp.map.map(({ key, value }) => {
+      key = key.replace('${moduleName}', comp.name);
+      value = value.replace('${moduleName}', comp.name);
       globalsCode.push(`vue.prototype.${key} = ${value};`);
-    }
-  }
+    });
+  });
   return globalsCode.join('\n');
 });
 
