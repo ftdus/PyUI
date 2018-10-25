@@ -1,22 +1,25 @@
 <template>
     <transition-group name='fade' style='width: 100%;'>
       <li v-for="(item, index) in files" class="py-upload_list" v-show='files.length' :key="index">
-        <span class="py-upload_name" @click='onItem(item, index)'>{{item.name}}</span>
-        <i v-if="item.percentage === 100" @click='onRemove(item, index)'>x</i>
-        <div class="py-list_wrappar" v-if="item.percentage !== 100">
+        <span class="py-upload_name" @click='onItem(item, index)'>
+          <i class="pyui-icons py-icon-star-fill"></i>
+          <span>{{item.name}}</span>
+        </span>
+        <i v-if="item.percentage === 100"
+          @click='onRemove(item, index)' class="pyui-icons py-icon-start">x</i>
+        <div class="py-list_wrappar" v-if="item.showProgress">
           <div class="py-list_prect">
             <li :style="{width: item.percentage+'%'}"></li>
           </div>
-          <span class="upload_del" ref="del" v-if="item.percentage !== 100">{{item.percentage}}%</span>
+          <span class="upload_del" ref="del" v-if="item.showProgress">{{item.percentage}}%</span>
         </div>
       </li>
     </transition-group>
 </template>
 
 <script>
-
 export default {
-  name: "upload-list",
+  name: 'upload-list',
   props: {
     files: {
       type: Array,
@@ -25,78 +28,106 @@ export default {
     onBeforeRemove: Function,
   },
   methods: {
-    onItem (index, item) {
+    onItem(index, item) {
       this.$emit('on-item', index, item);
     },
-    onRemove (item, index) {
+    onRemove(item, index) {
       if (this.onBeforeRemove(item, index) === false) {
-        return false
+        return false;
       }
-      this.$emit('on-remove', item, index);
+      return this.$emit('on-remove', item, index);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-@import "@/base/themes.scss";
+@import '@/base/themes.scss';
 .fade-enter-active {
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 .fade-leave-active {
-  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.fade-enter, .fade-leave-to{
+.fade-enter,
+.fade-leave-to {
   transform: translateY(-40px);
   opacity: 0;
 }
-.py-upload_list{
+.py-upload_list {
   width: 100%;
   border-radius: 3px;
-  transition: .3s;
-  padding:6px;
+  transition: 0.3s;
+  padding: 6px;
   list-style: none;
-  &:nth-child(1){
-    margin-top:5px;
+  position: relative;
+  &:nth-child(1) {
+    margin-top: 5px;
   }
-  &:hover{
+  &:hover {
     background: rgba(123, 180, 240, 0.1);
   }
-  .py-upload_name{
+  .py-upload_name {
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
     font-size: 13px;
-    &:hover{
+    color: $color;
+    &:hover {
       color: $border-color-hover;
     }
   }
-  i{
-    float: right;
+  i {
+    font-size: 14px;
   }
-  .py-list_wrappar{
+  > i {
+    font-family: '\9ED1\4F53' !important;
+    font-size: 22px;
+    width: 23px;
+    height: 20px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    line-height: 14px;
+    cursor: pointer;
+    color: $color-hover;
+    border-radius: 3px;
+    &:hover {
+      background: $color-hover;
+      color: #fff;
+    }
+  }
+  .py-list_wrappar {
     height: 3px;
     line-height: 17px;
     display: flex;
-    .py-list_prect{
+    .py-list_prect {
       flex: 1;
       height: 2px;
       background: #ebebeb;
       margin-top: 8px;
-      li{
+      li {
         width: 0%;
-        background: linear-gradient(to right, $border-color-hover, $success-color);
+        background: linear-gradient(
+          to right,
+          $border-color-hover,
+          $success-color
+        );
         height: 100%;
-        padding:0;
+        padding: 0;
         z-index: 2;
-        transition: 1s;
+        transition: 0.9s;
       }
     }
   }
-  .upload_del{
-    width:45px;
-    color:$color;
+  .upload_del {
+    width: 45px;
+    color: $color;
     font-size: 12px;
     text-align: center;
   }
 }
-
 </style>

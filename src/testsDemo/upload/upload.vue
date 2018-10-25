@@ -1,72 +1,83 @@
 <template>
-    <div>
-      <div style='padding:20px;width:400px;float:left'>
-        <py-upload
-          action='//jsonplaceholder.typicode.com/posts/'
-          @on-select='onSelect'
-          @on-format-err='onFormatErr'
-          @on-error='onError'
-          multiple
-          v-model='defaultFileList'
-          @on-size-err='onSizeErr'>
-          <py-button type="primary">
-            <i class="iconfont  icon-addition"></i>
-            上传文件
-          </py-button>
-        </py-upload>
-      </div>
-
-      <div style='padding:20px;width:400px;float:left'>
-        <py-upload
-          action='//jsonplaceholder.typicode.com/posts/'
-          @on-select='onSelect'
-          @on-format-err='onFormatErr'
-          @on-error='onError'
-          multiple
-          type='drap'
-          v-model='defaultFileList'
-          @on-size-err='onSizeErr'>
-          <py-button type="primary">
-            <i class="iconfont  icon-addition"></i>
-            上传文件
-          </py-button>
-        </py-upload>
-      </div>
+  <div style="padding:20px;">
+    <div style='padding:20px;width:400px'>
+      <h1>普通上传</h1><br>
+      <py-upload
+        action='//jsonplaceholder.typicode.com/posts/'
+        @beforeSelect='beforeSelect'
+        @on-format-err='onFormatErr'
+        @on-error='onError'
+        multiple
+        v-model='defaultFileList'
+        @on-size-err='onSizeErr'>
+        <py-button type="primary">
+          <i class="iconfont  icon-addition"></i>
+          上传文件
+        </py-button>
+      </py-upload>
     </div>
+
+    <div style='padding:20px;width:400px'>
+      <h1>拖拽上传</h1><br>
+      <py-upload
+        action='//jsonplaceholder.typicode.com/posts/'
+        @beforeSelect='beforeSelect'
+        @on-format-err='onFormatErr'
+        @on-error='onError'
+        multiple
+        type='drap'
+        v-model='defaultFileList2'
+        @on-size-err='onSizeErr'>
+        <py-button>
+          <i class="iconfont  icon-addition"></i>
+          点击或拖拽上传
+        </py-button>
+      </py-upload>
+    </div>
+    <div style='padding:20px;width:400px'>
+      <h1></h1>
+    </div>
+  </div>
 </template>
- <script>
+<script>
 import PyUpload from '@/components/upload';
 import PYButton from '../../components/button';
- export default {
+
+export default {
   name: 'upload',
   components: {
-    PyUpload, PYButton,
+    PyUpload,
+    PYButton,
   },
-  data () {
+  data() {
     return {
       format: ['jpg', 'png', 'txt', 'pptx'],
-      defaultFileList: [{
-        name: '123.jpg',
-        url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjMiIGhlaWdodD0iNTkiIHZpZXdCb3g9IjAgMCA2MyA1OSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9IkNhbnZhcyIgZmlsbD0ibm9uZSI+CjxnIGlkPSJkdW90YWktaWNvbiI+CjxnIGlkPSJSZWN0YW5nbGUiPgo8cmVjdCB3aWR0aD0iNDEuMTQwMiIgaGVpZ2h0PSI0Mi4xNDI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMS41OTg3IDE2Ljg1NzEpIiBmaWxsPSIjRkY3MjYyIi8+CjwvZz4KPGcgaWQ9IlZlY3RvciAyIj4KPHBhdGggZD0iTSAwIDI1LjI4NTdMIDIxLjU5ODYgMEwgNDMuMTk3MiAyNS4yODU3TCAwIDI1LjI4NTdaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDMzLjcxNDIpIiBmaWxsPSIjMEFDRjgzIi8+CjwvZz4KPGcgaWQ9IkVsbGlwc2UiPgo8ZWxsaXBzZSBjeD0iMTYuNDU2MSIgY3k9IjE2Ljg1NzIiIHJ4PSIxNi40NTYxIiByeT0iMTYuODU3MiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNS4xNDI0OSAwKSIgZmlsbD0iIzFBQkNGRSIvPgo8L2c+CjwvZz4KPC9nPgo8L3N2Zz4KCg=='
-      }]
-    }
+      defaultFileList: [
+        {
+          name: '123.jpg',
+          url:
+            'http://newimg88.b0.upaiyun.com/newimg88/2014/08/repaints-reflows.jpg',
+        },
+      ],
+      defaultFileList2: [],
+    };
   },
   methods: {
     // 刚选择上传的文件
-    onSelect (file, fileList) {
-      //console.log(file, fileList)
+    beforeSelect(file, fileList) {
+      console.log(file, fileList);
     },
-    onFormatErr (file, fileList) {
-      console.log('上传的格式不对')
+    onFormatErr(format, file, fileList) {
+      console.log('上传的格式不对', format, file, fileList);
     },
-    onSizeErr (file, fileList) {
-      console.log('图片太大了，请重试!')
+    onSizeErr(maxSize, file, fileList) {
+      console.log('图片太大了，请重试!', maxSize, file, fileList);
     },
-    onError (err, file, fileList) {
-      console.log(err)
-    }
-  }
+    onError(err, file, fileList) {
+      console.log(err, file, fileList);
+    },
+  },
 };
 </script>
- <style>
+<style>
 </style>
