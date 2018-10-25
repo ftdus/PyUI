@@ -11,6 +11,9 @@
     "ci": "node scripts/git-commit.js"
   },
   "dependencies": {
+    "clamp": "^1.0.1",
+    "lodash.throttle": "^4.0.0",
+    "tinycolor2": "^1.4.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
