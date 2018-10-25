@@ -1,0 +1,22 @@
+{
+  "dev": true,
+  "prototype": true,
+  "map": [
+    {
+      "key": "$msgbox",
+      "value": "${moduleName}"
+    },
+    {
+      "key": "$alert",
+      "value": "${moduleName}.alert"
+    },
+    {
+      "key": "$confirm",
+      "value": "${moduleName}.confirm"
+    },
+    {
+      "key": "$prompt",
+      "value": "${moduleName}.prompt"
+    }
+  ]
+}
