@@ -14,6 +14,7 @@ const sourceFiles = {
   index: path.resolve(templates, `index.js`),
   vue: path.resolve(templates, `name.vue`),
   scss: path.resolve(templates, `name.scss`),
+  json: path.resolve(templates, `index.json`),
 };
 
 let spinner;
@@ -24,9 +25,10 @@ let spinner;
 async function doTemplate() {
   // 模板类型,模板名称
   let { name } = await inquirer.prompt(promps.comptName);
+  let { needConfig } = await inquirer.prompt(promps.compConfig);
   try {
     spinner = ora('开始创建组件模板').start();
-    createTemplate(name);
+    createTemplate(name, needConfig);
   } catch (error) {
     spinner.fail(`组件 ${name} 的目录结构创建失败,错误信息如下:`);
     console.error(error);
@@ -36,15 +38,16 @@ async function doTemplate() {
 /**
  * 新建模板
  * @param {String} name 模板名称
- * @param {String} type 模板类型 pages or components
+ * @param {Boolean} needConfig 是否生成组件配置文件
  */
-function createTemplate(name) {
+function createTemplate(name, needConfig) {
   const compPath = path.resolve(__dirname, `../src/components/${name}`);
   // 目标文件map
   const distFiles = {
     index: path.resolve(compPath, `index.js`),
     vue: path.resolve(compPath, `src/${name}.vue`),
     scss: path.resolve(srcPath, `styles/src/${name}.scss`),
+    json: path.resolve(compPath, `index.json`),
   };
 
   if (fs.existsSync(compPath)) {
@@ -72,6 +75,9 @@ function createTemplate(name) {
     fs.createFileSync(distFiles.scss);
     fs.writeFileSync(distFiles.scss, replaceCompName('scss', name));
 
+    if (needConfig) {
+      fs.copyFileSync(sourceFiles.json, distFiles.json);
+    }
     spinner.succeed(`组件 ${name} 的目录结构已完成初始化`);
   }
 }

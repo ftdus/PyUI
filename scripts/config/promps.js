@@ -55,7 +55,7 @@ module.exports = {
         },
         {
           name: '🎉  初次提交',
-          value: ':nut_and_bolt:',
+          value: ':tada:',
         },
       ],
     },
@@ -82,4 +82,12 @@ module.exports = {
       return '组件名称只能包含小写字母和横杠(-)!';
     },
   },
+  compConfig: [
+    {
+      type: 'confirm',
+      name: 'needConfig',
+      message: '是否需要组件配置文件',
+      default: false,
+    },
+  ],
 };

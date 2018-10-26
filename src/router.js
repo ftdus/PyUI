@@ -5,7 +5,6 @@ Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -19,11 +18,14 @@ export default new Router({
     {
       path: '/button',
       name: 'button',
-      component: () => import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
-    }, {
+      component: () =>
+        import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
+    },
+    {
       path: '/divider',
       name: 'divider',
-      component: () => import(/* webpackChunkName: "divider" */ './testsDemo/divider/divider.vue'),
+      component: () =>
+        import(/* webpackChunkName: "divider" */ './testsDemo/divider/divider.vue'),
     },
     {
       path: '/badge',
@@ -34,32 +36,50 @@ export default new Router({
     {
       path: '/input',
       name: 'input',
-      component: () => import(/* webpackChunkName: "button" */ './testsDemo/input/input.vue'),
+      component: () =>
+        import(/* webpackChunkName: "button" */ './testsDemo/input/input.vue'),
     },
     {
       path: '/loadingBar',
       name: 'loadingBar',
-      component: () => import(/* webpackChunkName: "button" */ './testsDemo/loadingBar/loadingBar.vue'),
+      component: () =>
+        import(/* webpackChunkName: "button" */ './testsDemo/loadingBar/loadingBar.vue'),
     },
     {
       path: '/card',
       name: 'card',
-      component: () => import(/* webpackChunkName: "card" */ './testsDemo/card/card.vue'),
+      component: () =>
+        import(/* webpackChunkName: "card" */ './testsDemo/card/card.vue'),
     },
     {
       path: '/tabs',
       name: 'Tabs',
-      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
+      component: () =>
+        import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
     {
       path: '/slider',
       name: 'Slider',
-      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/slider/Slider.vue'),
+      component: () =>
+        import(/* webpackChunkName: "Tabs" */ './testsDemo/slider/Slider.vue'),
     },
     {
       path: '/switch',
       name: 'Switch',
-      component: () => import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
+    },
+    {
+      path: '/menu',
+      name: 'Menu',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/menu/menu.vue'),
+    },
+    {
+      path: '/icon',
+      name: 'Icon',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
     },
   ],
 });
