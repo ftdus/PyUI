@@ -40,43 +40,43 @@ export default {
   props: {
     count: {
       type: Number,
-      default: 5
+      default: 5,
     },
     value: {
       type: Number,
-      default: 0
+      default: 0,
     },
     allowHalf: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showText: {
       type: Boolean,
-      default: false
+      default: false,
     },
     name: {
-      type: String
+      type: String,
     },
     character: {
       type: String,
-      default: ''
+      default: '',
     },
     icon: {
       type: String,
-      default: ''
+      default: '',
     },
     customIcon: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
-      prefixCls: prefixCls,
+      prefixCls,
       hoverIndex: -1,
       isHover: false,
       isHalf: this.allowHalf && this.value.toString().indexOf(".") >= 0,
@@ -88,22 +88,22 @@ export default {
       return [
         `${prefixCls}`,
         {
-            [`${prefixCls}-disabled`]: this.disabled
-        }
+          [`${prefixCls}-disabled`]: this.disabled,
+        },
       ];
     },
     iconClasses () {
       return [
         'py-icon',
         {
-            [`py-${this.icon}`]: this.icon !== '',
-            [`${this.customIcon}`]: this.customIcon !== '',
-        }
+          [`py-${this.icon}`]: this.icon !== '',
+          [`${this.customIcon}`]: this.customIcon !== '',
+        },
       ];
     },
     showCharacter () {
       return this.character !== '' || this.icon !== '' || this.customIcon !== '';
-    }
+    },
   },
   watch: {
     value (val) {
@@ -111,7 +111,7 @@ export default {
     },
     currentValue (val) {
       this.setHalf(val);
-    }
+    },
   },
   methods: {
     handleCls (value) {
@@ -124,19 +124,19 @@ export default {
       if (currentIndex >= value) full = true;
 
       if (this.isHover) {
-          isLast = currentIndex === value;
+        isLast = currentIndex === value;
       } else {
-          isLast = Math.ceil(this.currentValue) === value;
+        isLast = Math.ceil(this.currentValue) === value;
       }
 
       return [
-          {   
-              [`${prefixCls}__star`]: !this.showCharacter,
-              [`${prefixCls}__star--chart`]: this.showCharacter,
-              [`${prefixCls}__star--full`]: (!isLast && full) || (isLast && !this.isHalf),
-              [`${prefixCls}__star--half`]: isLast && this.isHalf,
-              [`${prefixCls}__star--zero`]: !full
-          }
+        {
+          [`${prefixCls}__star`]: !this.showCharacter,
+          [`${prefixCls}__star--chart`]: this.showCharacter,
+          [`${prefixCls}__star--full`]: (!isLast && full) || (isLast && !this.isHalf),
+          [`${prefixCls}__star--half`]: isLast && this.isHalf,
+          [`${prefixCls}__star--zero`]: !full,
+        },
       ];
     },
     handleMousemove(value, event) {
@@ -144,10 +144,10 @@ export default {
 
       this.isHover = true;
       if (this.allowHalf) {
-          const type = event.target.getAttribute('type') || false;
-          this.isHalf = type === 'half';
+        const type = event.target.getAttribute('type') || false;
+        this.isHalf = type === 'half';
       } else {
-          this.isHalf = false;
+        this.isHalf = false;
       }
       this.hoverIndex = value;
     },
@@ -162,16 +162,18 @@ export default {
       this.isHalf = this.allowHalf && val.toString().indexOf('.') >= 0;
     },
     handleClick (value) {
-      if (this.disabled) return;
-      if (this.isHalf) value -= 0.5;
+      let val = value;
 
-      if(Math.abs(value - this.currentValue) < 0.01) {
-          value = 0;
+      if (this.disabled) return;
+      if (this.isHalf) val -= 0.5;
+
+      if (Math.abs(val - this.currentValue) < 0.01) {
+        val = 0;
       }
 
-      this.currentValue = value;
-    }
-  }
+      this.currentValue = val;
+    },
+  },
 };
 </script>
 
@@ -226,7 +228,8 @@ $yellow: #f7b84f;
   }
 }
 
-.#{$ratePrefix}__star--full, .#{$ratePrefix}__star--zero {
+.#{$ratePrefix}__star--full,
+.#{$ratePrefix}__star--zero {
   position: relative;
 }
 
@@ -273,7 +276,8 @@ $yellow: #f7b84f;
     transform: scale(1.1);
   }
   &.#{$ratePrefix}__star--full {
-    .#{$ratePrefix}__char--half, .#{$ratePrefix}__char--content {
+    .#{$ratePrefix}__char--half,
+    .#{$ratePrefix}__char--content {
       color: $orange;
     }
   }
@@ -298,7 +302,8 @@ $yellow: #f7b84f;
   }
 }
 
-.#{$ratePrefix}__star--content:before, .#{$ratePrefix}__star:before {
+.#{$ratePrefix}__star--content:before,
+.#{$ratePrefix}__star:before {
   color: $gray;
   cursor: pointer;
   content: $font;
@@ -319,11 +324,13 @@ $yellow: #f7b84f;
   }
 }
 
-.#{$ratePrefix}__star--full:before, .#{$ratePrefix}__star--half .#{$ratePrefix}__star--content:before {
+.#{$ratePrefix}__star--full:before,
+.#{$ratePrefix}__star--half .#{$ratePrefix}__star--content:before {
   color: $orange;
 }
 
-.#{$ratePrefix}__star--full:hover:before, .#{$ratePrefix}__star--half:hover .#{$ratePrefix}__star--content:before {
+.#{$ratePrefix}__star--full:hover:before,
+.#{$ratePrefix}__star--half:hover .#{$ratePrefix}__star--content:before {
   color: $yellow;
 }
 

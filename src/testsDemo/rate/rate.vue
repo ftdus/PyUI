@@ -2,12 +2,12 @@
   <div class="page">
     <h2>基础用法：`&lt;py-rate&gt;&lt;/py-rate&gt;`</h2>
     <section>
-      <py-rate v-model="value"></py-rate>
+      <py-rate v-model="valueDefault"></py-rate>
     </section>
 
-    <h2>满分指数：`&lt;py-rate :count="7" &gt;&lt;/py-rate&gt;`</h2>
+    <h2>自定义指数：`&lt;py-rate :count="7" &gt;&lt;/py-rate&gt;`</h2>
     <section>
-      <py-rate :count="7" v-model="value"></py-rate>
+      <py-rate :count="7" v-model="valueDefault"></py-rate>
     </section>
 
     <h2>半星：`&lt;py-rate allow-half&gt;&lt;/py-rate&gt;`</h2>
@@ -43,9 +43,6 @@
     <section>
       <py-rate allow-half icon="icon-liveheart" v-model="valueHalf"></py-rate>
     </section>
-    <section>
-      <py-rate allow-half icon="icon-liveheart" v-model="valueHalf"></py-rate>
-    </section>
   </div>
 </template>
 
@@ -58,15 +55,9 @@ export default {
   },
   data() {
     return {
-      value: 0,
+      valueDefault: 0,
       valueHalf: 2.5,
       valueText: 3,
-      valueCustomText: 4.0,
-      valueDisabled: 2.4,
-      valueClear: 1,
-      valueClearHalf: 1.5,
-      characterValue: 2.5,
-      cv: 3.5,
     };
   },
 };
@@ -83,12 +74,5 @@ export default {
     margin-bottom: 20px;
     border: 1px solid #DCDFE6;
   }
-  button{
-    padding: 4px 10px;
-    border: 1px solid #f1f1f1;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
 }
 </style>
-
