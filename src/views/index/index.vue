@@ -6,6 +6,8 @@
     <router-link to="/card">card</router-link>
     <router-link to="/tabs">tabs</router-link>
     <router-link to="/divider">divider</router-link>
+    <router-link to="/slider">slider</router-link>
+    <router-link to="/switch">switch</router-link>
     <router-link to="/rate">rate</router-link>
   </div>
 </template>
