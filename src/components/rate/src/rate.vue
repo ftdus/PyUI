@@ -9,24 +9,23 @@
         v-for="item in count"
         :key="item">
           <template v-if="!showCharacter">
-            <span :class="['py-icon-star-fill', prefixCls + '__star--content']" type="half"></span>
+            <span :class="defaultClasses" type="half"></span>
           </template>
           <template v-else>
             <span :class="[prefixCls + '__char--half']" type="half">
               <template v-if="character !== ''">{{character}}</template>
-              <span v-else :class="iconClasses" type="half"></span>
+              <span v-else :class="charClasses" type="half"></span>
             </span>
             <span :class="[prefixCls + '__char--content']">
               <template v-if="character !== ''">{{ character }}</template>
-              <span v-else :class="iconClasses"></span>
+              <span v-else :class="charClasses"></span>
             </span>
           </template>
       </div>
       <div :class="[prefixCls + '__text']" v-if="showText" v-show="currentValue > 0">
         <slot>
           <span>{{ currentValue }}</span>
-          <span v-if="currentValue <= 1">无</span>
-          <span v-else>星</span>
+          <span v-if="currentValue > 0">星</span>
         </slot>
       </div>
   </div>
@@ -37,7 +36,6 @@ const prefixCls = 'py-rate';
 
 export default {
   name: 'py-rate',
-  inject: {},
   props: {
     count: {
       type: Number,
@@ -93,7 +91,10 @@ export default {
         },
       ];
     },
-    iconClasses() {
+    defaultClasses() {
+      return ['py-icon-star-fill', [`${prefixCls}__star--content`]];
+    },
+    charClasses() {
       return [
         'py-icons',
         {
