@@ -5,6 +5,7 @@ import Card from './components/card/index';
 import Divider from './components/divider/index';
 import Input from './components/input/index';
 import LoadingBar from './components/loadingBar/index';
+import Message from './components/message/index';
 import Menu from './components/menu/index';
 import MenuItem from './components/menu-item/index';
 import Slider from './components/slider/index';
@@ -27,6 +28,7 @@ const components = [
   Switch,
   TabPane,
   Upload,
+  Message,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -36,6 +38,7 @@ const install = function(Vue) {
   });
 
   vue.prototype.$loading = LoadingBar;
+  vue.prototype.$message = Message;
 
   // istanbul ignore if
   if (typeof window !== 'undefined' && window.Vue) {
@@ -60,4 +63,5 @@ export default {
   Switch,
   TabPane,
   Upload,
+  Message,
 };
