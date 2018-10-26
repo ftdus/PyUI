@@ -1,24 +1,12 @@
 <template>
-  <aside class="py-sider" :style="{ width }">
-    <slot></slot>
-  </aside>
+    <div></div>
 </template>
 
 <script>
+// 组件class前缀
+// const prefixCls = 'py-sider';
+
 export default {
   name: 'PySider',
-  componentName: 'PySider',
-  props: {
-    width: {
-      type: String,
-      default: '300px',
-    },
-  },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '@/base/themes.scss';
-
-$prefixCls: 'py-sider';
-</style>

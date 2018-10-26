@@ -1,18 +1,18 @@
 <template>
-  <main class="py-content">
+  <div :class="wrapClasses">
     <slot></slot>
-  </main>
+  </div>
 </template>
 
 <script>
+// 组件class前缀
+const prefixCls = 'py-layout';
 export default {
   name: 'PyContent',
-  componentName: 'PyContent',
+  computed: {
+    wrapClasses() {
+      return `${prefixCls}-content`;
+    },
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '@/base/themes.scss';
-
-$prefixCls: 'py-content';
-</style>

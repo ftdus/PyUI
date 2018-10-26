@@ -1,12 +1,16 @@
-import PYLayout from './src/layout.vue';
-import PYHeader from './src/header.vue';
-import PYFooter from './src/footer.vue';
-import PYContent from './src/content.vue';
-import PYSider from './src/sider.vue';
+import PyLayout from './src/layout.vue';
+import PyHeader from './src/header.vue';
+import PyFooter from './src/footer.vue';
+import PyContent from './src/content.vue';
+import PySider from './src/sider.vue';
 
-PYLayout.PYHeader = PYHeader;
-PYLayout.PYContent = PYContent;
-PYLayout.PYFooter = PYFooter;
-PYLayout.PYSider = PYSider;
+PyLayout.PyHeader = PyHeader;
+PyLayout.PyFooter = PyFooter;
+PyLayout.PyContent = PyContent;
+PyLayout.PySider = PySider;
 
-export default PYLayout;
+PyLayout.install = function(Vue) {
+  Vue.component(PyLayout.name, PyLayout);
+};
+
+export default PyLayout;

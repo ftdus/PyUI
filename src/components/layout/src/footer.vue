@@ -1,24 +1,18 @@
 <template>
-  <footer class="py-footer" :style="{ height }">
+  <div :class="wrapClasses">
     <slot></slot>
-  </footer>
+  </div>
 </template>
 
 <script>
+// 组件class前缀
+const prefixCls = 'py-layout';
 export default {
   name: 'PyFooter',
-  componentName: 'PyFooter',
-  props: {
-    height: {
-      type: String,
-      default: '60px',
+  computed: {
+    wrapClasses() {
+      return `${prefixCls}-footer`;
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '@/base/themes.scss';
-
-$prefixCls: 'py-footer';
-</style>

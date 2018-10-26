@@ -1,22 +1,37 @@
 <template>
-  <section class="py-layout">
+  <div :class="wrapClasses">
     <slot></slot>
-  </section>
+  </div>
 </template>
 
 <script>
+// 组件class前缀
+const prefixCls = 'py-layout';
+
 export default {
   name: 'PyLayout',
-  componentName: 'PyLayout',
-  props: {
-    direction: String,
+  data() {
+    return {
+      hasSider: false,
+    };
   },
-  computed: {},
+  mounted() {
+    this.hasSider = this.findSider();
+  },
+  computed: {
+    wrapClasses() {
+      return [
+        `${prefixCls}`,
+        {
+          [`${prefixCls}-has-sider`]: this.hasSider,
+        },
+      ];
+    },
+  },
+  methods: {
+    findSider() {
+      return this.$children.some(child => child.$options.name === 'Sider');
+    },
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '@/base/themes.scss';
-
-$prefixCls: 'py-layout';
-</style>

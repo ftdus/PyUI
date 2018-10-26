@@ -1,24 +1,18 @@
 <template>
-  <header class="py-header" :style="{ height }">
+  <div :class="wrapClasses">
     <slot></slot>
-  </header>
+  </div>
 </template>
 
 <script>
+// 组件class前缀
+const prefixCls = 'py-layout';
 export default {
-  name: 'PyHeader',
-  componentName: 'PyHeader',
-  props: {
-    height: {
-      type: String,
-      default: '60px',
+  name: 'PyContent',
+  computed: {
+    wrapClasses() {
+      return `${prefixCls}-content`;
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '@/base/themes.scss';
-
-$prefixCls: 'py-header';
-</style>
