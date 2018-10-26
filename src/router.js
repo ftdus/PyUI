@@ -69,5 +69,11 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
     },
+    {
+      path: '/cascader',
+      name: 'cascader',
+      component: () =>
+        import(/* webpackChunkName: "cascader" */ './testsDemo/cascader/cascader.vue'),
+    },
   ],
 });
