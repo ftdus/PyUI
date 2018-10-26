@@ -33,15 +33,9 @@
       <py-rate allow-half character="好" v-model="valueHalf"></py-rate>
     </section>
 
-    <h2>自定义图标：`&lt;py-rate icon="icon-heart"&gt;&lt;/py-rate&gt;`</h2>
+    <h2>自定义图标：`&lt;py-rate icon="py-icon-heart-fill"&gt;&lt;/py-rate&gt;`</h2>
     <section>
-      <py-rate allow-half icon="icon-heart" v-model="valueHalf"></py-rate>
-    </section>
-    <section>
-      <py-rate allow-half icon="icon-livestar" v-model="valueHalf"></py-rate>
-    </section>
-    <section>
-      <py-rate allow-half icon="icon-liveheart" v-model="valueHalf"></py-rate>
+      <py-rate allow-half icon="py-icon-heart-fill" v-model="valueHalf"></py-rate>
     </section>
   </div>
 </template>
@@ -63,16 +57,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.page{
+<style lang='scss' scoped>
+.page {
   padding: 20px;
-  h2{
+  h2 {
     margin-bottom: 10px;
   }
-  section{
+  section {
     padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid #DCDFE6;
+    border: 1px solid #dcdfe6;
   }
 }
 </style>

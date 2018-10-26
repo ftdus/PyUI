@@ -1,8 +1,7 @@
-import PYRate from './src/rate.vue';
+import PyRate from './src/rate.vue';
 
-/* istanbul ignore next */
-PYRate.install = function rate(Vue) {
-  Vue.component(PYRate.name, PYRate);
+PyRate.install = function(Vue) {
+  Vue.component(PyRate.name, PyRate);
 };
 
-export default PYRate;
+export default PyRate;

@@ -17,6 +17,10 @@
     {
       "key": "$prompt",
       "value": "${moduleName}.prompt"
+    },
+    {
+      "key": "$rate",
+      "value": "${moduleName}.rate"
     }
   ]
 }
