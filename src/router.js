@@ -70,9 +70,22 @@ export default new Router({
         import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
     },
     {
+      path: '/menu',
+      name: 'Menu',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/menu/menu.vue'),
+    },
+    {
+      path: '/icon',
+      name: 'Icon',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
+    },
+    {
       path: '/rate',
       name: 'rate',
-      component: () => import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
+      component: () =>
+        import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
     },
   ],
 });

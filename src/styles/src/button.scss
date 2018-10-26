@@ -2,10 +2,10 @@
 $padding: 6px 15px;
 $font-size-default: 14px;
 $font-size-small: 12px;
-
+ 
 $prefixCls: 'py-button';
 $element-separator: '__';
-$modifier-separator: '--';
+$modifier-separator: '--'; 
 
 @mixin btnType($color: $color, $bgColor: $bgColor) {
   color: $color;
