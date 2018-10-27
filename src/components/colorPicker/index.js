@@ -1,6 +1,6 @@
-import PYColorPicker from './src/colorPicker.vue';
+import PYColorPicker from './src/color-picker.vue';
 
-PYColorPicker.install = function PYcolorPicker(Vue) {
+PYColorPicker.install = function(Vue) {
   Vue.component(PYColorPicker.name, PYColorPicker);
 };
 
