@@ -2,29 +2,29 @@
   <ul class="py-pager"  @click="changePage">
     <li
       :class="[
-                'py-pager__prev',
-                simple ? 'py-pager--simple' : 'py-pager--notsimple',
-                (disabled || current === 1) ? 'py-pager--disabled' : ''
-              ]"
+        'py-pager__prev',
+        simple ? 'py-pager--simple' : 'py-pager--notsimple',
+        (disabled || current === 1) ? 'py-pager--disabled' : ''
+      ]"
     >
       {{ prevText }}
     </li>
     <li
       :class="[
-                'py-pager__page',
-                simple ? 'py-pager--simple' : 'py-pager--notsimple',
-                current === 1 ? 'py-pager--active' : '',
-                disabled ? 'py-pager--disabled' : ''
-              ]"
+        'py-pager__page',
+        simple ? 'py-pager--simple' : 'py-pager--notsimple',
+        current === 1 ? 'py-pager--active' : '',
+        disabled ? 'py-pager--disabled' : ''
+      ]"
     >1</li>
     <li
       v-show="showPrev"
       :class="[
-                'py-pager--prev',
-                simple ? 'py-pager--simple' : 'py-pager--notsimple',
-                leftFlag === '<<' ? 'py-pager--active' : '',
-                disabled ? 'py-pager--disabled' : ''
-              ]"
+        'py-pager--prev',
+        simple ? 'py-pager--simple' : 'py-pager--notsimple',
+        leftFlag === '<<' ? 'py-pager--active' : '',
+        disabled ? 'py-pager--disabled' : ''
+      ]"
       @mouseenter="onMouseenter('left')"
       @mouseleave="onMouseleave('left')"
     >
@@ -33,11 +33,11 @@
     <li
       v-for="(page, index) in pageList"
       :class="[
-                'py-pager__page',
-                simple ? 'py-pager--simple' : 'py-pager--notsimple',
-                current === page ? 'py-pager--active' : '',
-                disabled ? 'py-pager--disabled' : ''
-              ]"
+        'py-pager__page',
+        simple ? 'py-pager--simple' : 'py-pager--notsimple',
+        current === page ? 'py-pager--active' : '',
+        disabled ? 'py-pager--disabled' : ''
+      ]"
       :key="index"
     >
       {{ page }}
@@ -45,11 +45,11 @@
     <li
       v-show="showNext"
       :class="[
-                'py-pager--next',
-                simple ? 'py-pager--simple' : 'py-pager--notsimple',
-                rightFlag === '>>' ? 'py-pager--active' : '',
-                disabled ? 'py-pager--disabled' : '',
-              ]"
+        'py-pager--next',
+        simple ? 'py-pager--simple' : 'py-pager--notsimple',
+        rightFlag === '>>' ? 'py-pager--active' : '',
+        disabled ? 'py-pager--disabled' : '',
+      ]"
       @mouseenter="onMouseenter('right')"
       @mouseleave="onMouseleave('right')"
     >
@@ -57,20 +57,20 @@
     </li>
     <li
       :class="[
-                'py-pager__page',
-                simple ? 'py-pager--simple' : 'py-pager--notsimple',
-                current === pageCount ? 'py-pager--active' : '',
-                disabled ? 'py-pager--disabled' : ''
-              ]"
+        'py-pager__page',
+        simple ? 'py-pager--simple' : 'py-pager--notsimple',
+        current === pageCount ? 'py-pager--active' : '',
+        disabled ? 'py-pager--disabled' : ''
+      ]"
     >
       {{ pageCount }}
     </li>
     <li
       :class="[
-                'py-pager__next',
-                simple ? 'py-pager--simple' : 'py-pager--notsimple',
-                (disabled || current === pageCount) ? 'py-pager--disabled' : ''
-              ]"
+        'py-pager__next',
+        simple ? 'py-pager--simple' : 'py-pager--notsimple',
+        (disabled || current === pageCount) ? 'py-pager--disabled' : ''
+      ]"
     >
       {{ nextText }}
     </li>

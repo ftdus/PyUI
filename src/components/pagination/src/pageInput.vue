@@ -6,9 +6,9 @@
         v-model="current"
         type="text"
         :class="[
-                  'py-pageinput__input',
-                  disabled ? 'py-pageinput__input--disabled' : 'py-pageinput__input--nodisabled'
-                ]"
+          'py-pageinput__input',
+          disabled ? 'py-pageinput__input--disabled' : 'py-pageinput__input--nodisabled'
+        ]"
         :disabled="disabled"
         @keyup.enter="changeCurrent"
         @change="changeCurrent"
