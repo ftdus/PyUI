@@ -3,6 +3,7 @@ import Button from './components/button/index';
 import ButtonGroup from './components/buttonGroup/index';
 import Card from './components/card/index';
 import Divider from './components/divider/index';
+import Icon from './components/icon/index';
 import Input from './components/input/index';
 import LoadingBar from './components/loadingBar/index';
 import Menu from './components/menu/index';
@@ -19,6 +20,7 @@ const components = [
   ButtonGroup,
   Card,
   Divider,
+  Icon,
   Input,
   Menu,
   MenuItem,
@@ -51,6 +53,7 @@ export default {
   ButtonGroup,
   Card,
   Divider,
+  Icon,
   Input,
   LoadingBar,
   Menu,

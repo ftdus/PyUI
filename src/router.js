@@ -75,5 +75,17 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "cascader" */ './testsDemo/cascader/cascader.vue'),
     },
+    {
+      path: '/menu',
+      name: 'Menu',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/menu/menu.vue'),
+    },
+    {
+      path: '/icon',
+      name: 'Icon',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
+    },
   ],
 });
