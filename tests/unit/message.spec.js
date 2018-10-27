@@ -1,15 +1,14 @@
-import { createTest, createVue, destroyVM } from './util';
 import Message from '@/components/message/index';
 
 describe('Message', () => {
   it('automatically close', done => {
     Message({
-      message: '灰风',
+      message: '当当当',
       duration: 500,
     });
     const message = document.querySelector('.py-message__content');
     expect(document.querySelector('.py-message')).to.exist;
-    expect(message.textContent).to.equal('灰风');
+    expect(message.textContent).to.equal('当当当');
     setTimeout(() => {
       expect(document.querySelector('.py-message')).to.not.exist;
       done();
@@ -18,7 +17,7 @@ describe('Message', () => {
 
   it('manually close', done => {
     Message({
-      message: '夏天',
+      message: 'manually close',
       showClose: true,
     });
     setTimeout(() => {
@@ -32,7 +31,7 @@ describe('Message', () => {
 
   it('custom icon', done => {
     Message({
-      message: '夏天',
+      message: 'custom icon',
       iconClass: 'test-close',
     });
     setTimeout(() => {
@@ -44,31 +43,24 @@ describe('Message', () => {
 
   it('html string', () => {
     Message({
-      message: '<strong>夏天</strong>',
-      dangerouslyUseHTMLString: true,
+      message: '<strong>html string</strong>',
+      useHTMLString: true,
     });
     const message = document.querySelector('.py-message strong');
-    expect(message.textContent).to.equal('夏天');
+    expect(message.innerHTML).to.equal('html string');
   });
 
   it('create', () => {
-    Message('娜梅莉亚');
+    Message('create');
     expect(document.querySelector('.py-message')).to.exist;
-  });
-
-  it('invoke with type', () => {
-    Message.success('毛毛狗');
-    expect(document.querySelector('.py-message').__vue__.type).to.equal(
-      'success'
-    );
   });
 
   it('center', () => {
     Message({
-      message: '夏天',
+      message: 'center',
       center: true,
-      duration: 0,
     });
+    console.log(document.querySelector('.py-message').classList);
     expect(
       document.querySelector('.py-message').classList.contains('is-center')
     ).to.true;
@@ -76,7 +68,7 @@ describe('Message', () => {
 
   it('reset timer', done => {
     Message({
-      message: '白灵',
+      message: 'reset timer',
       duration: 1000,
     });
     setTimeout(() => {
