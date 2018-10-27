@@ -73,6 +73,18 @@ export default new Router({
       path: '/pagination',
       name: 'Pagination',
       component: () => import(/* webpackChunkName: "pagination" */ './testsDemo/pagination/pagination.vue'),
-    }
-  ]
+    },
+    {
+      path: '/menu',
+      name: 'Menu',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/menu/menu.vue'),
+    },
+    {
+      path: '/icon',
+      name: 'Icon',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
+    },
+  ],
 });

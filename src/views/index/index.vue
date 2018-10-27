@@ -9,6 +9,7 @@
     <router-link to="/slider">slider</router-link>
     <router-link to="/switch">switch</router-link>
     <router-link to="/pagination">pagination</router-link>
+    <router-link to="/icon">icon</router-link>
   </div>
 </template>
 <script>

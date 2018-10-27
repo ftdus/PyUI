@@ -1,0 +1,33 @@
+@import "../../base/themes.scss";
+@charset "UTF-8";
+
+// 组件class前缀
+$prefixCls: 'py-menu-item';
+$activeBackgroundColor: #41b883;
+$activeFontColor: #cadde2;
+
+.#{$prefixCls} {
+	box-sizing: border-box;
+	overflow: hidden;
+	white-space: nowrap;
+	&:hover {
+		background-color: $activeBackgroundColor;
+	}
+	&.active {
+		background-color: $activeBackgroundColor;
+		color: $activeFontColor;
+	}
+	&.horizontal-menu {
+		padding: 6px 10px;
+	}
+	&.vertical-menu {
+		padding: 10px 6px;
+	}
+}
+.disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+	background: none !important;
+}
+
+
