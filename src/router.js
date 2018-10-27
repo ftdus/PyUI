@@ -93,5 +93,11 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
     },
+    {
+      path: '/rate',
+      name: 'rate',
+      component: () =>
+        import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
+    },
   ],
 });
