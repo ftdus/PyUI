@@ -4,27 +4,24 @@
             'py-message',
             customClass,
             type && !iconClass ? `py-message--${ type }` : '',
-            center ? 'is-center' : '',
-            showClose ? 'is-closable' : ''
+            {'is-center': center},
+            {'is-closable': showClose}
           ]" v-show="visible" @mouseenter="clearTimer" @mouseleave="startTimer" role="alert">
-      <i :class="iconClass" v-if="iconClass"></i>
+      <i :class="['py-message__icon', iconClass]" v-if="iconClass"></i>
       <i :class="typeClass" v-else></i>
-      <slot>
-        <p v-if="!dangerouslyUseHTMLString" class="py-message__content">{{ message }}</p>
-        <p v-else class="py-message__content" v-html="message"></p>
-      </slot>
+      <p v-if="!useHTMLString" class="py-message__content">{{ message }}</p>
+      <p v-else class="py-message__content" v-html="message"></p>
       <i v-if="showClose" class="py-message__close pyui-icons py-icon-close" @click="close"></i>
     </div>
   </transition>
 </template>
 
 <script>
-// 组件class前缀
 const typeMap = {
-  success: 'success',
-  info: 'info',
-  warning: 'warning',
-  error: 'error',
+  success: 'star',
+  info: 'info-circle',
+  warning: 'frown',
+  error: 'close-circle',
 };
 let timer = null;
 export default {
@@ -40,22 +37,19 @@ export default {
       onClose: null,
       showClose: false,
       closed: false,
-      dangerouslyUseHTMLString: false,
+      useHTMLString: false,
       center: false,
     };
   },
 
-  inject: {},
-
-  props: {},
-
   computed: {
     typeClass() {
       return this.type && !this.iconClass
-        ? `py-message__icon py-icon-${typeMap[this.type]}`
+        ? `py-message__icon pyui-icons py-icon-${typeMap[this.type]}`
         : '';
     },
   },
+
   watch: {
     closed(newVal) {
       if (newVal) {
@@ -68,7 +62,6 @@ export default {
   methods: {
     destroyElement() {
       this.$el.removeEventListener('transitionend', this.destroyElement);
-      this.$destroy(true);
       this.$el.parentNode.removeChild(this.$el);
     },
     /**
@@ -98,25 +91,10 @@ export default {
     clearTimer() {
       clearTimeout(timer);
     },
-    /**
-     * esc 关闭消息
-     */
-    keydown(e) {
-      if (e.keyCode === 27) {
-        if (!this.closed) {
-          this.close();
-        }
-      }
-    },
   },
 
   mounted() {
     this.startTimer();
-    document.addEventListener('keydown', this.keydown);
-  },
-
-  beforeDestroy() {
-    document.removeEventListener('keydown', this.keydown);
   },
 };
 </script>

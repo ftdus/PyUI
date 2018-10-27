@@ -22,36 +22,32 @@ $modifier-separator: '--';
   padding: 15px 15px 15px 20px;
   display: flex;
   align-items: center;
+  &#{$element-separator}icon {
+    margin-right: 10px;
+  }
   &#{$element-separator}content {
     line-height: 1.3;
+    padding-right: 16px;
   }
   &#{$modifier-separator}info {
     background-color: #edf2fc;
     border-color: #ebeef5;
-    .#{$prefixCls}#{$element-separator}content {
-      color: #909399;
-    }
+    color: #909399;
   }
   &#{$modifier-separator}warning {
     background-color: #fdf6ec;
     border-color: #faecd8;
-    .#{$prefixCls}#{$element-separator}content {
-      color: #e6a23c;
-    }
+    color: #e6a23c;
   }
   &#{$modifier-separator}error {
     background-color: #fef0f0;
     border-color: #fde2e2;
-    .#{$prefixCls}#{$element-separator}content {
-      color: #f56c6c;
-    }
+    color: #f56c6c;
   }
   &#{$modifier-separator}success {
     background-color: #f0f9eb;
     border-color: #e1f3d8;
-    .#{$prefixCls}#{$element-separator}content {
-      color: #67c23a;
-    }
+    color: #67c23a;
   }
   &#{$element-separator}close {
     position: absolute;
