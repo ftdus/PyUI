@@ -6,6 +6,7 @@
     <router-link to="/card">card</router-link>
     <router-link to="/tabs">tabs</router-link>
     <router-link to="/divider">divider</router-link>
+    <router-link to="/inputNumber">InputNumber</router-link>
   </div>
 </template>
 <script>
