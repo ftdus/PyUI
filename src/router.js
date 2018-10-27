@@ -70,6 +70,11 @@ export default new Router({
         import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
     },
     {
+      path: '/pagination',
+      name: 'Pagination',
+      component: () => import(/* webpackChunkName: "pagination" */ './testsDemo/pagination/pagination.vue'),
+    },
+    {
       path: '/menu',
       name: 'Menu',
       component: () =>
