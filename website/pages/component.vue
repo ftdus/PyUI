@@ -10,16 +10,32 @@
 </template>
 
 <script>
-import pyNav from '../components/nav.vue';
+import PyNav from '../components/nav.vue';
 
 export default {
   data() {
     return {};
   },
   components: {
-    pyNav,
+    PyNav,
   },
-  mounted() {},
+  watch: {
+    $route: 'setNewHeight',
+  },
+  methods: {
+    setNewHeight() {
+      this.$nextTick(() => {
+        const { height } = window.getComputedStyle(document.querySelector('.right section'));
+        const minHeight = 600;
+        const actualHeight =
+          parseInt(height, 10) < minHeight ? `${minHeight}px` : height;
+        document.querySelector('.right').style.height = actualHeight;
+      });
+    },
+  },
+  mounted() {
+    this.setNewHeight();
+  },
 };
 </script>
 
@@ -27,16 +43,14 @@ export default {
 .main-component {
   display: flex;
   width: 1140px;
-  padding: 0;
+  padding-top: 40px;
   margin: 0 auto;
   height: 100%;
-  .left,
+
   .right {
-    padding: 10px;
-    padding-top: 50px;
-  }
-  .right {
-    width: 100%;
+    width: 900px;
+    padding-left: 40px;
+    border-left: 1px solid #dcdfe6;
   }
 }
 </style>

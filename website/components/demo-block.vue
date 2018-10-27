@@ -48,15 +48,32 @@ export default {
         word-break: break-word;
         margin: 10px;
         background-color: #fff;
+
         p {
           padding: 0;
           margin: 0;
+        }
+
+        code {
+          color: #5e6d82;
+          background-color: #e6effb;
+          margin: 0 4px;
+          display: inline-block;
+          padding: 1px 5px;
+          font-size: 12px;
+          border-radius: 3px;
+          height: 18px;
+          line-height: 18px;
         }
       }
       background-color: #fafafa;
       border-top: 1px solid #eaeefb;
       overflow: hidden;
       transition: height 0.2s;
+
+      code.hljs {
+        margin-bottom: 0;
+      }
     }
 
     .cmp-demo-control {
