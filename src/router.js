@@ -105,5 +105,11 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "notification" */ './testsDemo/notification/notification.vue'),
     },
+    {
+      path: '/layout',
+      name: 'Layout',
+      component: () =>
+        import(/* webpackChunkName: "layout" */ './testsDemo/layout/layout.vue'),
+    },
   ],
 });
