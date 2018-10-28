@@ -18,10 +18,10 @@
 
 <script>
 const typeMap = {
-  success: 'star',
-  info: 'info-circle',
-  warning: 'frown',
-  error: 'close-circle',
+  success: 'check-circle-fill',
+  info: 'info-circle-fill',
+  warning: 'warning-circle-fill',
+  error: 'close-circle-fill',
 };
 let timer = null;
 export default {
