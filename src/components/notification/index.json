@@ -1,0 +1,9 @@
+{
+  "prototype": true,
+  "map": [
+    {
+      "key": "$notify",
+      "value": "${moduleName}"
+    }
+  ]
+}

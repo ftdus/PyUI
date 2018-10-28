@@ -78,8 +78,8 @@ export default new Router({
     {
       path: '/pagination',
       name: 'Pagination',
-      component: () => import(/* webpackChunkName: "pagination" */ './testsDemo/pagination/pagination.vue'),
-
+      component: () =>
+        import(/* webpackChunkName: "pagination" */ './testsDemo/pagination/pagination.vue'),
     },
     {
       path: '/menu',
@@ -98,6 +98,12 @@ export default new Router({
       name: 'rate',
       component: () =>
         import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
+    },
+    {
+      path: '/notification',
+      name: 'Notification',
+      component: () =>
+        import(/* webpackChunkName: "notification" */ './testsDemo/notification/notification.vue'),
     },
   ],
 });

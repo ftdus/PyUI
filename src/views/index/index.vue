@@ -12,6 +12,7 @@
     <router-link to="/pagination">pagination</router-link>
     <router-link to="/icon">icon</router-link>
     <router-link to="/rate">rate</router-link>
+    <router-link to="/notification">notification</router-link>
   </div>
 </template>
 <script>
