@@ -1,14 +1,11 @@
-import Row from './src/row.vue';
-import Col from './src/col.vue';
+import PyRow from './src/row.vue';
+import PyCol from './src/col.vue';
 
-Row.install = function RowFn(Vue) {
-  Vue.component(Row.name, Row);
+PyRow.install = function(Vue) {
+  Vue.component(PyRow.name, PyRow);
 };
-Col.install = function ColFn(Vue) {
-  Vue.component(Col.name, Col);
+PyCol.install = function(Vue) {
+  Vue.component(PyCol.name, PyCol);
 };
 
-export {
-  Row,
-  Col,
-};
+export { PyRow, PyCol };
