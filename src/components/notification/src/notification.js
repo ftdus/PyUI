@@ -46,11 +46,13 @@ const Notification = function(optionsParam) {
 ['success', 'warning', 'info', 'error'].forEach(type => {
   Notification[type] = optionsParam => {
     let options = {};
-    if (typeof options === 'string') {
+    if (typeof optionsParam === 'string') {
       //  || isVNode(options)
       options = {
         message: optionsParam,
       };
+    } else {
+      options = optionsParam;
     }
     options.type = type;
     return Notification(options);

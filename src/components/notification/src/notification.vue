@@ -113,7 +113,6 @@ export default {
       }
     },
     close() {
-      console.log('close');
       this.closed = true;
       if (typeof this.onClose === 'function') {
         this.onClose();

@@ -74,10 +74,7 @@ export default {
     },
 
     open5() {
-      this.$notify.info({
-        title: '消息',
-        message: '这是一条消息的提示消息',
-      });
+      this.$notify.info('这是一条直接传入字符串的提示消息');
     },
 
     open6() {
