@@ -55,7 +55,7 @@ module.exports = {
         },
         {
           name: '🎉  初次提交',
-          value: ':nut_and_bolt:',
+          value: ':tada:',
         },
       ],
     },

@@ -1,0 +1,136 @@
+@charset "UTF-8";
+@import '../../base/themes.scss';
+
+$--color-white: #fff !default;
+$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+$--border-color-lighter: #ebeef5 !default;
+$--message-close-size: 16px !default;
+$--font-size-base: 14px !default;
+$--color-text-regular: #606266 !default;
+$--color-text-primary: #303133 !default;
+$--color-text-secondary: #909399 !default;
+$--color-text-placeholder: #c0c4cc !default;
+
+$--color-success: #67c23a !default;
+$--color-warning: #e6a23c !default;
+$--color-danger: #f56c6c !default;
+$--color-info: #909399 !default;
+
+$--notification-width: 330px !default;
+$--notification-padding: 14px 26px 14px 13px !default;
+$--notification-radius: 8px !default;
+$--notification-shadow: $--box-shadow-light !default;
+$--notification-border-color: $--border-color-lighter !default;
+$--notification-icon-size: 24px !default;
+$--notification-close-font-size: $--message-close-size !default;
+$--notification-group-margin: 13px !default;
+$--notification-font-size: $--font-size-base !default;
+$--notification-color: $--color-text-regular !default;
+$--notification-title-font-size: 16px !default;
+$--notification-title-color: $--color-text-primary !default;
+
+$--notification-close-color: $--color-text-secondary !default;
+$--notification-close-hover-color: $--color-text-regular !default;
+
+$--notification-success-color: $--color-success !default;
+$--notification-info-color: $--color-info !default;
+$--notification-warning-color: $--color-warning !default;
+$--notification-danger-color: $--color-danger !default;
+
+$prefixCls: 'py-notification';
+$element-separator: '__';
+$modifier-separator: '--';
+
+.#{$prefixCls}-fade-enter {
+  &.right {
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  &.left {
+    left: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.#{$prefixCls}-fade-leave-active {
+  opacity: 0;
+}
+
+.#{$prefixCls} {
+  display: flex;
+  width: $--notification-width;
+  padding: $--notification-padding;
+  border-radius: $--notification-radius;
+  box-sizing: border-box;
+  border: 1px solid $--notification-border-color;
+  position: fixed;
+  background-color: $--color-white;
+  box-shadow: $--notification-shadow;
+  transition: opacity 0.3s, transform 0.3s, left 0.3s, right 0.3s, top 0.4s,
+    bottom 0.3s;
+  overflow: hidden;
+
+  &.right {
+    right: 16px;
+  }
+
+  &.left {
+    left: 16px;
+  }
+  &#{$element-separator}group {
+    margin-left: $--notification-group-margin;
+  }
+  &#{$element-separator}title {
+    font-weight: bold;
+    font-size: $--notification-title-font-size;
+    color: $--notification-title-color;
+    margin: 0;
+  }
+  &#{$element-separator}content {
+    font-size: $--notification-font-size;
+    line-height: 21px;
+    margin: 6px 0 0 0;
+    color: $--notification-color;
+    text-align: justify;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &#{$element-separator}icon {
+    height: $--notification-icon-size;
+    width: $--notification-icon-size;
+    font-size: $--notification-icon-size;
+  }
+
+  &#{$element-separator}closeBtn {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    cursor: pointer;
+    color: $--notification-close-color;
+    font-size: $--notification-close-font-size;
+
+    &:hover {
+      color: $--notification-close-hover-color;
+    }
+  }
+
+  .py-icon-success {
+    color: $--notification-success-color;
+  }
+
+  .py-icon-error {
+    color: $--notification-danger-color;
+  }
+
+  .py-icon-info {
+    color: $--notification-info-color;
+  }
+
+  .py-icon-warning {
+    color: $--notification-warning-color;
+  }
+}
