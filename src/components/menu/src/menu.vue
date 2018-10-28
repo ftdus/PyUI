@@ -63,8 +63,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../base/style.scss";
-@import "../../../base/themes.scss";
+@import '../../../base/style.scss';
+@import '../../../base/themes.scss';
 .py-menu {
   box-sizing: border-box;
   display: flex;
