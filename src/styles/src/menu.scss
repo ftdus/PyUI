@@ -4,18 +4,17 @@
 $prefixCls: 'py-menu';
 
 .#{$prefixCls} {
-	box-sizing: border-box;
-	display: flex;
-	background-color: #35495e;
-	color: #cadde2;
-	&.vertical-menu {
-		flex-direction: column;
-		width: 100%;
-		padding: 15px 0;
-	}
-	&.horizontal-menu {
-		height: 100%;
-		padding: 0 15px;
-	}
+  box-sizing: border-box;
+  display: flex;
+  background-color: #35495e;
+  color: #cadde2;
+  &.vertical-menu {
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 0;
+  }
+  &.horizontal-menu {
+    height: 100%;
+    padding: 0 15px;
+  }
 }
-

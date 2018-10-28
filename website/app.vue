@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import pyHeader from './components/header.vue';
+import PyHeader from './components/header.vue';
 
 export default {
   name: 'app',
   components: {
-    pyHeader,
+    PyHeader,
   },
 };
 </script>

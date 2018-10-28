@@ -13,6 +13,8 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tabPane/index';
 import Upload from './components/upload/index';
+import Rate from './components/rate/index';
+import Pagination from "./components/pagination/index";
 
 const components = [
   Badge,
@@ -29,6 +31,8 @@ const components = [
   Switch,
   TabPane,
   Upload,
+  Rate,
+  Pagination,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -63,4 +67,6 @@ export default {
   Switch,
   TabPane,
   Upload,
+  Rate,
+  Pagination,
 };

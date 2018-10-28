@@ -70,6 +70,18 @@ export default new Router({
         import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
     },
     {
+      path: '/cascader',
+      name: 'cascader',
+      component: () =>
+        import(/* webpackChunkName: "cascader" */ './testsDemo/cascader/cascader.vue'),
+    },
+    {
+      path: '/pagination',
+      name: 'Pagination',
+      component: () => import(/* webpackChunkName: "pagination" */ './testsDemo/pagination/pagination.vue'),
+
+    },
+    {
       path: '/menu',
       name: 'Menu',
       component: () =>
@@ -80,6 +92,12 @@ export default new Router({
       name: 'Icon',
       component: () =>
         import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
+    },
+    {
+      path: '/rate',
+      name: 'rate',
+      component: () =>
+        import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
     },
   ],
 });

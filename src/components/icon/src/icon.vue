@@ -1,5 +1,5 @@
 <template>
-  <i :class="classes" :style="styles"></i>
+  <i :class="classes" :style="styles" @click="handleClick"></i>
 </template>
 
 <script>
@@ -44,6 +44,10 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    handleClick(event) {
+      this.$emit('click', event);
+    },
+  },
 };
 </script>
