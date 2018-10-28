@@ -1,7 +1,7 @@
 <template>
-  <div class="py-tab-pane" v-show="show">
-    <slot></slot>
-  </div>
+    <div class="py-tab-pane" v-show="show">
+        <slot></slot>
+    </div>
 </template>
 
 <script>
@@ -14,10 +14,6 @@ export default {
     },
     name: {
       type: String,
-    },
-    label: {
-      type: String,
-      default: '',
     },
   },
   data() {
@@ -40,8 +36,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "@/base/themes.scss";
-</style>
-
