@@ -1,5 +1,6 @@
 website/routes/index.js
 scripts/
+build/
 *.sh
 node_modules
 lib
