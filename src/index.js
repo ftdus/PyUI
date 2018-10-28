@@ -16,6 +16,11 @@ import Upload from './components/upload/index';
 import Rate from './components/rate/index';
 import Pagination from './components/pagination/index';
 import Notification from './components/notification/index';
+import Layout from './components/layout/index';
+import Header from './components/header/index';
+import Footer from './components/footer/index';
+import Content from './components/content/index';
+import Sider from './components/sider/index';
 
 const components = [
   Badge,
@@ -25,7 +30,11 @@ const components = [
   Divider,
   Icon,
   Input,
-  // Layout,
+  Layout,
+  Header,
+  Footer,
+  Content,
+  Sider,
   Menu,
   MenuItem,
   Slider,
@@ -63,6 +72,11 @@ export default {
   Divider,
   Icon,
   Input,
+  Layout,
+  Header,
+  Footer,
+  Content,
+  Sider,
   LoadingBar,
   Menu,
   MenuItem,
