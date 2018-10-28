@@ -1,5 +1,5 @@
 module.exports = {
-  printWidth: 80, // 换行字符串阈值
+  printWidth: 100, // 换行字符串阈值
   tabWidth: 2,
   semi: true, // 句末加分号
   singleQuote: true, // 用单引号

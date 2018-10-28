@@ -32,6 +32,15 @@ const navData = [
           },
         ],
       },
+      {
+        group: 'Data',
+        children: [
+          {
+            name: 'Badge 标记',
+            path: 'badge',
+          },
+        ],
+      },
     ],
   },
 ];
