@@ -81,6 +81,7 @@ import hue from './common/Hue.vue';
 import alpha from './common/Alpha.vue';
 import checkboard from './common/check-board.vue';
 
+// const prefixCls = 'py-sketch';
 const presetColors = [
   '#D0021B',
   '#F5A623',

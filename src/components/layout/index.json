@@ -1,3 +1,26 @@
 {
-  "dev": true
+  "dev": true,
+  "prototype": true,
+  "map": [
+    {
+      "key": "$PyLayout",
+      "value": "${moduleName}"
+    },
+    {
+      "key": "$PyHeader",
+      "value": "${moduleName}.PyHeader"
+    },
+    {
+      "key": "$PyConent",
+      "value": "${moduleName}.PyConent"
+    },
+    {
+      "key": "$PyFooter",
+      "value": "${moduleName}.PyFooter"
+    },
+    {
+      "key": "$PySider",
+      "value": "${moduleName}.PySider"
+    }
+  ]
 }

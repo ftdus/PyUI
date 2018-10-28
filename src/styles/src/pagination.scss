@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+@import '../../base/themes.scss';
+
+// 组件class前缀
+$prefixCls: 'py-pagination';
+
+$notsimpleBackground: $color-active;
+$notsimpleNotactiveBackground: #f4f4f5;
+
+.#{$prefixCls} {
+  display: flex;
+  align-items: center;
+  color: $color;
+  &__total span {
+    padding: 0 2px;
+  }
+}
+
+.py-pager {
+  & li {
+    display: inline-block;
+    margin: 0 0.3125rem;
+    color: $color;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.875rem;
+    border-radius: 0.125rem;
+  }
+  &__page,
+  &--prev,
+  &--next {
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+  &__prev,
+  &__next {
+    padding: 0 0.5rem;
+  }
+  &--notsimple {
+    background-color: $notsimpleNotactiveBackground;
+    &.py-pager--active {
+      color: #fff;
+      background-color: $notsimpleBackground;
+      &:hover {
+        color: #fff;
+      }
+    }
+    &.py-pager--disabled {
+      color: $color;
+      cursor: not-allowed;
+      &.py-pager--active {
+        background-color: $notsimpleNotactiveBackground;
+      }
+      &:hover {
+        color: $color;
+      }
+    }
+    &:hover {
+      color: $color-hover;
+    }
+  }
+  &--simple {
+    &.py-pager--active {
+      color: $color-active;
+    }
+    &.py-pager--disabled {
+      color: $color;
+      cursor: not-allowed;
+      &:hover {
+        color: $color;
+      }
+    }
+    &:hover {
+      color: $color-hover;
+    }
+  }
+}
+
+.py-pageinput {
+  color: $color;
+  width: 110px;
+  &__input {
+    margin: 0 2px;
+    width: 50%;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    text-align: center;
+    padding: 6px;
+    &--disabled {
+      cursor: not-allowed;
+    }
+    &--nodisabled {
+      &:hover,
+      &:focus {
+        border-color: $border-color-hover;
+        box-shadow: 0 0 4px $border-color-hover;
+      }
+    }
+  }
+}

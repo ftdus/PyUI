@@ -10,11 +10,12 @@
     "ci": "node scripts/git-commit.js",
     "comps:update": "node scripts/comps-imports-update.js",
     "new:comp": "node scripts/new-comp.js",
-    "serve:main": "cross-env BUILD_TYPE=main  vue-cli-service serve website/main.js",
-    "build:main": "vue-cli-service build website/main.js",
+    "serve:main": "cross-env BUILD_TYPE=main vue-cli-service serve website/main.js",
+    "build:main": "cross-env BUILD_TYPE=main vue-cli-service build website/main.js",
     "build:style": "gulp build --gulpfile src/styles/gulpfile.js --color"
   },
   "dependencies": {
+    "eslint-plugin-vue": "^4.7.1",
     "clamp": "^1.0.1",
     "lodash.throttle": "^4.0.0",
     "tinycolor2": "^1.4.1",
