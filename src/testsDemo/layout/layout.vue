@@ -61,16 +61,6 @@ export default {
     'py-content': PyContent,
     'py-sider': PySider,
   },
-  data() {
-    return {
-      currentDate: new Date(),
-    };
-  },
-  methods: {
-    handleClick() {
-      console.log('large button');
-    },
-  },
 };
 </script>
 
