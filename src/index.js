@@ -14,7 +14,8 @@ import Switch from './components/switch/index';
 import TabPane from './components/tabPane/index';
 import Upload from './components/upload/index';
 import Rate from './components/rate/index';
-import Pagination from "./components/pagination/index";
+import Pagination from './components/pagination/index';
+import Notification from './components/notification/index';
 
 const components = [
   Badge,
@@ -24,12 +25,14 @@ const components = [
   Divider,
   Icon,
   Input,
+  // Layout,
   Menu,
   MenuItem,
   Slider,
   Submenu,
   Switch,
   TabPane,
+  // Tabs,
   Upload,
   Rate,
   Pagination,
@@ -42,6 +45,7 @@ const install = function(Vue) {
   });
 
   vue.prototype.$loading = LoadingBar;
+  vue.prototype.$notify = Notification;
 
   // istanbul ignore if
   if (typeof window !== 'undefined' && window.Vue) {
@@ -69,4 +73,5 @@ export default {
   Upload,
   Rate,
   Pagination,
+  Notification,
 };
