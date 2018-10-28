@@ -76,9 +76,9 @@
 <script>
 import colorMixin from './mixin/color';
 import editableInput from './common/editable-input.vue';
-import saturation from './common/saturation.vue';
-import hue from './common/hue.vue';
-import alpha from './common/alpha.vue';
+import saturation from './common/Saturation.vue';
+import hue from './common/Hue.vue';
+import alpha from './common/Alpha.vue';
 import checkboard from './common/check-board.vue';
 
 const presetColors = [
