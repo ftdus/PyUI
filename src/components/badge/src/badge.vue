@@ -1,12 +1,12 @@
 <template>
-    <div :class="classes">
-        <slot></slot>
-        <sup
-            v-show="!hidden && (value || value == 0 || isDot)"
-            :class="dotClass"
-            v-text="valueDot"
-        ></sup>
-    </div>
+  <div :class="classes">
+    <slot></slot>
+    <sup
+      v-show="!hidden && (value || value == 0 || isDot)"
+      :class="dotClass"
+      v-text="valueDot"
+    ></sup>
+  </div>
 </template>
 
 <script>

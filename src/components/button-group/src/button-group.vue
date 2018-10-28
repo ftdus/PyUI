@@ -1,7 +1,7 @@
 <template>
-    <div :class="classes" class="clearfix">
-        <slot></slot>
-    </div>
+  <div :class="classes" class="clearfix">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
