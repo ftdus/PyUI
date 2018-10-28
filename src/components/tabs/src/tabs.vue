@@ -1,38 +1,39 @@
 <template>
-    <div :class="tabsClass">
-        <div class="py-tabs__nav-wrap">
-            <div class="py-tabs__nav">
-                <!-- 标签页的标题 -->
-                <div class="py-tabs__active-bar" :style="barStyle"></div>
-                <div
-                    v-for="(item, index) in navList"
-                    :key="index"
-                    ref="tabNav"
-                    :class="tabCls(item)"
-                    :tab-nav="index"
-                    active="0"
-                    @click="handleChange(index)"
-                >
-                    {{item.label}}
-                    <i
-                        class="py-icon iconfont"
-                        :class="{'icon-delete': closable}"
-                        v-if="closable"
-                        @click.stop="removeTab(navList, index)"
-                    ></i>
-                </div>
-            </div>
+  <div :class="tabsClass">
+    <div class="py-tabs__nav-wrap">
+      <div class="py-tabs__nav">
+        <!-- 标签页的标题 -->
+        <div class="py-tabs__active-bar" :style="barStyle"></div>
+        <div
+          v-for="(item, index) in navList"
+          :key="index"
+          ref="tabNav"
+          :class="tabCls(item)"
+          :tab-nav="index"
+          active="0"
+          @click="handleChange(index)"
+        >
+          {{item.label}}
+          <i
+            class="py-icon iconfont"
+            :class="{'icon-delete': closable}"
+            v-if="closable"
+            @click.stop="removeTab(navList, index)"
+          ></i>
         </div>
-        <!-- 标签页内容板块 -->
-        <div class="tabs-content">
-            <slot></slot>
-        </div>
+      </div>
     </div>
+    <!-- 标签页内容板块 -->
+    <div class="tabs-content">
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
 <script>
 const prefixCls = 'py-tabs';
 export default {
+  name: 'pyTabs',
   props: {
     value: {
       type: [String],

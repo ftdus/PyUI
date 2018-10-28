@@ -1,10 +1,13 @@
 <template>
-    <div class="py-tab-pane" v-show="show">
-        <slot></slot>
-    </div>
+  <div :class="classes" v-show="show">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
+// 组件class前缀
+const prefixCls = 'py-tab-pane';
+
 export default {
   name: 'PyTabPane',
   props: {
@@ -32,6 +35,11 @@ export default {
   methods: {
     updateNav() {
       this.$parent.updateNav();
+    },
+  },
+  computed: {
+    classes() {
+      return [`${prefixCls}`];
     },
   },
 };
