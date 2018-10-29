@@ -60,13 +60,13 @@ $name: "__span--";
         }
       }
     }
-    &-offset-#{$s} {
+    &--offset-#{$s} {
       margin-left: $count * $s;
     }
-    &-push-#{$s} {
+    &--push-#{$s} {
       left: $count * $s;
     }
-    &-pull-#{$s} {
+    &--pull-#{$s} {
       right: $count * $s;
     }
   }

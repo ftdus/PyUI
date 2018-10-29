@@ -51,9 +51,9 @@ export default {
         `${prefixCls}`,
         {
           [`${prefixCls}__span--${this.span}`]: this.span,
-          [`${prefixCls}__push--${this.push}`]: this.push,
-          [`${prefixCls}__pull--${this.pull}`]: this.pull,
-          [`${prefixCls}__offset--${this.offset}`]: this.offset,
+          [`${prefixCls}--push-${this.push}`]: this.push,
+          [`${prefixCls}--pull-${this.pull}`]: this.pull,
+          [`${prefixCls}--offset-${this.offset}`]: this.offset,
         },
       ];
       this.sizes.forEach(size => {
@@ -63,7 +63,7 @@ export default {
           const props = this[size];
           Object.keys(props).forEach(prop => {
             classses.push(prop !== 'span'
-              ? `${prefixCls}__${size}--${prop}-${props[prop]}`
+              ? `${prefixCls}-${size}--${prop}-${props[prop]}`
               : `${prefixCls}__span--${size}-${props[prop]}`);
           });
         }
