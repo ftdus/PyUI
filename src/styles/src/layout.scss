@@ -1,8 +1,25 @@
 @charset "UTF-8";
-@import "../../base/themes.scss";
-
 // 组件class前缀
 $prefixCls: 'py-layout';
+$state-prefix: 'is-';
 
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
 
+.#{$prefixCls} {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
 
+  @include when(vertical) {
+    flex-direction: column;
+  }
+}

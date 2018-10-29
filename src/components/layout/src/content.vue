@@ -1,17 +1,17 @@
 <template>
-  <div :class="wrapClasses">
+  <main :class="wrapClasses">
     <slot></slot>
-  </div>
+  </main>
 </template>
 
 <script>
 // 组件class前缀
-const prefixCls = 'py-layout';
+const prefixCls = 'py-content';
 export default {
   name: 'PyContent',
   computed: {
     wrapClasses() {
-      return `${prefixCls}-content`;
+      return `${prefixCls}`;
     },
   },
 };
