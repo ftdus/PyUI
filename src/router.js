@@ -105,5 +105,11 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "notification" */ './testsDemo/notification/notification.vue'),
     },
+    {
+      path: '/select',
+      name: 'Select',
+      component: () =>
+        import(/* webpackChunkName: "notification" */ './testsDemo/select/select.vue'),
+    },
   ],
 });
