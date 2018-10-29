@@ -1,7 +1,7 @@
-import PYCard from './src/card.vue';
+import PyCard from './src/card.vue';
 
-PYCard.install = function PyCard(Vue) {
-  Vue.component(PYCard.name, PYCard);
+PyCard.install = function(Vue) {
+  Vue.component(PyCard.name, PyCard);
 };
 
-export default PYCard;
+export default PyCard;

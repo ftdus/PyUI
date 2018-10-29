@@ -32,6 +32,19 @@ const navData = [
           },
         ],
       },
+      {
+        group: 'Data',
+        children: [
+          {
+            name: 'Badge 标记',
+            path: 'badge',
+          },
+          {
+            name: 'loadingBar 加载进度条',
+            path: 'loading-bar',
+          },
+        ],
+      },
     ],
   },
 ];

@@ -1,9 +1,0 @@
-{
-  "prototype": true,
-  "map": [
-    {
-      "key": "$loading",
-      "value": "${moduleName}"
-    }
-  ]
-}
