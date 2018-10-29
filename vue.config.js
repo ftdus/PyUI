@@ -35,11 +35,6 @@ module.exports = {
         .loader('vue-markdown-loader/lib/markdown-compiler')
         .options(webpackDocConfig);
     }
-
-    // config.plugin('define').tap(args => {
-    //   args[0]['process.env']['BASE_URL'] = '"py"';
-    //   return args;
-    // });
   },
   outputDir: isMain
     ? path.resolve(process.cwd(), './website/dist/')

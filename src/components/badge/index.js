@@ -1,7 +1,7 @@
-import PyBadge from './src/badge.vue';
+import PYBadge from './src/badge.vue';
 
-PyBadge.install = function(Vue) {
-  Vue.component(PyBadge.name, PyBadge);
+PYBadge.install = function PyButton(Vue) {
+  Vue.component(PYBadge.name, PYBadge);
 };
 
-export default PyBadge;
+export default PYBadge;

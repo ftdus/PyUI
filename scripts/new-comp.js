@@ -3,8 +3,6 @@ const ora = require('ora');
 const fs = require('fs-extra');
 const path = require('path');
 const inquirer = require('inquirer');
-const stylesFileUpdate = require('./styles-update');
-
 // 导入选项配置
 const { readText, nameFormat } = require('./utils/tools');
 const promps = require('./config/promps');
@@ -77,9 +75,6 @@ function createTemplate(name, needConfig) {
     fs.createFileSync(distFiles.scss);
     fs.writeFileSync(distFiles.scss, replaceCompName('scss', name));
 
-    // 自动更新样式依赖文件
-    stylesFileUpdate();
-
     if (needConfig) {
       fs.copyFileSync(sourceFiles.json, distFiles.json);
     }
@@ -93,7 +88,10 @@ function createTemplate(name, needConfig) {
  * @param {String} name 模板mingc
  */
 function replaceCompName(type, name) {
-  return readText(sourceFiles[type]).replace(/\{\{__py_component_class_name__\}\}/g, `py-${name}`);
+  return readText(sourceFiles[type]).replace(
+    /\{\{__py_component_class_name__\}\}/g,
+    `py-${name}`
+  );
 }
 
 doTemplate();

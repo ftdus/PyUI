@@ -86,7 +86,7 @@ module.exports = {
     {
       type: 'confirm',
       name: 'needConfig',
-      message: '是否需要组件配置文件(普通组件不需要)',
+      message: '是否需要组件配置文件',
       default: false,
     },
   ],
