@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes"></div>
+    <div></div>
 </template>
 
 <script>
@@ -8,10 +8,13 @@ const prefixCls = '{{__py_component_class_name__}}';
 
 export default {
   name: '{{__py_component_name__}}',
-  computed: {
-    classes() {
-      return `${prefixCls}`;
-    },
-  },
+
+  inject: {},
+
+  props: {},
+
+  computed: {},
+
+  methods: {},
 };
 </script>
