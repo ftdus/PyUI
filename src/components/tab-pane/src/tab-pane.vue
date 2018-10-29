@@ -1,10 +1,13 @@
 <template>
-  <div class="py-tab-pane" v-show="show">
+  <div :class="classes" v-show="show">
     <slot></slot>
   </div>
 </template>
 
 <script>
+// 组件class前缀
+const prefixCls = 'py-tab-pane';
+
 export default {
   name: 'PyTabPane',
   props: {
@@ -14,10 +17,6 @@ export default {
     },
     name: {
       type: String,
-    },
-    label: {
-      type: String,
-      default: '',
     },
   },
   data() {
@@ -38,10 +37,10 @@ export default {
       this.$parent.updateNav();
     },
   },
+  computed: {
+    classes() {
+      return [`${prefixCls}`];
+    },
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "@/base/themes.scss";
-</style>
-

@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import '../../../../styles/src/color-picker.scss';
+
 export default {
   name: 'Hue',
   props: {
@@ -79,10 +81,8 @@ export default {
       const containerWidth = container.clientWidth;
       const containerHeight = container.clientHeight;
 
-      const xOffset =
-        container.getBoundingClientRect().left + window.pageXOffset;
-      const yOffset =
-        container.getBoundingClientRect().top + window.pageYOffset;
+      const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
+      const yOffset = container.getBoundingClientRect().top + window.pageYOffset;
       const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0);
       const pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0);
       const left = pageX - xOffset;
@@ -146,58 +146,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.py-hue {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  border-radius: 2px;
-}
-.py-hue--horizontal {
-  background: linear-gradient(
-    to right,
-    #f00 0%,
-    #ff0 17%,
-    #0f0 33%,
-    #0ff 50%,
-    #00f 67%,
-    #f0f 83%,
-    #f00 100%
-  );
-}
-.py-hue--vertical {
-  background: linear-gradient(
-    to top,
-    #f00 0%,
-    #ff0 17%,
-    #0f0 33%,
-    #0ff 50%,
-    #00f 67%,
-    #f0f 83%,
-    #f00 100%
-  );
-}
-.py-hue-container {
-  cursor: pointer;
-  margin: 0 2px;
-  position: relative;
-  height: 100%;
-}
-.py-hue-pointer {
-  z-index: 2;
-  position: absolute;
-}
-.py-hue-picker {
-  cursor: pointer;
-  margin-top: 1px;
-  width: 4px;
-  border-radius: 1px;
-  height: 8px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-  background: #fff;
-  transform: translateX(-2px);
-}
-</style>

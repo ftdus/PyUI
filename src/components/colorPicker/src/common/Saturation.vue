@@ -16,6 +16,7 @@
 <script>
 import clamp from 'clamp';
 import throttle from 'lodash.throttle';
+import '../../../../styles/src/color-picker.scss';
 
 export default {
   name: 'Saturation',
@@ -56,10 +57,8 @@ export default {
       const containerWidth = container.clientWidth;
       const containerHeight = container.clientHeight;
 
-      const xOffset =
-        container.getBoundingClientRect().left + window.pageXOffset;
-      const yOffset =
-        container.getBoundingClientRect().top + window.pageYOffset;
+      const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
+      const yOffset = container.getBoundingClientRect().top + window.pageYOffset;
       const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0);
       const pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0);
       const left = clamp(pageX - xOffset, 0, containerWidth);
@@ -95,36 +94,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.py-saturation,
-.py-saturation--white,
-.py-saturation--black {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.py-saturation--white {
-  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
-}
-.py-saturation--black {
-  background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
-}
-.py-saturation-pointer {
-  cursor: pointer;
-  position: absolute;
-}
-.py-saturation-circle {
-  cursor: head;
-  width: 4px;
-  height: 4px;
-  box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
-    0 0 1px 2px rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
-  transform: translate(-2px, -2px);
-}
-</style>

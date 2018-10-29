@@ -14,6 +14,7 @@
     <router-link to="/rate">rate</router-link>
     <router-link to="/notification">notification</router-link>
     <router-link to="/colorPicker">colorPicker</router-link>
+    <router-link to="/layout">layout</router-link>
   </div>
 </template>
 <script>

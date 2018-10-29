@@ -1,6 +1,6 @@
 import tinycolor from 'tinycolor2';
 
-function colorChange (data, oldHue) {
+function colorChange(data) {
   const alpha = data && data.a;
   let color = '';
 
@@ -54,33 +54,33 @@ function colorChange (data, oldHue) {
 
 export default {
   props: ['value'],
-  data () {
+  data() {
     return {
       val: colorChange(this.value),
     };
   },
   computed: {
     colors: {
-      get () {
+      get() {
         return this.val;
       },
-      set (newVal) {
+      set(newVal) {
         this.val = newVal;
         this.$emit('input', newVal);
       },
     },
   },
   watch: {
-    value (newVal) {
+    value(newVal) {
       this.val = colorChange(newVal);
     },
   },
   methods: {
-    colorChange (data, oldHue) {
+    colorChange(data) {
       this.oldHue = this.colors.hsl.h;
-      this.colors = colorChange(data, oldHue || this.oldHue);
+      this.colors = colorChange(data);
     },
-    isValidHex (hex) {
+    isValidHex(hex) {
       return tinycolor(hex).isValid();
     },
     // simpleCheckForValidColor (data) {
@@ -102,10 +102,10 @@ export default {
     //     return data;
     //   }
     // },
-    paletteUpperCase (palette) {
+    paletteUpperCase(palette) {
       return palette.map(c => c.toUpperCase());
     },
-    isTransparent (color) {
+    isTransparent(color) {
       return tinycolor(color).getAlpha() === 0;
     },
   },

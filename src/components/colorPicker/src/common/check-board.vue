@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import '../../../../styles/src/color-picker.scss';
 // const checkboardCache = {};
 
 export default {
@@ -83,14 +84,3 @@ export default {
 //   return checkboard;
 // }
 </script>
-
-<style>
-.py-checkerboard {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background-size: contain;
-}
-</style>

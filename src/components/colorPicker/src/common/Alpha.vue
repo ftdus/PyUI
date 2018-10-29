@@ -17,6 +17,7 @@
 
 <script>
 import checkboard from './check-board.vue';
+import '../../../../styles/src/color-picker.scss';
 
 export default {
   name: 'Alpha',
@@ -45,8 +46,7 @@ export default {
       const { container } = this.$refs;
       const containerWidth = container.clientWidth;
 
-      const xOffset =
-        container.getBoundingClientRect().left + window.pageXOffset;
+      const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
       const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0);
       const left = pageX - xOffset;
 
@@ -84,49 +84,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.py-alpha {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-}
-.py-alpha-checkboard-wrap {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  overflow: hidden;
-}
-.py-alpha-gradient {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-}
-.py-alpha-container {
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  margin: 0 3px;
-}
-.py-alpha-pointer {
-  z-index: 2;
-  position: absolute;
-}
-.py-alpha-picker {
-  cursor: pointer;
-  width: 4px;
-  border-radius: 1px;
-  height: 8px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-  background: #fff;
-  margin-top: 1px;
-  transform: translateX(-2px);
-}
-</style>

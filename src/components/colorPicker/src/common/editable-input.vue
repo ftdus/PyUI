@@ -100,17 +100,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.py-editable-input {
-  position: relative;
-}
-.py-input__input {
-  padding: 0;
-  border: 0;
-  outline: none;
-}
-.py-input__label {
-  text-transform: capitalize;
-}
-</style>

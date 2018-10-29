@@ -2,7 +2,7 @@
 
 ## 开发前必读
 
-强烈推荐使用 VSCODE 编译器 并且安装 `Prettier - Code formatter`,`ESLint` 这两个插件
+强烈推荐使用 VSCODE 编译器 并且安装 `Prettier - Code formatter`,`ESLint` ,`EditorConfig for VS Code`这三个插件
 
 ### ✨ 关于代码风格
 
