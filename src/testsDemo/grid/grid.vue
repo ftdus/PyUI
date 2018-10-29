@@ -219,7 +219,8 @@ $prefixClspy-row: 'py-row';
     </div>
 </template>
 <script>
-import { PyRow, PyCol } from '../../components/grid/index';
+import PyRow from '../../components/row/index';
+import PyCol from '../../components/col/index';
 
 export default {
   name: 'py-grid-demo',

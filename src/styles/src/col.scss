@@ -1,50 +1,11 @@
 @charset "UTF-8";
 
 // 组件class前缀
-$prefixCls: 'py-grid';
-
-$prefixCls: "py-row";
-.#{$prefixCls} {
-  position: relative;
-  &:after {
-    content: " ";
-    display: block;
-    clear: both;
-  }
-  &-flex {
-    display: flex;
-    &-start {
-      justify-content: start;
-    }
-    &-end {
-      justify-content: flex-end;
-    }
-    &-center {
-      justify-content: center;
-    }
-    &-space-between {
-      justify-content: space-between;
-    }
-    &-space-around {
-      justify-content: space-around;
-    }
-    &-top {
-      align-items: flex-start;
-    }
-    &-bottom {
-      align-items: flex-end;
-    }
-    &-middle {
-      align-items: center;
-    }
-  }
-}
-
 $prefixCls: "py-col";
 $start: 1;
 $end: 24;
 $count: 100%/24;
-$name: "__span-";
+$name: "__span--";
 .#{$prefixCls} {
   position: relative;
   float: left;
@@ -52,7 +13,6 @@ $name: "__span-";
   padding: 10px 0;
   text-align: center;
   @for $s from $start to $end {
-    // &-span- {
     &#{$name}#{$s} {
       width: $count * $s;
     }
@@ -100,7 +60,6 @@ $name: "__span-";
         }
       }
     }
-    // }
     &-offset-#{$s} {
       margin-left: $count * $s;
     }
