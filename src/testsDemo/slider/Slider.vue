@@ -31,7 +31,7 @@
 import PYSlider from '../../components/slider/';
 
 export default {
-  name: "slider-demo",
+  name: 'slider-demo',
   components: {
     'py-slider': PYSlider,
   },
@@ -51,22 +51,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .slider-demo {
-    &__item {
-      margin: 20px 0;
-    }
-    &__wrap {
-      padding: 10px;
-      width: 50%;
-    }
-    &__title {
-      font-size: 18px;
-      font-weight: bold;
-    }
-    &__content {
-      padding: 20px;
-      margin-top: 10px;
-      border: 1px solid #eee;
-    }
+.slider-demo {
+  &__item {
+    margin: 20px 0;
   }
+  &__wrap {
+    padding: 10px;
+    width: 50%;
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &__content {
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+  }
+}
 </style>
