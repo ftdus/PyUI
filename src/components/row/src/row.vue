@@ -70,9 +70,9 @@ export default {
         `${prefixCls}`,
         {
           // [`${prefixCls}-${this.crevice}`]: this.crevice
-          [`${prefixCls}-${this.type}`]: this.type,
-          [`${prefixCls}-flex-${this.justify}`]: this.justify,
-          [`${prefixCls}-flex-${this.align}`]: this.align,
+          [`${prefixCls}__${this.type}`]: this.type,
+          [`${prefixCls}__flex-${this.justify}`]: this.justify,
+          [`${prefixCls}__flex-${this.align}`]: this.align,
         },
       ];
     },
