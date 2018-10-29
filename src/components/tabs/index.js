@@ -1,7 +1,6 @@
-
 import PyTabs from './src/tabs.vue';
 
-PyTabs.install = function PyButton(Vue) {
+PyTabs.install = function(Vue) {
   Vue.component(PyTabs.name, PyTabs);
 };
 

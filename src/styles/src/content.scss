@@ -1,4 +1,13 @@
 @charset "UTF-8";
-
 // 组件class前缀
 $prefixCls: 'py-content';
+$--main-padding: 20px !default;
+
+.#{$prefixCls} {
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: $--main-padding;
+}
