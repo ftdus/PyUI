@@ -12,32 +12,27 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ './views/index/index.vue'),
+      component: () => import(/* webpackChunkName: "about" */ './views/index/index.vue'),
     },
     {
       path: '/button',
       name: 'button',
-      component: () =>
-        import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/button/button.vue'),
     },
     {
       path: '/divider',
       name: 'divider',
-      component: () =>
-        import(/* webpackChunkName: "divider" */ './testsDemo/divider/divider.vue'),
+      component: () => import(/* webpackChunkName: "divider" */ './testsDemo/divider/divider.vue'),
     },
     {
       path: '/badge',
       name: 'badge',
-      component: () =>
-        import(/* webpackChunkName: "button" */ './testsDemo/badge/badge.vue'),
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/badge/badge.vue'),
     },
     {
       path: '/input',
       name: 'input',
-      component: () =>
-        import(/* webpackChunkName: "button" */ './testsDemo/input/input.vue'),
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/input/input.vue'),
     },
     {
       path: '/loadingBar',
@@ -48,26 +43,22 @@ export default new Router({
     {
       path: '/card',
       name: 'card',
-      component: () =>
-        import(/* webpackChunkName: "card" */ './testsDemo/card/card.vue'),
+      component: () => import(/* webpackChunkName: "card" */ './testsDemo/card/card.vue'),
     },
     {
       path: '/tabs',
       name: 'Tabs',
-      component: () =>
-        import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
+      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/tabs/Tabs.vue'),
     },
     {
       path: '/slider',
       name: 'Slider',
-      component: () =>
-        import(/* webpackChunkName: "Tabs" */ './testsDemo/slider/Slider.vue'),
+      component: () => import(/* webpackChunkName: "Tabs" */ './testsDemo/slider/Slider.vue'),
     },
     {
       path: '/switch',
       name: 'Switch',
-      component: () =>
-        import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
+      component: () => import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
     },
     {
       path: '/cascader',
@@ -84,20 +75,17 @@ export default new Router({
     {
       path: '/menu',
       name: 'Menu',
-      component: () =>
-        import(/* webpackChunkName: "switch" */ './testsDemo/menu/menu.vue'),
+      component: () => import(/* webpackChunkName: "switch" */ './testsDemo/menu/menu.vue'),
     },
     {
       path: '/icon',
       name: 'Icon',
-      component: () =>
-        import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
+      component: () => import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
     },
     {
       path: '/rate',
       name: 'rate',
-      component: () =>
-        import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
+      component: () => import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
     },
     {
       path: '/notification',
@@ -108,8 +96,12 @@ export default new Router({
     {
       path: '/layout',
       name: 'Layout',
-      component: () =>
-        import(/* webpackChunkName: "layout" */ './testsDemo/layout/layout.vue'),
+      component: () => import(/* webpackChunkName: "layout" */ './testsDemo/layout/layout.vue'),
+    },
+    {
+      path: '/alert',
+      name: 'Alert',
+      component: () => import(/* webpackChunkName: "layout" */ './testsDemo/alert/alert.vue'),
     },
   ],
 });

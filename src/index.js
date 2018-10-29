@@ -1,50 +1,37 @@
+import Alert from './components/alert/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
-import ButtonGroup from './components/buttonGroup/index';
-import Card from './components/card/index';
+import ButtonGroup from './components/button-group/index';
 import Divider from './components/divider/index';
 import Icon from './components/icon/index';
 import Input from './components/input/index';
 import LoadingBar from './components/loadingBar/index';
 import Menu from './components/menu/index';
 import MenuItem from './components/menu-item/index';
+import Notification from './components/notification/index';
+import Rate from './components/rate/index';
 import Slider from './components/slider/index';
 import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
-import TabPane from './components/tabPane/index';
+import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
-import Rate from './components/rate/index';
-import Pagination from './components/pagination/index';
-import Notification from './components/notification/index';
-import Layout from './components/layout/index';
-import Header from './components/header/index';
-import Footer from './components/footer/index';
-import Content from './components/content/index';
-import Sider from './components/sider/index';
 
 const components = [
+  Alert,
   Badge,
   Button,
   ButtonGroup,
-  Card,
   Divider,
   Icon,
   Input,
-  Layout,
-  Header,
-  Footer,
-  Content,
-  Sider,
   Menu,
   MenuItem,
+  Rate,
   Slider,
   Submenu,
   Switch,
   TabPane,
-  // Tabs,
   Upload,
-  Rate,
-  Pagination,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -65,27 +52,21 @@ const install = function(Vue) {
 export default {
   version: '0.1.0',
   install,
+  Alert,
   Badge,
   Button,
   ButtonGroup,
-  Card,
   Divider,
   Icon,
   Input,
-  Layout,
-  Header,
-  Footer,
-  Content,
-  Sider,
   LoadingBar,
   Menu,
   MenuItem,
+  Notification,
+  Rate,
   Slider,
   Submenu,
   Switch,
   TabPane,
   Upload,
-  Rate,
-  Pagination,
-  Notification,
 };
