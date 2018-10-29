@@ -1,7 +1,7 @@
-import PYSlider from './src/Slider';
+import PYSlider from './src/Slider.vue';
 
 PYSlider.install = Vue => {
-    Vue.component(PYSlider.name, PYSlider);
+  Vue.component(PYSlider.name, PYSlider);
 };
 
 export default PYSlider;

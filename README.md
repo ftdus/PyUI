@@ -72,6 +72,77 @@ vue.prototype.$confirm = MessageBox.confirm;
 vue.prototype.$prompt = MessageBox.prompt;
 ```
 
+
+# PyUI CSS设计
+
+参考ElementCSS架构
+
+## 语言
+
+CSS预处理语言统一使用`scss`
+
+## 命名及书写规范
+
+- 命名使用BEM规范，包含Block、Element、Modifier三部分组成，我们使用`__`双下划线作为`Element`连接符，使用`--`双中划线连接`Modifier`，`-`作为单词连接符。
+- BEM统一使用`b`、`e`、`m`Mixins来书写。
+- scss变量命名以`-`单中划线分割，尽量语义化，例如`$--tab-vertical-header-width`，以`block-modifier-element-modifier`方式组成，以`$--`打头。。
+- 十六进制色值以`大写`书写，例如`color: #FFFFFF`。
+- 小数单位强制省略个位`0`，例如`height：.5px`。
+
+
+## scss注释规范
+
+- 以`/* */`方式书写注释。
+- `=`和`-`符号长度均为20。
+
+主标题
+
+    /* Title
+    ==================== */
+
+副标题
+
+
+    /* Title
+    -------------------- */
+
+## 文件及目录结构
+
+##### 组件样式：`src/styles/src/xxx.scss`  
+
+1. 按需导入公共模块，例`@import '../variables/themes'`
+
+##### 公用模块：`src/styles/src/common/`  
+
+`themes.scss`文件为存放与主题的scss变量。 
+
+1. 组件提供可配置样式均放入该`themes.scss`文件下，注意使用注释做好分类方便维护，避免代码冲突，刑如:  
+
+```@css
+
+/* Slider
+==================== */
+$--slider-horizontal-runway-color: $--color-primary;
+
+/* Button
+==================== */
+$--button-test-color: $--color-text-primary;
+
+```
+
+2. 变量以`$--`打头。  
+3. 变量均声明为`!default`默认值。
+
+`normalize.scss`存放normallize样式。
+
+##### mixins：`src/styles/src/mixins/`
+
+1. 组件特有mixins，以`_`开头命名，例如`_button.scss`。
+2. 公共minxis置入`src/styles/src/mixins/mixins.scss`。
+3. function：`src/styles/src/mixins/function.scss`。
+4. utils：`src/styles/src/mixins/utils.scss`，常见的例如`utils-clearfix`清除浮动，mixins命名以`utils-`开头。
+5. config: `src/styles/src/mixins/config.scss`，里面声明有变量配置项。
+
 ---
 
 ## 🚧 开发步骤 🚧
