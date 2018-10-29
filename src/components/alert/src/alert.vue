@@ -86,6 +86,7 @@ $largeFontSize: 24px;
     line-height: 1;
     font-size: 14px;
     opacity: 0.6;
+    color: $infoColor;
     cursor: pointer;
   }
   &#{$clsModifier}info {
@@ -114,25 +115,25 @@ $largeFontSize: 24px;
     v-show="visible"
     role="alert">
       <span class="py-alert__icon" v-if="showIcon">
-        <i class="pyui-icons" :class="[iconStyle]"></i>
+        <py-icon :type="iconStyle"></py-icon>
       </span>
       <span class="py-alert__title" v-if="title">
-        <i class="pyui-icons" :class="[titleIconStyle]" v-if="titleIcon"></i>
+        <py-icon :type="titleIconStyle" v-if="titleIcon"></py-icon>
         {{title}}
       </span>
       <p class="py-alert__desc"><slot></slot></p>
-      <i class="py-alert__close pyui-icons"
-        :class="[closeBtnStyle]"
+      <span
+        class="py-alert__close"
         v-if="closeable"
         @click="closeAlert">
+        <py-icon type="close" v-if="!closeText"></py-icon>
         <span v-if="closeText">{{closeText}}</span>
-      </i>
+      </span>
     </div>
   </transition>
 </template>
 
 <script>
-const iconPrefix = 'py-icon-';
 export default {
   name: 'PyAlert',
   props: {
@@ -185,16 +186,16 @@ export default {
     titleIconStyle() {
       if (this.titleIcon) {
         if (this.type === 'info') {
-          return `${iconPrefix}info-circle-fill`;
+          return 'info-circle-fill';
         }
         if (this.type === 'success') {
-          return `${iconPrefix}check-circle-fill`;
+          return 'check-circle-fill';
         }
         if (this.type === 'warning') {
-          return `${iconPrefix}warning-circle-fill`;
+          return 'warning-circle-fill';
         }
         if (this.type === 'error') {
-          return `${iconPrefix}close-circle-fill`;
+          return 'close-circle-fill';
         }
       }
       return '';
@@ -208,16 +209,16 @@ export default {
     iconStyle() {
       if (this.showIcon) {
         if (this.type === 'info') {
-          return `${iconPrefix}info-circle-fill`;
+          return 'info-circle-fill';
         }
         if (this.type === 'success') {
-          return `${iconPrefix}check-circle-fill`;
+          return 'check-circle-fill';
         }
         if (this.type === 'warning') {
-          return `${iconPrefix}warning-circle-fill`;
+          return 'warning-circle-fill';
         }
         if (this.type === 'error') {
-          return `${iconPrefix}close-circle-fill`;
+          return 'close-circle-fill';
         }
       }
       return '';
