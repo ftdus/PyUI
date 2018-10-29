@@ -7,11 +7,12 @@ import demoBlock from './components/demo-block.vue';
 
 import './assets/styles/common.scss';
 import './assets/styles/docs.scss';
+import './assets/styles/table.scss';
 
-import PYUI from '../src/index';
+import PyUI from '../src/index';
 import '../src/styles/src/index.scss';
 
-Vue.use(PYUI);
+Vue.use(PyUI);
 
 Vue.use(VueRouter);
 Vue.component('demo-block', demoBlock);

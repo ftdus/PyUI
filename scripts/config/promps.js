@@ -55,7 +55,7 @@ module.exports = {
         },
         {
           name: '🎉  初次提交',
-          value: ':nut_and_bolt:',
+          value: ':tada:',
         },
       ],
     },
@@ -86,7 +86,7 @@ module.exports = {
     {
       type: 'confirm',
       name: 'needConfig',
-      message: '是否需要组件配置文件',
+      message: '是否需要组件配置文件(普通组件不需要)',
       default: false,
     },
   ],

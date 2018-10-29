@@ -69,5 +69,53 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "switch" */ './testsDemo/switch/Switch.vue'),
     },
+    {
+      path: '/cascader',
+      name: 'cascader',
+      component: () =>
+        import(/* webpackChunkName: "cascader" */ './testsDemo/cascader/cascader.vue'),
+    },
+    {
+      path: '/pagination',
+      name: 'Pagination',
+      component: () =>
+        import(/* webpackChunkName: "pagination" */ './testsDemo/pagination/pagination.vue'),
+    },
+    {
+      path: '/menu',
+      name: 'Menu',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/menu/menu.vue'),
+    },
+    {
+      path: '/icon',
+      name: 'Icon',
+      component: () =>
+        import(/* webpackChunkName: "switch" */ './testsDemo/icon/icon.vue'),
+    },
+    {
+      path: '/rate',
+      name: 'rate',
+      component: () =>
+        import(/* webpackChunkName: "button" */ './testsDemo/rate/rate.vue'),
+    },
+    {
+      path: '/notification',
+      name: 'Notification',
+      component: () =>
+        import(/* webpackChunkName: "notification" */ './testsDemo/notification/notification.vue'),
+    },
+    {
+      path: '/select',
+      name: 'Select',
+      component: () =>
+        import(/* webpackChunkName: "notification" */ './testsDemo/select/select.vue'),
+    },
+    {
+      path: '/layout',
+      name: 'Layout',
+      component: () =>
+        import(/* webpackChunkName: "layout" */ './testsDemo/layout/layout.vue'),
+    },
   ],
 });

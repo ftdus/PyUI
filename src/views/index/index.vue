@@ -8,6 +8,13 @@
     <router-link to="/divider">divider</router-link>
     <router-link to="/slider">slider</router-link>
     <router-link to="/switch">switch</router-link>
+    <router-link to="/cascader">cascader</router-link>
+    <router-link to="/pagination">pagination</router-link>
+    <router-link to="/icon">icon</router-link>
+    <router-link to="/rate">rate</router-link>
+    <router-link to="/notification">notification</router-link>
+    <router-link to="/select">select</router-link>
+    <router-link to="/layout">layout</router-link>
   </div>
 </template>
 <script>

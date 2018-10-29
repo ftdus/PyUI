@@ -1,12 +1,7 @@
-import Layout from './layout.vue';
-import Header from './header.vue';
-import Footer from './footer.vue';
-import Content from './content.vue';
-import Sider from './sider.vue';
+import PyLayout from './src/layout.vue';
 
-Layout.Header = Header;
-Layout.Content = Content;
-Layout.Footer = Footer;
-Layout.Sider = Sider;
+PyLayout.install = function(Vue) {
+  Vue.component(PyLayout.name, PyLayout);
+};
 
-export default Layout;
+export default PyLayout;

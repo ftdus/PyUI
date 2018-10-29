@@ -1,5 +1,6 @@
 website/routes/index.js
 scripts/
+build/
 *.sh
 node_modules
 lib
@@ -8,3 +9,4 @@ coverage
 *.scss
 *.woff
 *.ttf
+vue.config.js
