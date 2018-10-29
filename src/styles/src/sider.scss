@@ -1,0 +1,9 @@
+@charset "UTF-8";
+// 组件class前缀
+$prefixCls: 'py-sider';
+
+.#{$prefixCls} {
+  overflow: auto;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}

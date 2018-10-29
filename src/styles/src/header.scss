@@ -1,0 +1,10 @@
+@charset "UTF-8";
+// 组件class前缀
+$prefixCls: 'py-header';
+$--header-padding: 0 20px !default;
+
+.#{$prefixCls} {
+  padding: $--header-padding;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
