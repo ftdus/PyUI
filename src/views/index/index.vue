@@ -15,6 +15,7 @@
     <router-link to="/notification">notification</router-link>
     <router-link to="/select">select</router-link>
     <router-link to="/layout">layout</router-link>
+    <router-link to="/alert">alert</router-link>
   </div>
 </template>
 <script>

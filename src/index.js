@@ -1,3 +1,4 @@
+import Alert from './components/alert/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
@@ -18,6 +19,7 @@ import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
 
 const components = [
+  Alert,
   Badge,
   Button,
   ButtonGroup,
@@ -54,6 +56,7 @@ const install = function(Vue) {
 export default {
   version: '0.1.0',
   install,
+  Alert,
   Badge,
   Button,
   ButtonGroup,
@@ -62,6 +65,7 @@ export default {
   Grid,
   Icon,
   Input,
+  LoadingBar,
   Menu,
   MenuItem,
   Notification,
