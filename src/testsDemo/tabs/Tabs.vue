@@ -44,7 +44,8 @@
 
 <script>
 import PyTabs from '@/components/tabs';
-import PyTabPane from '@/components/tabPane';
+import PyTabPane from '@/components/tab-pane';
+
 export default {
   components: {
     'py-tabs': PyTabs,
@@ -77,12 +78,12 @@ export default {
   },
   methods: {
     addPane() {
-      const label = '新标签' + (this.tabsData4.length + 1);
-      const name = 'newTab' + (this.tabsData4.length + 1);
+      const label = `新标签${this.tabsData4.length + 1}`;
+      const name = `newTab${this.tabsData4.length + 1}`;
       this.tabsData4.push({
-        label: label,
-        name: name,
-        content: '新标签' + (this.tabsData4.length + 1) + '内容',
+        label,
+        name,
+        content: `新标签${this.tabsData4.length + 1}内容`,
       });
     },
     removeTab(index) {
@@ -95,17 +96,17 @@ export default {
 
 
 <style lang="scss" scoped>
-.page{
+.page {
   padding: 20px;
-  h2{
+  h2 {
     margin-bottom: 10px;
   }
-  section{
+  section {
     padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid #DCDFE6;
+    border: 1px solid #dcdfe6;
   }
-  button{
+  button {
     padding: 4px 10px;
     border: 1px solid #f1f1f1;
     margin-bottom: 10px;
@@ -113,4 +114,3 @@ export default {
   }
 }
 </style>
-

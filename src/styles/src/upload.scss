@@ -1,0 +1,111 @@
+@charset "UTF-8";
+@import '@/base/themes.scss';
+
+$prefixCls: 'py-upload';
+$secondCls: 'py-upload__list';
+$element-separator: '__';
+$modifier-separator: '--';
+
+.#{$prefixCls} {
+  position: relative;
+  &#{$element-separator}item input {
+    display: none;
+  }
+  &#{$element-separator}drap {
+    border: 1px dashed #606266;
+    border-radius: 5px;
+    transition: 0.3s;
+    text-align: center;
+    padding: 30px 20px;
+    &:hover {
+      border-color: $color-hover;
+    }
+  }
+  &#{$element-separator}drapover {
+    border-color: $color-hover;
+  }
+}
+// list
+.#{$secondCls} {
+  width: 100%;
+  border-radius: 3px;
+  transition: 0.3s;
+  padding: 6px;
+  list-style: none;
+  position: relative;
+  &:nth-child(1) {
+    margin-top: 5px;
+  }
+  &:hover {
+    background: rgba(123, 180, 240, 0.1);
+  }
+  &#{$element-separator}name {
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 13px;
+    color: $color;
+    &:hover {
+      color: $border-color-hover;
+    }
+  }
+  i {
+    font-size: 14px;
+  }
+  > i {
+    font-size: 17px;
+    width: 23px;
+    height: 20px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 2px;
+    bottom: 0;
+    margin: auto;
+    line-height: 20px;
+    cursor: pointer;
+    color: #409eff;
+    border-radius: 3px;
+    &:hover {
+      background: $color-hover;
+      color: #fff;
+    }
+  }
+  &#{$element-separator}wappar {
+    height: 3px;
+    line-height: 26px;
+    display: flex;
+  }
+  &#{$element-separator}prect {
+    flex: 1;
+    height: 2px;
+    background: #ebebeb;
+    margin-top: 12px;
+    li {
+      width: 0%;
+      background: linear-gradient(to right, $border-color-hover, $success-color);
+      height: 100%;
+      padding: 0;
+      z-index: 2;
+      transition: 0.9s;
+    }
+  }
+  &#{$element-separator}del {
+    width: 45px;
+    color: $color;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+.upload-fade-enter-active {
+  transition: all 0.2s ease;
+}
+.upload-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.upload-fade-enter,
+.upload-fade-leave-to {
+  transform: translateY(-40px);
+  opacity: 0;
+}

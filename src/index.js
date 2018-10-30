@@ -1,12 +1,13 @@
+import Alert from './components/alert/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
 import Col from './components/col/index';
 import Divider from './components/divider/index';
-import Grid from './components/grid/index';
 import Icon from './components/icon/index';
 import Input from './components/input/index';
 import Menu from './components/menu/index';
+import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
 import Notification from './components/notification/index';
 import Rate from './components/rate/index';
@@ -18,15 +19,16 @@ import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
 
 const components = [
+  Alert,
   Badge,
   Button,
   ButtonGroup,
   Col,
   Divider,
-  Grid,
   Icon,
   Input,
   Menu,
+  MenuGroup,
   MenuItem,
   Rate,
   Row,
@@ -54,15 +56,16 @@ const install = function(Vue) {
 export default {
   version: '0.1.0',
   install,
+  Alert,
   Badge,
   Button,
   ButtonGroup,
   Col,
   Divider,
-  Grid,
   Icon,
   Input,
   Menu,
+  MenuGroup,
   MenuItem,
   Notification,
   Rate,

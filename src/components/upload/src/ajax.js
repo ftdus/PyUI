@@ -54,10 +54,9 @@ export default function upload(option) {
   // if (headers['X-Requested-With'] !== null) {
   //   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   // }
-  for (let item in headers) {
-    if (headers.hasOwnProperty(item) && headers[item] !== null) {
-      xhr.setRequestHeader(item, headers[item]);
-    }
+  const item = Object.keys(headers);
+  if (headers[item] !== null && headers.length) {
+    xhr.setRequestHeader(item, headers[item]);
   }
   xhr.send(formData);
 }
