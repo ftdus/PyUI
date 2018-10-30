@@ -14,12 +14,12 @@
           @click="handleChange(index)"
         >
           {{item.label}}
-          <i
-            class="py-icon iconfont"
-            :class="{'icon-delete': closable}"
+          <py-icon
+            class="py-tabs__close"
+            :type="closable ? 'close' : ''"
             v-if="closable"
-            @click.stop="removeTab(navList, index)"
-          ></i>
+            @click.stop="removeTab(navList, index)">
+          </py-icon>
         </div>
       </div>
     </div>

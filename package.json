@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit -r ./tests/unit/setup",
     "ci": "node scripts/git-commit.js",
     "comps:update": "node scripts/comps-imports-update.js",
+    "styles:update": "node scripts/styles-update.js",
     "new:comp": "node scripts/new-comp.js",
     "serve:main": "cross-env BUILD_TYPE=main vue-cli-service serve website/main.js",
     "build:main": "cross-env BUILD_TYPE=main vue-cli-service build website/main.js",

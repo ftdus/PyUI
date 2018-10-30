@@ -109,13 +109,13 @@ $prefixCls: 'py-tabs';
       .py-tabs__nav {
         .py-tabs__navitem {
           &:hover {
-            .py-icon {
+            .pyui-icons {
               width: 20px;
             }
           }
           &.py-tabs__navitem--active {
             border-bottom: 1px solid #fff;
-            .py-icon {
+            .pyui-icons {
               width: 20px;
             }
           }
@@ -133,7 +133,7 @@ $prefixCls: 'py-tabs';
   z-index: 1;
   transition: all 0.3s;
 }
-.py-icon {
+.py-tabs__close.pyui-icons {
   position: relative;
   display: inline-block;
   font-style: normal;

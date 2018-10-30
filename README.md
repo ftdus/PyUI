@@ -105,3 +105,15 @@ npm run build
 ```shell
 npm run test:unit
 ```
+
+### 自动生成 src/index.js 组件依赖文件
+
+```shell
+npm run comps:update
+```
+
+### 自动生成 src/styles/src/index.scss 样式依赖文件
+
+```shell
+npm run styles:update
+```
