@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+// 组件class前缀
+$prefixCls: 'py-col';
+$start: 1;
+$end: 24;
+$count: 100%/24;
+$name: '__span--';
+.#{$prefixCls} {
+  position: relative;
+  float: left;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  @for $s from $start to $end {
+    &#{$name}#{$s} {
+      width: $count * $s;
+    }
+    @media (max-width: 767px) {
+      &#{$name}xs-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-xs {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+      &#{$name}sm-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-sm {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+      &#{$name}md-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-md {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    @media (min-width: 1200px) {
+      &#{$name}lg-#{$s} {
+        display: block;
+        width: $count * $s;
+      }
+      &-lg {
+        &-offset-#{$s} {
+          margin-left: $count * $s;
+        }
+      }
+    }
+    &--offset-#{$s} {
+      margin-left: $count * $s;
+    }
+    &--push-#{$s} {
+      left: $count * $s;
+    }
+    &--pull-#{$s} {
+      right: $count * $s;
+    }
+  }
+}

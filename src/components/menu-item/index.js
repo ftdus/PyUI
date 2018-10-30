@@ -1,7 +1,7 @@
-import PYMenuItem from './src/menu-item.vue';
+import PyMenuItem from '../menu/src/menu-item.vue';
 
-PYMenuItem.install = Vue => {
-  Vue.component(PYMenuItem.name, PYMenuItem);
+PyMenuItem.install = Vue => {
+  Vue.component(PyMenuItem.name, PyMenuItem);
 };
 
-export default PYMenuItem;
+export default PyMenuItem;
