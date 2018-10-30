@@ -23,6 +23,8 @@ module.exports = {
     'padded-blocks': 'off',
     // 允许匿名函数
     'func-names': 'off',
+    // 禁止对 function 的参数进行重新赋值
+    'no-param-reassign': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint',
