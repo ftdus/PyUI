@@ -7,6 +7,7 @@ import demoBlock from './components/demo-block.vue';
 
 import './assets/styles/common.scss';
 import './assets/styles/docs.scss';
+import './assets/styles/table.scss';
 
 import PyUI from '../src/index';
 import '../src/styles/src/index.scss';

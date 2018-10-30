@@ -1,25 +1,29 @@
+import Alert from './components/alert/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
-import ButtonGroup from './components/buttonGroup/index';
+import ButtonGroup from './components/button-group/index';
+import Col from './components/col/index';
 import Divider from './components/divider/index';
 import Icon from './components/icon/index';
 import Input from './components/input/index';
-import LoadingBar from './components/loadingBar/index';
 import Menu from './components/menu/index';
 import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
 import Notification from './components/notification/index';
 import Rate from './components/rate/index';
+import Row from './components/row/index';
 import Slider from './components/slider/index';
 import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
-import TabPane from './components/tabPane/index';
+import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
 
 const components = [
+  Alert,
   Badge,
   Button,
   ButtonGroup,
+  Col,
   Divider,
   Icon,
   Input,
@@ -27,6 +31,7 @@ const components = [
   MenuGroup,
   MenuItem,
   Rate,
+  Row,
   Slider,
   Submenu,
   Switch,
@@ -40,7 +45,6 @@ const install = function(Vue) {
     Vue.component(item.name, item);
   });
 
-  vue.prototype.$loading = LoadingBar;
   vue.prototype.$notify = Notification;
 
   // istanbul ignore if
@@ -52,18 +56,20 @@ const install = function(Vue) {
 export default {
   version: '0.1.0',
   install,
+  Alert,
   Badge,
   Button,
   ButtonGroup,
+  Col,
   Divider,
   Icon,
   Input,
-  LoadingBar,
   Menu,
   MenuGroup,
   MenuItem,
   Notification,
   Rate,
+  Row,
   Slider,
   Submenu,
   Switch,
