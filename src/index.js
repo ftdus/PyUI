@@ -4,7 +4,6 @@ import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
 import Col from './components/col/index';
 import Divider from './components/divider/index';
-import Grid from './components/grid/index';
 import Icon from './components/icon/index';
 import Input from './components/input/index';
 import Menu from './components/menu/index';
@@ -25,7 +24,6 @@ const components = [
   ButtonGroup,
   Col,
   Divider,
-  Grid,
   Icon,
   Input,
   Menu,
@@ -62,10 +60,8 @@ export default {
   ButtonGroup,
   Col,
   Divider,
-  Grid,
   Icon,
   Input,
-  LoadingBar,
   Menu,
   MenuItem,
   Notification,
