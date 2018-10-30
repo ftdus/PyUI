@@ -105,6 +105,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "layout" */ './testsDemo/layout/layout.vue'),
     },
     {
+      path: '/upload',
+      name: 'upload',
+      component: () => import(/* webpackChunkName: "upload" */ './testsDemo/upload/upload.vue'),
+    },
+    {
       path: '/alert',
       name: 'Alert',
       component: () => import(/* webpackChunkName: "layout" */ './testsDemo/alert/alert.vue'),

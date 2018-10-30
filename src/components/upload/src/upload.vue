@@ -1,14 +1,23 @@
 <template>
-  <div class="py-upload_container">
-    <div class="py-upload_item" @click.stop="inputClick">
+  <div class="py-upload">
+    <div class="py-upload__item"
+      :class="drapClass"
+      @click.stop="inputClick"
+      @dragover.prevent="drapFile = true"
+      @dragleave.prevent="drapFile = false"
+      @drop.prevent="onDrop">
       <input
         type="file"
         ref="input"
+        :multiple="multiple"
         :accept="accept"
         @change="fileChange">
-      <slot></slot>
+        <slot></slot>
     </div>
-    <uploadList :files="fileList"/>
+    <uploadList @on-remove="onRemove"
+      @onItem="onItem"
+      :on-before-remove="onbeforeRemove"
+      :files="fileList"/>
   </div>
 </template>
 
@@ -18,19 +27,68 @@ import uploadList from './upload-list.vue';
 
 export default {
   name: 'py-upload',
-  data () {
+  data() {
     return {
       fileList: [],
+      crrentFile: this.value,
+      drapFile: false,
+      drapClass: '',
     };
   },
   components: { uploadList },
+  watch: {
+    crrentFile(fileList) {
+      this.$emit('input', fileList);
+    },
+    value: {
+      immediate: true,
+      handler() {
+        if (this.value.length) {
+          this.value.map(item => {
+            let Item = item;
+            if (Item.name && Item.url) {
+              Item = Object.assign(Item, {
+                percentage: 100,
+                status: 'success',
+                uid: Item.name + Date.now(),
+              });
+            }
+            return Item;
+          });
+          this.fileList = this.value;
+        }
+      },
+    },
+    drapFile: {
+      immediate: true,
+      handler() {
+        if (this.type !== 'drap') return false;
+        this.drapClass = this.drapFile ? 'py-upload__drap py-upload__drapover' : 'py-upload__drap';
+        return true;
+      },
+    },
+  },
   methods: {
-    inputClick () {
+    inputClick() {
       this.$refs.input.click();
     },
+    // 拖拽
+    onDrop(e) {
+      this.dragOver = false;
+      this.fileChange(e.dataTransfer.files);
+    },
+    // 点击列表中的文件
+    onItem(index, item) {
+      this.$emit('on-item', index, item, this.fileList);
+    },
+    // 删除fileList文件
+    onRemove(item, index) {
+      this.fileList.splice(index, 1);
+      this.$emit('on-remove', item, index);
+    },
     // 监听文件选择框change事件
-    fileChange (e) {
-      const Files = e.target.files;
+    fileChange(e) {
+      const Files = e.target ? e.target.files : e;
       if (!Files) {
         return false;
       }
@@ -40,7 +98,7 @@ export default {
           name: Files[i].name,
           size: Files[i].size,
           percentage: 0,
-          uid: Files[i].size + Date.now(),
+          uid: Files[i].name + Date.now(),
           showProgress: true,
         };
         this.fileList.push(File);
@@ -50,13 +108,14 @@ export default {
       return null;
     },
     // 选择上传的文件
-    fileSelect (file, fileList) {
-      this.$emit('on-select', file, fileList);
+    fileSelect(file, fileList) {
       this.fileFormat(file, fileList);
+      this.$emit('before-select', file, fileList);
     },
     // 验证文件后缀格式
-    fileFormat (file, fileList) {
+    fileFormat(file, fileList) {
       if (this.format.length <= 0) {
+        this.fileMaxSize(file, fileList);
         return false;
       }
       const name = file.name ? file.name.split('.') : [];
@@ -65,28 +124,27 @@ export default {
         this.$emit('on-format-err', file, fileList);
         return false;
       }
-      return this.fileMaxSize(file, fileList);
+      return this.fileMaxSize(this.format, file, fileList);
     },
     // 验证文件大小
-    fileMaxSize (file, fileList) {
+    fileMaxSize(file, fileList) {
       if (this.maxSize !== undefined) {
         if (file.size > this.maxSize * 1024) {
-          this.$emit('on-size-err', file, fileList);
+          this.$emit('on-size-err', this.maxSize, file, fileList);
           return false;
         }
       }
       return this.beforeUpload(file, fileList);
     },
     // 上传之前
-    beforeUpload (file, fileList) {
+    beforeUpload(file, fileList) {
       if (!this.onBeforeUpload) {
-        this.fileStart(file);
-        return false;
+        return this.fileStart(file);
       }
       return this.fileStart(file, fileList);
     },
     // 开始上传文件
-    fileStart (file, fileList) {
+    fileStart(file, fileList) {
       if (!this.action) {
         this.$emit('on-error', '上传地址必填!', file, fileList);
         return false;
@@ -106,16 +164,16 @@ export default {
           this.handleProgress(e, File);
         },
         onSuccess: res => {
-          console.log(res);
+          this.handleSuccess(res, File);
         },
         onError: err => {
-          console.log(err);
+          this.handleError(err, File);
         },
       });
       return true;
     },
     // 返回数组中同一对象
-    getFile (file) {
+    getFile(file) {
       const FileList = this.fileList;
       let target;
       FileList.every(item => {
@@ -125,34 +183,71 @@ export default {
       return target;
     },
     // 上传中
-    handleProgress (e, file) {
+    handleProgress(e, file) {
       const File = file;
-      File.percentage = parseInt(e.percent, 10) || 0;
       File.status = 'progress';
+      File.percentage = parseInt(e.percent, 10) || 0;
+      this.onProgress(e, File, this.fileList);
     },
-    // 上传成功回调
-    handleSuccess (res, file) {
+    // 上传成功回调response
+    handleSuccess(res, file) {
       const File = file;
       File.status = 'success';
       File.percentage = 100;
+      this.onSuccess(res, File, this.fileList);
+      this.crrentFile = this.fileList;
+      setTimeout(() => {
+        File.showProgress = false;
+      }, 1000);
       this.$emit('on-success', res, File);
     },
     // 上传失败
-    handleError (err, file) {
+    handleError(err, file) {
       const File = file;
       File.status = 'fail';
       File.percentage = 100;
+      this.onError(err, File, this.fileList);
       this.$emit('on-error', err, File);
     },
   },
   props: {
+    accept: [String],
+    maxSize: [Number],
+    action: [String],
+    onProgress: {
+      type: Function,
+      default: () => {},
+    },
+    onSuccess: {
+      type: Function,
+      default: () => {},
+    },
+    onError: {
+      type: Function,
+      default: () => {},
+    },
+    value: {
+      type: Array,
+      default: () => [],
+    },
+    type: {
+      type: String,
+      default: 'file',
+    },
+    onbeforeRemove: {
+      type: Function,
+      default: () => {},
+    },
+    onBeforeUpload: Function,
+    data: [Object],
     format: {
       type: Array,
       default: () => [],
     },
-    accept: [String],
-    maxSize: [Number],
-    action: [String],
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
     headers: {
       type: Object,
       default: () => {},
@@ -161,8 +256,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    data: [Object],
-    onBeforeUpload: Function,
     name: {
       type: String,
       default: 'file',
@@ -170,13 +263,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.py-upload_container{
-  .py-upload_item{
-    input{
-      display: none;
-    }
-  }
-}
-</style>
