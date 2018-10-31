@@ -1,7 +1,4 @@
 @charset "UTF-8";
-@import '../../base/themes.scss';
-
-// 组件class前缀
 $prefixCls: 'py-menu';
 // $menu-dropdown-item-prefix-cls: .#{$prefixCls}-horizontal .#{$prefixCls}-submenu .#{$prefixCls}-item;
 $zindex-select: 900;
@@ -95,7 +92,7 @@ $menu-dark-active-bg: #363e4f;
   }
 
   &-horizontal &-item,
-    
+
 
     // vertical
     &-vertical &-item,
