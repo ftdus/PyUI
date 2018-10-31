@@ -6,13 +6,13 @@ import Col from './components/col/index';
 import Divider from './components/divider/index';
 import Icon from './components/icon/index';
 import Input from './components/input/index';
+import LoadingBar from './components/loading-bar/index';
 import Menu from './components/menu/index';
 import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
 import Notification from './components/notification/index';
 import Rate from './components/rate/index';
 import Row from './components/row/index';
-import Slider from './components/slider/index';
 import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
@@ -32,7 +32,6 @@ const components = [
   MenuItem,
   Rate,
   Row,
-  Slider,
   Submenu,
   Switch,
   TabPane,
@@ -45,6 +44,7 @@ const install = function(Vue) {
     Vue.component(item.name, item);
   });
 
+  vue.prototype.$loading = LoadingBar;
   vue.prototype.$notify = Notification;
 
   // istanbul ignore if
@@ -64,13 +64,13 @@ export default {
   Divider,
   Icon,
   Input,
+  LoadingBar,
   Menu,
   MenuGroup,
   MenuItem,
   Notification,
   Rate,
   Row,
-  Slider,
   Submenu,
   Switch,
   TabPane,

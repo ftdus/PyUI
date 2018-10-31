@@ -1,6 +1,6 @@
 @charset "UTF-8";
-
 $prefixCls: 'py-button-group';
+
 @mixin btnGroup {
   &:not(:first-child):not(:last-child) {
     border-left-color: hsla(0, 0%, 100%, 0.5);
