@@ -9,7 +9,7 @@ const indexPath = path.resolve(__dirname, '../src/styles/src/index.scss');
 function stylesFileUpdate() {
   const updateOra = ora('[PYUI] 样式依赖更新中...').start();
 
-  let comps = ['../../base/themes.scss'];
+  let comps = ['../base/common/style.scss'];
 
   // 读取所有组件信息
   const files = fs.readdirSync(styles);
