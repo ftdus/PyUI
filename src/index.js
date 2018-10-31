@@ -3,9 +3,13 @@ import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
 import Col from './components/col/index';
+import Content from './components/content/index';
 import Divider from './components/divider/index';
+import Footer from './components/footer/index';
+import Header from './components/header/index';
 import Icon from './components/icon/index';
 import Input from './components/input/index';
+import Layout from './components/layout/index';
 import LoadingBar from './components/loading-bar/index';
 import Menu from './components/menu/index';
 import MenuGroup from './components/menu-group/index';
@@ -13,6 +17,7 @@ import MenuItem from './components/menu-item/index';
 import Notification from './components/notification/index';
 import Rate from './components/rate/index';
 import Row from './components/row/index';
+import Sider from './components/sider/index';
 import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
@@ -24,14 +29,19 @@ const components = [
   Button,
   ButtonGroup,
   Col,
+  Content,
   Divider,
+  Footer,
+  Header,
   Icon,
   Input,
+  Layout,
   Menu,
   MenuGroup,
   MenuItem,
   Rate,
   Row,
+  Sider,
   Submenu,
   Switch,
   TabPane,
@@ -61,9 +71,13 @@ export default {
   Button,
   ButtonGroup,
   Col,
+  Content,
   Divider,
+  Footer,
+  Header,
   Icon,
   Input,
+  Layout,
   LoadingBar,
   Menu,
   MenuGroup,
@@ -71,6 +85,7 @@ export default {
   Notification,
   Rate,
   Row,
+  Sider,
   Submenu,
   Switch,
   TabPane,
