@@ -127,8 +127,6 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "../../../base/themes.scss";
-
 .py-switch {
   display: inline-flex;
   align-items: center;

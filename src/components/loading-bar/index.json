@@ -1,6 +1,6 @@
 {
-  "dev": true,
-  "prototype": false,
+  "dev": false,
+  "prototype": true,
   "map": [
     {
       "key": "$loading",

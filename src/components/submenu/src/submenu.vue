@@ -131,9 +131,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../base/style.scss";
-@import "../../../base/themes.scss";
-
 $submenuBackgroundColor: #54858c;
 $activeBackgroundColor: #41b883;
 $activeFontColor: #41b883;

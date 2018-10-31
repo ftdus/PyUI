@@ -8,9 +8,7 @@ const Version = require('./utils/Version');
 
 const components = path.resolve(__dirname, '../src/components');
 const indexPath = path.resolve(__dirname, '../src/index.js');
-let template = readText(
-  path.resolve(__dirname, './templates/srcIndex/index.js')
-);
+let template = readText(path.resolve(__dirname, './templates/srcIndex/index.js'));
 
 const updateOra = ora('[PYUI] 组件依赖更新中...').start();
 
@@ -45,17 +43,11 @@ files.map(file => {
 // 组件导入函数
 template = template.replace(
   /\{\{__components_imports__\}\}/g,
-  comps
-    .filter(comp => comp.dev !== false)
-    .map(comp => `import ${comp.name} from './components/${comp.path}/index'`)
-    .join(';\n')
+  comps.map(comp => `import ${comp.name} from './components/${comp.path}/index'`).join(';\n')
 );
 
 // 组件导出
-template = template.replace(
-  /\{\{__components_export__\}\}/g,
-  comps.map(f => f.name).join(',')
-);
+template = template.replace(/\{\{__components_export__\}\}/g, comps.map(f => f.name).join(','));
 
 // 组件install数组
 template = template.replace(
