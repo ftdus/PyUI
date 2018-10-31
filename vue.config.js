@@ -41,6 +41,15 @@ module.exports = {
     //   return args;
     // });
   },
+  pluginOptions: {
+    'style-resources-loader': {
+      patterns: [
+        path.resolve(__dirname, './src/styles/base/variables/themes.scss'),
+        path.resolve(__dirname, './src/styles/base/mixins/mixins.scss'),
+      ],
+      preProcessor: 'scss',
+    },
+  },
   outputDir: isMain
     ? path.resolve(process.cwd(), './website/dist/')
     : path.resolve(process.cwd(), './dist'),
