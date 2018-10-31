@@ -1,4 +1,7 @@
-@import '../../base/themes.scss';
+@import 'mixins/config.scss';
+@import 'mixins/functons.scss';
+@import 'mixins/mixins.scss';
+@import 'common/style.scss';
 @import 'alert.scss';
 @import 'badge.scss';
 @import 'button-group.scss';
@@ -13,7 +16,6 @@
 @import 'icon.scss';
 @import 'layout.scss';
 @import 'loading-bar.scss';
-@import 'menu-item.scss';
 @import 'menu.scss';
 @import 'message-box.scss';
 @import 'notification.scss';
@@ -21,7 +23,7 @@
 @import 'rate.scss';
 @import 'row.scss';
 @import 'select.scss';
-@import 'sider.scss';
 @import 'tab-pane.scss';
 @import 'tabs.scss';
 @import 'upload.scss';
+@import 'slider.scss';

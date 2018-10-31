@@ -231,10 +231,7 @@ export default {
           val.forEach(selectItem => {
             multipleSelectValue.push(selectItem.value);
             this.options.forEach(item => {
-              if (
-                item.value === selectItem.value &&
-                item.label === selectItem.label
-              ) {
+              if (item.value === selectItem.value && item.label === selectItem.label) {
                 Vue.set(item, 'selected', true);
               }
             });
@@ -255,14 +252,8 @@ export default {
               Vue.set(item, 'selected', false);
             }
           });
-          this.$emit(
-            'change',
-            this.selectValue.value ? this.selectValue.value : '',
-          );
-          this.$emit(
-            'input',
-            this.selectValue.value ? this.selectValue.value : '',
-          );
+          this.$emit('change', this.selectValue.value ? this.selectValue.value : '');
+          this.$emit('input', this.selectValue.value ? this.selectValue.value : '');
         }
         this.$nextTick(() => {
           this.setPosition();
@@ -273,10 +264,7 @@ export default {
     },
     queryText(val) {
       this.$nextTick(() => {
-        const width =
-          this.$refs.multiText.clientWidth > 6
-            ? this.$refs.multiText.clientWidth
-            : 6;
+        const width = this.$refs.multiText.clientWidth > 6 ? this.$refs.multiText.clientWidth : 6;
         this.$refs.multiInput.style.width = `${width}px`;
         this.setPosition();
         this.setDirection();
@@ -310,9 +298,7 @@ export default {
   },
   mounted() {
     this.$refs.dropDown.style.position = this.position;
-    this.container = this.popperAppendToBody
-      ? document.body
-      : this.$refs.pySelect;
+    this.container = this.popperAppendToBody ? document.body : this.$refs.pySelect;
     this.container.appendChild(this.$refs.dropDown);
     window.addEventListener('resize', this.setPosition);
     window.addEventListener('scroll', this.setDirection);
@@ -472,10 +458,7 @@ export default {
       if (selectItem) {
         this.options.forEach(option => {
           const optionItem = option;
-          if (
-            optionItem.value === selectItem.value &&
-            optionItem.label === selectItem.label
-          ) {
+          if (optionItem.value === selectItem.value && optionItem.label === selectItem.label) {
             delete optionItem.selected;
           }
         });
@@ -496,18 +479,12 @@ export default {
         this.$refs.multiInput.focus();
         this.selectValue.forEach((item, index) => {
           const selectValueItem = item;
-          if (
-            option.value === selectValueItem.value &&
-            option.label === selectValueItem.label
-          ) {
+          if (option.value === selectValueItem.value && option.label === selectValueItem.label) {
             this.deleteTag(index);
             optionItem.selected = false;
           }
           // 恢复option的multipleDisabled
-          if (
-            this.multipleLimit &&
-            this.selectValue.length < this.multipleLimit
-          ) {
+          if (this.multipleLimit && this.selectValue.length < this.multipleLimit) {
             this.options.forEach(optionTemp => {
               optionItem = optionTemp;
               Vue.set(optionItem, 'multipleDisabled', false);
@@ -521,10 +498,7 @@ export default {
         if (objOption.show === false) return;
         this.selectValue.push(objOption);
         // 判断multipleLimit限制
-        if (
-          this.multipleLimit &&
-          this.selectValue.length >= this.multipleLimit
-        ) {
+        if (this.multipleLimit && this.selectValue.length >= this.multipleLimit) {
           this.options.forEach(optionTemp => {
             optionItem = optionTemp;
             if (
@@ -587,8 +561,7 @@ export default {
     // 设置dropdown的位置
     setPosition() {
       const elePosition = this.getOffset(this.$refs.inputEleBox);
-      this.$refs.dropDown.style.width = `${elePosition.right -
-        elePosition.left}px`;
+      this.$refs.dropDown.style.width = `${elePosition.right - elePosition.left}px`;
       this.$refs.dropDown.style.left = `${elePosition.left}px`;
       this.$refs.dropDown.style.top = `${elePosition.top +
         this.$refs.inputEleBox.offsetHeight +
@@ -617,14 +590,10 @@ export default {
         documentScrollTop + documentClientHeight
       ) {
         this.direction = 'slide-up';
-        this.$refs.dropDown.style.top = `${elePosition.top -
-          dropDownClientHeight -
-          16}px`;
+        this.$refs.dropDown.style.top = `${elePosition.top - dropDownClientHeight - 16}px`;
       } else {
         this.direction = 'slide-down';
-        this.$refs.dropDown.style.top = `${elePosition.top +
-          inputEleBoxHeight +
-          8}px`;
+        this.$refs.dropDown.style.top = `${elePosition.top + inputEleBoxHeight + 8}px`;
       }
     },
   },

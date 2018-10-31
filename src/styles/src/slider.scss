@@ -1,0 +1,66 @@
+@import 'variables/themes';
+@import 'mixins/mixins';
+
+$runWayBgColor: #e4e7ed;
+$runWayRadio: 3px;
+$buttonBorderColor: $primary-color;
+$buttonSize: 18px;
+$runWayHeight: 5px;
+
+@include b(slider) {
+  width: 100%;
+  @include e(runway) {
+    height: $runWayHeight;
+    background-color: $runWayBgColor;
+    border-radius: $runWayRadio;
+    display: flex;
+    align-items: center;
+    position: relative;
+    @include m(process) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 6px;
+      background-color: $primary-color;
+      border-radius: $runWayRadio;
+      &.disabled {
+        background-color: #c0c4cc;
+      }
+    }
+  }
+  @include e(button) {
+    width: $buttonSize;
+    height: $buttonSize;
+    border-radius: 50%;
+    border: 2px solid $buttonBorderColor;
+    user-select: none;
+    cursor: pointer;
+    &.hover,
+    &:hover:not(.disabled) {
+      transform: scale(1.2);
+      transition: 0.3s;
+    }
+    &.disabled {
+      border-color: #c0c4cc;
+      cursor: not-allowed;
+    }
+    @include e(button-wrap) {
+      width: $buttonSize;
+      height: $buttonSize;
+      background-color: rgba(255, 255, 255, 1);
+    }
+  }
+  @include e(stop) {
+    position: absolute;
+    width: 6px;
+    height: $runWayHeight;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  @include e(stops-wrap) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -7,6 +7,7 @@ import Divider from './components/divider/index';
 import Icon from './components/icon/index';
 import Input from './components/input/index';
 import Menu from './components/menu/index';
+import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
 import Notification from './components/notification/index';
 import Rate from './components/rate/index';
@@ -27,6 +28,7 @@ const components = [
   Icon,
   Input,
   Menu,
+  MenuGroup,
   MenuItem,
   Rate,
   Row,
@@ -63,6 +65,7 @@ export default {
   Icon,
   Input,
   Menu,
+  MenuGroup,
   MenuItem,
   Notification,
   Rate,

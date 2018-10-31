@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 // 组件class前缀
-$prefixCls: "py-row";
+$prefixCls: 'py-row';
 .#{$prefixCls} {
   position: relative;
   &:after {
-    content: " ";
+    content: ' ';
     display: block;
     clear: both;
   }
