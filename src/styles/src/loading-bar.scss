@@ -1,7 +1,6 @@
 @charset "UTF-8";
-
 $prefixCls: 'py-loading-bar';
-@import '@/base/themes.scss';
+
 .#{$prefixCls} {
   position: relative;
   position: fixed;
