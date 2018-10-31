@@ -44,8 +44,9 @@ module.exports = {
   pluginOptions: {
     'style-resources-loader': {
       patterns: [
-        path.resolve(__dirname, './src/styles/base/variables/themes.scss'),
+        path.resolve(__dirname, './src/styles/base/common/themes.scss'),
         path.resolve(__dirname, './src/styles/base/mixins/mixins.scss'),
+        path.resolve(__dirname, './src/styles/base/mixins/utils.scss'),
       ],
       preProcessor: 'scss',
     },
