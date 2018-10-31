@@ -1,16 +1,11 @@
 @charset "UTF-8";
-$runWayBgColor: #e4e7ed;
-$runWayRadio: 3px;
-$buttonBorderColor: $primary-color;
-$buttonSize: 18px;
-$runWayHeight: 5px;
 
 @include b(slider) {
   width: 100%;
   @include e(runway) {
-    height: $runWayHeight;
-    background-color: $runWayBgColor;
-    border-radius: $runWayRadio;
+    height: $--slider-runway-height;
+    background-color: $--slider-runway-color;
+    border-radius: $--border-radius-base;
     display: flex;
     align-items: center;
     position: relative;
@@ -19,18 +14,18 @@ $runWayHeight: 5px;
       left: 0;
       top: 0;
       height: 6px;
-      background-color: $primary-color;
-      border-radius: $runWayRadio;
+      background-color: $--slider-process-color;
+      border-radius: $--border-radius-base;
       &.disabled {
         background-color: #c0c4cc;
       }
     }
   }
   @include e(button) {
-    width: $buttonSize;
-    height: $buttonSize;
+    width: $--slider-button-width;
+    height: $--slider-button-height;
     border-radius: 50%;
-    border: 2px solid $buttonBorderColor;
+    border: 2px solid $--slider-button-border-color;
     user-select: none;
     cursor: pointer;
     &.hover,
@@ -43,15 +38,15 @@ $runWayHeight: 5px;
       cursor: not-allowed;
     }
     @include e(button-wrap) {
-      width: $buttonSize;
-      height: $buttonSize;
+      width: $--slider-button-width;
+      height: $--slider-button-height;
       background-color: rgba(255, 255, 255, 1);
     }
   }
   @include e(stop) {
     position: absolute;
     width: 6px;
-    height: $runWayHeight;
+    height: $--slider-runway-height;
     background-color: rgba(255, 255, 255, 1);
   }
   @include e(stops-wrap) {

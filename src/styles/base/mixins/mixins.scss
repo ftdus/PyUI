@@ -3,6 +3,8 @@
 /* BEM
 ====================
    Block
+   @params { List } $block 块
+   @example @include b(test1 test2 test3)
 --------------------*/
 @mixin b($block) {
   $B: $namespace + '-' + $block !global;
@@ -12,7 +14,7 @@
 }
 
 /* Element
-   @params { Array } $element 元素名
+   @params { List } $element 元素名
    @example @include e(test1 test2 test3)
 --------------------*/
 @mixin e($element) {
@@ -40,7 +42,7 @@
 }
 
 /* Modifier
-   @params { Array } $modifier 修饰符
+   @params { List } $modifier 修饰符
    @example @include e(active hover link)
 --------------------*/
 @mixin m($modifier) {
