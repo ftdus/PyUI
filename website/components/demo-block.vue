@@ -37,39 +37,36 @@ export default {
       padding: 24px;
     }
     .cmp-highlight {
-      .description {
-        padding: 20px;
-        box-sizing: border-box;
-        border: 1px solid #ebebeb;
-        border-radius: 3px;
-        font-size: 14px;
-        line-height: 22px;
-        color: #666;
-        word-break: break-word;
-        margin: 10px;
-        background-color: #fff;
-
-        p {
-          padding: 0;
-          margin: 0;
-        }
-
-        code {
-          color: #5e6d82;
-          background-color: #e6effb;
-          margin: 0 4px;
-          display: inline-block;
-          padding: 1px 5px;
-          font-size: 12px;
-          border-radius: 3px;
-          height: 18px;
-          line-height: 18px;
-        }
-      }
       background-color: #fafafa;
       border-top: 1px solid #eaeefb;
       overflow: hidden;
       transition: height 0.2s;
+      .description {
+        p {
+          padding: 20px;
+          box-sizing: border-box;
+          border: 1px solid #ebebeb;
+          border-radius: 3px;
+          font-size: 14px;
+          line-height: 22px;
+          color: #666;
+          word-break: break-word;
+          margin: 10px;
+          background-color: #fff;
+
+          code {
+            color: #5e6d82;
+            background-color: #e6effb;
+            margin: 0 4px;
+            display: inline-block;
+            padding: 1px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+            height: 18px;
+            line-height: 18px;
+          }
+        }
+      }
 
       code.hljs {
         margin-bottom: 0;
