@@ -1,5 +1,5 @@
 <template>
-  <div class="py-editable-input">
+  <div class="py-editable__input">
     <input
       :aria-labelledby="labelId"
       class="py-input__input"

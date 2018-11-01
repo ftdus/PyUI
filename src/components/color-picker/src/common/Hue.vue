@@ -1,6 +1,6 @@
 <template>
   <div :class="['py-hue', directionClass]">
-    <div class="py-hue-container"
+    <div class="py-hue__container"
       role="slider"
       :aria-valuenow="colors.hsl.h"
       aria-valuemin="0"
@@ -9,8 +9,9 @@
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
-      <div class="py-hue-pointer" :style="{top: pointerTop, left: pointerLeft}" role="presentation">
-        <div class="py-hue-picker"></div>
+      <div class="py-hue__pointer"
+          :style="{top: pointerTop, left: pointerLeft}" role="presentation">
+        <div class="py-hue__picker"></div>
       </div>
     </div>
   </div>

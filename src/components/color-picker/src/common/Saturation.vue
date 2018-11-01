@@ -7,8 +7,8 @@
     @touchstart="handleChange">
     <div class="py-saturation--white"></div>
     <div class="py-saturation--black"></div>
-    <div class="py-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
-      <div class="py-saturation-circle"></div>
+    <div class="py-saturation__pointer" :style="{top: pointerTop, left: pointerLeft}">
+      <div class="py-saturation__circle"></div>
     </div>
   </div>
 </template>

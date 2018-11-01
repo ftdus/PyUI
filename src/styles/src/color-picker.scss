@@ -1,9 +1,9 @@
 @charset "UTF-8";
 $prefixCls: 'py-sketch';
 
-.#{$prefixCls}-content {
+.#{$prefixCls}__content {
   width: 270px;
-  .#{$prefixCls}-color-box {
+  .#{$prefixCls}__colorbox {
     width: 50px;
     height: 50px;
     padding: 5px;
@@ -11,7 +11,7 @@ $prefixCls: 'py-sketch';
     border-radius: 4px;
     margin: 0 auto;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.15);
-    .#{$prefixCls}-active-color {
+    .#{$prefixCls}--active__color {
       width: 40px;
       height: 40px;
       position: relative;
@@ -28,23 +28,23 @@ $prefixCls: 'py-sketch';
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.15);
-    .#{$prefixCls}-saturation-wrap {
+    .#{$prefixCls}__saturation--wrap {
       width: 100%;
       padding-bottom: 75%;
       position: relative;
       overflow: hidden;
     }
-    .#{$prefixCls}-controls {
+    .#{$prefixCls}__controls {
       display: flex;
     }
-    .#{$prefixCls}-sliders {
+    .#{$prefixCls}__sliders {
       padding: 4px 0;
       flex: 1;
-      .#{$prefixCls}-hue-wrap {
+      .#{$prefixCls}__hue--wrap {
         position: relative;
         height: 10px;
       }
-      .#{$prefixCls}-alpha-wrap {
+      .#{$prefixCls}__alpha--wrap {
         position: relative;
         height: 10px;
         margin-top: 4px;
@@ -66,18 +66,18 @@ $prefixCls: 'py-sketch';
     .#{$prefixCls}-color-wrap .py-checkerboard {
       background-size: auto;
     }
-    .#{$prefixCls}-field {
+    .#{$prefixCls}__field {
       display: flex;
       padding-top: 4px;
     }
-    .#{$prefixCls}-field .py-input__input {
+    .#{$prefixCls}__field .py-input__input {
       width: 90%;
       padding: 4px 0 3px 10%;
       border: none;
       box-shadow: inset 0 0 0 1px #ccc;
       font-size: 10px;
     }
-    .#{$prefixCls}-field .py-input__label {
+    .#{$prefixCls}__field .py-input__label {
       display: block;
       text-align: center;
       font-size: 11px;
@@ -86,21 +86,21 @@ $prefixCls: 'py-sketch';
       padding-bottom: 4px;
       text-transform: capitalize;
     }
-    .#{$prefixCls}-field--single {
+    .#{$prefixCls}__field--single {
       flex: 1;
       padding-left: 6px;
     }
-    .#{$prefixCls}-field--double {
+    .#{$prefixCls}__field--double {
       flex: 2;
     }
-    .#{$prefixCls}-presets {
+    .#{$prefixCls}__presets {
       margin-right: -10px;
       margin-left: -10px;
       padding-left: 10px;
       padding-top: 10px;
       border-top: 1px solid #eee;
     }
-    .#{$prefixCls}-presets-color {
+    .#{$prefixCls}__presets--color {
       border-radius: 3px;
       overflow: hidden;
       position: relative;
@@ -112,11 +112,11 @@ $prefixCls: 'py-sketch';
       height: 16px;
       box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
     }
-    .#{$prefixCls}-presets-color .py-checkerboard {
+    .#{$prefixCls}__presets--color .py-checkerboard {
       box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
       border-radius: 3px;
     }
-    .#{$prefixCls}__disable-alpha .#{$prefixCls}-color-wrap {
+    .#{$prefixCls}__disable--alpha .#{$prefixCls}-color-wrap {
       height: 10px;
     }
   }
@@ -139,11 +139,11 @@ $prefixCls: 'py-sketch';
 .py-saturation--black {
   background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
 }
-.py-saturation-pointer {
+.py-saturation__pointer {
   cursor: pointer;
   position: absolute;
 }
-.py-saturation-circle {
+.py-saturation__circle {
   cursor: head;
   width: 4px;
   height: 4px;
@@ -160,7 +160,7 @@ $prefixCls: 'py-sketch';
   bottom: 0px;
   left: 0px;
 }
-.py-alpha-checkboard-wrap {
+.py-alpha__checkboard--wrap {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -168,25 +168,25 @@ $prefixCls: 'py-sketch';
   left: 0px;
   overflow: hidden;
 }
-.py-alpha-gradient {
+.py-alpha__gradient {
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
 }
-.py-alpha-container {
+.py-alpha__container {
   cursor: pointer;
   position: relative;
   z-index: 2;
   height: 100%;
   margin: 0 3px;
 }
-.py-alpha-pointer {
+.py-alpha__pointer {
   z-index: 2;
   position: absolute;
 }
-.py-alpha-picker {
+.py-alpha__picker {
   cursor: pointer;
   width: 4px;
   border-radius: 1px;
@@ -208,7 +208,7 @@ $prefixCls: 'py-sketch';
 }
 
 //editable-input.vue
-.py-editable-input {
+.py-editable__input {
   position: relative;
 }
 .py-input__input {
@@ -253,17 +253,17 @@ $prefixCls: 'py-sketch';
     #f00 100%
   );
 }
-.py-hue-container {
+.py-hue__container {
   cursor: pointer;
   margin: 0 2px;
   position: relative;
   height: 100%;
 }
-.py-hue-pointer {
+.py-hue__pointer {
   z-index: 2;
   position: absolute;
 }
-.py-hue-picker {
+.py-hue__picker {
   cursor: pointer;
   margin-top: 1px;
   width: 4px;

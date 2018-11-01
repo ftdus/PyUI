@@ -1,15 +1,15 @@
 <template>
   <div class="py-alpha">
-    <div class="py-alpha-checkboard-wrap">
+    <div class="py-alpha__checkboard--wrap">
       <checkboard></checkboard>
     </div>
-    <div class="py-alpha-gradient" :style="{background: gradientColor}"></div>
-    <div class="py-alpha-container" ref="container"
+    <div class="py-alpha__gradient" :style="{background: gradientColor}"></div>
+    <div class="py-alpha__container" ref="container"
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
-      <div class="py-alpha-pointer" :style="{left: colors.a * 100 + '%'}">
-        <div class="py-alpha-picker"></div>
+      <div class="py-alpha__pointer" :style="{left: colors.a * 100 + '%'}">
+        <div class="py-alpha__picker"></div>
       </div>
     </div>
   </div>
