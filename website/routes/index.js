@@ -1,14 +1,24 @@
-// 1. 定义 (路由) 组件。
 import nav from '../nav.config';
 import component from '../pages/component.vue';
 
-// 2. 定义路由
-// TODO 动态加载doc
-const componentRoutes = nav.filter(item => item.path).map(({ path }) => ({
+const addRoutes = path => ({
   path,
-  component: r =>
-    require.ensure([], () => r(require(`../docs/${path}.md`)), 'zh-CN'),
-}));
+  component: r => require.ensure([], () => r(require(`../docs/${path}.md`)), 'zh-CN'), // eslint-disable-line
+});
+
+const componentRoutes = nav
+  .filter(item => item.path || item.children)
+  .reduce((initRoutes, item) => {
+    if (item.path) {
+      initRoutes.push(addRoutes(item.path));
+    }
+
+    if (item.children) {
+      item.children.map(child => initRoutes.push(addRoutes(child.path)));
+    }
+
+    return initRoutes;
+  }, []);
 
 const routes = [
   {
@@ -21,5 +31,10 @@ const routes = [
     redirect: '/component/quick-start',
     children: componentRoutes,
   },
+  {
+    path: '*',
+    redirect: '/component',
+  },
 ];
+
 export default routes;

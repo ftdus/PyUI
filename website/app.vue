@@ -1,10 +1,10 @@
 <template>
-    <main>
-        <py-header></py-header>
-        <div class="main-cnt">
-            <router-view></router-view>
-        </div>
-    </main>
+  <py-layout>
+    <py-header></py-header>
+    <div class="main-cnt">
+      <router-view></router-view>
+    </div>
+  </py-layout>
 </template>
 
 <script>
@@ -19,10 +19,6 @@ export default {
 </script>
 
 <style lang="scss">
-main {
-  width: 100%;
-  height: 100%;
-}
 .main-cnt {
   margin-top: 60px;
   height: 100%;

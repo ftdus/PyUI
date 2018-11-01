@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <py-header class="header">
     <div class="container">
       <h1>PyUI</h1>
       <ul class="nav">
@@ -11,7 +11,7 @@
         <li class="theme-item">主题</li>
       </ul>
     </div>
-  </header>
+  </py-header>
 </template>
 
 <script>
@@ -31,7 +31,7 @@ $textColor: #606266;
   background: rgba(255, 255, 255, 0.92);
   display: flex;
   align-items: center;
-  z-index: 1;
+  z-index: 1000;
 
   .container {
     width: 1140px;
