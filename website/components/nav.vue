@@ -1,21 +1,28 @@
 <template>
-  <div class="left-nav">
-    <py-menu router>
+  <py-menu class="left-nav" :active-name="currentActiveName">
+    <template v-for="menu in nav">
       <py-menu-item
-        v-for="menu in nav"
+        v-if="menu.type === 'first-level'"
         :key="menu.name"
-        :disabled="!menu.path"
-        :index="setMenuIndex(menu)"
-        :class="{
-          'first-level': menu.type === 'first-level',
-          'group-name': menu.type === 'group',
-          'active': $route.path.split('/').pop() === menu.path,
-        }"
+        :name="setMenuName(menu)"
+        :class="setMenuClass(menu)"
+        :to="setLink(menu.path)"
       >
-        {{menu.name}}
+        {{ menu.name }}
       </py-menu-item>
-    </py-menu>
-  </div>
+      <py-menu-group v-else :key="menu.name" :title="menu.name">
+        <py-menu-item
+          v-for="item in menu.children"
+          :key="item.path"
+          :name="setMenuName(item)"
+          :class="setMenuClass(item)"
+          :to="setLink(item.path)"
+        >
+          {{ item.name }}
+        </py-menu-item>
+      </py-menu-group>
+    </template>
+  </py-menu>
 </template>
 
 <script>
@@ -29,79 +36,63 @@ export default {
   },
 
   computed: {
-    navData() {
-      return nav.reduce((init, item) => {
-        if (item.children) {
-          init.push({
-            name: item.name,
-            type: 'first-level',
-          });
-
-          item.children.forEach(({ group, children }) => {
-            init.push({ name: group, type: 'group' });
-            init.push(...children);
-          });
-        } else {
-          init.push({
-            ...item,
-            type: 'first-level',
-          });
-        }
-
-        return init;
-      }, []);
+    currentActiveName() {
+      return this.$route.path.split('/').pop();
     },
   },
 
   methods: {
-    setMenuIndex({ name, path }) {
+    setMenuName({ name, path }) {
       const index = path || name;
       return `/component/${index}`;
+    },
+    setMenuClass({ type, path }) {
+      return {
+        'first-level': type === 'first-level',
+        'group-name': type === 'group',
+        active: this.currentActiveName === path,
+        disable: !path,
+      };
+    },
+    setLink(path) {
+      const link = path || this.currentActiveName;
+      return `#/component/${link}`;
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $primaryColor: #409eff;
 $textColor: #606266;
-$bgColor: #fff;
 
-.left-nav {
-  display: flex;
-  width: 240px;
+.left-nav.py-menu {
   height: 100%;
+  padding-top: 0;
+  color: $textColor;
 
-  .py-menu {
-    padding-top: 0;
-    background: $bgColor;
-    color: $textColor;
+  .py-menu-item {
+    font-size: 14px;
+    &:hover,
+    &.active {
+      color: $primaryColor;
+    }
 
-    &-item {
-      cursor: pointer;
+    &.first-level {
+      font-weight: 500;
+    }
+
+    &.disable {
+      cursor: default;
       &:hover,
       &.active {
-        background: $bgColor;
-        color: $primaryColor;
-      }
-
-      &.first-level {
-        font-weight: 500;
-        opacity: 1;
-      }
-
-      &.disabled {
-        cursor: default;
-        &:hover,
-        &.active {
-          color: $textColor;
-        }
-
-        &.group-name {
-          font-size: 12px;
-        }
+        color: $textColor;
       }
     }
+  }
+  .py-menu-item-group-title {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.38);
   }
 }
 </style>
