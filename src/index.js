@@ -22,6 +22,7 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
+import ColorPicker from './components/color-picker/index';
 
 const components = [
   Alert,
@@ -46,6 +47,7 @@ const components = [
   Switch,
   TabPane,
   Upload,
+  ColorPicker,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -90,4 +92,5 @@ export default {
   Switch,
   TabPane,
   Upload,
+  ColorPicker,
 };

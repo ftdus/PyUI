@@ -16,8 +16,11 @@
     "test:unit": "vue-cli-service test:unit -r ./tests/unit/setup"
   },
   "dependencies": {
+    "clamp": "^1.0.1",
     "eslint-plugin-vue": "^4.7.1",
     "highlight.js": "^9.13.1",
+    "lodash.throttle": "^4.1.1",
+    "tinycolor2": "^1.4.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },

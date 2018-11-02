@@ -57,8 +57,7 @@ const nav = navData.reduce((init, item) => {
     });
 
     item.children.forEach(({ group, children }) => {
-      init.push({ name: group, type: 'group' });
-      init.push(...children);
+      init.push({ name: group, type: 'group', children });
     });
   } else {
     init.push({
