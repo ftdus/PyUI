@@ -21,13 +21,13 @@ $prefixCls: 'py-loading-bar';
     animation: 1s aniRight infinite linear;
   }
   &--primary {
-    background: $primary-color;
+    background: $--color-primary;
   }
   &--success {
-    background: $success-color;
+    background: $--color-success;
   }
   &--error {
-    background: $error-color;
+    background: $--color-danger;
   }
 }
 @keyframes aniRight {
