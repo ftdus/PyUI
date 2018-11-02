@@ -12,10 +12,10 @@
         <py-icon :type="titleIconStyle" v-if="titleIcon"></py-icon>
         {{title}}
       </span>
-      <p class="py-alert__desc"><slot></slot></p>
+      <div class="py-alert__desc"><slot></slot></div>
       <span
         class="py-alert__close"
-        v-if="closeable"
+        v-if="closable"
         @click="closeAlert">
         <py-icon type="close" v-if="!closeText"></py-icon>
         <span v-if="closeText">{{closeText}}</span>
@@ -33,7 +33,7 @@ export default {
       default: '',
       required: true,
     },
-    closeable: {
+    closable: {
       type: Boolean,
       default: true,
     },
@@ -115,7 +115,7 @@ export default {
       return '';
     },
     closeBtnStyle() {
-      if (this.closeText === '' && this.closeable) {
+      if (this.closeText === '' && this.closable) {
         return 'py-icon-close';
       }
       return '';
