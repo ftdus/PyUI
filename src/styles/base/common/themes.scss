@@ -99,7 +99,7 @@ $--color-black: #000 !default;
 $--color-primary: #ff9800 !default;
 $--color-success: #3ac2b7 !default;
 $--color-warning: #e68d3c !default;
-$--color-danger: #e68d3c !default;
+$--color-danger: #e85757 !default;
 
 $--color-text-primary: #303133 !default;
 $--color-text-regular: #606266 !default;
@@ -150,3 +150,13 @@ $--input-border-color-active: $--color-primary !default;
 $--input-border-color-hover: $--border-color-hover !default;
 $--input-border-color-success: $--color-success !default;
 $--input-border-color-danger: $--color-danger !default;
+/*
+   Slider
+--------------------*/
+$--slider-font-size: $--font-size-base !default;
+$--slider-runway-color: $--color-line-primary !default;
+$--slider-runway-height: 5px !default;
+$--slider-button-border-color: $--color-primary !default;
+$--slider-button-width: 18px !default;
+$--slider-button-height: 18px !default;
+$--slider-process-color: $--color-primary !default;

@@ -239,7 +239,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/base/themes.scss";
 .py-input {
   position: relative;
   padding: 4px;

@@ -1,7 +1,4 @@
-@import 'mixins/config.scss';
-@import 'mixins/functons.scss';
-@import 'mixins/mixins.scss';
-@import 'common/style.scss';
+@import '../base/common/style.scss';
 @import 'alert.scss';
 @import 'badge.scss';
 @import 'button-group.scss';
@@ -9,6 +6,7 @@
 @import 'card.scss';
 @import 'cascader.scss';
 @import 'col.scss';
+@import 'color-picker.scss';
 @import 'common.scss';
 @import 'content.scss';
 @import 'footer.scss';
@@ -23,7 +21,7 @@
 @import 'rate.scss';
 @import 'row.scss';
 @import 'select.scss';
+@import 'slider.scss';
 @import 'tab-pane.scss';
 @import 'tabs.scss';
 @import 'upload.scss';
-@import 'slider.scss';
