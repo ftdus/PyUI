@@ -6,28 +6,32 @@ module.exports = {
       message: '请选择本次提交的类型:',
       choices: [
         {
-          name: '✨  引入新功能',
-          value: ':new:',
+          name: '✨  引入新特性',
+          value: ':sparkles:',
+        },
+        {
+          name: '🎨  改进代码的结构/格式',
+          value: ':art:',
         },
         {
           name: '🐛  修复 bug',
           value: ':bug:',
         },
         {
-          name: '💫  改进代码结构/代码格式',
-          value: ':dizzy:',
+          name: '⚡️  提升性能',
+          value: ':zap:',
         },
         {
-          name: '🎨  更新 UI 和样式文件',
-          value: ':art:',
+          name: '🔥  删除代码或文件',
+          value: ':new:',
         },
         {
-          name: '✅  增加测试',
-          value: ':white_check_mark:',
+          name: '💄  更新用户界面和样式文件',
+          value: ':lipstick:',
         },
         {
-          name: '🐎  提升性能',
-          value: ':racehorse:',
+          name: '🔧  更改配置文件',
+          value: ':wrench:',
         },
         {
           name: '🚧  工作进行中',
@@ -38,24 +42,32 @@ module.exports = {
           value: ':memo:',
         },
         {
-          name: '🚀  部署功能',
-          value: ':rocket:',
+          name: '✅  增加测试',
+          value: ':white_check_mark:',
         },
         {
-          name: '💚  修复 CI 构建问题',
-          value: ':green_heart:',
-        },
-        {
-          name: '🔩  其他改动',
-          value: ':nut_and_bolt:',
-        },
-        {
-          name: '🌐  国际化与本地化',
-          value: ':globe_with_meridians:',
+          name: '📦  更新打包文件',
+          value: ':package:',
         },
         {
           name: '🎉  初次提交',
           value: ':tada:',
+        },
+        {
+          name: '🔖  发布/版本标签',
+          value: ':bookmark:',
+        },
+        {
+          name: '🚀  部署功能',
+          value: ':rocket:',
+        },
+        {
+          name: '👷  CI编译系统',
+          value: ':construction_worker:',
+        },
+        {
+          name: '🌐  国际化与本地化',
+          value: ':globe_with_meridians:',
         },
       ],
     },
