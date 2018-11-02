@@ -114,5 +114,11 @@ export default new Router({
       name: 'Alert',
       component: () => import(/* webpackChunkName: "layout" */ './testsDemo/alert/alert.vue'),
     },
+    {
+      path: '/colorPicker',
+      name: 'ColorPicker',
+      component: () =>
+        import(/* webpackChunkName: "layout" */ './testsDemo/colorPicker/colorPicker.vue'),
+    },
   ],
 });
