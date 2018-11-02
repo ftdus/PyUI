@@ -3,7 +3,7 @@
     <div :class="['py-notification', customClass, horizontalClass]"
     v-show="visible" :style="positionStyle"
     @click="click" @mouseenter="clearTimer()" @mouseleave="startTimer()">
-      <i class="py-notification__icon"
+      <i class="py-notification__icon pyui-icons"
       :class="[ typeClass, iconClass ]"
       v-if="type || iconClass"></i>
       <div class="py-notification__group">
@@ -83,9 +83,7 @@ export default {
   computed: {
     // 提示图标
     typeClass() {
-      return this.type && typeMap[this.type]
-        ? `py-icon-${typeMap[this.type]}`
-        : '';
+      return this.type && typeMap[this.type] ? `py-icon-${typeMap[this.type]}` : '';
     },
     // 水平位置
     horizontalClass() {

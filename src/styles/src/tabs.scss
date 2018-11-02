@@ -1,7 +1,5 @@
 @charset "UTF-8";
-
 $prefixCls: 'py-tabs';
-@import '@/base/themes.scss';
 
 .#{$prefixCls} {
   &__nav-wrap {

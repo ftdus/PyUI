@@ -10,7 +10,10 @@ class Version {
     this.versionFile = path.resolve(__dirname, '../../package.json');
   }
   /**
-   * 获取上一次的版本号
+   * @description 获取上一次的版本号
+   * @author GodD6366
+   * @returns {String} 版本号
+   * @memberof Version
    */
   detail() {
     let json = fs.readJSONSync(this.versionFile);

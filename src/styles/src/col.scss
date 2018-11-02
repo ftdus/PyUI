@@ -1,11 +1,10 @@
 @charset "UTF-8";
-
-// 组件class前缀
-$prefixCls: "py-col";
+$prefixCls: 'py-col';
 $start: 1;
 $end: 24;
 $count: 100%/24;
-$name: "__span--";
+$name: '__span--';
+
 .#{$prefixCls} {
   position: relative;
   float: left;

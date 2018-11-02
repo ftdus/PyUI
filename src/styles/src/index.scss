@@ -1,10 +1,12 @@
-@import '../../base/themes.scss';
+@import '../base/common/style.scss';
+@import 'alert.scss';
 @import 'badge.scss';
 @import 'button-group.scss';
 @import 'button.scss';
 @import 'card.scss';
 @import 'cascader.scss';
 @import 'col.scss';
+@import 'color-picker.scss';
 @import 'common.scss';
 @import 'content.scss';
 @import 'footer.scss';
@@ -12,7 +14,6 @@
 @import 'icon.scss';
 @import 'layout.scss';
 @import 'loading-bar.scss';
-@import 'menu-item.scss';
 @import 'menu.scss';
 @import 'message-box.scss';
 @import 'notification.scss';
@@ -20,6 +21,7 @@
 @import 'rate.scss';
 @import 'row.scss';
 @import 'select.scss';
-@import 'sider.scss';
+@import 'slider.scss';
 @import 'tab-pane.scss';
 @import 'tabs.scss';
+@import 'upload.scss';

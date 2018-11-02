@@ -1,112 +1,3 @@
-<style lang="scss" scoped>
-@import '@/base/themes.scss';
-.py-alert-fade-enter-active,
-.py-alert-fade-leave-active {
-  transition: opacity 0.5s;
-}
-.py-alert-fade-enter,
-.py-alert-fade-leave-to {
-  opacity: 0;
-}
-
-$clsPrefix: 'py-alert';
-$clsSub: '__';
-$clsModifier: '--';
-
-$infoColor: $color;
-$successColor: #19be6b;
-$warningColor: #ff9900;
-$errorColor: #ed3f14;
-
-$infoBg: #f4f4f5;
-$successBg: #e2f9d7;
-$warningBg: #fdf5e9;
-$errorBg: #fae7e3;
-
-$fontSize: 16px;
-$mediumFontSize: 20px;
-$largeFontSize: 24px;
-
-@mixin alertStyle($color: $color, $bgColor: $bgColor) {
-  color: $color;
-  background-color: $bgColor;
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-.#{$clsPrefix} {
-  position: relative;
-  padding: 10px 20px;
-  color: $infoColor;
-  font-size: $fontSize;
-  border-radius: 4px;
-  border-width: 1px;
-  border-style: solid;
-  &#{$clsSub}title {
-    display: inline-block;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  &.show-icon {
-    padding-left: 60px;
-  }
-  &#{$clsSub}icon {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    margin-top: -16px;
-    display: inline-block;
-    font-weight: bold;
-    .pyui-icons {
-      font-size: 32px;
-    }
-  }
-  &#{$clsModifier}medium {
-    padding: 15px 20px;
-    font-size: $mediumFontSize;
-    .#{$clsPrefix}#{$clsSub}close {
-      font-size: $mediumFontSize;
-      top: 15px;
-    }
-  }
-  &#{$clsModifier}large {
-    padding: 20px 20px;
-    font-size: $largeFontSize;
-    .#{$clsPrefix}#{$clsSub}close {
-      font-size: $largeFontSize;
-      top: 20px;
-    }
-  }
-  &#{$clsSub}close {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    display: inline-block;
-    font-style: normal;
-    vertical-align: baseline;
-    line-height: 1;
-    font-size: 14px;
-    opacity: 0.6;
-    color: $infoColor;
-    cursor: pointer;
-  }
-  &#{$clsModifier}info {
-    @include alertStyle($infoColor, $infoBg);
-  }
-  &#{$clsModifier}success {
-    @include alertStyle($successColor, $successBg);
-  }
-  &#{$clsModifier}warning {
-    @include alertStyle($warningColor, $warningBg);
-  }
-  &#{$clsModifier}error {
-    @include alertStyle($errorColor, $errorBg);
-  }
-}
-.is-center {
-  text-align: center;
-}
-</style>
-
 <template>
   <transition name="py-alert-fade">
     <div
@@ -121,10 +12,10 @@ $largeFontSize: 24px;
         <py-icon :type="titleIconStyle" v-if="titleIcon"></py-icon>
         {{title}}
       </span>
-      <p class="py-alert__desc"><slot></slot></p>
+      <div class="py-alert__desc"><slot></slot></div>
       <span
         class="py-alert__close"
-        v-if="closeable"
+        v-if="closable"
         @click="closeAlert">
         <py-icon type="close" v-if="!closeText"></py-icon>
         <span v-if="closeText">{{closeText}}</span>
@@ -142,7 +33,7 @@ export default {
       default: '',
       required: true,
     },
-    closeable: {
+    closable: {
       type: Boolean,
       default: true,
     },
@@ -224,7 +115,7 @@ export default {
       return '';
     },
     closeBtnStyle() {
-      if (this.closeText === '' && this.closeable) {
+      if (this.closeText === '' && this.closable) {
         return 'py-icon-close';
       }
       return '';

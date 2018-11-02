@@ -1,7 +1,6 @@
 @charset "UTF-8";
-
 $prefixCls: 'py-loading-bar';
-@import '@/base/themes.scss';
+
 .#{$prefixCls} {
   position: relative;
   position: fixed;
@@ -22,13 +21,13 @@ $prefixCls: 'py-loading-bar';
     animation: 1s aniRight infinite linear;
   }
   &--primary {
-    background: $primary-color;
+    background: $--color-primary;
   }
   &--success {
-    background: $success-color;
+    background: $--color-success;
   }
   &--error {
-    background: $error-color;
+    background: $--color-danger;
   }
 }
 @keyframes aniRight {
