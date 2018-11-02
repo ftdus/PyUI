@@ -3,7 +3,6 @@ import loadingBar from './loading-bar.vue';
 
 let loadingBarInstance;
 let timer;
-
 /**
  * loadingBar单例
  */
@@ -39,53 +38,57 @@ const clearTimer = () => {
  */
 const reset = () => {
   const compont = getCompont();
-  compont.show = false;
   compont.status = 'primary';
-  compont.progress = 0;
+  compont.percent = 0;
 };
 
 export default {
   // 开始从 0 显示进度条，并自动加载进度
   start() {
-    const compont = getCompont();
-    let percent = 0;
-
-    compont.show = true;
-    timer = setInterval(() => {
-      percent += Math.floor(Math.random() * 3 + 1);
-      if (percent > 90) {
-        clearTimer();
+    // 防止在关闭之前,又打开了新的进度条,导致无法显示
+    setTimeout(() => {
+      const compont = getCompont();
+      if (compont.percent > 0) {
+        return;
       }
-      compont.progress = percent;
-    }, 200);
+      let percent = 0;
+      timer = setInterval(() => {
+        percent += Math.floor(Math.random() * 3 + 1);
+        if (percent > 90) {
+          clearTimer();
+        }
+        compont.percent = percent;
+      }, 200);
+    }, 100);
   },
   // 结束进度条，自动补全剩余进度
   finish() {
     const compont = getCompont();
+    // 所有loading都结束了进度条才会结束
     clearTimer();
-    compont.progress = 100;
+    compont.percent = 100;
     setTimeout(() => {
       reset();
-    }, 500);
+    }, 800);
   },
   // 以错误的类型结束进度条，自动补全剩余进度
   error() {
     const compont = getCompont();
     clearInterval(timer);
-    compont.progress = 100;
+    compont.percent = 100;
     compont.status = 'error';
     setTimeout(() => {
       reset();
-    }, 500);
+    }, 800);
   },
   /**
    * 精确加载到指定的进度
-   * @param progress 指定的进度百分比
+   * @param percent 指定的进度百分比
    */
-  update(progress) {
+  update(percent) {
     const compont = getCompont();
     clearTimer();
-    compont.progress = progress;
+    compont.percent = percent;
   },
   destory() {
     loadingBarInstance = null;
