@@ -45,6 +45,24 @@ const navData = [
           },
         ],
       },
+      {
+        group: 'Notice',
+        children: [
+          {
+            name: 'Alert 弹框',
+            path: 'alert',
+          },
+        ],
+      },
+      {
+        group: 'Navigation',
+        children: [
+          {
+            name: 'Tabs 标签页',
+            path: 'tabs',
+          },
+        ],
+      },
     ],
   },
 ];

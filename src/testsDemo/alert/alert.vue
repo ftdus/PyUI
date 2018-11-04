@@ -2,15 +2,15 @@
   <div class="page">
     <h2>基础用法</h2>
     <section>
-      <py-alert type="info">这是默认alert</py-alert>
-      <py-alert type="success">这是success alert</py-alert>
-      <py-alert type="warning">这是warning alert</py-alert>
-      <py-alert type="error">这是error alert</py-alert>
+      <py-alert type="info">默认提示信息</py-alert>
+      <py-alert type="success">成功提示信息</py-alert>
+      <py-alert type="warning">警告提示信息</py-alert>
+      <py-alert type="error">失败提示信息</py-alert>
     </section>
 
     <h2>自定义关闭按钮</h2>
     <section>
-      <py-alert type="info" :closeable="false">这是默认alert</py-alert>
+      <py-alert type="info" :closable="false">这是默认alert</py-alert>
       <py-alert type="success">这是success alert</py-alert>
       <py-alert type="warning" close-text="关闭">这是warning alert</py-alert>
       <py-alert type="error" close-text="我知道了">这是error alert</py-alert>
@@ -59,11 +59,11 @@
 </template>
 
 <script>
-import PyTabs from '@/components/alert';
+import PyAlert from '@/components/alert';
 
 export default {
   components: {
-    'py-alert': PyTabs,
+    'py-alert': PyAlert,
   },
   methods: {
     closeAlert() {

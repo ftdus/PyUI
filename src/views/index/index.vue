@@ -16,6 +16,7 @@
     <router-link to="/select">select</router-link>
     <router-link to="/layout">layout</router-link>
     <router-link to="/alert">alert</router-link>
+    <router-link to="/colorPicker">colorPicker</router-link>
   </div>
 </template>
 <script>
