@@ -13,13 +13,13 @@ export default {
   methods: {
     dispatch(componentName, eventName, params) {
       let parent = this.$parent || this.$root;
-      let [name] = parent.$options;
+      let { name } = parent.$options;
 
       while (parent && (!name || name !== componentName)) {
         parent = parent.$parent;
 
         if (parent) {
-          [name] = parent.$options;
+          ({ name } = parent.$options);
         }
       }
       if (parent) {

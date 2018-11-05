@@ -45,6 +45,24 @@ const navData = [
           },
         ],
       },
+      {
+        group: 'Notice',
+        children: [
+          {
+            name: 'Alert 弹框',
+            path: 'alert',
+          },
+        ],
+      },
+      {
+        group: 'Navigation',
+        children: [
+          {
+            name: 'Tabs 标签页',
+            path: 'tabs',
+          },
+        ],
+      },
     ],
   },
 ];
@@ -57,8 +75,7 @@ const nav = navData.reduce((init, item) => {
     });
 
     item.children.forEach(({ group, children }) => {
-      init.push({ name: group, type: 'group' });
-      init.push(...children);
+      init.push({ name: group, type: 'group', children });
     });
   } else {
     init.push({
