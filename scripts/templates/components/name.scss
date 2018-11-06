@@ -1,3 +1,7 @@
 @charset "UTF-8";
-$prefixCls: '{{__py_component_class_name__}}';
+
+@import './base/mixins/config.scss/';
+@import './base/common/themes.scss/';
+@import './base/mixins/utils.scss/';
+@import './base/mixins/mixins.scss/';
 

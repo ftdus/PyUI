@@ -92,7 +92,7 @@ $error-color: #ed3f14;
 /* Base
 ====================
    Colors
---------------------*/
+-------------------- */
 $--color-white: #fff !default;
 $--color-black: #000 !default;
 
@@ -118,14 +118,14 @@ $--color-bg-regular: #f5f7fa !default;
 $--color-disabled-base: #f5f7fa !default;
 
 /* Fonts
---------------------*/
+-------------------- */
 $--font-size-base: 14px !default;
 $--font-size-small: 13px !default;
 $--font-size-large: 18px !default;
 $--font-weight-primary: 500 !default;
 
 /* Border
---------------------*/
+-------------------- */
 $--border-width-base: 1px !default;
 $--border-style-base: solid !default;
 $--border-color-base: $--color-line-primary !default;
@@ -139,7 +139,7 @@ $--border-radius-circle: 100% !default;
 /* Components
 ====================
    Input
---------------------*/
+-------------------- */
 $--input-font-size: $--font-size-base !default;
 $--input-color: $--color-text-primary !default;
 $--input-bg-color-disabled: $--color-disabled-base !default;
@@ -150,9 +150,11 @@ $--input-border-color-active: $--color-primary !default;
 $--input-border-color-hover: $--border-color-hover !default;
 $--input-border-color-success: $--color-success !default;
 $--input-border-color-danger: $--color-danger !default;
+
 /*
    Slider
---------------------*/
+-------------------- */
+
 $--slider-font-size: $--font-size-base !default;
 $--slider-runway-color: $--color-line-primary !default;
 $--slider-runway-height: 5px !default;

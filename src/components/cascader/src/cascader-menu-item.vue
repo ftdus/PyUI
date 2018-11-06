@@ -5,16 +5,20 @@
       @click="selectItem" @mouseover="triggerType === 'hover' && selectItem($event)">
       <div v-if="type === 'select'">
         {{option[props.label]}}
-        <i class="py-icon iconfont icon-return"
-          v-show="option[props.children]"></i>
+        <py-icon type="right" v-show="option[props.children]"></py-icon>
       </div>
       <div v-else v-html="html">
       </div>
   </li>
 </template>
 <script>
+import PyIcon from '../../icon/src/icon.vue';
+
 export default {
   name: 'PyCascaderMenuItem',
+  components: {
+    'py-icon': PyIcon,
+  },
   props: {
     // item显示类型，filter 过滤模式 | select 选择模式
     type: {
@@ -73,9 +77,7 @@ export default {
     html() {
       if (this.type === 'filter') {
         const { label } = this.props;
-        const str = this.filterOptionArr
-          .map(opt => opt[label])
-          .join(` ${this.separator} `);
+        const str = this.filterOptionArr.map(opt => opt[label]).join(` ${this.separator} `);
         const reg = new RegExp(this.filterValue, 'ig');
         return str.replace(reg, '<strong>$&</strong>');
       }
