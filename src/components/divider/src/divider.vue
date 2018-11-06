@@ -65,7 +65,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import "@/base/themes.scss";
 $elementSeparator: "__";
 $modifierSeparator: "--";
 

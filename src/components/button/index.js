@@ -1,6 +1,6 @@
 import PYButton from './src/button.vue';
 
-PYButton.install = function PyButton(Vue) {
+PYButton.install = function(Vue) {
   Vue.component(PYButton.name, PYButton);
 };
 

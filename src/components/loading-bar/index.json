@@ -1,0 +1,10 @@
+{
+  "dev": false,
+  "prototype": true,
+  "map": [
+    {
+      "key": "$loading",
+      "value": "${moduleName}"
+    }
+  ]
+}
