@@ -1,3 +1,68 @@
+<style>
+  .py-button{
+    margin-right: 20px;
+  }
+</style>
+<script>
+  export default {
+    methods: {
+      messageInfo() {
+        this.$message({
+          type: 'info',
+          message: '消息'
+        });
+      },
+      messageHTML() {
+        this.$message({
+          type: 'success',
+          message: '<strong>HTML</strong>',
+          useHTMLString: true
+        });
+      },
+      successStatus() {
+        this.$message.success('成功');
+      },
+      warningStatus() {
+        this.$message.warning('警告');
+      },
+      infoStatus() {
+        this.$message.info('消息');
+      },
+      errorStatus() {
+        this.$message.error('错误');
+      },
+      successClose() {
+        this.$message({
+          type: 'success',
+          message: '成功',
+          showClose: true
+        });
+      },
+      warningClose() {
+        this.$message({
+          type: 'warning',
+          message: '警告',
+          showClose: true
+        });
+      },
+      infoClose() {
+        this.$message({
+          type: 'info',
+          message: '消息',
+          showClose: true
+        });
+      },
+      errorClose() {
+        this.$message({
+          type: 'error',
+          message: '错误',
+          showClose: true
+        });
+      }
+    }
+  };
+</script>
+
 ## Message 消息提示
 
 常用于主动操作后的反馈提示。多用于系统级通知的被动提醒。
@@ -6,21 +71,25 @@
 
 从顶部出现，3 秒后自动消失。
 
-:::demo message
+:::demo Message 接收一个字符串或一个 VNode 作为参数，它会被显示为正文内容。
 
 ```html
 <template>
-  <py-button :plain="true" @click="info">消息</py-button>
-  <py-button :plain="true" @click="html">HTML</py-button>
+  <py-button @click="messageInfo">消息</py-button>
+  <py-button @click="messageHTML">HTML</py-button>
 </template>
 
 <script>
   export default {
+    name: 'message',
     methods: {
-      info() {
-        this.$message.info('消息');
+      messageInfo() {
+        this.$message({
+          type: 'info',
+          message: '消息'
+        });
       },
-      html() {
+      messageHTML() {
         this.$message({
           type: 'success',
           message: '<strong>HTML</strong>',
@@ -38,29 +107,30 @@
 
 用来显示「成功、警告、消息、错误」类的操作反馈。
 
-:::demo message
+:::demo 通过参数中传入不同的 type，展示不同的状态，默认为`info`，不作参数传入时可使用`type`作为`$message`的内置方法
 
 ```html
 <template>
-  <py-button :plain="true" @click="success">成功</py-button>
-  <py-button :plain="true" @click="warning">警告</py-button>
-  <py-button :plain="true" @click="info">消息</py-button>
-  <py-button :plain="true" @click="error">错误</py-button>
+  <py-button type="success" @click="successStatus">成功</py-button>
+  <py-button type="warning" @click="warningStatus">警告</py-button>
+  <py-button type="info" @click="infoStatus">消息</py-button>
+  <py-button type="error" @click="errorStatus">错误</py-button>
 </template>
 
 <script>
   export default {
+    name: 'messageStatus',
     methods: {
-      success() {
+      successStatus() {
         this.$message.success('成功');
       },
-      warning() {
+      warningStatus() {
         this.$message.warning('警告');
       },
-      info() {
+      infoStatus() {
         this.$message.info('消息');
       },
-      error() {
+      errorStatus() {
         this.$message.error('错误');
       }
     }
@@ -74,41 +144,41 @@
 
 可以添加关闭按钮。
 
-:::demo message
+:::demo Message 默认不显示关闭按钮，配置中添加`showClose`为`true`可显示关闭按钮，配置`duration`可以设置 Message 显示时间， `0`的时候不会被自动关闭，默认 3000 毫秒
 
 ```html
 <template>
-  <py-button :plain="true" @click="success">成功</py-button>
-  <py-button :plain="true" @click="warning">警告</py-button>
-  <py-button :plain="true" @click="info">消息</py-button>
-  <py-button :plain="true" @click="error">错误</py-button>
+  <py-button type="success" @click="successClose">成功</py-button>
+  <py-button type="warning" @click="warningClose">警告</py-button>
+  <py-button type="info" @click="infoClose">消息</py-button>
+  <py-button type="error" @click="errorClose">错误</py-button>
 </template>
 
 <script>
   export default {
     methods: {
-      success() {
+      successClose() {
         this.$message({
           type: 'success',
           message: '成功',
           showClose: true
         });
       },
-      warning() {
+      warningClose() {
         this.$message({
           type: 'warning',
           message: '警告',
           showClose: true
         });
       },
-      info() {
+      infoClose() {
         this.$message({
           type: 'info',
           message: '消息',
           showClose: true
         });
       },
-      error() {
+      errorClose() {
         this.$message({
           type: 'error',
           message: '错误',
