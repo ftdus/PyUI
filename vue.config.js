@@ -42,12 +42,6 @@ module.exports = {
     //   return args;
     // });
   },
-  pluginOptions: {
-    'style-resources-loader': {
-      patterns: [],
-      preProcessor: 'scss',
-    },
-  },
   outputDir: isMain
     ? path.resolve(process.cwd(), './website/dist/')
     : path.resolve(process.cwd(), './dist'),
