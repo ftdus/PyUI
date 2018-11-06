@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+// 组件class前缀
+$prefixCls: 'py-message';
+$element-separator: '__';
+$modifier-separator: '--';
+
+.#{$prefixCls} {
+  min-width: 380px;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ebeef5;
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  z-index: 2000;
+  transform: translateX(-50%);
+  background-color: #edf2fc;
+  transition: opacity 0.3s, -webkit-transform 0.4s;
+  transition: opacity 0.3s, transform 0.4s;
+  transition: opacity 0.3s, transform 0.4s, -webkit-transform 0.4s;
+  padding: 15px 15px 15px 20px;
+  display: flex;
+  align-items: center;
+  &#{$element-separator}icon {
+    margin-right: 10px;
+  }
+  &#{$element-separator}content {
+    line-height: 1.3;
+    padding-right: 16px;
+  }
+  &#{$modifier-separator}info {
+    background-color: #edf2fc;
+    border-color: #ebeef5;
+    color: #909399;
+  }
+  &#{$modifier-separator}warning {
+    background-color: #fdf6ec;
+    border-color: #faecd8;
+    color: #e6a23c;
+  }
+  &#{$modifier-separator}error {
+    background-color: #fef0f0;
+    border-color: #fde2e2;
+    color: #f56c6c;
+  }
+  &#{$modifier-separator}success {
+    background-color: #f0f9eb;
+    border-color: #e1f3d8;
+    color: #67c23a;
+  }
+  &#{$element-separator}close {
+    position: absolute;
+    right: 15px;
+    color: #c2c6ce;
+    cursor: pointer;
+  }
+  &.is-center {
+    justify-content: center;
+  }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter-to .slide-fade-leave {
+  top: -50px;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  top: -50px;
+  opacity: 0;
+}
