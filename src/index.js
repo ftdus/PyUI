@@ -2,6 +2,7 @@ import Alert from './components/alert/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
+import Cascader from './components/cascader/index';
 import Col from './components/col/index';
 import Content from './components/content/index';
 import Divider from './components/divider/index';
@@ -22,13 +23,13 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
-import ColorPicker from './components/color-picker/index';
 
 const components = [
   Alert,
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
   Content,
   Divider,
@@ -47,7 +48,6 @@ const components = [
   Switch,
   TabPane,
   Upload,
-  ColorPicker,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -72,6 +72,7 @@ export default {
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
   Content,
   Divider,
@@ -92,5 +93,4 @@ export default {
   Switch,
   TabPane,
   Upload,
-  ColorPicker,
 };
