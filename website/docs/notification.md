@@ -142,7 +142,7 @@
 
 带有 icon，常用来显示「成功、警告、消息、错误」类的系统消息
 
-:::demo Element 为 Notification 组件准备了四种通知类型：success, warning, info, error。通过type字段来设置，除此以外的值将被忽略。同时，我们也为 Notification 的各种 type 注册了方法，可以在不传入type字段的情况下像open5和open6那样直接调用。
+:::demo Element 为 Notification 组件准备了四种通知类型：success, warning, info, error。通过type字段来设置，除此以外的值将被忽略。同时，我们也为 Notification 的各种 type 注册了方法，可以在不传入type字段的情况下像notifiInfo和notifiError那样直接调用。自定义图标需要以数组形式传入图标样式。
 
 ```html
 <template>
@@ -344,3 +344,11 @@ message 属性支持传入 HTML 片段
 | offset      | 偏移的距离，在同一时刻，所有的 Notification 实例应当具有一个相同的偏移量 | number | — | 0    |
 | onClose     | 关闭时的回调函数               | function  | —                                  | —      |
 | onClick     | 点击 Notification 时的回调函数 | function  | —                                  | —      |
+
+### Event
+
+调用 Notification 或 this.$notify 会返回当前 Notification 的实例。如果需要手动关闭实例，可以调用它的 close 方法。
+
+| 方法名       | 说明                     | 
+| ----------- | ------------------------ | 
+| close       | 关闭当前的 Notification   | 
