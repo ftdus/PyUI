@@ -1,9 +1,9 @@
 {
   "dev": false,
-  "prototype": false,
+  "prototype": true,
   "map": [
     {
-      "key": "$${moduleName}",
+      "key": "$message",
       "value": "${moduleName}"
     }
   ]

@@ -11,10 +11,8 @@
         @input="inputFilter" @compositionstart="compositionstartHandler"
         @compositionend="compositionendHandler"/>
       <span class="py-cascader__input-icon">
-        <i class="py-icon iconfont icon-delete" v-if="isShowDelete" @click="clear()"
-          ></i>
-        <i class="py-icon iconfont icon-return" v-else
-          :class="isShowMenu ? 'icon-return--up' : 'icon-return--down'"></i>
+        <py-icon type="close-circle-fill" v-if="isShowDelete" @click="clear()"></py-icon>
+        <py-icon type="up" v-else :class="isShowMenu ? 'icon--up' : 'icon--down'"></py-icon>
       </span>
     </div>
      <div class="py-cascader__menu" v-show="isShowMenu" @click="clickMenu($event)"
@@ -41,6 +39,7 @@
 </template>
 
 <script>
+import PyIcon from '../../icon/src/icon.vue';
 import PyCascaderMenu from './cascader-menu.vue';
 import PyCascaderMenuItem from './cascader-menu-item.vue';
 
@@ -107,23 +106,12 @@ function filterChildrenOptions(opts, reg, optStack, filterResults, props) {
     currentOptStack.push(opt);
     if (opt[label].match(reg)) {
       if (opt[children]) {
-        addChildrenOptions(
-          opt[children],
-          currentOptStack,
-          filterResults,
-          props,
-        );
+        addChildrenOptions(opt[children], currentOptStack, filterResults, props);
       } else {
         filterResults.push(currentOptStack);
       }
     } else if (opt[children]) {
-      filterChildrenOptions(
-        opt[children],
-        reg,
-        currentOptStack,
-        filterResults,
-        props,
-      );
+      filterChildrenOptions(opt[children], reg, currentOptStack, filterResults, props);
     }
   });
 }
@@ -161,6 +149,7 @@ export default {
   components: {
     'py-cascader-menu': PyCascaderMenu,
     'py-cascader-menu-item': PyCascaderMenuItem,
+    'py-icon': PyIcon,
   },
   props: {
     placeholder: {
@@ -281,9 +270,7 @@ export default {
         const oldSelectedValue = this.selectedData.map(item => item[this.props.value]);
         let isSame = true;
         const length =
-          newVal.length > oldSelectedValue.length
-            ? newVal.length
-            : oldSelectedValue.length;
+          newVal.length > oldSelectedValue.length ? newVal.length : oldSelectedValue.length;
         for (let i = 0; i < length; i += 1) {
           if (oldSelectedValue[i] !== newVal[i]) {
             isSame = false;
@@ -327,14 +314,11 @@ export default {
         const { label } = this.props;
         if (this.showAllLevels) {
           return (
-            this.selectedData
-              .map(data => data[label])
-              .join(` ${this.separator} `) || this.placeholder
+            this.selectedData.map(data => data[label]).join(` ${this.separator} `) ||
+            this.placeholder
           );
         }
-        return (
-          this.selectedData.map(data => data[label]).pop() || this.placeholder
-        );
+        return this.selectedData.map(data => data[label]).pop() || this.placeholder;
       }
       return this.placeholder;
     },
@@ -347,19 +331,14 @@ export default {
       }
       const { label } = this.props;
       if (this.showAllLevels) {
-        return this.selectedData
-          .map(data => data[label])
-          .join(` ${this.separator} `);
+        return this.selectedData.map(data => data[label]).join(` ${this.separator} `);
       }
       return this.selectedData.map(data => data[label]).pop() || '';
     },
     isShowDelete() {
       if (!this.clearable) {
         return false;
-      } else if (
-        this.mouseIn &&
-        (this.value.length > 0 || this.selectedData.length > 0)
-      ) {
+      } else if (this.mouseIn && (this.value.length > 0 || this.selectedData.length > 0)) {
         return true;
       }
       return false;
@@ -404,11 +383,7 @@ export default {
             .then(() => {
               this.filterTimer = setTimeout(() => {
                 // 根据关键字过滤出options
-                this.filterOptions = filterKeyWorkd(
-                  this.options,
-                  this.filterValue,
-                  this.props,
-                );
+                this.filterOptions = filterKeyWorkd(this.options, this.filterValue, this.props);
 
                 if (value.length > 0) {
                   this.isShowFilterMenu = true;
@@ -424,11 +399,7 @@ export default {
       }
 
       this.filterTimer = setTimeout(() => {
-        this.filterOptions = filterKeyWorkd(
-          this.options,
-          this.filterValue,
-          this.props,
-        );
+        this.filterOptions = filterKeyWorkd(this.options, this.filterValue, this.props);
 
         if (value.length > 0) {
           this.isShowFilterMenu = true;
@@ -480,10 +451,7 @@ export default {
           this.selectedData = this.selectingData.slice();
         } else {
           // 点击非最后一级的选项才会触发 'active-item-change' 事件
-          this.$emit(
-            'active-item-change',
-            this.selectingData.map(item => item[this.props.value]),
-          );
+          this.$emit('active-item-change', this.selectingData.map(item => item[this.props.value]));
         }
       } else {
         // 无下一级选项
