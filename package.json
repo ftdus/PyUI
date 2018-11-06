@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build:main": "cross-env BUILD_TYPE=main vue-cli-service build website/main.js",
-    "build:style": "gulp build --gulpfile src/styles/gulpfile.js --color",
+    "build:style": "npm run styles:update && gulp build --gulpfile src/styles/gulpfile.js --color && cp-cli src/styles/lib dist/theme-chalk",
     "ci": "node scripts/git-commit.js",
     "comps:update": "node scripts/comps-imports-update.js",
     "new:comp": "node scripts/new-comp.js",

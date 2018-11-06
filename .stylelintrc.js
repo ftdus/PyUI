@@ -7,8 +7,9 @@ module.exports = {
     // stylelint-config-recommended-scss
     "at-rule-empty-line-before": [
       "always", {
+        "except": ["after-same-name"],
         "ignoreAtRules": [ "else" ]
-      }
+      },
     ],
     "block-opening-brace-space-before": "always",
     "block-closing-brace-newline-after": [
@@ -43,6 +44,7 @@ module.exports = {
     "unit-no-unknown": null,
     "value-list-max-empty-lines": null,
     "font-family-no-missing-generic-family-keyword": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "string-quotes": "single"
   }
 };

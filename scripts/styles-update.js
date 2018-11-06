@@ -9,12 +9,12 @@ const indexPath = path.resolve(__dirname, '../src/styles/src/index.scss');
 function stylesFileUpdate() {
   const updateOra = ora('[PYUI] 样式依赖更新中...').start();
 
-  let comps = ['../base/common/style.scss'];
+  let comps = [];
 
   // 读取所有组件信息
   const files = fs.readdirSync(styles);
   files.map(file => {
-    if (file !== 'index.scss') {
+    if (file !== 'index.scss' && ~file.indexOf('.scss')) {
       comps.push(file);
     }
   });
