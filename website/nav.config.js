@@ -30,6 +30,10 @@ const navData = [
             name: 'Input 输入框',
             path: 'input',
           },
+          {
+            name: 'Cascader 级联选择器',
+            path: 'cascader',
+          },
         ],
       },
       {
