@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
+@import './base/mixins/config.scss';
+@import './base/common/themes.scss';
+@import './base/mixins/utils.scss';
+@import './base/mixins/mixins.scss';
+
 $prefixCls: 'py-cascader';
 $--cascader-menu-item-hover-bg: #f5f7fa;
 
