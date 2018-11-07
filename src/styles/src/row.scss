@@ -2,7 +2,43 @@
 
 $prefixCls: 'py-row';
 
-.#{$prefixCls} {
+@include b(row) {
+  position: relative;
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
+  @include e(flex) {
+    display: flex;
+    @include m(start) {
+      justify-content: start;
+    }
+    @include m(center) {
+      justify-content: center;
+    }
+    @include m(end) {
+      justify-content: flex-end;
+    }
+    @include m(space-between) {
+      justify-content: space-between;
+    }
+    @include m(space-around) {
+      justify-content: space-around;
+    }
+    @include m(top) {
+      align-items: flex-start;
+    }
+    @include m(bottom) {
+      align-items: flex-end;
+    }
+    @include m(middle) {
+      align-items: center;
+    }
+  }
+}
+
+/*.#{$prefixCls} {
   position: relative;
   &:after {
     content: ' ';
@@ -36,4 +72,4 @@ $prefixCls: 'py-row';
       align-items: center;
     }
   }
-}
+}*/
