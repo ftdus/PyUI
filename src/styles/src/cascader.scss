@@ -1,8 +1,10 @@
 @charset "UTF-8";
-$prefixCls: 'py-cascader';
-$disable-color: #c0c4cc;
 
-// cascader.scss组件
+$prefixCls: 'py-cascader';
+$--cascader-menu-item-hover-bg: #f5f7fa;
+
+/* cascader
+--------------------*/
 .#{$prefixCls} {
   display: inline-block;
   position: relative;
@@ -20,7 +22,7 @@ $disable-color: #c0c4cc;
   &.#{$prefixCls}--small {
     min-width: 215px;
     .#{$prefixCls}__input-box {
-      font-size: 13px;
+      font-size: $--font-size-small;
       line-height: 32px;
       height: 32px;
     }
@@ -28,7 +30,7 @@ $disable-color: #c0c4cc;
   &.#{$prefixCls}--medium {
     min-width: 217px;
     .#{$prefixCls}__input-box {
-      font-size: 14px;
+      font-size: $--font-size-base;
       line-height: 36px;
       height: 36px;
     }
@@ -37,7 +39,7 @@ $disable-color: #c0c4cc;
   &__input-box {
     height: 40px;
     line-height: 40px;
-    font-size: 14px;
+    font-size: $--font-size-base;
     position: relative;
   }
 
@@ -45,8 +47,8 @@ $disable-color: #c0c4cc;
     width: 100%;
     height: 100%;
     padding: 0px 30px 0px 15px;
-    border-radius: $border-radius;
-    border: 1px solid;
+    border-radius: $--border-radius-base;
+    border: $--border-width-base $--border-style-base;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     white-space: nowrap;
@@ -54,16 +56,17 @@ $disable-color: #c0c4cc;
 
     cursor: pointer;
     &--unfocus {
-      border-color: $border-color;
-      background: $bg-color;
+      border-color: $--border-color-base;
+      background: $--color-bg-primary;
     }
     &--focus {
-      border-color: $border-color-active;
-      background: $bg-color;
+      border-color: $--color-primary;
+      background: $--color-bg-primary;
     }
     &--disabled {
-      color: $disable-color;
-      background: rgba(220, 222, 226, 0.27);
+      border-color: $--border-color-base;
+      color: $--color-disabled-base;
+      background: $--color-disabled-base;
       cursor: not-allowed;
     }
   }
@@ -76,21 +79,43 @@ $disable-color: #c0c4cc;
     text-align: center;
     color: #c0c4cc;
     cursor: pointer;
-    .py-icon {
-      padding: 0px 8px;
-      font-size: 14px;
-      height: 100%;
-      line-height: 40px;
+    padding: 0px 5px;
+
+    .py-icon-close-circle-fill {
+      font-size: 20px;
     }
-    .icon-return {
+
+    .py-icon-up {
+      font-size: 16px;
       transition: transform 0.3s;
-      &--down {
-        transform: rotate(-90deg);
+
+      &.icon--up {
+        transform: rotate(0deg);
       }
-      &--up {
-        transform: rotate(90deg);
+
+      &.icon--down {
+        transform: rotate(-180deg);
       }
     }
+
+    // .py-icon-close-circle-fill{
+
+    // }
+    // .py-icon {
+    //   padding: 0px 8px;
+    //   font-size: 14px;
+    //   height: 100%;
+    //   line-height: 40px;
+    // }
+    // .icon-return {
+    //   transition: transform 0.3s;
+    //   &--down {
+    //     transform: rotate(-90deg);
+    //   }
+    //   &--up {
+    //     transform: rotate(90deg);
+    //   }
+    // }
   }
 
   &__menu {
@@ -107,17 +132,18 @@ $disable-color: #c0c4cc;
   }
 }
 
-// cascader-menu组件
+/* cascader-menu
+--------------------*/
 .#{$prefixCls}-menu {
   padding: 6px 0px;
   max-height: 204px;
-
-  border: 1px solid $border-color;
+  border: 1px solid $--border-color-base;
   overflow: auto;
   background: #fff;
 }
 
-// cascader-menu-item组件
+/* cascader-menu-item
+--------------------*/
 .#{$prefixCls}-menu-item {
   min-width: 160px;
   padding: 8px 20px;
@@ -125,29 +151,29 @@ $disable-color: #c0c4cc;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: $color;
+  color: $--color-text-primary;
   height: 34px;
   line-height: 1.5;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: $--font-size-base;
 
   &:hover {
-    background-color: #f5f7fa;
+    background-color: $--cascader-menu-item-hover-bg;
   }
 
   &.#{$prefixCls}-menu-item--disable {
-    color: $disable-color;
+    color: $--color-text-tertiary;
     background-color: #fff;
     cursor: not-allowed;
   }
 
   &.#{$prefixCls}-menu-item--active {
-    color: $color-active;
+    color: $--color-primary;
   }
 
-  .icon-return {
-    transform: rotate(-180deg);
+  .py-icon-right {
+    // transform: rotate(-180deg);
     float: right;
-    color: $disable-color;
+    color: $--color-text-placeholder;
   }
 }

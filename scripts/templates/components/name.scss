@@ -1,3 +1,6 @@
 @charset "UTF-8";
-$prefixCls: '{{__py_component_class_name__}}';
+
+@include b({{__py_component_class_name__}}) {
+
+}
 

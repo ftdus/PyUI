@@ -2,6 +2,7 @@
 
 @include b(slider) {
   width: 100%;
+
   @include e(runway) {
     height: $--slider-runway-height;
     background-color: $--slider-runway-color;
@@ -9,6 +10,7 @@
     display: flex;
     align-items: center;
     position: relative;
+
     @include m(process) {
       position: absolute;
       left: 0;
@@ -21,6 +23,7 @@
       }
     }
   }
+
   @include e(button) {
     width: $--slider-button-width;
     height: $--slider-button-height;
@@ -28,6 +31,12 @@
     border: 2px solid $--slider-button-border-color;
     user-select: none;
     cursor: pointer;
+
+    @include e(button-wrap) {
+      width: $--slider-button-width;
+      height: $--slider-button-height;
+      background-color: rgba(255, 255, 255, 1);
+    }
     &.hover,
     &:hover:not(.disabled) {
       transform: scale(1.2);
@@ -37,18 +46,15 @@
       border-color: #c0c4cc;
       cursor: not-allowed;
     }
-    @include e(button-wrap) {
-      width: $--slider-button-width;
-      height: $--slider-button-height;
-      background-color: rgba(255, 255, 255, 1);
-    }
   }
+
   @include e(stop) {
     position: absolute;
     width: 6px;
     height: $--slider-runway-height;
     background-color: rgba(255, 255, 255, 1);
   }
+
   @include e(stops-wrap) {
     position: absolute;
     width: 100%;

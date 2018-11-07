@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 $--notification-width: 330px !default;
 $--notification-padding: 14px 26px 14px 13px !default;
 $--notification-radius: 8px !default;
@@ -20,27 +21,11 @@ $--notification-info-color: $info-color !default;
 $--notification-warning-color: $warning-color !default;
 $--notification-danger-color: $error-color !default;
 
-$prefixCls: 'py-notification';
+$prefixCls: 'notification';
 $element-separator: '__';
 $modifier-separator: '--';
 
-.#{$prefixCls}-fade-enter {
-  &.right {
-    right: 0;
-    transform: translateX(100%);
-  }
-
-  &.left {
-    left: 0;
-    transform: translateX(-100%);
-  }
-}
-
-.#{$prefixCls}-fade-leave-active {
-  opacity: 0;
-}
-
-.#{$prefixCls} {
+@include b($prefixCls) {
   display: flex;
   width: $--notification-width;
   padding: $--notification-padding;
@@ -52,6 +37,23 @@ $modifier-separator: '--';
   box-shadow: $--notification-shadow;
   transition: opacity 0.3s, transform 0.3s, left 0.3s, right 0.3s, top 0.4s, bottom 0.3s;
   overflow: hidden;
+  z-index: 5000;
+
+  &-fade-enter {
+    &.right {
+      right: 0;
+      transform: translateX(100%);
+    }
+
+    &.left {
+      left: 0;
+      transform: translateX(-100%);
+    }
+  }
+
+  &-fade-leave-active {
+    opacity: 0;
+  }
 
   &.right {
     right: 16px;
@@ -60,16 +62,16 @@ $modifier-separator: '--';
   &.left {
     left: 16px;
   }
-  &#{$element-separator}group {
+  @include e(group) {
     margin-left: $--notification-group-margin;
   }
-  &#{$element-separator}title {
+  @include e(title) {
     font-weight: bold;
     font-size: $--notification-title-font-size;
     color: $--notification-title-color;
     margin: 0;
   }
-  &#{$element-separator}content {
+  @include e(content) {
     font-size: $--notification-font-size;
     line-height: 21px;
     margin: 6px 0 0 0;
@@ -80,14 +82,12 @@ $modifier-separator: '--';
       margin: 0;
     }
   }
-
-  &#{$element-separator}icon {
+  @include e(icon) {
     height: $--notification-icon-size;
     width: $--notification-icon-size;
     font-size: $--notification-icon-size;
   }
-
-  &#{$element-separator}closeBtn {
+  @include e(closeBtn) {
     position: absolute;
     top: 18px;
     right: 15px;

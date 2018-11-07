@@ -1,8 +1,10 @@
 /* BEM (reference elementUI)
  -------------------------- */
+
 @function selectorToString($selector) {
   $selector: inspect($selector);
   $selector: str-slice($selector, 2, -2);
+
   @return $selector;
 }
 
