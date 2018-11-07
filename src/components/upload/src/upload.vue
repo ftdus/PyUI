@@ -1,23 +1,22 @@
 <template>
   <div class="py-upload">
-    <div class="py-upload__item"
+    <div
+      class="py-upload__item"
       :class="drapClass"
       @click.stop="inputClick"
-      @dragover.prevent="drapFile = true"
-      @dragleave.prevent="drapFile = false"
-      @drop.prevent="onDrop">
-      <input
-        type="file"
-        ref="input"
-        :multiple="multiple"
-        :accept="accept"
-        @change="fileChange">
-        <slot></slot>
+      @dragover.prevent="drapFile = true;"
+      @dragleave.prevent="drapFile = false;"
+      @drop.prevent="onDrop"
+    >
+      <input type="file" ref="input" :multiple="multiple" :accept="accept" @change="fileChange" />
+      <slot></slot>
     </div>
-    <uploadList @on-remove="onRemove"
+    <uploadList
+      @on-remove="onRemove"
       @onItem="onItem"
       :on-before-remove="onbeforeRemove"
-      :files="fileList"/>
+      :files="fileList"
+    />
   </div>
 </template>
 
@@ -56,6 +55,8 @@ export default {
             return Item;
           });
           this.fileList = this.value;
+        } else {
+          this.fileList = [];
         }
       },
     },
@@ -119,7 +120,7 @@ export default {
         return false;
       }
       const name = file.name ? file.name.split('.') : [];
-      const fileType = name[name.length];
+      const fileType = name[name.length - 1];
       if (this.format.indexOf(fileType) === -1) {
         this.$emit('on-format-err', file, fileList);
         return false;
@@ -186,7 +187,7 @@ export default {
     handleProgress(e, file) {
       const File = file;
       File.status = 'progress';
-      File.percentage = parseInt(e.percent, 10) || 0;
+      File.percentage = parseInt(e.percent, 10) || 1;
       this.onProgress(e, File, this.fileList);
     },
     // 上传成功回调response
