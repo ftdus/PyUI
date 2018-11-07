@@ -34,6 +34,10 @@ const navData = [
             name: 'Cascader 级联选择器',
             path: 'cascader',
           },
+          {
+            name: 'ColorPicker 颜色选择器',
+            path: 'colorPicker',
+          },
         ],
       },
       {
