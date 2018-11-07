@@ -1,18 +1,18 @@
 <template>
-    <div class="demo-block">
-        <div class="component-info">
-            <div class="cmp-source">
-                <slot name="source"></slot>
-            </div>
-            <div class="cmp-highlight" v-show="isShowSource">
-                <slot></slot>
-                <slot name="highlight"></slot>
-            </div>
-            <div class="cmp-demo-control" @click="isShowSource = !isShowSource">
-                <span>{{isShowSource ? '隐藏代码' : '显示代码'}}</span>
-            </div>
-        </div>
+  <div class="demo-block">
+    <div class="component-info">
+      <div class="cmp-source">
+        <slot name="source"></slot>
+      </div>
+      <div class="cmp-highlight" v-show="isShowSource">
+        <slot></slot>
+        <slot name="highlight"></slot>
+      </div>
+      <div class="cmp-demo-control" @click="isShowSource = !isShowSource">
+        <span>{{isShowSource ? '隐藏代码' : '显示代码'}}</span>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -26,11 +26,12 @@ export default {
 </script>
 
 <style lang="scss">
-.demo-block {
-  width: 100%;
+$borderColor: #ebebeb;
 
+.demo-block {
   .component-info {
-    border: 1px solid #ebebeb;
+    width: 100%;
+    border: 1px solid $borderColor;
     border-radius: 3px;
     transition: 0.2s;
     .cmp-source {
@@ -45,7 +46,7 @@ export default {
         p {
           padding: 20px;
           box-sizing: border-box;
-          border: 1px solid #ebebeb;
+          border: 1px solid $borderColor;
           border-radius: 3px;
           font-size: 14px;
           line-height: 22px;
@@ -56,25 +57,25 @@ export default {
 
           code {
             color: #5e6d82;
-            background-color: #e6effb;
-            margin: 0 4px;
-            display: inline-block;
+            background-color: #f7ebcc;
             padding: 1px 5px;
             font-size: 12px;
             border-radius: 3px;
-            height: 18px;
-            line-height: 18px;
+            height: 14px;
+            line-height: 14px;
           }
         }
       }
 
       code.hljs {
         margin-bottom: 0;
+        max-height: 720px;
+        overflow: auto;
       }
     }
 
     .cmp-demo-control {
-      border-top: 1px solid #ebebeb;
+      border-top: 1px solid $borderColor;
       height: 44px;
       text-align: center;
       cursor: pointer;
@@ -83,6 +84,11 @@ export default {
         font-size: 14px;
         line-height: 44px;
         transition: 0.3s;
+      }
+      &:hover {
+        span {
+          color: rgba(255, 152, 0, 0.8);
+        }
       }
     }
   }
