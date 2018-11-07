@@ -3,9 +3,11 @@
     <div :class="['py-notification', customClass, horizontalClass]"
     v-show="visible" :style="positionStyle"
     @click="click" @mouseenter="clearTimer()" @mouseleave="startTimer()">
-      <i class="py-notification__icon pyui-icons"
+      <!-- <i class="py-notification__icon pyui-icons"
       :class="[ typeClass, iconClass ]"
-      v-if="type || iconClass"></i>
+      v-if="type || iconClass"></i> -->
+      <py-icon v-if="type" class="py-notification__icon" :type="typeClass"></py-icon>
+      <i v-else-if="iconClass.length > 0" class="py-notification__icon" :class="iconClass"></i>
       <div class="py-notification__group">
         <h2 class="py-notification__title" v-text="title"></h2>
         <div class="py-notification__content" v-show="message">
@@ -14,16 +16,15 @@
             <p v-else v-html="message"></p>
           </slot>
         </div>
-        <i class="py-notification__closeBtn pyui-icons py-icon-close"
-        v-if="showClose"
-        @click.stop="close"></i>
+        <py-icon type="close" class="py-notification__closeBtn"
+        v-if="showClose" @click.stop="close"></py-icon>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-// import PyIcon from '../../icon/index.js';
+import PyIcon from '../../icon/index';
 /**
  * 与type属性相关联的可选的消息类型，如果不在可选值内将被忽略
  */
@@ -49,8 +50,8 @@ export default {
       type: '',
       // 是否显示关闭按钮
       showClose: true,
-      // 自定义类名
-      customClass: '',
+      // 自定义类名数组形式传入
+      customClass: [],
       // 自定义图标的类名。若设置了 type，则 iconClass 会被覆盖
       iconClass: '',
       // 关闭时的回调函数
@@ -69,9 +70,9 @@ export default {
       position: 'top-right',
     };
   },
-  // components: {
-  //   'py-icon': PyIcon,
-  // },
+  components: {
+    'py-icon': PyIcon,
+  },
   watch: {
     closed(newVal) {
       if (newVal) {
@@ -83,7 +84,8 @@ export default {
   computed: {
     // 提示图标
     typeClass() {
-      return this.type && typeMap[this.type] ? `py-icon-${typeMap[this.type]}` : '';
+      // return this.type && typeMap[this.type] ? `py-icon-${typeMap[this.type]}` : '';
+      return this.type && typeMap[this.type] ? `${typeMap[this.type]}` : '';
     },
     // 水平位置
     horizontalClass() {

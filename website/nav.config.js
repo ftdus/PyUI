@@ -57,6 +57,10 @@ const navData = [
             path: 'alert',
           },
           {
+            name: 'Notification 通知',
+            path: 'notification',
+          },
+          {
             name: 'Message 通知',
             path: 'message',
           },
