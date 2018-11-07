@@ -21,6 +21,10 @@ const navData = [
             name: 'Button 按钮',
             path: 'button',
           },
+          {
+            name: 'Grid 栅格',
+            path: 'grid',
+          },
         ],
       },
       {
