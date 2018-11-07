@@ -42,6 +42,7 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cssmin": "^0.2.0",
+    "gulp-header": "^2.0.5",
     "gulp-sass": "^4.0.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
