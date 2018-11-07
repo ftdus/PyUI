@@ -13,6 +13,7 @@
       <py-button @click="open4">警告</py-button>
       <py-button @click="open5">消息</py-button>
       <py-button @click="open6">错误</py-button>
+      <py-button @click="open14">自定义图标</py-button>
     </div>
     <h3>自定义弹出位置</h3>
     <div class="py-button-box">
@@ -129,6 +130,13 @@ export default {
         title: 'Info',
         message: '这是一条没有关闭按钮的消息',
         showClose: false,
+      });
+    },
+    open14() {
+      this.$notify({
+        title: 'Info',
+        message: '这是一条没有关闭按钮的消息',
+        iconClass: ['pyui-icons', 'py-icon-heart-fill'],
       });
     },
   },
