@@ -75,7 +75,7 @@ function createTemplate(name, needConfig) {
 
     // 输出默认的scss文件
     fs.createFileSync(distFiles.scss);
-    fs.writeFileSync(distFiles.scss, replaceCompName('scss', name));
+    fs.writeFileSync(distFiles.scss, replaceCompName('scss', name, false));
 
     // 自动更新样式依赖文件
     stylesFileUpdate();
@@ -91,9 +91,10 @@ function createTemplate(name, needConfig) {
  * 替换模板内占位符为模板名称
  * @param {String} type 文件类型
  * @param {String} name 模板mingc
+ * @param {Boolean} addPrefix 模板mingc
  */
-function replaceCompName(type, name) {
-  return readText(sourceFiles[type]).replace(/\{\{__py_component_class_name__\}\}/g, `py-${name}`);
+function replaceCompName(type, name, addPrefix = true) {
+  return readText(sourceFiles[type]).replace(/\{\{__py_component_class_name__\}\}/g, `${addPrefix ? 'py-' : ''}${name}`);
 }
 
 doTemplate();

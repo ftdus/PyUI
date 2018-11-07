@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-@import './base/mixins/config.scss';
-@import './base/common/themes.scss';
-@import './base/mixins/utils.scss';
-@import './base/mixins/mixins.scss';
-
 $--notification-width: 330px !default;
 $--notification-padding: 14px 26px 14px 13px !default;
 $--notification-radius: 8px !default;

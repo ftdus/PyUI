@@ -14,7 +14,9 @@ function stylesFileUpdate() {
   // 读取所有组件信息
   const files = fs.readdirSync(styles);
   files.map(file => {
-    if (file !== 'index.scss' && ~file.indexOf('.scss')) {
+    if (file.includes('base.scss')) {
+      comps.unshift(file);
+    } else if (file !== 'index.scss' && ~file.indexOf('.scss')) {
       comps.push(file);
     }
   });
