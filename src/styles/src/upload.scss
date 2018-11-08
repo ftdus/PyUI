@@ -12,18 +12,22 @@ $prefixCls: 'py-upload';
 
   @include e(drap) {
     border: 1px dashed #606266;
-    border-radius: 5px;
+    border-radius: $--upload-radius;
     transition: 0.3s;
     text-align: center;
     padding: 30px 20px;
     &:hover {
-      border-color: $color-hover;
+      border-color: $--upload-color;
     }
+  }
+
+  @include e(drapover) {
+    border-color: $--upload-color;
   }
 
   @include e(list) {
     width: 100%;
-    border-radius: 3px;
+    border-radius: $--upload-radius;
     transition: 0.3s;
     padding: 6px;
     list-style: none;
@@ -38,11 +42,11 @@ $prefixCls: 'py-upload';
     }
 
     i {
-      font-size: 14px;
+      font-size: $--upload-font-size;
     }
 
     > i {
-      font-size: 17px;
+      font-size: $--upload-font-size-large;
       width: 23px;
       height: 20px;
       -webkit-transition: 0.4s;
@@ -54,10 +58,10 @@ $prefixCls: 'py-upload';
       margin: auto;
       line-height: 20px;
       cursor: pointer;
-      color: #409eff;
-      border-radius: 3px;
+      color: $--upload-color;
+      border-radius: $--upload-radius;
       &:hover {
-        background: $color-hover;
+        background: $--upload-color;
         color: #fff;
       }
     }
@@ -65,10 +69,10 @@ $prefixCls: 'py-upload';
     @include m(name) {
       cursor: pointer;
       transition: 0.3s;
-      font-size: 13px;
+      font-size: $--upload-font-size;
       color: $color;
       &:hover {
-        color: $border-color-hover;
+        color: $--upload-color;
       }
     }
 
@@ -96,7 +100,7 @@ $prefixCls: 'py-upload';
     @include m(del) {
       width: 45px;
       color: $color;
-      font-size: 12px;
+      font-size: $--upload-font-size-small;
       text-align: center;
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <transition-group name="py-upload">
     <li v-for="(item, index) in files" class="py-upload__list" v-show="files.length" :key="index">
-      <span class="py-upload__list--name" @click="onItem(item, index);">
+      <span class="py-upload__list--name" @click="onItem($event, item, index);">
         <i class="pyui-icons py-icon-file-fill"></i> <span>{{ item.name }}</span>
       </span>
       <i
@@ -30,14 +30,21 @@ export default {
       type: Array,
       default: () => {},
     },
-    onBeforeRemove: Function,
+    onBeforeRemove: {
+      type: Function,
+      default: () => {},
+    },
+    onClickItem: {
+      type: Function,
+      default: () => {},
+    },
   },
   methods: {
-    onItem(index, item) {
-      this.$emit('on-item', index, item);
+    onItem(e, index, item) {
+      return this.onClickItem(e, index, item);
     },
     onRemove(item, index) {
-      if (this.onBeforeRemove(item, index) === false) {
+      if (this.onBeforeRemove(item, index, this.files) === false) {
         return false;
       }
       return this.$emit('on-remove', item, index);

@@ -42,6 +42,10 @@ const navData = [
             name: 'ColorPicker 颜色选择器',
             path: 'colorPicker',
           },
+          {
+            name: 'Upload 文件上传',
+            path: 'upload',
+          },
         ],
       },
       {
