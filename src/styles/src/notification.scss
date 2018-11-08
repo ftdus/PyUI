@@ -22,8 +22,8 @@ $--notification-warning-color: $warning-color !default;
 $--notification-danger-color: $error-color !default;
 
 $prefixCls: 'notification';
-$element-separator: '__';
-$modifier-separator: '--';
+// $element-separator: '__';
+// $modifier-separator: '--';
 
 @include b($prefixCls) {
   display: flex;

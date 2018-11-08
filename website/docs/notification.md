@@ -44,7 +44,7 @@
     notifiCustomIcon() {
       this.$notify({
         title: 'Info',
-        message: '这是一条没有关闭按钮的消息',
+        message: '自定义图标',
         iconClass: ['pyui-icons', 'py-icon-heart-fill'],
       });
     },
@@ -138,11 +138,11 @@
 
 :::
 
-### 带有倾向性
+### 带有图标
 
-带有 icon，常用来显示「成功、警告、消息、错误」类的系统消息
+带有 icon，常用来显示「成功、警告、消息、错误」类的系统消息，或者显示用户自定义图标类
 
-:::demo Element 为 Notification 组件准备了四种通知类型：success, warning, info, error。通过type字段来设置，除此以外的值将被忽略。同时，我们也为 Notification 的各种 type 注册了方法，可以在不传入type字段的情况下像notifiInfo和notifiError那样直接调用。自定义图标需要以数组形式传入图标样式。
+:::demo Notification 组件准备了四种通知类型：success, warning, info, error。通过type字段来设置，除此以外的值将被忽略。同时，我们也为 Notification 的各种 type 注册了方法，可以在不传入type字段的情况下像notifiInfo和notifiError那样直接调用。自定义图标需要以数组形式传入图标Class。注意：如果定义了以上四种类型的type，则传入的自定义图标无效，因为type属性优先度更高。
 
 ```html
 <template>
@@ -182,7 +182,7 @@
       notifiCustomIcon() {
         this.$notify({
           title: 'Info',
-          message: '这是一条没有关闭按钮的消息',
+          message: '自定义图标',
           iconClass: ['pyui-icons', 'py-icon-heart-fill'],
         });
       }
@@ -336,8 +336,8 @@ message 属性支持传入 HTML 片段
 | message     | 说明文字        | string  | —                                                  | —      |
 | dangerouslyUseHTMLString  | 是否将 message 属性作为 HTML 片段处理   | boolean | —             | false  |
 | type        | 主题样式，如果不在可选值内将被忽略   | string | success / warning / info / error | —      |
-| iconClass   | 自定义图标的类名。若设置了 type，则 iconClass 会被覆盖   | string[] | —          | —      |
-| customClass | 自定义类名      | string | —                                                   | —      |
+| iconClass   | 自定义图标的类名。若设置了 type，则 iconClass 会被覆盖   | string[ ] | —          | —      |
+| customClass | 自定义类名      | string | —                                                  | —      |
 | duration    | 显示时间, 毫秒。设为 0 则不会自动关闭   | number  | —                            | 4500   |
 | position    | 自定义弹出位置  | string  | top-right / top-left / bottom-right / bottom-left  | top-right |
 | showClose   | 是否显示关闭按钮               | boolean | —                                   | true   |
