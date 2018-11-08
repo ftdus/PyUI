@@ -19,7 +19,7 @@ export default {};
 </script>
 
 <style lang="scss">
-$primaryColor: #409eff;
+$primaryColor: #ff9800;
 $textColor: #606266;
 
 .header {

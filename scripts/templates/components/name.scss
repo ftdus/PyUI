@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-@import './base/mixins/config.scss/';
-@import './base/common/themes.scss/';
-@import './base/mixins/utils.scss/';
-@import './base/mixins/mixins.scss/';
+@include b({{__py_component_class_name__}}) {
+
+}
 
