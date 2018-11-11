@@ -1,49 +1,49 @@
 @charset "UTF-8";
 
-$prefixCls: 'py-cascader';
-$--cascader-menu-item-hover-bg: #f5f7fa;
-
 /* cascader
 --------------------*/
-.#{$prefixCls} {
+@include b(cascader) {
   display: inline-block;
   position: relative;
   min-width: 222px;
 
-  &.#{$prefixCls}--mini {
+  @include m(mini) {
     min-width: 193px;
-    .#{$prefixCls}__input-box {
+
+    @include e(input-box) {
       font-size: 12px;
       line-height: 28px;
       height: 28px;
     }
   }
 
-  &.#{$prefixCls}--small {
+  @include m(small) {
     min-width: 215px;
-    .#{$prefixCls}__input-box {
+
+    @include e(input-box) {
       font-size: $--font-size-small;
       line-height: 32px;
       height: 32px;
     }
   }
-  &.#{$prefixCls}--medium {
+
+  @include m(medium) {
     min-width: 217px;
-    .#{$prefixCls}__input-box {
+    @include e(input-box) {
       font-size: $--font-size-base;
       line-height: 36px;
       height: 36px;
     }
   }
 
-  &__input-box {
+  @include e(input-box) {
     height: 40px;
     line-height: 40px;
     font-size: $--font-size-base;
     position: relative;
   }
 
-  &__input {
+  @include e(input) {
     width: 100%;
     height: 100%;
     padding: 0px 30px 0px 15px;
@@ -55,15 +55,18 @@ $--cascader-menu-item-hover-bg: #f5f7fa;
     text-overflow: ellipsis;
 
     cursor: pointer;
-    &--unfocus {
+
+    @include m(unfocus) {
       border-color: $--border-color-base;
       background: $--color-bg-primary;
     }
-    &--focus {
+
+    @include m(focus) {
       border-color: $--color-primary;
       background: $--color-bg-primary;
     }
-    &--disabled {
+
+    @include m(disabled) {
       border-color: $--border-color-base;
       color: $--color-disabled-base;
       background: $--color-disabled-base;
@@ -71,7 +74,7 @@ $--cascader-menu-item-hover-bg: #f5f7fa;
     }
   }
 
-  &__input-icon {
+  @include e(input-icon) {
     position: absolute;
     height: 100%;
     right: 0px;
@@ -97,28 +100,9 @@ $--cascader-menu-item-hover-bg: #f5f7fa;
         transform: rotate(-180deg);
       }
     }
-
-    // .py-icon-close-circle-fill{
-
-    // }
-    // .py-icon {
-    //   padding: 0px 8px;
-    //   font-size: 14px;
-    //   height: 100%;
-    //   line-height: 40px;
-    // }
-    // .icon-return {
-    //   transition: transform 0.3s;
-    //   &--down {
-    //     transform: rotate(-90deg);
-    //   }
-    //   &--up {
-    //     transform: rotate(90deg);
-    //   }
-    // }
   }
 
-  &__menu {
+  @include e(menu) {
     position: absolute;
     top: 50px;
     left: 0px;
@@ -134,7 +118,7 @@ $--cascader-menu-item-hover-bg: #f5f7fa;
 
 /* cascader-menu
 --------------------*/
-.#{$prefixCls}-menu {
+@include b(cascader-menu) {
   padding: 6px 0px;
   max-height: 204px;
   border: 1px solid $--border-color-base;
@@ -144,7 +128,7 @@ $--cascader-menu-item-hover-bg: #f5f7fa;
 
 /* cascader-menu-item
 --------------------*/
-.#{$prefixCls}-menu-item {
+@include b(cascader-menu-item) {
   min-width: 160px;
   padding: 8px 20px;
   position: relative;
@@ -158,21 +142,20 @@ $--cascader-menu-item-hover-bg: #f5f7fa;
   font-size: $--font-size-base;
 
   &:hover {
-    background-color: $--cascader-menu-item-hover-bg;
+    background-color: #f5f7fa;
   }
 
-  &.#{$prefixCls}-menu-item--disable {
+  @include m(disable) {
     color: $--color-text-tertiary;
     background-color: #fff;
     cursor: not-allowed;
   }
 
-  &.#{$prefixCls}-menu-item--active {
+  @include m(active) {
     color: $--color-primary;
   }
 
   .py-icon-right {
-    // transform: rotate(-180deg);
     float: right;
     color: $--color-text-placeholder;
   }
