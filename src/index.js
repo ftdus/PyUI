@@ -2,7 +2,9 @@ import Alert from './components/alert/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
+import Cascader from './components/cascader/index';
 import Col from './components/col/index';
+import ColorPicker from './components/color-picker/index';
 import Content from './components/content/index';
 import Divider from './components/divider/index';
 import Footer from './components/footer/index';
@@ -14,6 +16,7 @@ import LoadingBar from './components/loading-bar/index';
 import Menu from './components/menu/index';
 import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
+import Message from './components/message/index';
 import Notification from './components/notification/index';
 import Rate from './components/rate/index';
 import Row from './components/row/index';
@@ -22,14 +25,16 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
-import ColorPicker from './components/color-picker/index';
+import Select from './components/select/index';
 
 const components = [
   Alert,
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
+  ColorPicker,
   Content,
   Divider,
   Footer,
@@ -47,7 +52,7 @@ const components = [
   Switch,
   TabPane,
   Upload,
-  ColorPicker,
+  Select,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -57,6 +62,7 @@ const install = function(Vue) {
   });
 
   vue.prototype.$loading = LoadingBar;
+  vue.prototype.$message = Message;
   vue.prototype.$notify = Notification;
 
   // istanbul ignore if
@@ -72,7 +78,9 @@ export default {
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
+  ColorPicker,
   Content,
   Divider,
   Footer,
@@ -84,6 +92,7 @@ export default {
   Menu,
   MenuGroup,
   MenuItem,
+  Message,
   Notification,
   Rate,
   Row,
@@ -92,5 +101,5 @@ export default {
   Switch,
   TabPane,
   Upload,
-  ColorPicker,
+  Select,
 };

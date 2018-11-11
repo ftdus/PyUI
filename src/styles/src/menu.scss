@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
+@import './base/mixins/config.scss';
+@import './base/common/themes.scss';
+@import './base/mixins/utils.scss';
+@import './base/mixins/mixins.scss';
+
 $prefixCls: 'py-menu';
 // $menu-dropdown-item-prefix-cls: .#{$prefixCls}-horizontal .#{$prefixCls}-submenu .#{$prefixCls}-item;
 $zindex-select: 900;

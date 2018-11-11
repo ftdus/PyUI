@@ -21,7 +21,8 @@ module.exports = {
     if (isMain) {
       return webpackMain;
     }
-    return {};
+    return {
+    };
   },
   chainWebpack: config => {
     if (isMain) {
@@ -40,16 +41,6 @@ module.exports = {
     //   args[0]['process.env']['BASE_URL'] = '"py"';
     //   return args;
     // });
-  },
-  pluginOptions: {
-    'style-resources-loader': {
-      patterns: [
-        path.resolve(__dirname, './src/styles/base/common/themes.scss'),
-        path.resolve(__dirname, './src/styles/base/mixins/mixins.scss'),
-        path.resolve(__dirname, './src/styles/base/mixins/utils.scss'),
-      ],
-      preProcessor: 'scss',
-    },
   },
   outputDir: isMain
     ? path.resolve(process.cwd(), './website/dist/')

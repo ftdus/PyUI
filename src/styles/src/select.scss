@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
+@import './base/mixins/config.scss';
+@import './base/common/themes.scss';
+@import './base/mixins/utils.scss';
+@import './base/mixins/mixins.scss';
+
 $prefixCls: 'py-select';
 
 .slide-up-enter-active {
@@ -14,6 +20,7 @@ $prefixCls: 'py-select';
 }
 .#{$prefixCls} {
   width: 260px;
+  display: inline-block;
   .#{$prefixCls}__input {
     display: flex;
     position: relative;
@@ -141,7 +148,7 @@ $prefixCls: 'py-select';
         left: 0;
         top: 0;
         visibility: hidden;
-        width: calc(100% - 30px);
+        min-width: 1em;
       }
       .input-placeholder {
         position: absolute;

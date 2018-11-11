@@ -1,12 +1,21 @@
 <template>
   <div class="page">
-    <h2>分组</h2>
+    <!-- <h2>分组</h2>
     <p>可分组</p>
     <section>
       <py-select
         v-model="value"
         :data="groupOptions"></py-select>
     </section>
+
+    <h2>分组,且多选</h2>
+    <p>可分组</p>
+    <section>
+      <py-select
+        v-model="multipleValue"
+        :multiple="true"
+        :data="groupOptions"></py-select>
+    </section> -->
 
     <h2>选择器不可用状态</h2>
     <p>为py-select设置disabled属性，则整个选择器不可用</p>
@@ -157,11 +166,11 @@ export default {
         {
           value: '选项1',
           label: '黄金糕',
+          disabled: true,
         },
         {
           value: '选项2',
           label: '双皮奶',
-          disabled: true,
         },
         {
           value: '选项3',
@@ -175,6 +184,7 @@ export default {
         {
           value: '选项5',
           label: '北京烤鸭',
+          disabled: true,
         },
       ],
       filterData: [
@@ -200,10 +210,12 @@ export default {
             {
               value: 'Shanghai',
               label: '上海',
+              disabled: true,
             },
             {
               value: 'Beijing',
               label: '北京',
+              disabled: true,
             },
           ],
         },

@@ -56,7 +56,7 @@ export default {
     },
     setLink(path) {
       const link = path || this.currentActiveName;
-      return `#/component/${link}`;
+      return `/component/${link}`;
     },
   },
 };

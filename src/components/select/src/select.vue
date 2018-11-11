@@ -77,47 +77,19 @@
         ref="dropDown">
         <ul class="py-select__dropdown--grouplist" v-if="!loading">
           <li
-            class="py-select__dropdown--groupitem"
-            v-if="group.options"
-            v-for="(group, index) in options"
-            :key="index">
-            <div class="py-select__dropdown--grouplabel">
-              {{ group.label }}
-            </div>
-            <ul class="py-select__dropdown--list" v-if="!loading">
-              <li
-                v-show="option.show !== false"
-                v-for="(option, groupIndex) in group.options"
-                :key="groupIndex"
-                class="py-select__dropdown--item"
-                :class="{
-                  'selected': option.selected,
-                  'disabled': option.disabled || option.multipleDisabled,
-                  'actived': index === activedIndex,
-                }"
-                @click="selectDropDownItem(option, $event)">
-                {{ option.label }}
-                <i
-                  v-show="option.selected && multiple"
-                  class="py-select__selected pyui-icons py-icon-check">
-                </i>
-              </li>
-            </ul>
-          </li>
-          <li
-            v-show="group.show !== false"
+            v-show="option.show !== false"
             class="py-select__dropdown--item"
             :class="{
-              'selected': group.selected,
-              'disabled': group.disabled || group.multipleDisabled,
+              'selected': option.selected,
+              'disabled': option.disabled || option.multipleDisabled,
               'actived': index === activedIndex,
             }"
-            v-else
+            v-for="(option, index) in options"
             :key="index"
-            @click="selectDropDownItem(group, $event)">
-            {{ group.label }}
+            @click="selectDropDownItem(option, $event)">
+            {{ option.label }}
             <i
-              v-show="group.selected && multiple"
+              v-show="option.selected && multiple"
               class="py-select__selected pyui-icons py-icon-check">
             </i>
           </li>
@@ -139,7 +111,7 @@
 import Vue from 'vue';
 
 export default {
-  name: 'PySelect',
+  name: 'py-select',
   data() {
     return {
       showDropDown: false, // 下拉框显示/隐藏
@@ -292,7 +264,8 @@ export default {
     },
     queryText(val) {
       this.$nextTick(() => {
-        const width = this.$refs.multiText.clientWidth > 6 ? this.$refs.multiText.clientWidth : 6;
+        const width =
+          this.$refs.multiText.clientWidth > 6 ? this.$refs.multiText.clientWidth + 1 : 6;
         this.$refs.multiInput.style.width = `${width}px`;
         this.setPosition();
         this.setDirection();
@@ -454,7 +427,7 @@ export default {
         const item = option;
         if (index === this.activedIndex) {
           this.selectDropDownItem(option);
-          if (option.created) {
+          if (option.created && this.multiple) {
             item.show = false;
             item.selected = true;
             this.queryText = '';
