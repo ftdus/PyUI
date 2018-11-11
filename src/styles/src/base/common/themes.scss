@@ -180,3 +180,13 @@ $--footer-padding: 0 20px !default;
 /* Content
 --------------------------*/
 $--content-padding: 20px !default;
+
+/*
+  Pagination
+-------------------- */
+
+$--pagination-color: $--color-text-regular !default;
+$--pagination-color-hover: $--color-primary !default;
+$--pagination-color-active: $--color-primary !default;
+$--pagination-background-active: $--color-primary !default;
+$--pagination-background: #f4f4f5 !default;
