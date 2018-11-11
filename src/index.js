@@ -25,6 +25,7 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
+import Pagination from './components/pagination/index';
 
 const components = [
   Alert,
@@ -51,6 +52,7 @@ const components = [
   Switch,
   TabPane,
   Upload,
+  Pagination,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -99,4 +101,5 @@ export default {
   Switch,
   TabPane,
   Upload,
+  Pagination,
 };
