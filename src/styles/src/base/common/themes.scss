@@ -169,7 +169,6 @@ $--card-border-color: $--border-color-base !default;
 $--card-border-radius: $--border-radius-base !default;
 $--card-padding: 20px !default;
 
-
 /* Upload
 --------------------------*/
 $--upload-font-size-small: $--font-size-small !default;
@@ -200,3 +199,22 @@ $--pagination-color-active: $--color-primary !default;
 $--pagination-background-active: $--color-primary !default;
 $--pagination-background: #f4f4f5 !default;
 
+/*
+  Message
+-------------------- */
+$--message-min-width: 380px;
+$--message-border-color: $--color-line-secondary;
+$--message-background-color: #edf2fc;
+$--message-info-background-color: #edf2fc;
+$--message-info-border-color: $--color-line-secondary;
+$--message-info-color: $--color-text-secondary;
+$--message-warning-background-color: #fdf6ec;
+$--message-warning-border-color: #faecd8;
+$--message-warning-color: $--color-warning;
+$--message-error-background-color: #fef0f0;
+$--message-error-border-color: #fde2e2;
+$--message-error-color: $--color-danger;
+$--message-success-background-color: #f0f9eb;
+$--message-success-border-color: #e1f3d8;
+$--message-success-color: $--color-success;
+$--message-close-color: #c2c6ce;
