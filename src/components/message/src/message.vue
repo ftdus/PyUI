@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-fade">
+  <transition name="py-message-slide-fade">
     <div :class="[
             'py-message',
             customClass,
