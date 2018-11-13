@@ -1,0 +1,8 @@
+{
+  "linters": {
+    "website/**/*.{js,vue}": ["prettier --write", "eslint --fix", "git add"],
+    "src/**/*.{js,vue}": ["prettier --write", "eslint --fix", "git add"],
+    "src/**/*.{scss,json}": ["prettier --write", "git add"]
+  },
+  "ignore": ["scripts/templates/**"]
+}

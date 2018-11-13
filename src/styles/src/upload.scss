@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-upload';
+
+@include b(upload) {
+  position: relative;
+  @include e(item) {
+    input {
+      display: none;
+    }
+  }
+
+  @include e(drap) {
+    border: 1px dashed #606266;
+    border-radius: $--upload-radius;
+    transition: 0.3s;
+    text-align: center;
+    padding: 30px 20px;
+    &:hover {
+      border-color: $--upload-color;
+    }
+  }
+
+  @include e(drapover) {
+    border-color: $--upload-color;
+  }
+
+  @include e(list) {
+    width: 100%;
+    border-radius: $--upload-radius;
+    transition: 0.3s;
+    padding: 6px;
+    list-style: none;
+    position: relative;
+
+    &:nth-child(1) {
+      margin-top: 5px;
+    }
+
+    &:hover {
+      background: rgba(123, 180, 240, 0.1);
+    }
+
+    i {
+      font-size: $--upload-font-size;
+    }
+
+    > i {
+      font-size: $--upload-font-size-large;
+      width: 23px;
+      height: 20px;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      position: absolute;
+      right: 5px;
+      text-align: center;
+      top: 5px;
+      margin: auto;
+      line-height: 20px;
+      cursor: pointer;
+      color: $--upload-color;
+      border-radius: $--upload-radius;
+      &:hover {
+        background: $--upload-color;
+        color: #fff;
+      }
+    }
+
+    @include m(name) {
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: $--upload-font-size;
+      color: $color;
+      &:hover {
+        color: $--upload-color;
+      }
+    }
+
+    @include m(wappar) {
+      height: 3px;
+      line-height: 26px;
+      display: flex;
+      min-height: 20px;
+    }
+
+    @include m(prect) {
+      flex: 1;
+      height: 2px;
+      margin-top: 12px;
+      li {
+        width: 0%;
+        background: linear-gradient(to right, $border-color-hover, $success-color);
+        height: 100%;
+        padding: 0;
+        z-index: 2;
+        transition: 0.9s;
+      }
+    }
+
+    @include m(del) {
+      width: 45px;
+      color: $color;
+      font-size: $--upload-font-size-small;
+      text-align: center;
+    }
+  }
+
+  @include b(enter-active) {
+    transition: all 0.2s ease;
+  }
+
+  @include b(leave-active) {
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  @include b(enter leave-to) {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+}
+
+.py-upload-enter-active {
+  transition: all 0.2s ease;
+}
+
+.py-upload-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.py-upload-enter,
+.py-upload-leave-to {
+  transform: translateY(-40px);
+  opacity: 0;
+}

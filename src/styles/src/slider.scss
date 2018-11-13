@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+@include b(slider) {
+  width: 100%;
+
+  @include e(runway) {
+    height: $--slider-runway-height;
+    background-color: $--slider-runway-color;
+    border-radius: $--border-radius-base;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    @include m(process) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 6px;
+      background-color: $--slider-process-color;
+      border-radius: $--border-radius-base;
+      &.disabled {
+        background-color: #c0c4cc;
+      }
+    }
+  }
+
+  @include e(button) {
+    width: $--slider-button-width;
+    height: $--slider-button-height;
+    border-radius: 50%;
+    border: 2px solid $--slider-button-border-color;
+    user-select: none;
+    cursor: pointer;
+
+    @include e(button-wrap) {
+      width: $--slider-button-width;
+      height: $--slider-button-height;
+      background-color: rgba(255, 255, 255, 1);
+    }
+    &.hover,
+    &:hover:not(.disabled) {
+      transform: scale(1.2);
+      transition: 0.3s;
+    }
+    &.disabled {
+      border-color: #c0c4cc;
+      cursor: not-allowed;
+    }
+  }
+
+  @include e(stop) {
+    position: absolute;
+    width: 6px;
+    height: $--slider-runway-height;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  @include e(stops-wrap) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}

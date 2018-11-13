@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+$start: 1;
+$end: 25;
+$count: 100%/24;
+$name: 'span';
+
+@include b(col) {
+  position: relative;
+  float: left;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+@for $s from $start to $end {
+  @include e(span) {
+    @include m($s) {
+      width: $count * $s;
+    }
+  }
+  @include e(offset) {
+    @include m($s) {
+      margin-left: $count * $s;
+    }
+  }
+  @media (max-width: 767px) {
+    @include e(span) {
+      @include m(xs-#{$s}) {
+        display: block;
+        width: $count * $s;
+      }
+    }
+    @include e(xs) {
+      @include m(offset-#{$s}) {
+        margin-left: $count * $s;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    @include e(span) {
+      @include m(sm-#{$s}) {
+        display: block;
+        width: $count * $s;
+      }
+    }
+    @include e(sm) {
+      @include m(offset-#{$s}) {
+        margin-left: $count * $s;
+      }
+    }
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    @include e(span) {
+      @include m(md-#{$s}) {
+        display: block;
+        width: $count * $s;
+      }
+    }
+    @include e(md) {
+      @include m(offset-#{$s}) {
+        margin-left: $count * $s;
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    @include e(span) {
+      @include m(lg-#{$s}) {
+        display: block;
+        width: $count * $s;
+      }
+    }
+    @include e(lg) {
+      @include m(offset-#{$s}) {
+        margin-left: $count * $s;
+      }
+    }
+  }
+  @include e(offset) {
+    @include m($s) {
+      margin-left: $count * $s;
+    }
+  }
+  @include e(push) {
+    @include m($s) {
+      left: $count * $s;
+    }
+  }
+  @include e(pull) {
+    @include m($s) {
+      right: $count * $s;
+    }
+  }
+}

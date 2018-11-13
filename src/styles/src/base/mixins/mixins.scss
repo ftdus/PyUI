@@ -1,0 +1,64 @@
+@import 'config';
+@import 'functons';
+/* BEM
+====================
+   Block
+   @params { List } $block 块
+   @example @include b(test1 test2 test3)
+--------------------*/
+
+@mixin b($block) {
+  $B: $namespace + '-' + $block !global;
+  .#{$B} {
+    @content;
+  }
+}
+
+/* Element
+   @params { List } $element 元素名
+   @example @include e(test1 test2 test3)
+--------------------*/
+
+@mixin e($element) {
+  $selector: &;
+  $currentSelector: '';
+
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + '.' + $B + $element-separator + $unit + ','};
+  }
+
+  @if hitAllSpecialNestRule($selector) {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+/* Modifier
+   @params { List } $modifier 修饰符
+   @example @include e(active hover link)
+--------------------*/
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}

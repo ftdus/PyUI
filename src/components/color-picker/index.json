@@ -1,0 +1,10 @@
+{
+  "dev": false,
+  "prototype": false,
+  "map": [
+    {
+      "key": "$${moduleName}",
+      "value": "${moduleName}"
+    }
+  ]
+}

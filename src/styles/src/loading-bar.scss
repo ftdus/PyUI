@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-loading-bar';
+
+.#{$prefixCls} {
+  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transition: 0.3s;
+  z-index: 9999;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    width: 50px;
+    animation: 1s aniRight infinite linear;
+  }
+  &--primary {
+    background: $--color-primary;
+  }
+  &--success {
+    background: $--color-success;
+  }
+  &--error {
+    background: $--color-danger;
+  }
+}
+@keyframes aniRight {
+  1% {
+    left: 0;
+  }
+  100% {
+    left: 100vw;
+  }
+}

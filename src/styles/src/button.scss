@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-button';
+$padding: 6px 15px;
+$font-size-default: 14px;
+$font-size-small: 12px;
+
+@mixin btnType($color: $color, $bgColor: $bgColor) {
+  color: $color;
+  background-color: $bgColor;
+  border-color: $bgColor;
+}
+.#{$prefixCls} {
+  padding: 5px 15px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  font-size: $font-size-default;
+  text-align: center;
+  line-height: 1.5;
+  color: $color;
+  background-color: #fff;
+  transition: 0.1s;
+  span {
+    margin-left: 4px;
+  }
+  &:hover {
+    color: $color-hover;
+    border-color: $border-color-hover;
+    cursor: pointer;
+  }
+  &:active {
+    color: $color-active;
+    border-color: $border-color-active;
+  }
+  &[disabled],
+  &[disabled]:hover {
+    cursor: not-allowed;
+    background-color: #f7f7f7;
+    color: #c5c8ce;
+    border-color: #dcdee2;
+  }
+  &#{$modifier-separator}large {
+    padding: 6px 15px;
+    font-size: $font-size-default;
+  }
+  &#{$modifier-separator}small {
+    padding: 1px 7px 2px;
+    font-size: $font-size-small;
+  }
+  &#{$modifier-separator}primary {
+    @include btnType(#fff, $primary-color);
+    &:hover {
+      @include btnType(#fff, lighten($primary-color, 10%));
+    }
+  }
+  &#{$modifier-separator}dashed {
+    border: 1px dashed $border-color;
+  }
+  &#{$modifier-separator}text {
+    border: none;
+    background-color: transparent;
+    &:hover {
+      background-color: #fff;
+    }
+    &[disabled],
+    &[disabled]:hover {
+      background-color: transparent;
+    }
+  }
+  &#{$modifier-separator}info {
+    @include btnType(#fff, $info-color);
+    &:hover,
+    &:active {
+      @include btnType(#fff, lighten($info-color, 10%));
+    }
+  }
+  &#{$modifier-separator}success {
+    @include btnType(#fff, $success-color);
+    &:hover,
+    &:active {
+      @include btnType(#fff, lighten($success-color, 10%));
+    }
+  }
+  &#{$modifier-separator}warning {
+    @include btnType(#fff, $warning-color);
+    &:hover,
+    &:active {
+      @include btnType(#fff, lighten($warning-color, 10%));
+    }
+  }
+  &#{$modifier-separator}error {
+    @include btnType(#fff, $error-color);
+    &:hover,
+    &:active {
+      @include btnType(#fff, lighten($error-color, 10%));
+    }
+  }
+  &#{$modifier-separator}circle {
+    border-radius: 32px;
+  }
+  &#{$modifier-separator}long {
+    width: 100%;
+  }
+  &#{$modifier-separator}loading {
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+.py-icon {
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  line-height: 1;
+  font-size: 14px;
+  &#{$modifier-separator}only {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    padding: 0;
+    font-size: 16px;
+  }
+  &#{$modifier-separator}loading {
+    animation: rotating 2s linear infinite;
+  }
+  @keyframes rotating {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  &#{$modifier-separator}right {
+    span {
+      float: left;
+      margin-right: 4px;
+      margin-left: 0;
+    }
+  }
+}

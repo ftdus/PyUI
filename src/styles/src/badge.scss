@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-badge';
+
+.#{$prefixCls} {
+  position: relative;
+  display: inline-block;
+
+  &__dot {
+    border: 1px solid #fff;
+    white-space: nowrap;
+    font-size: 12px;
+    height: 20px;
+    text-align: center;
+    display: inline-block;
+    padding: 0 7px;
+    line-height: 20px;
+    color: #fff;
+    border-radius: 10px;
+    &--fixed {
+      position: absolute;
+      transform: translateY(-50%) translateX(100%);
+      top: 0;
+      right: 12px;
+    }
+    &--default {
+      background-color: #f56c6c;
+    }
+    &--success {
+      background-color: $success-color;
+    }
+
+    &--info {
+      background-color: $info-color;
+    }
+    &--warning {
+      background-color: $warning-color;
+    }
+    &--error {
+      background-color: $error-color;
+    }
+    &--primary {
+      background-color: $primary-color;
+    }
+  }
+  &__count {
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    right: 5px;
+    padding: 0;
+    border-radius: 50%;
+  }
+}

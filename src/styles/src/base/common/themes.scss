@@ -1,0 +1,220 @@
+/* 统一配置 */
+// 普通
+// medium中等
+// small小的
+// mini超小
+
+$height: 34px;
+$medium-height: 34px;
+$small-height: 34px;
+$mini-height: 34px;
+
+//  字体大小
+$font-size: 16px;
+$medium-font-size: 34px;
+$small-font-size: 34px;
+$mini-font-size: 34px;
+
+// 字体颜色 、阴影颜色
+$color: #606266;
+$color-hover: #409eff;
+$color-active: #3a8ee6;
+$color-box-shadow: '#ccc';
+
+// 边框颜色 、阴影颜色
+$border-color: #dcdfe6;
+$border-color-hover: #409eff;
+$border-color-active: #3a8ee6;
+$border-box-shadow: '#ccc';
+
+// 背景颜色 、阴影颜色
+$bg-color: #fff;
+$bg-color-hover: #fff;
+$bg-color-active: #fff;
+$bg-box-shadow: '#ccc';
+
+// 错误字体、背景、边框、阴影颜色
+$error-color: red;
+
+// 圆角
+$border-radius: 4px;
+
+// 字体大小
+$font-size: 16px;
+/* button-按钮 */
+
+// 默认字体的padding
+$padding: 0.5em 1em 0.46em;
+
+$primary-color: #2d8cf0;
+$info-color: #2db7f5;
+$success-color: #19be6b;
+$warning-color: #ff9900;
+$error-color: #ed3f14;
+
+/* 命名
+====================
+*
+* Size
+--------------------
+* large
+* medium
+* base
+* small
+* mini
+*
+* Color-text
+--------------------
+* primary
+* regular
+* secondary
+* tertiary
+*
+* Color-depth
+--------------------
+* deeper
+* deep
+* base
+* light
+* lighter
+*
+* State
+--------------------
+* normal
+* hover
+* active
+* success
+* error
+* danger
+& disabled
+*/
+
+/* Base
+====================
+   Colors
+-------------------- */
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+
+$--color-primary: #ff9800 !default;
+$--color-success: #3ac2b7 !default;
+$--color-warning: #e68d3c !default;
+$--color-danger: #e85757 !default;
+
+$--color-text-primary: #303133 !default;
+$--color-text-regular: #606266 !default;
+$--color-text-secondary: #909399 !default;
+$--color-text-tertiary: #c0c4cc !default;
+$--color-text-placeholder: #909399;
+
+$--color-line-primary: #dcdfe6 !default;
+$--color-line-regular: #e4e7ed !default;
+$--color-line-secondary: #ebeef5 !default;
+$--color-line-tertiary: #f2f6fc !default;
+
+$--color-bg-primary: #f0f2f5 !default;
+$--color-bg-regular: #f5f7fa !default;
+
+$--color-disabled-base: #f5f7fa !default;
+
+/* Fonts
+-------------------- */
+$--font-size-base: 14px !default;
+$--font-size-small: 13px !default;
+$--font-size-large: 18px !default;
+$--font-weight-primary: 500 !default;
+
+/* Border
+-------------------- */
+$--border-width-base: 1px !default;
+$--border-style-base: solid !default;
+$--border-color-base: $--color-line-primary !default;
+$--border-color-hover: #c0c4cc !default;
+$--border-color-hover: $--color-text-placeholder !default;
+$--border-base: $--border-width-base $--border-style-base $--border-color-base !default;
+$--border-radius-base: 4px !default;
+$--border-radius-small: 2px !default;
+$--border-radius-circle: 100% !default;
+
+/* Components
+====================
+   Input
+-------------------- */
+$--input-font-size: $--font-size-base !default;
+$--input-color: $--color-text-primary !default;
+$--input-bg-color-disabled: $--color-disabled-base !default;
+$--input-placeholder-color: $--color-text-secondary !default;
+$--input-font-weight: $--font-weight-primary !default;
+$--input-border: $--border-base !default;
+$--input-border-color-active: $--color-primary !default;
+$--input-border-color-hover: $--border-color-hover !default;
+$--input-border-color-success: $--color-success !default;
+$--input-border-color-danger: $--color-danger !default;
+
+/*
+   Slider
+-------------------- */
+
+$--slider-font-size: $--font-size-base !default;
+$--slider-runway-color: $--color-line-primary !default;
+$--slider-runway-height: 5px !default;
+$--slider-button-border-color: $--color-primary !default;
+$--slider-button-width: 18px !default;
+$--slider-button-height: 18px !default;
+$--slider-process-color: $--color-primary !default;
+
+/* Card
+--------------------------*/
+$--card-border-color: $--border-color-base !default;
+$--card-border-radius: $--border-radius-base !default;
+$--card-padding: 20px !default;
+
+/* Upload
+--------------------------*/
+$--upload-font-size-small: $--font-size-small !default;
+$--upload-font-size: $--font-size-base !default;
+$--upload-font-size-large: $--font-size-large !default;
+$--upload-color: $--color-primary !default;
+$--upload-radius: $border-radius !default;
+
+/* Header
+  --------------------------*/
+$--header-padding: 0 20px !default;
+
+/* Footer
+--------------------------*/
+$--footer-padding: 0 20px !default;
+
+/* Content
+--------------------------*/
+$--content-padding: 20px !default;
+
+/*
+  Pagination
+-------------------- */
+
+$--pagination-color: $--color-text-regular !default;
+$--pagination-color-hover: $--color-primary !default;
+$--pagination-color-active: $--color-primary !default;
+$--pagination-background-active: $--color-primary !default;
+$--pagination-background: #f4f4f5 !default;
+
+/*
+  Message
+-------------------- */
+$--message-min-width: 380px;
+$--message-border-color: $--color-line-secondary;
+$--message-background-color: #edf2fc;
+$--message-info-background-color: #edf2fc;
+$--message-info-border-color: $--color-line-secondary;
+$--message-info-color: $--color-text-secondary;
+$--message-warning-background-color: #fdf6ec;
+$--message-warning-border-color: #faecd8;
+$--message-warning-color: $--color-warning;
+$--message-error-background-color: #fef0f0;
+$--message-error-border-color: #fde2e2;
+$--message-error-color: $--color-danger;
+$--message-success-background-color: #f0f9eb;
+$--message-success-border-color: #e1f3d8;
+$--message-success-color: $--color-success;
+$--message-close-color: #c2c6ce;
