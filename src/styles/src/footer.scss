@@ -1,14 +1,6 @@
 @charset "UTF-8";
 
-@import './base/mixins/config.scss';
-@import './base/common/themes.scss';
-@import './base/mixins/utils.scss';
-@import './base/mixins/mixins.scss';
-
-$prefixCls: 'py-footer';
-$--footer-padding: 0 20px !default;
-
-.#{$prefixCls} {
+@include b(footer) {
   padding: $--footer-padding;
   box-sizing: border-box;
   flex-shrink: 0;

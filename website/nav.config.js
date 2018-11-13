@@ -21,6 +21,10 @@ const navData = [
             name: 'Button 按钮',
             path: 'button',
           },
+          {
+            name: 'Grid 栅格',
+            path: 'grid',
+          },
         ],
       },
       {
@@ -41,6 +45,10 @@ const navData = [
           {
             name: 'ColorPicker 颜色选择器',
             path: 'colorPicker',
+          },
+          {
+            name: 'Upload 文件上传',
+            path: 'upload',
           },
         ],
       },

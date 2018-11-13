@@ -1,22 +1,6 @@
 @charset "UTF-8";
 
-@import './base/mixins/config.scss';
-@import './base/common/themes.scss';
-@import './base/mixins/utils.scss';
-@import './base/mixins/mixins.scss';
-
-$prefixCls: 'py-layout';
-$state-prefix: 'is-';
-
-@mixin when($state) {
-  @at-root {
-    &.#{$state-prefix + $state} {
-      @content;
-    }
-  }
-}
-
-.#{$prefixCls} {
+@include b(layout) {
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -24,7 +8,9 @@ $state-prefix: 'is-';
   box-sizing: border-box;
   min-width: 0;
 
-  @include when(vertical) {
-    flex-direction: column;
+  @at-root {
+    &.#{$state-prefix + vertical} {
+      flex-direction: column;
+    }
   }
 }

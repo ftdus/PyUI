@@ -1,23 +1,22 @@
 <template>
   <div class="py-upload">
-    <div class="py-upload__item"
+    <div
+      class="py-upload__item"
       :class="drapClass"
       @click.stop="inputClick"
-      @dragover.prevent="drapFile = true"
-      @dragleave.prevent="drapFile = false"
-      @drop.prevent="onDrop">
-      <input
-        type="file"
-        ref="input"
-        :multiple="multiple"
-        :accept="accept"
-        @change="fileChange">
-        <slot></slot>
+      @dragover.prevent="drapFile = true;"
+      @dragleave.prevent="drapFile = false;"
+      @drop.prevent="onDrop"
+    >
+      <input type="file" ref="input" :multiple="multiple" :accept="accept" @change="fileChange" />
+      <slot></slot>
     </div>
-    <uploadList @on-remove="onRemove"
-      @onItem="onItem"
+    <uploadList
+      @on-remove="onRemove"
+      :onClickItem="onClickItem"
       :on-before-remove="onbeforeRemove"
-      :files="fileList"/>
+      :files="fileList"
+    />
   </div>
 </template>
 
@@ -56,6 +55,8 @@ export default {
             return Item;
           });
           this.fileList = this.value;
+        } else {
+          this.fileList = [];
         }
       },
     },
@@ -77,10 +78,6 @@ export default {
       this.dragOver = false;
       this.fileChange(e.dataTransfer.files);
     },
-    // 点击列表中的文件
-    onItem(index, item) {
-      this.$emit('on-item', index, item, this.fileList);
-    },
     // 删除fileList文件
     onRemove(item, index) {
       this.fileList.splice(index, 1);
@@ -92,6 +89,7 @@ export default {
       if (!Files) {
         return false;
       }
+      this.drapFile = false;
       for (let i = 0; i < Files.length; i += 1) {
         const File = {
           status: 'status',
@@ -109,8 +107,10 @@ export default {
     },
     // 选择上传的文件
     fileSelect(file, fileList) {
-      this.fileFormat(file, fileList);
-      this.$emit('before-select', file, fileList);
+      if (this.beforeSelect(file, fileList) === false) {
+        return false;
+      }
+      return this.fileFormat(file, fileList);
     },
     // 验证文件后缀格式
     fileFormat(file, fileList) {
@@ -119,9 +119,9 @@ export default {
         return false;
       }
       const name = file.name ? file.name.split('.') : [];
-      const fileType = name[name.length];
+      const fileType = name[name.length - 1];
       if (this.format.indexOf(fileType) === -1) {
-        this.$emit('on-format-err', file, fileList);
+        this.onFormatErr(file, fileList);
         return false;
       }
       return this.fileMaxSize(this.format, file, fileList);
@@ -130,7 +130,7 @@ export default {
     fileMaxSize(file, fileList) {
       if (this.maxSize !== undefined) {
         if (file.size > this.maxSize * 1024) {
-          this.$emit('on-size-err', this.maxSize, file, fileList);
+          this.onSizeErr(file, fileList);
           return false;
         }
       }
@@ -141,12 +141,31 @@ export default {
       if (!this.onBeforeUpload) {
         return this.fileStart(file);
       }
+      const beforeFn = this.onBeforeUpload(file);
+      if (beforeFn && beforeFn.then) {
+        beforeFn.then(
+          processedFile => {
+            if (Object.prototype.toString.call(processedFile) === '[object File]') {
+              this.fileStart(processedFile, fileList);
+            } else {
+              this.fileStart(file, fileList);
+            }
+          },
+          err => {
+            this.handleError(err, file);
+          },
+        );
+      } else if (beforeFn !== false) {
+        this.fileStart(file, fileList);
+      } else {
+        this.handleError('', file);
+      }
       return this.fileStart(file, fileList);
     },
     // 开始上传文件
     fileStart(file, fileList) {
       if (!this.action) {
-        this.$emit('on-error', '上传地址必填!', file, fileList);
+        this.onError('上传地址必填', file, fileList);
         return false;
       }
       const File = this.getFile(file);
@@ -186,7 +205,7 @@ export default {
     handleProgress(e, file) {
       const File = file;
       File.status = 'progress';
-      File.percentage = parseInt(e.percent, 10) || 0;
+      File.percentage = parseInt(e.percent, 10) || 1;
       this.onProgress(e, File, this.fileList);
     },
     // 上传成功回调response
@@ -199,7 +218,6 @@ export default {
       setTimeout(() => {
         File.showProgress = false;
       }, 1000);
-      this.$emit('on-success', res, File);
     },
     // 上传失败
     handleError(err, file) {
@@ -207,13 +225,24 @@ export default {
       File.status = 'fail';
       File.percentage = 100;
       this.onError(err, File, this.fileList);
-      this.$emit('on-error', err, File);
     },
   },
   props: {
     accept: [String],
     maxSize: [Number],
     action: [String],
+    beforeSelect: {
+      type: Function,
+      default: () => {},
+    },
+    onSizeErr: {
+      type: Function,
+      default: () => {},
+    },
+    onFormatErr: {
+      type: Function,
+      default: () => {},
+    },
     onProgress: {
       type: Function,
       default: () => {},
@@ -232,13 +261,20 @@ export default {
     },
     type: {
       type: String,
-      default: 'file',
+      default: 'select',
     },
     onbeforeRemove: {
       type: Function,
       default: () => {},
     },
-    onBeforeUpload: Function,
+    onClickItem: {
+      type: Function,
+      default: () => {},
+    },
+    onBeforeUpload: {
+      type: Function,
+      default: () => {},
+    },
     data: [Object],
     format: {
       type: Array,

@@ -1,77 +1,72 @@
 @charset "UTF-8";
 
-// 组件class前缀
-$prefixCls: 'py-message';
-$element-separator: '__';
-$modifier-separator: '--';
-
-.#{$prefixCls} {
-  min-width: 380px;
+@include b(message) {
+  min-width: $--message-min-width;
   box-sizing: border-box;
   border-width: 1px;
   border-style: solid;
-  border-color: #ebeef5;
+  border-color: $--message-border-color;
   position: fixed;
   left: 50%;
   top: 20px;
   z-index: 2000;
   transform: translateX(-50%);
-  background-color: #edf2fc;
+  background-color: $--message-background-color;
   transition: opacity 0.3s, -webkit-transform 0.4s;
   transition: opacity 0.3s, transform 0.4s;
   transition: opacity 0.3s, transform 0.4s, -webkit-transform 0.4s;
   padding: 15px 15px 15px 20px;
   display: flex;
   align-items: center;
-  &#{$element-separator}icon {
-    margin-right: 10px;
-  }
-  &#{$element-separator}content {
+  @include e(content) {
     line-height: 1.3;
     padding-right: 16px;
   }
-  &#{$modifier-separator}info {
-    background-color: #edf2fc;
-    border-color: #ebeef5;
-    color: #909399;
+  @include m(info) {
+    background-color: $--message-info-background-color;
+    border-color: $--message-info-border-color;
+    color: $--message-info-color;
   }
-  &#{$modifier-separator}warning {
-    background-color: #fdf6ec;
-    border-color: #faecd8;
-    color: #e6a23c;
+  @include m(warning) {
+    background-color: $--message-warning-background-color;
+    border-color: $--message-warning-border-color;
+    color: $--message-warning-color;
   }
-  &#{$modifier-separator}error {
-    background-color: #fef0f0;
-    border-color: #fde2e2;
-    color: #f56c6c;
+  @include m(error) {
+    background-color: $--message-error-background-color;
+    border-color: $--message-error-border-color;
+    color: $--message-error-color;
   }
-  &#{$modifier-separator}success {
-    background-color: #f0f9eb;
-    border-color: #e1f3d8;
-    color: #67c23a;
+  @include m(success) {
+    background-color: $--message-success-background-color;
+    border-color: $--message-success-border-color;
+    color: $--message-success-color;
   }
-  &#{$element-separator}close {
+  @include e(icon) {
+    margin-right: 10px;
+  }
+  @include e(close) {
     position: absolute;
     right: 15px;
-    color: #c2c6ce;
+    color: $--message-close-color;
     cursor: pointer;
   }
-  &.is-center {
+  &.#{$state-prefix}center {
     justify-content: center;
   }
 }
 
-.slide-fade-enter-active {
+.py-message-slide-fade-enter-active {
   transition: all 0.3s ease;
 }
-.slide-fade-leave-active {
+.py-message-slide-fade-leave-active {
   transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter-to .slide-fade-leave {
+.py-message-slide-fade-enter-to .py-message-slide-fade-leave {
   top: -50px;
 }
-.slide-fade-enter,
-.slide-fade-leave-to {
+.py-message-slide-fade-enter,
+.py-message-slide-fade-leave-to {
   top: -50px;
   opacity: 0;
 }
