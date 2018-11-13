@@ -35,12 +35,20 @@ const navData = [
             path: 'input',
           },
           {
+            name: 'Select 选择器',
+            path: 'select',
+          },
+          {
             name: 'Cascader 级联选择器',
             path: 'cascader',
           },
           {
             name: 'ColorPicker 颜色选择器',
             path: 'colorPicker',
+          },
+          {
+            name: 'Upload 文件上传',
+            path: 'upload',
           },
         ],
       },

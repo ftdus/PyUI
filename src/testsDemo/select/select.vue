@@ -1,11 +1,29 @@
 <template>
   <div class="page">
+    <!-- <h2>分组</h2>
+    <p>可分组</p>
+    <section>
+      <py-select
+        v-model="value"
+        :data="groupOptions"></py-select>
+    </section>
+
+    <h2>分组,且多选</h2>
+    <p>可分组</p>
+    <section>
+      <py-select
+        v-model="multipleValue"
+        :multiple="true"
+        :data="groupOptions"></py-select>
+    </section> -->
+
     <h2>选择器不可用状态</h2>
     <p>为py-select设置disabled属性，则整个选择器不可用</p>
     <section>
       <py-select
         v-model="value"
         disabled
+        :popper-append-to-body="false"
         :data="selectData"></py-select>
     </section>
 
@@ -16,6 +34,7 @@
         v-model="value"
         @change="change"
         @blur="blur"
+        :popper-append-to-body="false"
         @visible-change="visibleChange"
         :data="selectData"></py-select>
     </section>
@@ -147,11 +166,11 @@ export default {
         {
           value: '选项1',
           label: '黄金糕',
+          disabled: true,
         },
         {
           value: '选项2',
           label: '双皮奶',
-          disabled: true,
         },
         {
           value: '选项3',
@@ -165,6 +184,7 @@ export default {
         {
           value: '选项5',
           label: '北京烤鸭',
+          disabled: true,
         },
       ],
       filterData: [
@@ -182,6 +202,45 @@ export default {
         { value: 12, label: 'Ohio' },
         { value: 13, label: 'Oklahoma' },
         { value: 14, label: 'Nebraska' },
+      ],
+      groupOptions: [
+        {
+          label: '热门城市',
+          options: [
+            {
+              value: 'Shanghai',
+              label: '上海',
+              disabled: true,
+            },
+            {
+              value: 'Beijing',
+              label: '北京',
+              disabled: true,
+            },
+          ],
+        },
+        {
+          label: '城市名',
+          options: [
+            {
+              value: 'Chengdu',
+              label: '成都',
+              disabled: true,
+            },
+            {
+              value: 'Shenzhen',
+              label: '深圳',
+            },
+            {
+              value: 'Guangzhou',
+              label: '广州',
+            },
+            {
+              value: 'Dalian',
+              label: '大连',
+            },
+          ],
+        },
       ],
       remoteData: [],
       remoteLoading: false,

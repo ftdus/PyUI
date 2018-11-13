@@ -1,13 +1,10 @@
 @charset "UTF-8";
 
-$prefixCls: 'py-content';
-$--main-padding: 20px !default;
-
-.#{$prefixCls} {
+@include b(content) {
   display: block;
   flex: 1;
   flex-basis: auto;
   overflow: auto;
   box-sizing: border-box;
-  padding: $--main-padding;
+  padding: $--content-padding;
 }
