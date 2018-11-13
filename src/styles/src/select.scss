@@ -10,18 +10,22 @@ $prefixCls: 'py-select';
 .slide-up-enter-active {
   transition: all 0.2s cubic-bezier(0.31, 0.74, 0.47, 0.87);
 }
+
 .slide-up-leave-active {
   transition: all 0.2s cubic-bezier(0.31, 0.74, 0.47, 0.87);
 }
+
 .slide-up-enter,
 .slide-up-leave-to {
   transform: scaleY(0);
   opacity: 0;
 }
-.#{$prefixCls} {
+
+@include b(select) {
   width: 260px;
   display: inline-block;
-  .#{$prefixCls}__input {
+
+  @include e(input) {
     display: flex;
     position: relative;
     border: 1px solid $border-color;
@@ -29,23 +33,27 @@ $prefixCls: 'py-select';
     cursor: pointer;
     background: $bg-color;
     transition: all 0.2s;
+
     &:hover {
       border: 1px solid $border-color-hover;
+
       .is-clearable {
-        .#{$prefixCls}__close {
+        @include e(close) {
           display: inline-block;
         }
-        .#{$prefixCls}__caret {
+
+        @include e(caret) {
           display: none;
         }
       }
     }
-    .#{$prefixCls}__suffix {
+    @include e(suffix) {
       width: 30px;
       justify-content: center;
       display: flex;
       align-items: center;
-      .#{$prefixCls}__caret {
+
+      @include e(caret) {
         display: inline-block;
         width: 12px;
         height: 12px;
@@ -53,17 +61,19 @@ $prefixCls: 'py-select';
         font-size: 12px;
         transition: all 0.2s;
         transform: rotate(180deg);
+
         &.actived {
           &.slide-up {
             transform: rotate(0deg);
           }
+
           &.slide-down {
             transform: rotate(0deg);
           }
         }
       }
 
-      .#{$prefixCls}__close {
+      @include e(close) {
         display: none;
         width: 14px;
         height: 14px;
@@ -73,11 +83,13 @@ $prefixCls: 'py-select';
         text-align: center;
         font-size: 10px;
         color: #fff;
+
         &:hover {
           background: #bbb;
         }
       }
     }
+
     .input {
       flex: 1;
       min-height: 40px;
@@ -87,8 +99,10 @@ $prefixCls: 'py-select';
       transition: all 0.2s;
       color: $color;
     }
+
     .input-single-box {
       padding: 0;
+
       .input-single {
         padding: 8px;
         display: inline-block;
@@ -99,10 +113,12 @@ $prefixCls: 'py-select';
         cursor: pointer;
       }
     }
+
     .input-multiInput {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
+
       .tag {
         display: inline-block;
         padding: 0px 5px;
@@ -113,13 +129,16 @@ $prefixCls: 'py-select';
         margin-top: 2px;
         height: 24px;
         line-height: 22px;
+
         &.deleteSelected {
           border: 1px solid $border-color;
         }
+
         span {
           vertical-align: middle;
           margin-right: 10px;
         }
+
         i {
           vertical-align: middle;
           display: inline-block;
@@ -136,13 +155,16 @@ $prefixCls: 'py-select';
           }
         }
       }
+
       .input-box {
         display: inline;
         position: relative;
+
         input {
           width: 1em;
         }
       }
+
       .input-text {
         position: absolute;
         left: 0;
@@ -150,6 +172,7 @@ $prefixCls: 'py-select';
         visibility: hidden;
         min-width: 1em;
       }
+
       .input-placeholder {
         position: absolute;
         left: 8px;
@@ -162,19 +185,24 @@ $prefixCls: 'py-select';
       }
     }
   }
+
   &.disabled {
+    .#{$prefixCls}__suffix {
+      cursor: not-allowed;
+      background: $bg-box-shadow;
+    }
+
     .#{$prefixCls}__input {
-      input:hover,
-      &:hover {
-        cursor: not-allowed;
-      }
       &:hover {
         border: 1px solid $border-color;
       }
     }
-    .#{$prefixCls}__suffix {
-      background: $bg-box-shadow;
+
+    input:hover {
+      cursor: not-allowed;
     }
+
+    .input-single,
     input {
       cursor: not-allowed;
       background: $bg-box-shadow;
@@ -182,26 +210,31 @@ $prefixCls: 'py-select';
     }
   }
 }
-.#{$prefixCls}__dropdown {
+
+@include e(dropdown--up) {
+  transform-origin: 50% 100% 0;
+}
+
+@include e(dropdown--down) {
+  transform-origin: 50% 0 0;
+}
+
+@include e(dropdown) {
   position: absolute;
   z-index: 10;
   background: $bg-color;
   box-shadow: 0 0 10px $border-color;
   border-radius: 3px;
   overflow-y: auto;
-  &.#{$prefixCls}__dropdown--up {
-    transform-origin: 50% 100% 0;
-  }
-  &.#{$prefixCls}__dropdown--down {
-    transform-origin: 50% 0 0;
-  }
-  .#{$prefixCls}__dropdown--grouplist {
+
+  @include e(dropdown--grouplist) {
     position: relative;
     z-index: 2;
     overflow-y: auto;
     padding-left: 0;
     margin: 0;
-    .#{$prefixCls}__dropdown--item {
+
+    @include e(dropdown--item) {
       position: relative;
       padding: 10px;
       list-style: none;
@@ -210,19 +243,24 @@ $prefixCls: 'py-select';
       line-height: 1.2em;
       cursor: pointer;
       transition: all 0.2s;
+
       &.selected {
         color: $primary-color;
         font-weight: 700;
       }
+
       &:hover,
       &.actived {
         background: #f5f7fa;
       }
+
       &.disabled {
         opacity: 0.5;
+
         &:hover {
           cursor: no-drop;
         }
+
         &:hover,
         &.selected {
           color: $color;
@@ -230,21 +268,22 @@ $prefixCls: 'py-select';
         }
       }
     }
-    .#{$prefixCls}__dropdown--groupitem {
-      .#{$prefixCls}__dropdown--grouplabel {
+    @include e(dropdown--groupitem) {
+      @include e(dropdown--grouplabel) {
         padding: 0 10px;
         height: 36px;
         line-height: 36px;
         color: $--color-text-secondary;
         font-size: 12px;
       }
-      .#{$prefixCls}__dropdown--item {
+
+      @include e(dropdown--item) {
         padding-left: 20px;
       }
     }
   }
-  .#{$prefixCls}__dropdown--loading,
-  .#{$prefixCls}__dropdown--none {
+
+  @include e(dropdown--none dropdown--loading) {
     height: 34px;
     line-height: 34px;
     text-align: center;
@@ -252,7 +291,8 @@ $prefixCls: 'py-select';
     color: $color;
   }
 }
-.#{$prefixCls}__selected {
+
+@include e(selected) {
   position: absolute;
   right: 10px;
   top: 50%;
