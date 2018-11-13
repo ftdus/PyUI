@@ -1,0 +1,298 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-select';
+
+.slide-up-enter-active {
+  transition: all 0.2s cubic-bezier(0.31, 0.74, 0.47, 0.87);
+}
+
+.slide-up-leave-active {
+  transition: all 0.2s cubic-bezier(0.31, 0.74, 0.47, 0.87);
+}
+
+.slide-up-enter,
+.slide-up-leave-to {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+@include b(select) {
+  width: 260px;
+  display: inline-block;
+
+  @include e(input) {
+    display: flex;
+    position: relative;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    cursor: pointer;
+    background: $bg-color;
+    transition: all 0.2s;
+
+    &:hover {
+      border: 1px solid $border-color-hover;
+
+      .is-clearable {
+        @include e(close) {
+          display: inline-block;
+        }
+
+        @include e(caret) {
+          display: none;
+        }
+      }
+    }
+    @include e(suffix) {
+      width: 30px;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+
+      @include e(caret) {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        line-height: 12px;
+        font-size: 12px;
+        transition: all 0.2s;
+        transform: rotate(180deg);
+
+        &.actived {
+          &.slide-up {
+            transform: rotate(0deg);
+          }
+
+          &.slide-down {
+            transform: rotate(0deg);
+          }
+        }
+      }
+
+      @include e(close) {
+        display: none;
+        width: 14px;
+        height: 14px;
+        background: $border-color;
+        border-radius: 50%;
+        line-height: 14px;
+        text-align: center;
+        font-size: 10px;
+        color: #fff;
+
+        &:hover {
+          background: #bbb;
+        }
+      }
+    }
+
+    .input {
+      flex: 1;
+      min-height: 40px;
+      line-height: 28px;
+      padding: 3px 5px;
+      font-size: 14px;
+      transition: all 0.2s;
+      color: $color;
+    }
+
+    .input-single-box {
+      padding: 0;
+
+      .input-single {
+        padding: 8px;
+        display: inline-block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    }
+
+    .input-multiInput {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .tag {
+        display: inline-block;
+        padding: 0px 5px;
+        border-radius: 3px;
+        background: #f3f3f3;
+        margin-right: 5px;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        height: 24px;
+        line-height: 22px;
+
+        &.deleteSelected {
+          border: 1px solid $border-color;
+        }
+
+        span {
+          vertical-align: middle;
+          margin-right: 10px;
+        }
+
+        i {
+          vertical-align: middle;
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          background: $border-color;
+          border-radius: 50%;
+          line-height: 12px;
+          text-align: center;
+          font-size: 10px;
+          color: #eee;
+          &:hover {
+            background: #bbb;
+          }
+        }
+      }
+
+      .input-box {
+        display: inline;
+        position: relative;
+
+        input {
+          width: 1em;
+        }
+      }
+
+      .input-text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        visibility: hidden;
+        min-width: 1em;
+      }
+
+      .input-placeholder {
+        position: absolute;
+        left: 8px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        font-size: 14px;
+        color: $border-color;
+        line-height: 40px;
+      }
+    }
+  }
+
+  &.disabled {
+    .#{$prefixCls}__suffix {
+      cursor: not-allowed;
+      background: $bg-box-shadow;
+    }
+
+    .#{$prefixCls}__input {
+      &:hover {
+        border: 1px solid $border-color;
+      }
+    }
+
+    input:hover {
+      cursor: not-allowed;
+    }
+
+    .input-single,
+    input {
+      cursor: not-allowed;
+      background: $bg-box-shadow;
+      color: $border-color;
+    }
+  }
+}
+
+@include e(dropdown--up) {
+  transform-origin: 50% 100% 0;
+}
+
+@include e(dropdown--down) {
+  transform-origin: 50% 0 0;
+}
+
+@include e(dropdown) {
+  position: absolute;
+  z-index: 10;
+  background: $bg-color;
+  box-shadow: 0 0 10px $border-color;
+  border-radius: 3px;
+  overflow-y: auto;
+
+  @include e(dropdown--grouplist) {
+    position: relative;
+    z-index: 2;
+    overflow-y: auto;
+    padding-left: 0;
+    margin: 0;
+
+    @include e(dropdown--item) {
+      position: relative;
+      padding: 10px;
+      list-style: none;
+      font-size: 14px;
+      color: $color;
+      line-height: 1.2em;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &.selected {
+        color: $primary-color;
+        font-weight: 700;
+      }
+
+      &:hover,
+      &.actived {
+        background: #f5f7fa;
+      }
+
+      &.disabled {
+        opacity: 0.5;
+
+        &:hover {
+          cursor: no-drop;
+        }
+
+        &:hover,
+        &.selected {
+          color: $color;
+          font-weight: 400;
+        }
+      }
+    }
+    @include e(dropdown--groupitem) {
+      @include e(dropdown--grouplabel) {
+        padding: 0 10px;
+        height: 36px;
+        line-height: 36px;
+        color: $--color-text-secondary;
+        font-size: 12px;
+      }
+
+      @include e(dropdown--item) {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  @include e(dropdown--none dropdown--loading) {
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    font-size: 14px;
+    color: $color;
+  }
+}
+
+@include e(selected) {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -6px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}

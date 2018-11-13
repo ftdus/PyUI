@@ -1,0 +1,18 @@
+/* Utils
+ ==================== */
+
+/* clearfix 清除浮动
+ -------------------- */
+
+@mixin utils-clearfix {
+  $selector: &;
+
+  @at-root {
+    #{$selector}::before,
+    #{$selector}::after {
+      display: table;
+      content: '';
+      clear: both;
+    }
+  }
+}

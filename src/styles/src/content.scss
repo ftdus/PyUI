@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@include b(content) {
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: $--content-padding;
+}

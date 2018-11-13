@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-sketch';
+
+.#{$prefixCls}__content {
+  width: 270px;
+  .#{$prefixCls}__colorbox {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin: 0 auto;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.15);
+    .#{$prefixCls}--active__color {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      border-radius: 2px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15), inset 0 0 4px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+  }
+  .#{$prefixCls} {
+    position: absolute;
+    width: 250px;
+    padding: 10px 10px 0;
+    box-sizing: initial;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.15);
+    .#{$prefixCls}__saturation--wrap {
+      width: 100%;
+      padding-bottom: 75%;
+      position: relative;
+      overflow: hidden;
+    }
+    .#{$prefixCls}__controls {
+      display: flex;
+    }
+    .#{$prefixCls}__sliders {
+      padding: 4px 0;
+      flex: 1;
+      .#{$prefixCls}__hue--wrap {
+        position: relative;
+        height: 10px;
+      }
+      .#{$prefixCls}__alpha--wrap {
+        position: relative;
+        height: 10px;
+        margin-top: 4px;
+        overflow: hidden;
+      }
+    }
+    .#{$prefixCls}-sliders .py-hue,
+    .#{$prefixCls}-sliders .py-alpha-gradient {
+      border-radius: 2px;
+    }
+    .#{$prefixCls}-color-wrap {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      margin-top: 4px;
+      margin-left: 4px;
+      border-radius: 3px;
+    }
+    .#{$prefixCls}-color-wrap .py-checkerboard {
+      background-size: auto;
+    }
+    .#{$prefixCls}__field {
+      display: flex;
+      padding-top: 4px;
+    }
+    .#{$prefixCls}__field .py-input__input {
+      width: 90%;
+      padding: 4px 0 3px 10%;
+      border: none;
+      box-shadow: inset 0 0 0 1px #ccc;
+      font-size: 10px;
+    }
+    .#{$prefixCls}__field .py-input__label {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      color: #222;
+      padding-top: 3px;
+      padding-bottom: 4px;
+      text-transform: capitalize;
+    }
+    .#{$prefixCls}__field--single {
+      flex: 1;
+      padding-left: 6px;
+    }
+    .#{$prefixCls}__field--double {
+      flex: 2;
+    }
+    .#{$prefixCls}__presets {
+      margin-right: -10px;
+      margin-left: -10px;
+      padding-left: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+    }
+    .#{$prefixCls}__presets--color {
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      margin: 0 10px 10px 0;
+      vertical-align: top;
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+    .#{$prefixCls}__presets--color .py-checkerboard {
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+      border-radius: 3px;
+    }
+    .#{$prefixCls}__disable--alpha .#{$prefixCls}-color-wrap {
+      height: 10px;
+    }
+  }
+}
+
+// Saturation.vue
+.py-saturation,
+.py-saturation--white,
+.py-saturation--black {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.py-saturation--white {
+  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+}
+.py-saturation--black {
+  background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+}
+.py-saturation__pointer {
+  cursor: pointer;
+  position: absolute;
+}
+.py-saturation__circle {
+  cursor: head;
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px 2px rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  transform: translate(-2px, -2px);
+}
+
+// Alpha.vue
+.py-alpha {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.py-alpha__checkboard--wrap {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.py-alpha__gradient {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.py-alpha__container {
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  margin: 0 3px;
+}
+.py-alpha__pointer {
+  z-index: 2;
+  position: absolute;
+}
+.py-alpha__picker {
+  cursor: pointer;
+  width: 4px;
+  border-radius: 1px;
+  height: 8px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  background: #fff;
+  margin-top: 1px;
+  transform: translateX(-2px);
+}
+
+//check-board.vue
+.py-checkerboard {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-size: contain;
+}
+
+//editable-input.vue
+.py-editable__input {
+  position: relative;
+}
+.py-input__input {
+  padding: 0;
+  border: 0;
+  outline: none;
+}
+.py-input__label {
+  text-transform: capitalize;
+}
+
+//Hue.vue
+.py-hue {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  border-radius: 2px;
+}
+.py-hue--horizontal {
+  background: linear-gradient(
+    to right,
+    #f00 0%,
+    #ff0 17%,
+    #0f0 33%,
+    #0ff 50%,
+    #00f 67%,
+    #f0f 83%,
+    #f00 100%
+  );
+}
+.py-hue--vertical {
+  background: linear-gradient(
+    to top,
+    #f00 0%,
+    #ff0 17%,
+    #0f0 33%,
+    #0ff 50%,
+    #00f 67%,
+    #f0f 83%,
+    #f00 100%
+  );
+}
+.py-hue__container {
+  cursor: pointer;
+  margin: 0 2px;
+  position: relative;
+  height: 100%;
+}
+.py-hue__pointer {
+  z-index: 2;
+  position: absolute;
+}
+.py-hue__picker {
+  cursor: pointer;
+  margin-top: 1px;
+  width: 4px;
+  border-radius: 1px;
+  height: 8px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  background: #fff;
+  transform: translateX(-2px);
+}

@@ -1,83 +1,161 @@
 <template>
-  <ul
-    class="py-menu"
-    :class="{
-      'vertical-menu': mode === 'vertical',
-      'horizontal-menu': mode === 'horizontal',
-    }"
-  >
-    <slot></slot>
-  </ul>
+  <ul :class="classes" :style="styles"><slot></slot></ul>
 </template>
-
 <script>
+import {
+  oneOf,
+  findComponentsDownward,
+  findComponentsUpward,
+} from '@/utils/util';
+import Emitter from '@/mixins/emitter';
+
+const prefixCls = 'py-menu';
 export default {
-  name: 'py-menu',
+  name: 'PyMenu',
+  mixins: [Emitter],
   props: {
     mode: {
-      type: String,
+      validator(value) {
+        return oneOf(value, ['horizontal', 'vertical']);
+      },
       default: 'vertical',
-      validator: val => val === 'vertical' || val === 'horizontal',
     },
-    router: {
+    theme: {
+      validator(value) {
+        return oneOf(value, ['light', 'dark', 'primary']);
+      },
+      default: 'light',
+    },
+    activeName: {
+      type: [String, Number],
+    },
+    openNames: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+    accordion: {
       type: Boolean,
       default: false,
     },
-  },
-  provide() {
-    return {
-      rootMenu: this,
-    };
+    width: {
+      type: String,
+      default: '240px',
+    },
   },
   data() {
     return {
-      // 记录被激活的菜单项
-      activeItemIndex: null,
-      // 记录被激活的子菜单的数组
-      activeSubmenuIndex: [],
+      currentActiveName: this.activeName,
+      openedNames: [],
     };
   },
-  mounted() {
-    // 监听菜单项点击事件
-    this.$on('clickMenuItem', this.handleItemClick);
-    // 监听事件冒泡
-    this.$on('clickBubble', this.handleBubble);
+  computed: {
+    classes() {
+      let { theme } = this;
+      if (this.mode === 'vertical' && this.theme === 'primary') theme = 'light';
+      return [
+        `${prefixCls}`,
+        `${prefixCls}-${theme}`,
+        {
+          [`${prefixCls}-${this.mode}`]: this.mode,
+        },
+      ];
+    },
+    styles() {
+      const style = {};
+      if (this.mode === 'vertical') style.width = this.width;
+      return style;
+    },
   },
   methods: {
-    handleItemClick(index, route) {
-      this.activeItemIndex = index;
-      if (this.router) {
-        this.routeTo(index);
-      } else if (route) {
-        this.routeTo(route);
+    updateActiveName() {
+      if (this.currentActiveName === undefined) {
+        this.currentActiveName = -1;
+      }
+      this.broadcast('Submenu', 'on-update-active-name', false);
+      this.broadcast(
+        'MenuItem',
+        'on-update-active-name',
+        this.currentActiveName,
+      );
+    },
+    updateOpenKeys(name) {
+      const names = [...this.openedNames];
+      const index = names.indexOf(name);
+      if (this.accordion) {
+        findComponentsDownward(this, 'Submenu').foreach(item => {
+          item.opened = false;
+        });
+      }
+      if (index >= 0) {
+        let currentSubmenu = null;
+        findComponentsDownward(this, 'Submenu').foreach(item => {
+          if (item.name === name) {
+            currentSubmenu = item;
+            item.opened = false;
+          }
+        });
+        findComponentsUpward(currentSubmenu, 'Submenu').foreach(item => {
+          item.opened = true;
+        });
+        findComponentsDownward(currentSubmenu, 'Submenu').foreach(item => {
+          item.opened = false;
+        });
+      } else if (this.accordion) {
+        let currentSubmenu = null;
+        findComponentsDownward(this, 'Submenu').foreach(item => {
+          if (item.name === name) {
+            currentSubmenu = item;
+            item.opened = true;
+          }
+        });
+        findComponentsUpward(currentSubmenu, 'Submenu').foreach(item => {
+          item.opened = true;
+        });
+      } else {
+        findComponentsDownward(this, 'Submenu').foreach(item => {
+          if (item.name === name) item.opened = true;
+        });
+      }
+      const openedNames = findComponentsDownward(this, 'Submenu')
+        .filter(item => item.opened)
+        .foreach(item => item.name);
+      this.openedNames = [...openedNames];
+      this.$emit('on-open-change', openedNames);
+    },
+    updateOpened() {
+      const items = findComponentsDownward(this, 'Submenu');
+      if (items.length) {
+        items.foreach(item => {
+          if (this.openedNames.indexOf(item.name) > -1) item.opened = true;
+          else item.opened = false;
+        });
       }
     },
-    handleBubble(param) {
-      this.activeSubmenuIndex = JSON.parse(param);
+    handleEmitSelectEvent(name) {
+      this.$emit('on-select', name);
     },
-    routeTo(url) {
-      this.$router.push(url);
+  },
+  mounted() {
+    this.updateActiveName();
+    this.openedNames = [...this.openNames];
+    this.updateOpened();
+    this.$on('on-menu-item-select', name => {
+      this.currentActiveName = name;
+      this.$emit('on-select', name);
+    });
+  },
+  watch: {
+    openNames(names) {
+      this.openedNames = names;
+    },
+    activeName(val) {
+      this.currentActiveName = val;
+    },
+    currentActiveName() {
+      this.updateActiveName();
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "../../../base/style.scss";
-@import "../../../base/themes.scss";
-.py-menu {
-  box-sizing: border-box;
-  display: flex;
-  background-color: #35495e;
-  color: #cadde2;
-}
-.py-menu.vertical-menu {
-  flex-direction: column;
-  width: 100%;
-  padding: 15px 0;
-}
-.py-menu.horizontal-menu {
-  height: 100%;
-  padding: 0 15px;
-}
-</style>
