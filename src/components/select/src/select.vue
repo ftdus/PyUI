@@ -75,7 +75,7 @@
           direction === 'slide-down'? 'py-select__dropdown--down' : 'py-select__dropdown--up']"
         v-show="showDropDown"
         ref="dropDown">
-        <ul class="py-select__dropdown--list" v-if="!loading">
+        <ul class="py-select__dropdown--grouplist" v-if="!loading">
           <li
             v-show="option.show !== false"
             class="py-select__dropdown--item"
@@ -111,7 +111,7 @@
 import Vue from 'vue';
 
 export default {
-  name: 'PySelect',
+  name: 'py-select',
   data() {
     return {
       showDropDown: false, // 下拉框显示/隐藏
@@ -264,7 +264,8 @@ export default {
     },
     queryText(val) {
       this.$nextTick(() => {
-        const width = this.$refs.multiText.clientWidth > 6 ? this.$refs.multiText.clientWidth : 6;
+        const width =
+          this.$refs.multiText.clientWidth > 6 ? this.$refs.multiText.clientWidth + 1 : 6;
         this.$refs.multiInput.style.width = `${width}px`;
         this.setPosition();
         this.setDirection();
@@ -426,7 +427,7 @@ export default {
         const item = option;
         if (index === this.activedIndex) {
           this.selectDropDownItem(option);
-          if (option.created) {
+          if (option.created && this.multiple) {
             item.show = false;
             item.selected = true;
             this.queryText = '';

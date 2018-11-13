@@ -35,6 +35,10 @@ const navData = [
             path: 'input',
           },
           {
+            name: 'Select 选择器',
+            path: 'select',
+          },
+          {
             name: 'Cascader 级联选择器',
             path: 'cascader',
           },
