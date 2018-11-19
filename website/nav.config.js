@@ -75,6 +75,10 @@ const navData = [
             name: 'loadingBar 加载进度条',
             path: 'loading-bar',
           },
+          {
+            name: 'Pagination 分页',
+            path: 'pagination',
+          },
         ],
       },
       {
