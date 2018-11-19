@@ -12,6 +12,24 @@ $type: simple;
       padding: 0 2px;
     }
   }
+  @include e(select) {
+    margin: 0 5px;
+    &.py-select {
+      width: 100px;
+      height: 31px;
+      & .py-select__input {
+        height: 31px;
+        & .input.input-single-box {
+          min-height: 28px;
+          line-height: 28px;
+          & input {
+            height: 28px;
+            padding: 1px 8px;
+          }
+        }
+      }
+    }
+  }
 }
 
 /*
@@ -28,9 +46,7 @@ $type: simple;
     cursor: pointer;
   }
 
-  &__page,
-  &--prev,
-  &--next {
+  &__page {
     width: 1.875rem;
     height: 1.875rem;
   }
@@ -41,6 +57,8 @@ $type: simple;
 
   @include m(notsimple) {
     background-color: $--pagination-background;
+    color: red;
+
     &.py-pager--active {
       color: #fff;
       background-color: $--pagination-background-active;
@@ -59,7 +77,8 @@ $type: simple;
       }
     }
     &:hover {
-      color: $color-hover;
+      color: #fff;
+      background-color: $--pagination-background-active;
     }
   }
   @include m(simple) {

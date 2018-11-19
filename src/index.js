@@ -22,11 +22,13 @@ import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
 import Message from './components/message/index';
 import Notification from './components/notification/index';
+import Pagination from './components/pagination/index';
 import Progress from './components/progress/index';
 import Radio from './components/radio/index';
 import RadioGroup from './components/radio-group/index';
 import Rate from './components/rate/index';
 import Row from './components/row/index';
+import Select from './components/select/index';
 import Scroll from './components/scroll/index';
 import Sider from './components/sider/index';
 import Spin from './components/spin/index';
@@ -60,11 +62,13 @@ const components = [
   Menu,
   MenuGroup,
   MenuItem,
+  Pagination,
   Progress,
   Radio,
   RadioGroup,
   Rate,
   Row,
+  Select,
   Scroll,
   Sider,
   Spin,
@@ -120,11 +124,13 @@ export default {
   MenuItem,
   Message,
   Notification,
+  Pagination,
   Progress,
   Radio,
   RadioGroup,
   Rate,
   Row,
+  Select,
   Scroll,
   Sider,
   Spin,

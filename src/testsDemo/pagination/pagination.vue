@@ -13,7 +13,7 @@
       <div class="demo__con">
         <span>页数较多时，设置最大按钮数</span>
         <py-pagination
-          :page-count="10"
+          :page-count="100"
           :pager-count="7"
           layout="pager"
           simple
