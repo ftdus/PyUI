@@ -60,6 +60,10 @@ const navData = [
             path: 'badge',
           },
           {
+            name: 'Avatar 头像',
+            path: 'avatar',
+          },
+          {
             name: 'loadingBar 加载进度条',
             path: 'loading-bar',
           },
