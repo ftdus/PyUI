@@ -120,5 +120,10 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "layout" */ './testsDemo/colorPicker/colorPicker.vue'),
     },
+    {
+      path: '/tag',
+      name: 'Tag',
+      component: () => import(/* webpackChunkName: "layout" */ './testsDemo/tag/tag.vue'),
+    },
   ],
 });

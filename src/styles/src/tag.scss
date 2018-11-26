@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+@import './base/mixins/config.scss';
+@import './base/common/themes.scss';
+@import './base/mixins/utils.scss';
+@import './base/mixins/mixins.scss';
+
+$prefixCls: 'py-tag';
+
+.left-to-right-enter-active,
+.left-to-right-leave-active {
+  opacity: 1;
+  transform-origin: top left;
+  transform: scaleX(1);
+  transition: all 0.2s cubic-bezier(0.31, 0.74, 0.47, 0.87);
+}
+
+.left-to-right-enter,
+.left-to-right-leave-to {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+@include b(tag) {
+  display: inline-block;
+  padding: 0 10px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+  border-radius: 4px;
+  background-color: rgba(64, 158, 255, 0.1);
+  color: $info-color;
+  white-space: nowrap;
+  opacity: 1;
+  transform: scaleX(1);
+  &.hit {
+    line-height: 30px;
+    border: 1px solid rgba($color: $info-color, $alpha: 0.2s);
+  }
+  .py-icon-close {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    right: -5px;
+    top: -1px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover {
+      background: $info-color;
+      color: #fff;
+    }
+  }
+}
+@include b(tag--medium) {
+  height: 28px;
+  line-height: 28px;
+  &.hit {
+    line-height: 26px;
+  }
+  .py-icon-close:hover {
+    transform: scale(0.9);
+  }
+}
+@include b(tag--small) {
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  &.hit {
+    line-height: 22px;
+  }
+  .py-icon-close:hover {
+    transform: scale(0.8);
+  }
+}
+@include b(tag--mini) {
+  height: 20px;
+  padding: 0 5px;
+  line-height: 20px;
+  &.hit {
+    line-height: 19px;
+  }
+  .py-icon-close:hover {
+    transform: scale(0.7);
+  }
+}
+@include b(tag--success) {
+  color: $success-color;
+  background-color: rgba($color: $success-color, $alpha: 0.1);
+  &.hit {
+    border: 1px solid rgba($color: $success-color, $alpha: 0.2);
+  }
+  .py-icon-close:hover {
+    background-color: $success-color;
+  }
+}
+@include b(tag--warning) {
+  color: $warning-color;
+  background-color: rgba($color: $warning-color, $alpha: 0.1);
+  &.hit {
+    border: 1px solid rgba($color: $warning-color, $alpha: 0.2);
+  }
+  .py-icon-close:hover {
+    background-color: $warning-color;
+  }
+}
+@include b(tag--danger) {
+  color: $error-color;
+  background-color: rgba($color: $error-color, $alpha: 0.1);
+  &.hit {
+    border: 1px solid rgba($color: $error-color, $alpha: 0.2);
+  }
+  .py-icon-close:hover {
+    background-color: $error-color;
+  }
+}
+@include b(tag--info) {
+  color: $info-color;
+  background-color: rgba($color: $info-color, $alpha: 0.1);
+  &.hit {
+    border: 1px solid rgba($color: $info-color, $alpha: 0.2);
+  }
+  .py-icon-close:hover {
+    background-color: $info-color;
+  }
+}
