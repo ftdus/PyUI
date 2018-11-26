@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss">
-$primaryColor: #409eff;
+$primaryColor: #ff9800;
 $textColor: #606266;
 
 .left-nav.py-menu {
@@ -73,6 +73,7 @@ $textColor: #606266;
 
   .py-menu-item {
     font-size: 14px;
+    padding: 12px 24px;
     &:hover,
     &.active {
       color: $primaryColor;
@@ -91,6 +92,8 @@ $textColor: #606266;
     }
   }
   .py-menu-item-group-title {
+    height: 40px;
+    line-height: 40px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.38);
   }

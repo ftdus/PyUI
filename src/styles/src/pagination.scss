@@ -1,34 +1,33 @@
 @charset "UTF-8";
 
-@import './base/mixins/config.scss';
-@import './base/common/themes.scss';
-@import './base/mixins/utils.scss';
-@import './base/mixins/mixins.scss';
+$type: simple;
 
-$prefixCls: 'py-pagination';
-
-$notsimpleBackground: $color-active;
-$notsimpleNotactiveBackground: #f4f4f5;
-
-.#{$prefixCls} {
+@include b(pagination) {
+  width: 100%;
   display: flex;
   align-items: center;
-  color: $color;
-  &__total span {
-    padding: 0 2px;
+  color: $--pagination-color;
+  @include e(total) {
+    & span {
+      padding: 0 2px;
+    }
   }
 }
 
-.py-pager {
+/*
+    pager
+  ------------------ */
+@include b(pager) {
   & li {
     display: inline-block;
     margin: 0 0.3125rem;
-    color: $color;
-    cursor: pointer;
+    color: $--pagination-color;
     text-align: center;
     line-height: 1.875rem;
     border-radius: 0.125rem;
+    cursor: pointer;
   }
+
   &__page,
   &--prev,
   &--next {
@@ -39,60 +38,65 @@ $notsimpleNotactiveBackground: #f4f4f5;
   &__next {
     padding: 0 0.5rem;
   }
-  &--notsimple {
-    background-color: $notsimpleNotactiveBackground;
+
+  @include m(notsimple) {
+    background-color: $--pagination-background;
     &.py-pager--active {
       color: #fff;
-      background-color: $notsimpleBackground;
+      background-color: $--pagination-background-active;
       &:hover {
         color: #fff;
       }
     }
     &.py-pager--disabled {
-      color: $color;
+      color: $--pagination-color;
       cursor: not-allowed;
       &.py-pager--active {
-        background-color: $notsimpleNotactiveBackground;
+        background-color: $--pagination-background;
       }
       &:hover {
-        color: $color;
+        color: $--pagination-color;
       }
     }
     &:hover {
       color: $color-hover;
     }
   }
-  &--simple {
+  @include m(simple) {
     &.py-pager--active {
-      color: $color-active;
+      color: $--pagination-color-active;
     }
     &.py-pager--disabled {
-      color: $color;
+      color: $--pagination-color;
       cursor: not-allowed;
       &:hover {
-        color: $color;
+        color: $--pagination-color;
       }
     }
     &:hover {
-      color: $color-hover;
+      color: $--pagination-color-hover;
     }
   }
 }
 
-.py-pageinput {
-  color: $color;
+/*
+    jumper
+  ------------------ */
+
+@include b(pageinput) {
+  color: $--pagination-color;
   width: 110px;
-  &__input {
+  @include e(input) {
     margin: 0 2px;
     width: 50%;
     border: 1px solid $border-color;
     border-radius: 5px;
     text-align: center;
     padding: 6px;
-    &--disabled {
+    @include m(disabled) {
       cursor: not-allowed;
     }
-    &--nodisabled {
+    @include m(nodisabled) {
       &:hover,
       &:focus {
         border-color: $border-color-hover;

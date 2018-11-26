@@ -372,7 +372,7 @@ export default {
 ### 基础用法
 有两种触发子菜单的方式
 
-:::demo 使用 options 设置选择器数据。trigger-type 设置触发子菜单的方式。clearable 设置选择器的数据可以清除。change事件在每次改变选择值时触发，参数是一个由各级菜单的值所组成的数组。blur事件在选择器失去焦点时触发，参数是一个blur事件对象。focus事件在选择器获取焦点时触发，参数是一个focus事件对象。active-item-change事件在非最后一级菜单项被激活时触发，参数是一个由被激活的各级菜单的值所组成的数组
+:::demo 使用 `options` 设置选择器数据。 `trigger-type` 设置触发子菜单的方式。 `clearable` 设置选择器的数据可以清除。 `change` 事件在每次改变选择值时触发，参数是一个由各级菜单的值所组成的数组。`blur` 事件在选择器失去焦点时触发，参数是一个 `blur` 事件对象。 `focus` 事件在选择器获取焦点时触发，参数是一个 `focus` 事件对象。 `active-item-change` 事件在非最后一级菜单项被激活时触发，参数是一个由被激活的各级菜单的值所组成的数组
 
 ```html
 <div class="demo-box">
@@ -687,7 +687,7 @@ export default {
 
 通过在数据源中设置 disabled 字段来声明该选项是禁用的
 
-:::demo 你可以在option中设置 disabled 属性为true 来定义一个选项是禁止使用的
+:::demo 你可以在 `option` 中设置 `disabled` 属性为 `true` 来定义一个选项是禁止使用的
 
 ```html
 <div class="demo-box">
@@ -978,7 +978,7 @@ export default {
 ### 仅显示最后一级
 可以仅在输入框中显示选中项最后一级的标签，而不是选中项所在的完整路径。
 
-:::demo 通过设置show-all-levels属性为false，可以使输入框仅显示选中项最后一级的标签
+:::demo 通过设置 `show-all-levels` 属性为 `false`，可以使输入框仅显示选中项最后一级的标签
 
 ```html
 <div class="demo-box">
@@ -1268,7 +1268,7 @@ export default {
 
 ### 默认值
 
-:::demo 使用v-model为级联选择器设置默认值。默认值是一系列选中菜单的value组成的数组
+:::demo 使用 `v-model` 为级联选择器设置默认值。默认值是一系列选中菜单的 `value` 组成的数组
 
 ```html
 <div class="demo-box">
@@ -1556,13 +1556,11 @@ export default {
 
 :::
 
-:::
-
 ### 动态加载次级选项
 
 当选中某一级时，动态加载该级下的选项。
 
-:::demo中利用active-item-change事件，可以在用户点击某个省份时拉取该省份下的城市数据。本例还展示了props属性的用法。
+:::demo中利用 `active-item-change` 事件，可以在用户点击某个省份时拉取该省份下的城市数据。本例还展示了 `props` 属性的用法。
 
 ```html
 <div class="demo-box">
@@ -1644,9 +1642,9 @@ export default {
 :::
 
 ### 可搜索
-通过输入关键字在options中搜索所有匹配的数据
+通过输入关键字在 options 中搜索所有匹配的数据
 
-:::demo 通过设置filterable让选择器变得可以输入筛选。通过设置debounce属性可以设置搜索关键词输入的去抖延迟（单位：毫秒）
+:::demo 通过设置 `filterable` 让选择器变得可以输入筛选。通过设置 `debounce` 属性可以设置搜索关键词输入的去抖延迟（单位：毫秒）
 
 ```html
 <div class="demo-box">
@@ -1937,7 +1935,7 @@ export default {
 ### 选择即改变
 点击或移入选项即表示选中该项，可用于选择任意一级菜单的选项。
 
-:::demo 通过设置change-on-select为true
+:::demo 通过设置 `change-on-select` 为 `true`
 
 ```html
 <div class="demo-box">
@@ -2229,11 +2227,11 @@ export default {
 
 | 参数        | 说明                                       | 类型           | 可选值 | 默认值 |
 | ---------- | ------------------------------------------ | --------------| ------ | ------ |
-| options    | 可选项数据源，键名可通过 props 属性配置       | array         | —      | —      |
+| options    | 可选项数据源，键名可通过 `props` 属性配置       | array         | —      | —      |
 | props      | 配置选项，具体见下表                         | object        | —      | —      |
 | value      | 选中项绑定值                                 | array        | —      | —  |
 | separator  | 选项分隔符                                  | string        | —      | 斜杠'/'  |
-| menu-class | 菜单class                                   | string        | —      | —  |
+| menu-class | 菜单 class                                   | string        | —      | —  |
 | placeholder| 输入提示                                    | string        | —      | 请选择  |
 | disabled   | 是否禁用                                     | boolean      | —      |
 | clearable  | 是否支持清空选项                             | boolean       | —      | false  |
@@ -2243,7 +2241,7 @@ export default {
 | debounce   | 搜索关键词输入的去抖延迟，毫秒                 | number        | —       | 300 |
 |change-on-select| 是否允许选择任意一级的选项                | boolean       | —        | false |
 | size       |  尺寸                                       | string        | medium/small/mini | — |
-| before-filter | 筛选之前的钩子，参数为输入的值，若返回 false 或者返回 Promise 且被 reject，则停止筛选 | function(value) | — | — |
+| before-filter | 筛选之前的钩子，参数为输入的值，若返回 `false` 或者返回 `Promise` 且被 `reject`，则停止筛选 | function(value) | — | — |
 
 ### props
 
@@ -2258,6 +2256,6 @@ export default {
 | 事件名称        | 说明                                    | 回调参数      |
 | ---------- | ------------------------------------------ | --------------|
 | change     | 当绑定值变化时触发的事件                     | 当前值        |
-| active-item-change| 当父级选项变化时触发的事件，仅在 change-on-select 为 false 时可用 | 各父级选项组成的数组  |
-| blur       | 在 Cascader 失去焦点时触发                   | (event: Event)|
-| focus      | 在 Cascader 获得焦点时触发                   | (event: Event)|
+| active-item-change| 当父级选项变化时触发的事件，仅在 `change-on-select` 为 `false` 时可用 | 各父级选项组成的数组  |
+| blur       | 在 `Cascader` 失去焦点时触发                   | (event: Event)|
+| focus      | 在 `Cascader` 获得焦点时触发                   | (event: Event)|

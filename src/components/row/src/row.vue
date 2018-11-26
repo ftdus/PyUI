@@ -1,7 +1,5 @@
 <template>
-    <div :class="classList" :style="styles">
-        <slot></slot>
-    </div>
+  <div :class="classList" :style="styles"><slot></slot></div>
 </template>
 <script>
 const prefixCls = 'py-row';
@@ -71,8 +69,8 @@ export default {
         {
           // [`${prefixCls}-${this.crevice}`]: this.crevice
           [`${prefixCls}__${this.type}`]: this.type,
-          [`${prefixCls}__flex-${this.justify}`]: this.justify,
-          [`${prefixCls}__flex-${this.align}`]: this.align,
+          [`${prefixCls}__flex--${this.justify}`]: this.justify,
+          [`${prefixCls}__flex--${this.align}`]: this.align,
         },
       ];
     },

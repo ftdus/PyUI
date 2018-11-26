@@ -26,6 +26,7 @@ import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
 import Select from './components/select/index';
+import Pagination from './components/pagination/index';
 import Tag from './components/tag/index';
 
 const components = [
@@ -54,6 +55,7 @@ const components = [
   TabPane,
   Upload,
   Select,
+  Pagination,
   Tag,
 ];
 const install = function(Vue) {
@@ -104,5 +106,6 @@ export default {
   TabPane,
   Upload,
   Select,
+  Pagination,
   Tag,
 };
