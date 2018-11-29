@@ -25,6 +25,10 @@ const navData = [
             name: 'Grid 栅格',
             path: 'grid',
           },
+          {
+            name: 'Collapse 折叠面板',
+            path: 'collapse',
+          },
         ],
       },
       {

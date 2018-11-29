@@ -27,6 +27,8 @@ import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
 import Select from './components/select/index';
 import Pagination from './components/pagination/index';
+import Collapse from './components/collapse/index';
+import CollapseItem from './components/collapse-item/index';
 
 const components = [
   Alert,
@@ -55,6 +57,8 @@ const components = [
   Upload,
   Select,
   Pagination,
+  Collapse,
+  CollapseItem,
 ];
 const install = function(Vue) {
   const vue = Vue;
