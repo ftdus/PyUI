@@ -119,7 +119,7 @@ export default {
       currentIndex: this.value,
       trackIndex: this.value,
       copyTrackIndex: this.value,
-      hideTrackPos: -1, // 默认左滑
+      hideTrackPos: 1,
     };
   },
   computed: {

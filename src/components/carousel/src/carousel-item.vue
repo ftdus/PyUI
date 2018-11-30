@@ -2,7 +2,6 @@
   <div :class="prefixCls" :style="styles"><slot></slot></div>
 </template>
 
-
 <script>
 const prefixCls = 'py-carousel-item';
 export default {

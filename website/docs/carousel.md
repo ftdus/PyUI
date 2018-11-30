@@ -110,16 +110,18 @@ export default {
 ```
 ::: 
 
+<br>
+
 ## 参数说明
 
 | 参数            | 说明                  | 类型    | 可选值                                             | 默认值 |
 | -------------- | --------------------- | ------- | -------------------------------------------------- | ------ |
 | value          | 初始位置               | Number  | medium / small / mini                              |   0   |
-| autorun       | 初始是否自动轮播       |  boolean | -                                                 | false |
-| run-speed  | 轮播切换速度(单位毫秒)  | Number  | —                                                  | 2000 |
-| loop           | 是否开启循环           | boolean | —                                                  | false  |
-| position           | 指示器的位置           | 限选值   |inside （内部），outside（外部），none（不显示）      | inside  |
-| radius-position     | 圆形指示器             | boolean | —                                                 | false  |
+| autorun       | 初始是否自动轮播       |  boolean | -                                                  | false |
+| run-speed      | 轮播切换速度(单位毫秒)  | Number  | —                                                     | 2000 |
+| loop           | 是否开启循环           | boolean | —                                                 | false  |
+| position           | 指示器的位置           | 限选值   |inside （内部），outside（外部），none（不显示） | inside  |
+| radius-position     | 圆形指示器             | boolean | —                                            | false  |
 | trigger        | 指示器的触发方式        | 限选值  | click（点击），hover（悬停）                        | click  |
 | arrow          | 两侧箭头的显示时        | 限选值  | hover（悬停），always（一直显示），never（不显示）    |hover |
 | height         | 是否默认聚焦            | String | —                                                  | auto |

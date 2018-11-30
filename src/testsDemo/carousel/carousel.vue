@@ -10,16 +10,16 @@
         :trigger="setting.trigger"
         :arrow="setting.arrow">
         <py-carousel-item>
-          <div class="test-carousel">第一张轮播图</div>
+          <div class="test-carousel">第1张轮播图</div>
         </py-carousel-item>
         <py-carousel-item>
-          <div class="test-carousel">第二张轮播图</div>
+          <div class="test-carousel">第2张轮播图</div>
         </py-carousel-item>
         <py-carousel-item>
-          <div class="test-carousel">第三张轮播图</div>
+          <div class="test-carousel">第3张轮播图</div>
         </py-carousel-item>
         <py-carousel-item>
-          <div class="test-carousel">第四张轮播图</div>
+          <div class="test-carousel">第4张轮播图</div>
         </py-carousel-item>
       </py-carousel>
     </div>
