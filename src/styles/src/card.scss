@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+@include b(card) {
+  border-radius: $--card-border-radius;
+  border: 1px solid $--card-border-color;
+  background-color: $bg-color;
+  overflow: hidden;
+  color: $--color-text-primary;
+  transition: 0.3s;
+
+  @at-root {
+    &.#{$state-prefix + always-shadow} {
+      box-shadow: 0 2px 12px 0 #{$bg-box-shadow};
+    }
+  }
+
+  @at-root {
+    &.#{$state-prefix + hover-shadow} {
+      &:hover,
+      &:focus {
+        box-shadow: 0 2px 12px 0 #{$bg-box-shadow};
+      }
+    }
+  }
+
+  @include e(header) {
+    padding: #{$--card-padding - 2 $--card-padding};
+    border-bottom: 1px solid $--card-border-color;
+    box-sizing: border-box;
+  }
+
+  @include e(body) {
+    padding: $--card-padding;
+  }
+}

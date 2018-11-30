@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+$type: simple;
+
+@include b(pagination) {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: $--pagination-color;
+  @include e(total) {
+    & span {
+      padding: 0 2px;
+    }
+  }
+}
+
+/*
+    pager
+  ------------------ */
+@include b(pager) {
+  & li {
+    display: inline-block;
+    margin: 0 0.3125rem;
+    color: $--pagination-color;
+    text-align: center;
+    line-height: 1.875rem;
+    border-radius: 0.125rem;
+    cursor: pointer;
+  }
+
+  &__page,
+  &--prev,
+  &--next {
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+  &__prev,
+  &__next {
+    padding: 0 0.5rem;
+  }
+
+  @include m(notsimple) {
+    background-color: $--pagination-background;
+    &.py-pager--active {
+      color: #fff;
+      background-color: $--pagination-background-active;
+      &:hover {
+        color: #fff;
+      }
+    }
+    &.py-pager--disabled {
+      color: $--pagination-color;
+      cursor: not-allowed;
+      &.py-pager--active {
+        background-color: $--pagination-background;
+      }
+      &:hover {
+        color: $--pagination-color;
+      }
+    }
+    &:hover {
+      color: $color-hover;
+    }
+  }
+  @include m(simple) {
+    &.py-pager--active {
+      color: $--pagination-color-active;
+    }
+    &.py-pager--disabled {
+      color: $--pagination-color;
+      cursor: not-allowed;
+      &:hover {
+        color: $--pagination-color;
+      }
+    }
+    &:hover {
+      color: $--pagination-color-hover;
+    }
+  }
+}
+
+/*
+    jumper
+  ------------------ */
+
+@include b(pageinput) {
+  color: $--pagination-color;
+  width: 110px;
+  @include e(input) {
+    margin: 0 2px;
+    width: 50%;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    text-align: center;
+    padding: 6px;
+    @include m(disabled) {
+      cursor: not-allowed;
+    }
+    @include m(nodisabled) {
+      &:hover,
+      &:focus {
+        border-color: $border-color-hover;
+        box-shadow: 0 0 4px $border-color-hover;
+      }
+    }
+  }
+}

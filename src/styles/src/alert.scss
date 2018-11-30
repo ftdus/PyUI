@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+$clsPrefix: 'py-alert';
+$clsSub: '__';
+$clsModifier: '--';
+
+$infoColor: $color;
+$successColor: #19be6b;
+$warningColor: #ff9900;
+$errorColor: #ed3f14;
+
+$infoBg: #f4f4f5;
+$successBg: #e2f9d7;
+$warningBg: #fdf5e9;
+$errorBg: #fae7e3;
+
+$fontSize: 16px;
+$mediumFontSize: 20px;
+$largeFontSize: 24px;
+
+@mixin alertStyle($color: $color, $bgColor: $bgColor) {
+  color: $color;
+  background-color: $bgColor;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.#{$clsPrefix} {
+  position: relative;
+  padding: 15px 20px;
+  color: $infoColor;
+  font-size: $fontSize;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  & &#{$clsSub}title {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: inherit;
+  }
+  &.show-icon {
+    padding-left: 60px;
+  }
+  & &#{$clsSub}icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -16px;
+    display: inline-block;
+    font-weight: bold;
+    .pyui-icons {
+      font-size: 32px;
+    }
+  }
+  &#{$clsModifier}medium {
+    padding: 15px 20px;
+    font-size: $mediumFontSize;
+    .#{$clsPrefix}#{$clsSub}close {
+      font-size: $mediumFontSize;
+      top: 15px;
+    }
+  }
+  &#{$clsModifier}large {
+    padding: 20px 20px;
+    font-size: $largeFontSize;
+    .#{$clsPrefix}#{$clsSub}close {
+      font-size: $largeFontSize;
+      top: 20px;
+    }
+  }
+  & &#{$clsSub}close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    line-height: 1;
+    font-size: 14px;
+    opacity: 0.6;
+    color: $infoColor;
+    cursor: pointer;
+  }
+  &#{$clsModifier}info {
+    @include alertStyle($infoColor, $infoBg);
+  }
+  &#{$clsModifier}success {
+    @include alertStyle($successColor, $successBg);
+  }
+  &#{$clsModifier}warning {
+    @include alertStyle($warningColor, $warningBg);
+  }
+  &#{$clsModifier}error {
+    @include alertStyle($errorColor, $errorBg);
+  }
+  & &#{$clsSub}desc {
+    color: inherit;
+    p {
+      color: inherit;
+      line-height: 1.5;
+    }
+  }
+}
+
+.#{$clsPrefix}-fade-enter-active,
+.#{$clsPrefix}-fade-leave-active {
+  transition: opacity 0.5s;
+}
+.#{$clsPrefix}-fade-enter,
+.#{$clsPrefix}-fade-leave-to {
+  opacity: 0;
+}
+
+.is-center {
+  text-align: center;
+}

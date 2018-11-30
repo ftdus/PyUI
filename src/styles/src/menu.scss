@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-menu';
+// $menu-dropdown-item-prefix-cls: .#{$prefixCls}-horizontal .#{$prefixCls}-submenu .#{$prefixCls}-item;
+$zindex-select: 900;
+$menu-dark-title: #515a6e;
+$transition-time: 0.2s;
+$ease-in-out: ease-in-out;
+$link-color: #2d8cf0;
+$menu-dark-subsidiary-color: rgba(255, 255, 255, 0.7);
+$link-active-color: red;
+$legend-color: #999;
+$menu-dark-active-bg: #363e4f;
+
+.#{$prefixCls} {
+  display: block;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  list-style: none;
+  color: $color;
+  font-size: $font-size;
+  position: relative;
+  z-index: $zindex-select;
+
+  &-horizontal {
+    height: 60px;
+    line-height: 60px;
+
+    &.#{$prefixCls}-light {
+      &:after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background: $border-color;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+  &-vertical {
+    &.#{$prefixCls}-light {
+      &:after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 100%;
+        background: $border-color;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+      }
+    }
+  }
+
+  &-light {
+    background: #fff;
+  }
+  &-dark {
+    background: $menu-dark-title;
+  }
+  &-primary {
+    background: $primary-color;
+  }
+
+  &-item {
+    display: block;
+    outline: none;
+    list-style: none;
+    font-size: $font-size;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: all $transition-time $ease-in-out;
+  }
+  &-item {
+    color: inherit;
+    &:hover,
+    &:active {
+      color: inherit;
+    }
+  }
+  &-item > i {
+    margin-right: 6px;
+  }
+  &-submenu-title > i,
+  &-submenu-title span > i {
+    margin-right: 8px;
+  }
+
+  &-horizontal &-item,
+
+
+    // vertical
+    &-vertical &-item,
+    &-vertical &-submenu-title {
+    padding: 14px 24px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+    transition: all $transition-time $ease-in-out;
+
+    &:hover {
+      //background: $background-color-select-hover;
+      color: $primary-color;
+    }
+  }
+
+  &-vertical &-submenu-title-icon {
+    float: right;
+    position: relative;
+    top: 4px;
+  }
+  &-submenu-title-icon {
+    transition: transform $transition-time $ease-in-out;
+  }
+  &-opened > * > &-submenu-title-icon {
+    transform: rotate(180deg);
+  }
+
+  &-vertical &-submenu {
+    &-nested {
+      padding-left: 20px;
+    }
+    .#{$prefixCls}-item {
+      padding-left: 43px;
+    }
+  }
+  &-vertical &-item-group {
+    &-title {
+      height: 48px;
+      line-height: 48px;
+      font-size: $font-size;
+      padding-left: 28px;
+    }
+  }
+
+  // &-light&-vertical &-item{
+  //     //border-right: 2px solid transparent;
+  //     &-active:not(.#{$prefixCls}-submenu){
+  //         color: $primary-color;
+  //         background: $primary-color;
+  //         //border-right: 2px solid $primary-color;
+  //         z-index: 2;
+  //         &:after{
+  //             content: '';
+  //             display: block;
+  //             width: 2px;
+  //             position: absolute;
+  //             top: 0;
+  //             bottom: 0;
+  //             right: 0;
+  //             background: $primary-color;
+  //         }
+  //     }
+  // }
+
+  // &-dark&-vertical &-item, &-dark&-vertical &-submenu-title{
+  //     color: $menu-dark-subsidiary-color;
+  //     &-active:not(.#{$prefixCls}-submenu),
+  //     &-active:not(.#{$prefixCls}-submenu):hover
+  //     {
+  //         background: $menu-dark-active-bg;
+  //     }
+  //     &:hover{
+  //         color: #fff;
+  //         background: $menu-dark-title;
+  //     }
+  //     &-active:not(.#{$prefixCls}-submenu){
+  //         color: $primary-color;
+  //         //border-right: 2px solid $primary-color;
+  //     }
+  // }
+}
+// .select-item($menu-prefix-cls, $menu-dropdown-item-prefix-cls);
+
+// .#{$menu-dropdown-item-prefix-cls} {
+//     padding: 7px 16px 8px;
+//     font-size: $font-size !important;
+// }

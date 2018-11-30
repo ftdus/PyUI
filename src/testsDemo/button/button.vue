@@ -1,27 +1,27 @@
 <style lang='scss'>
 .demo {
-    padding: 10px;
-    margin-bottom: 20px;
-    h3 {
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-    .py-button {
-        margin-left: 10px;
-    }
-    & .py-button-group .py-button {
-        margin-left: 0;
-    }
+  padding: 10px;
+  margin-bottom: 20px;
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .py-button {
+    margin-left: 10px;
+  }
+  & .py-button-group .py-button {
+    margin-left: 0;
+  }
 }
 .py-button {
-    &-box {
-        padding: 10px;
-        border: 1px solid #eee;
-        padding-left: 0;
-    }
-    &-group {
-        margin: 10px;
-    }
+  &-box {
+    padding: 10px;
+    border: 1px solid #eee;
+    padding-left: 0;
+  }
+  &-group {
+    margin: 10px;
+  }
 }
 </style>
 <template>
@@ -99,7 +99,7 @@
 
 <script>
 import PYButton from '../../components/button';
-import PYButtonGroup from '../../components/buttonGroup';
+import PYButtonGroup from '../../components/button-group';
 
 export default {
   components: {
@@ -112,6 +112,4 @@ export default {
     },
   },
 };
-
 </script>
-

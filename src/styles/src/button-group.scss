@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-button-group';
+
+@mixin btnGroup {
+  &:not(:first-child):not(:last-child) {
+    border-left-color: hsla(0, 0%, 100%, 0.5);
+    border-right-color: hsla(0, 0%, 100%, 0.5);
+  }
+  &:last-child {
+    border-left-color: hsla(0, 0%, 100%, 0.5);
+  }
+  &:hover {
+    border-right-color: hsla(0, 0%, 100%, 0.5);
+  }
+}
+
+.#{$prefixCls} {
+  .py-button {
+    float: left;
+    position: relative;
+    white-space: nowrap;
+    &:hover {
+      z-index: 1;
+    }
+    &:first-child {
+      border-top-right-radius: 0%;
+      border-bottom-right-radius: 0%;
+    }
+    &:last-child {
+      border-top-left-radius: 0%;
+      border-bottom-left-radius: 0%;
+      margin-left: 0;
+    }
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+    &--primary {
+      @include btnGroup();
+    }
+    &--success {
+      @include btnGroup();
+    }
+    &--warning {
+      @include btnGroup();
+    }
+    &--error {
+      @include btnGroup();
+    }
+  }
+}
