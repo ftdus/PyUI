@@ -33,7 +33,7 @@
 
 <script>
 import PyIcon from '../../icon/src/icon.vue';
-import { getStyle, oneOf, on, off } from '../../../utils/util';
+import { oneOf, on, off } from '../../../utils/util';
 
 const prefixCls = 'py-carousel';
 
@@ -224,7 +224,7 @@ export default {
       });
     },
     handleResize () {
-      this.listWidth = parseInt(getStyle(this.$el, 'width'), 10);
+      this.listWidth = this.$el.offsetWidth;
       this.updatePos();
       this.updateOffset();
     },
