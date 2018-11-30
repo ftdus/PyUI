@@ -116,8 +116,8 @@ export default {
 
 | 参数            | 说明                  | 类型    | 可选值                                             | 默认值 |
 | -------------- | --------------------- | ------- | -------------------------------------------------- | ------ |
-| value          | 初始位置               | Number  | medium / small / mini                              |   0   |
-| autorun       | 初始是否自动轮播       |  boolean | -                                                  | false |
+| value          | 初始位置               | Number  |  —                                                 |   0   |
+| autorun       | 初始是否自动轮播       |  boolean |  —                                                   | false |
 | run-speed      | 轮播切换速度(单位毫秒)  | Number  | —                                                     | 2000 |
 | loop           | 是否开启循环           | boolean | —                                                 | false  |
 | position           | 指示器的位置           | 限选值   |inside （内部），outside（外部），none（不显示） | inside  |
