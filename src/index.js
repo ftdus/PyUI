@@ -2,6 +2,8 @@ import Alert from './components/alert/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
+import Carousel from './components/carousel/index';
+import CarouselItem from './components/carousel-item/index';
 import Cascader from './components/cascader/index';
 import Col from './components/col/index';
 import ColorPicker from './components/color-picker/index';
@@ -25,14 +27,14 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
-import Select from './components/select/index';
-import Pagination from './components/pagination/index';
 
 const components = [
   Alert,
   Badge,
   Button,
   ButtonGroup,
+  Carousel,
+  CarouselItem,
   Cascader,
   Col,
   ColorPicker,
@@ -53,8 +55,6 @@ const components = [
   Switch,
   TabPane,
   Upload,
-  Select,
-  Pagination,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -80,6 +80,8 @@ export default {
   Badge,
   Button,
   ButtonGroup,
+  Carousel,
+  CarouselItem,
   Cascader,
   Col,
   ColorPicker,
@@ -103,6 +105,4 @@ export default {
   Switch,
   TabPane,
   Upload,
-  Select,
-  Pagination,
 };
