@@ -1,7 +1,7 @@
-import PYSpin from './src/spin.vue';
+import PySpin from './src/spin.vue';
 
-PYSpin.install = Vue => {
-  Vue.component(PYSpin.name, PYSpin);
+PySpin.install = Vue => {
+  Vue.component(PySpin.name, PySpin);
 };
 
-export default PYSpin;
+export default PySpin;

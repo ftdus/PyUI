@@ -99,6 +99,15 @@ const navData = [
           },
         ],
       },
+      {
+        group: 'Other',
+        children: [
+          {
+            name: 'Spin 加载中',
+            path: 'spin',
+          },
+        ],
+      },
     ],
   },
 ];
