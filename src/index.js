@@ -1,4 +1,5 @@
 import Alert from './components/alert/index';
+import Avatar from './components/avatar/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
@@ -32,6 +33,7 @@ import CollapseItem from './components/collapse-item/index';
 
 const components = [
   Alert,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
