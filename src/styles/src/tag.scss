@@ -7,20 +7,6 @@
 
 $prefixCls: 'py-tag';
 
-.left-to-right-enter-active,
-.left-to-right-leave-active {
-  opacity: 1;
-  transform-origin: top left;
-  transform: scaleX(1);
-  transition: all 0.2s cubic-bezier(0.31, 0.74, 0.47, 0.87);
-}
-
-.left-to-right-enter,
-.left-to-right-leave-to {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
 @include b(tag) {
   display: inline-block;
   padding: 0 10px;
@@ -94,7 +80,7 @@ $prefixCls: 'py-tag';
     border: 1px solid rgba($color: $success-color, $alpha: 0.2);
   }
   .py-icon-close:hover {
-    background-color: $success-color;
+    background-color: rgba($color: $success-color, $alpha: 0.7);
   }
 }
 @include b(tag--warning) {
@@ -104,7 +90,7 @@ $prefixCls: 'py-tag';
     border: 1px solid rgba($color: $warning-color, $alpha: 0.2);
   }
   .py-icon-close:hover {
-    background-color: $warning-color;
+    background-color: rgba($color: $warning-color, $alpha: 0.7);
   }
 }
 @include b(tag--danger) {
@@ -114,16 +100,30 @@ $prefixCls: 'py-tag';
     border: 1px solid rgba($color: $error-color, $alpha: 0.2);
   }
   .py-icon-close:hover {
-    background-color: $error-color;
+    background-color: rgba($color: $error-color, $alpha: 0.7);
   }
 }
 @include b(tag--info) {
-  color: $info-color;
-  background-color: rgba($color: $info-color, $alpha: 0.1);
+  color: $--message-info-color;
+  background-color: rgba($color: $--message-info-color, $alpha: 0.1);
   &.hit {
-    border: 1px solid rgba($color: $info-color, $alpha: 0.2);
+    border: 1px solid rgba($color: $--message-info-color, $alpha: 0.2);
   }
   .py-icon-close:hover {
-    background-color: $info-color;
+    background-color: rgba($color: $--message-info-color, $alpha: 0.7);
   }
+}
+
+.left-to-right-enter-active,
+.left-to-right-leave-active {
+  opacity: 1;
+  transform-origin: top left;
+  transform: scaleX(1);
+  transition: all 0.2s cubic-bezier(0.31, 0.74, 0.47, 0.87);
+}
+
+.left-to-right-enter,
+.left-to-right-leave-to {
+  opacity: 0;
+  transform: scaleX(0);
 }

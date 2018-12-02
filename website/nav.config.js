@@ -56,6 +56,10 @@ const navData = [
         group: 'Data',
         children: [
           {
+            name: 'Tag 标签',
+            path: 'tag',
+          },
+          {
             name: 'Badge 标记',
             path: 'badge',
           },
