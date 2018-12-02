@@ -94,7 +94,7 @@ export default {
 <p>轮播图放映速度（毫秒级）</p>
 <section>
   <div style="width:100px">
-  <py-input v-model="setting.speed" :value='2000'/>
+  <input v-model="setting.speed" type="number">
 </div>
 </section>
 <p>圆形指示器</p>
