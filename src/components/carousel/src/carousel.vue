@@ -3,12 +3,12 @@
     <div class="py-carousel__slide-list" ref="carousel_list">
       <slot></slot>
     </div>
-    <button type="button" :class="arrowClasses" class="lefts" @click="change(currentIndex-1)">
+    <button :class="arrowClasses" class="lefts" @click="change(currentIndex-1)">
     </button>
-    <button type="button" :class="arrowClasses" class="rights" @click="change(currentIndex+1)">
+    <button :class="arrowClasses" class="rights" @click="change(currentIndex+1)">
     </button>
-    <transition-group tag="div"
-    :class="['py-carousel__slide-current', 'py-carousel__slide-current-'+position]" name="list">
+    <transition-group tag="div"  name="list"
+    :class="['py-carousel__slide-current', 'py-carousel__slide-current-'+position]">
         <li v-for="(list,index) in slideList.length"
           class="py-carousel__slide-current-item"
           :key="index"
