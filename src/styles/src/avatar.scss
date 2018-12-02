@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+$prefixCls: 'avatar';
+
+$--avatar-size-base: 32px;
+$--avatar-size-lg: 40px;
+$--avatar-size-sm: 24px;
+$--avatar-font-size-base: 18px;
+$--avatar-font-size-lg: 24px;
+$--avatar-font-size-sm: 14px;
+$--avatar-bg: #ccc;
+$--avatar-color: #fff;
+$--avatar-border-radius: $--border-radius-small;
+
+@mixin avatar-size($--size, $--font-size) {
+  width: $--size;
+  height: $--size;
+  line-height: $--size;
+  border-radius: $--size / 2;
+
+  & > * {
+    line-height: $--size;
+  }
+  .py-avatar__icon {
+    font-size: $--font-size;
+  }
+}
+
+@include b(avatar) {
+  display: inline-block;
+  text-align: center;
+  background: $--avatar-bg;
+  color: $--avatar-color;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+
+  @include e(image) {
+    background: transparent;
+  }
+
+  .py-icon {
+    position: relative;
+    top: -1px;
+  }
+
+  @include avatar-size($--avatar-size-base, $--avatar-font-size-base);
+
+  @include m(large) {
+    @include avatar-size($--avatar-size-lg, $--avatar-font-size-lg);
+    .py-icon {
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  @include m(small) {
+    @include avatar-size($--avatar-size-sm, $--avatar-font-size-sm);
+  }
+
+  @include m(square) {
+    border-radius: $--avatar-border-radius;
+  }
+
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+}
