@@ -177,6 +177,15 @@ $--upload-font-size-large: $--font-size-large !default;
 $--upload-color: $--color-primary !default;
 $--upload-radius: $border-radius !default;
 
+/* spin
+--------------------------*/
+$--spin-font-size-small: $--font-size-small !default;
+$--spin-font-size: $--font-size-base !default;
+$--spin-font-size-large: $--font-size-large !default;
+$--spin-color: rgba(255, 255, 255, 0.712) !default;
+$--spin-font-color: $--color-primary !default;
+$--spin-radius: $border-radius !default;
+
 /* Header
   --------------------------*/
 $--header-padding: 0 20px !default;
