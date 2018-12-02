@@ -129,7 +129,7 @@ export default {
 | -------------- | --------------------- | ------- | -------------------------------------------------- | ------ |
 | value          | 初始位置               | Number  |  —                                                 |   0   |
 | autoloop       | 初始是否自动轮播       |  boolean |  —                                                 | true |
-| speed      | 轮播切换速度(单位毫秒)      | Number  | —                                                  | 2000 |
+| speed      | 轮播切换速度(单位毫秒)      | Number  | —                                                  | 3000 |
 | loop           | 是否开启循环           | boolean | —                                                 | true  |
 | position       | 指示器的位置           | 限选值   |inside , outside , left , right , none            | inside  |
 | radius-position | 圆形指示器             | boolean | —                                                | false  |
@@ -152,10 +152,9 @@ export default {
 <div style="height:200px; text-align:center;">
   <py-carousel>
     <div>第一个轮播图</div>
-    <span>第二个轮播图</span>
-    <p> 第三个轮播图 </p>
+    <p> 第二个轮播图 </p>
     <div>
-      <h1>第四个轮播图</h1>
+      <h1>第三个轮播图</h1>
       <p> 这是一个演示</p>
     </div>
   </py-carousel>
