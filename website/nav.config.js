@@ -97,6 +97,10 @@ const navData = [
             name: 'Tabs 标签页',
             path: 'tabs',
           },
+          {
+            name: 'carousel 跑马灯',
+            path: 'carousel',
+          },
         ],
       },
       {
