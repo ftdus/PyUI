@@ -90,7 +90,7 @@ const navData = [
             path: 'tabs',
           },
           {
-            name: 'Carousel 轮播图',
+            name: 'carousel 跑马灯',
             path: 'carousel',
           },
         ],

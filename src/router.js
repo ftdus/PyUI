@@ -120,10 +120,5 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "layout" */ './testsDemo/colorPicker/colorPicker.vue'),
     },
-    {
-      path: '/carousel',
-      name: 'Carousel',
-      component: () => import(/* webpackChunkName: "carousel" */ './testsDemo/carousel/carousel.vue'),
-    },
   ],
 });

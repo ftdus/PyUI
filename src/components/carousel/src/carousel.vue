@@ -1,81 +1,84 @@
 <template>
   <div :class="classes">
-    <button type="button" :class="arrowClasses" class="lefts" @click="arrowEvent(-1)">
-      <py-icon type="ios-arrow-back"></py-icon>
-    </button>
-    <div :class="[prefixCls + '-list']">
-      <div :class="[prefixCls + '-track', showCopyTrack ? '' : 'higher']"
-        :style="trackStyles" ref="originTrack">
-        <slot></slot>
-      </div>
-      <div :class="[prefixCls + '-track',
-        showCopyTrack ? 'higher' : '']"
-        :style="copyTrackStyles"
-        ref="copyTrack"
-        v-if="loop">
-      </div>
+    <div class="py-carousel__slide-list" ref="carousel_list">
+      <slot></slot>
     </div>
-    <button type="button" :class="arrowClasses" class="rights" @click="arrowEvent(1)">
-      <py-icon type="ios-arrow-forward"></py-icon>
+    <button type="button" :class="arrowClasses" class="lefts" @click="change(currentIndex-1)">
     </button>
-    <ul :class="positionClasses">
-      <template v-for="n in slides.length">
-        <li :class="[n - 1 === currentIndex ? prefixCls + '-active' : '']"
-          :key="n"
-          @click="positionEvent('click', n - 1)"
-          @mouseover="positionEvent('hover', n - 1)">
-          <button type="button" :class="[radiusPosition ? 'radius' : '']"></button>
+    <button type="button" :class="arrowClasses" class="rights" @click="change(currentIndex+1)">
+    </button>
+    <transition-group tag="div"
+    :class="['py-carousel__slide-current', 'py-carousel__slide-current-'+position]" name="list">
+        <li v-for="(list,index) in slideList.length"
+          class="py-carousel__slide-current-item"
+          :key="index"
+          v-show="index===currentIndex"
+          @mouseenter="hover(1)"
+          @mouseleave="hover(2)">
+            <div v-html="slideList[index].outerHTML"></div>
         </li>
-      </template>
-    </ul>
+    </transition-group>
+    <div :class="'py-carousel__positions-'+position" class="py-carousel__positions">
+        <span v-for="(item,index) in slideList.length" :key="index"
+        :class="positionClass(index)"
+        @mouseover="hoverChange(index)"
+        @mouseleave="hover(3)"
+        @click="change(index)">
+        </span>
+    </div>
   </div>
 </template>
 
 <script>
-import PyIcon from '../../icon/src/icon.vue';
-import { oneOf, on, off } from '../../../utils/util';
-
+// 组件class前缀
 const prefixCls = 'py-carousel';
+const Props = {
+  arrow: new Set(['hover', 'always', 'never']),
+  position: new Set(['inside', 'outside', 'none', 'left', 'right']),
+};
 
 export default {
   name: 'py-carousel',
-  components: {
-    'py-icon': PyIcon,
-  },
   props: {
+    // 初始位置
+    value: {
+      type: Number,
+      default: 0,
+    },
+    // 轮播速度
+    speed: {
+      type: Number,
+      default: 3000,
+    },
+    // 初始自动轮播
+    autoloop: {
+      type: Boolean,
+      default: true,
+    },
+    // 自动轮播
+    loop: {
+      type: Boolean,
+      default: true,
+    },
+    // 鼠标移至界面时是否暂停
+    hoverstop: {
+      type: Boolean,
+      default: true,
+    },
     // 两侧箭头显示时机
     arrow: {
       type: String,
       default: 'hover',
       validator (value) {
-        return oneOf(value, ['hover', 'always', 'never']);
+        return Props.arrow.has(value);
       },
-    },
-    // 初始自动播放
-    autorun: {
-      type: Boolean,
-      default: false,
-    },
-    // 初始播放速度
-    runSpeed: {
-      type: Number,
-      default: 2000,
-    },
-    // 循环
-    loop: {
-      type: Boolean,
-      default: false,
-    },
-    easing: {
-      type: String,
-      default: 'ease',
     },
     // 底部指示器位置
     position: {
       type: String,
-      default: 'inside',
+      default: 'outside',
       validator (value) {
-        return oneOf(value, ['inside', 'outside', 'none']);
+        return Props.position.has(value);
       },
     },
     // 圆形指示器
@@ -85,251 +88,78 @@ export default {
     },
     // 指示器触发方式
     trigger: {
-      type: String,
-      default: 'click',
-      validator (value) {
-        return oneOf(value, ['click', 'hover']);
-      },
-    },
-    // 初始轮播位置
-    value: {
-      type: Number,
-      default: 0,
-    },
-    height: {
-      type: [String, Number],
-      default: 'auto',
-      validator (value) {
-        return value === 'auto' || Object.prototype.toString.call(value) === '[object Number]';
-      },
+      type: Boolean,
+      default: true,
     },
   },
   data () {
     return {
-      prefixCls,
-      listWidth: 0,
-      trackWidth: 0,
-      trackOffset: 0,
-      trackCopyOffset: 0,
-      showCopyTrack: false,
-      slides: [],
-      slideInstances: [],
-      timer: null,
-      ready: false,
-      currentIndex: this.value,
-      trackIndex: this.value,
-      copyTrackIndex: this.value,
-      hideTrackPos: 1,
+      slideList: [],
+      currentIndex: 0,
+      timer: '',
     };
   },
   computed: {
-    classes () {
-      return [
-        `${prefixCls}`,
-      ];
-    },
-    trackStyles () {
-      return {
-        width: `${this.trackWidth}px`,
-        transform: `translate3d(${-this.trackOffset}px, 0px, 0px)`,
-        transition: `transform 500ms ${this.easing}`,
-      };
-    },
-    copyTrackStyles () {
-      return {
-        width: `${this.trackWidth}px`,
-        transform: `translate3d(${-this.trackCopyOffset}px, 0px, 0px)`,
-        transition: `transform 500ms ${this.easing}`,
-        position: 'absolute',
-        top: 0,
-      };
+    classes() {
+      return `${prefixCls}`;
     },
     arrowClasses () {
       return [
-        `${prefixCls}-arrow`,
-        `${prefixCls}-arrow-${this.arrow}`,
-      ];
-    },
-    positionClasses () {
-      return [
-        `${prefixCls}-position`,
-        `${prefixCls}-position-${this.position}`,
+        `py-carousel__arrow`,
+        `py-carousel__arrow-${this.arrow}`,
       ];
     },
   },
   methods: {
-    findChild (cb) {
-      const find = function (child) {
-        const name = child.$options.componentName;
-
-        if (name) {
-          cb(child);
-        } else if (child.$children.length) {
-          child.$children.forEach(innerChild => {
-            find(innerChild, cb);
-          });
-        }
-      };
-
-      if (this.slideInstances.length || !this.$children) {
-        this.slideInstances.forEach(child => {
-          find(child);
-        });
-      } else {
-        this.$children.forEach(child => {
-          find(child);
-        });
-      }
+    go() {
+      this.timer = setInterval(() => {
+        this.autoPlay();
+      }, this.speed);
     },
-    initCopyTrackDom () {
-      this.$nextTick(() => {
-        this.$refs.copyTrack.innerHTML = this.$refs.originTrack.innerHTML;
-      });
+    stop() {
+      clearInterval(this.timer);
+      this.timer = null;
     },
-    updateSlides (init) {
-      const slides = [];
-      let index = 1;
-
-      this.findChild(child => {
-        slides.push({
-          $el: child.$el,
-        });
-        index += 1;
-        child.index = index;
-
-        if (init) {
-          this.slideInstances.push(child);
-        }
-      });
-
-      this.slides = slides;
-      this.updatePos();
+    hover(n) {
+      if (n === 1 && this.hoverstop) this.stop();
+      if (n === 2 && this.hoverstop) this.go();
+      if (n === 3 && this.trigger) this.go();
     },
-    updatePos () {
-      this.findChild(child => {
-        child.width = this.listWidth;
-        child.height = typeof this.height === 'number' ? `${this.height}px` : this.height;
-      });
-
-      this.trackWidth = (this.slides.length || 0) * this.listWidth;
-    },
-    slotChange () {
-      this.$nextTick(() => {
-        this.slides = [];
-        this.slideInstances = [];
-
-        this.updateSlides(true, true);
-        this.updatePos();
-        this.updateOffset();
-      });
-    },
-    handleResize () {
-      this.listWidth = this.$el.offsetWidth;
-      this.updatePos();
-      this.updateOffset();
-    },
-    updateTrackPos (index) {
-      if (this.showCopyTrack) {
-        this.trackIndex = index;
-      } else {
-        this.copyTrackIndex = index;
-      }
-    },
-    updateTrackIndex (index) {
-      if (this.showCopyTrack) {
-        this.copyTrackIndex = index;
-      } else {
-        this.trackIndex = index;
-      }
+    change(index) {
+      index = (index + this.slideList.length) % this.slideList.length;
       this.currentIndex = index;
+      this.stop();
     },
-    add (offset) {
-      // 获取单个轨道的图片数
-      const slidesLen = this.slides.length;
+    hoverChange(index) {
+      if (this.trigger) {
+        this.change(index);
+      }
+    },
+    autoPlay() {
       if (this.loop) {
-        // 初始化滑块位置
-        if (offset > 0) {
-          this.hideTrackPos = -1;
-        } else {
-          this.hideTrackPos = slidesLen;
+        this.currentIndex += 1;
+        if (this.currentIndex > this.slideList.length - 1) {
+          this.currentIndex = 0;
         }
-        this.updateTrackPos(this.hideTrackPos);
-      }
-      // 获取当前展示的索引值
-      const oldIndex = this.showCopyTrack ? this.copyTrackIndex : this.trackIndex;
-      let index = oldIndex + offset;
-      while (index < 0) index += slidesLen;
-      const leftTrue = (offset > 0 && index === slidesLen);
-      const rightTrue = (offset < 0 && index === slidesLen - 1);
-      if ((leftTrue || rightTrue) && this.loop) {
-        this.showCopyTrack = !this.showCopyTrack;
-        this.trackIndex += offset;
-        this.copyTrackIndex += offset;
-      } else {
-        if (!this.loop) index %= this.slides.length;
-        this.updateTrackIndex(index);
-      }
-      this.currentIndex = index === this.slides.length ? 0 : index;
-      this.$emit('on-change', oldIndex, this.currentIndex);
-      this.$emit('input', this.currentIndex);
-    },
-    arrowEvent (offset) {
-      this.setAutoplay();
-      this.add(offset);
-    },
-    positionEvent (event, n) {
-      const curIndex = this.showCopyTrack ? this.copyTrackIndex : this.trackIndex;
-      if (event === this.trigger && curIndex !== n) {
-        this.updateTrackIndex(n);
-        this.$emit('input', n);
-        this.setAutoplay();
       }
     },
-    setAutoplay () {
-      window.clearInterval(this.timer);
-      if (this.autorun) {
-        this.timer = window.setInterval(() => {
-          this.add(1);
-        }, this.runSpeed);
-      }
-    },
-    updateOffset () {
-      this.$nextTick(() => {
-        const ofs = this.copyTrackIndex > 0 ? -1 : 1;
-        this.trackOffset = this.trackIndex * this.listWidth;
-        this.trackCopyOffset = this.copyTrackIndex * this.listWidth + ofs;
-      });
+    positionClass(index) {
+      const classs = [];
+      if (index === this.currentIndex) classs.push(`active`);
+      if (this.radiusPosition) classs.push(`radius`);
+      return classs;
     },
   },
-  watch: {
-    autorun () {
-      this.setAutoplay();
-    },
-    runSpeed () {
-      this.setAutoplay();
-    },
-    trackIndex () {
-      this.updateOffset();
-    },
-    copyTrackIndex () {
-      this.updateOffset();
-    },
-    height () {
-      this.updatePos();
-    },
-    value (val) {
-      this.updateTrackIndex(val);
-      this.setAutoplay();
-    },
-  },
-  mounted () {
-    this.updateSlides(true);
-    this.handleResize();
-    this.setAutoplay();
-    on(window, 'resize', this.handleResize);
-  },
-  beforeDestroy () {
-    off(window, 'resize', this.handleResize);
+  created() {
+    this.$nextTick(() => {
+      this.slideList = this.$refs.carousel_list.children;
+      this.currentIndex = this.value;
+      if (this.autoloop) {
+        this.timer = setInterval(() => {
+          this.autoPlay();
+        }, this.speed);
+      }
+    });
   },
 };
 </script>
