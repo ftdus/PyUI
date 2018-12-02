@@ -25,6 +25,7 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
+import Spin from './components/spin/index';
 import Select from './components/select/index';
 import Pagination from './components/pagination/index';
 import Collapse from './components/collapse/index';
@@ -55,6 +56,7 @@ const components = [
   Switch,
   TabPane,
   Upload,
+  Spin,
   Select,
   Pagination,
   Collapse,
@@ -107,6 +109,7 @@ export default {
   Switch,
   TabPane,
   Upload,
+  Spin,
   Select,
   Pagination,
 };

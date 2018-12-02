@@ -1,13 +1,11 @@
 <template>
-    <div
+  <div
     class="py-select"
-    :class="{'disabled': disabled}"
+    :class="{ disabled: disabled }"
     ref="pySelect"
-    v-ClickOutSide="closeDropDown">
-    <div
-      class="py-select__input"
-      ref="inputEleBox"
-      @click="handleClickLabel">
+    v-ClickOutSide="closeDropDown"
+  >
+    <div class="py-select__input" ref="inputEleBox" @click="handleClickLabel">
       <div class="input input-single-box" v-if="!multiple && !filterable">
         <input
           class="input-single"
@@ -15,91 +13,92 @@
           readonly="readyonly"
           :placeholder="placeholder"
           v-model="selectValue.label"
-          @blur="$emit('blur', $event)"
-          @focus="$emit('blur', $event)"
-          @keydown.up.stop.prevent="switchOptions('prev')"
-          @keydown.down.stop.prevent="switchOptions('next')"
+          @blur="$emit('blur', $event);"
+          @focus="$emit('blur', $event);"
+          @keydown.up.stop.prevent="switchOptions('prev');"
+          @keydown.down.stop.prevent="switchOptions('next');"
           @keydown.enter.stop.prevent="selectOption"
-          @keydown.esc.stop.prevent="showDropDown = false"
-          @keydown.tab="showDropDown = false">
+          @keydown.esc.stop.prevent="showDropDown = false;"
+          @keydown.tab="showDropDown = false;"
+        />
       </div>
       <div class="input-multiInput input" v-if="multiple || filterable">
         <div
           v-if="multiple"
           class="tag"
-          :class="{'deleteSelected': selectItem.deleteSelected}"
+          :class="{ deleteSelected: selectItem.deleteSelected }"
           v-for="(selectItem, index) in selectValue"
-          :key="index">
+          :key="index"
+        >
           <span>{{ selectItem.label }}</span>
-          <i class="pyui-icons py-icon-close" @click.stop="deleteTag(index, selectItem)"></i>
+          <i class="pyui-icons py-icon-close" @click.stop="deleteTag(index, selectItem);"></i>
         </div>
         <div class="input-box">
           <input
             type="text"
             v-model="queryText"
             :readonly="!filterable"
-            @blur="$emit('blur', $event)"
-            @focus="$emit('blur', $event)"
-            @keydown.up.stop.prevent="switchOptions('prev')"
-            @keydown.down.stop.prevent="switchOptions('next')"
+            @blur="$emit('blur', $event);"
+            @focus="$emit('blur', $event);"
+            @keydown.up.stop.prevent="switchOptions('prev');"
+            @keydown.down.stop.prevent="switchOptions('next');"
             @keydown.enter.stop.prevent="selectOption"
-            @keydown.esc.stop.prevent="showDropDown = false"
-            @keydown.tab="showDropDown = false"
+            @keydown.esc.stop.prevent="showDropDown = false;"
+            @keydown.tab="showDropDown = false;"
             @keydown.delete="deleteTagByKeyboard"
-            ref="multiInput">
+            ref="multiInput"
+          />
         </div>
         <span class="input-text" ref="multiText">{{ queryText }}</span>
-        <span
-          class="input-placeholder"
-          v-show="placeholderShow">
-          {{ placeholder }}
-        </span>
+        <span class="input-placeholder" v-show="placeholderShow"> {{ placeholder }} </span>
       </div>
       <div
         class="py-select__suffix"
-        :class="{ 'is-clearable': !multiple && selectValue.label && clearable }">
+        :class="{ 'is-clearable': !multiple && selectValue.label && clearable }"
+      >
         <i
           class="py-select__caret pyui-icons py-icon-up"
-          :class="[direction, showDropDown ? 'actived' : '']">
+          :class="[direction, showDropDown ? 'actived' : '']"
+        >
         </i>
-        <i
-          class="py-select__close pyui-icons py-icon-close"
-          @click.stop="clearSelectValue">
-        </i>
+        <i class="py-select__close pyui-icons py-icon-close" @click.stop="clearSelectValue"> </i>
       </div>
     </div>
     <transition name="slide-up">
       <div
         :class="[
           'py-select__dropdown',
-          direction === 'slide-down'? 'py-select__dropdown--down' : 'py-select__dropdown--up']"
+          direction === 'slide-down' ? 'py-select__dropdown--down' : 'py-select__dropdown--up',
+        ]"
         v-show="showDropDown"
-        ref="dropDown">
+        ref="dropDown"
+      >
         <ul class="py-select__dropdown--grouplist" v-if="!loading">
           <li
             v-show="option.show !== false"
             class="py-select__dropdown--item"
             :class="{
-              'selected': option.selected,
-              'disabled': option.disabled || option.multipleDisabled,
-              'actived': index === activedIndex,
+              selected: option.selected,
+              disabled: option.disabled || option.multipleDisabled,
+              actived: index === activedIndex,
             }"
             v-for="(option, index) in options"
             :key="index"
-            @click="selectDropDownItem(option, $event)">
+            @click="selectDropDownItem(option, $event);"
+          >
             {{ option.label }}
             <i
               v-show="option.selected && multiple"
-              class="py-select__selected pyui-icons py-icon-check">
+              class="py-select__selected pyui-icons py-icon-check"
+            >
             </i>
           </li>
         </ul>
-        <div class="py-select__dropdown--loading" v-if="loading">
-          {{ loadingText }}
-        </div>
+        <div class="py-select__dropdown--loading" v-if="loading">{{ loadingText }}</div>
         <div
           class="py-select__dropdown--none"
-          v-if="!loading && options.length === 0 && queryText !== ''">
+          v-if="!loading && options.length === 0 && queryText !== ''"
+        >
           {{ noDataText }}
         </div>
       </div>
