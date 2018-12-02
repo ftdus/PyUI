@@ -31,8 +31,8 @@ $name: 'span';
         width: $count * $s;
       }
     }
-    @include e(xs) {
-      @include m(offset-#{$s}) {
+    @include e(offset) {
+      @include m(xs-#{$s}) {
         margin-left: $count * $s;
       }
     }
@@ -44,8 +44,8 @@ $name: 'span';
         width: $count * $s;
       }
     }
-    @include e(sm) {
-      @include m(offset-#{$s}) {
+    @include e(offset) {
+      @include m(sm-#{$s}) {
         margin-left: $count * $s;
       }
     }
@@ -57,8 +57,8 @@ $name: 'span';
         width: $count * $s;
       }
     }
-    @include e(md) {
-      @include m(offset-#{$s}) {
+    @include e(offset) {
+      @include m(md-#{$s}) {
         margin-left: $count * $s;
       }
     }
@@ -70,15 +70,10 @@ $name: 'span';
         width: $count * $s;
       }
     }
-    @include e(lg) {
-      @include m(offset-#{$s}) {
+    @include e(offset) {
+      @include m(lg-#{$s}) {
         margin-left: $count * $s;
       }
-    }
-  }
-  @include e(offset) {
-    @include m($s) {
-      margin-left: $count * $s;
     }
   }
   @include e(push) {
