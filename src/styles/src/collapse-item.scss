@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+@include b(collapse-item) {
+  border: 1px solid #eee;
+  &:not(:first-child) {
+    border-top: transparent;
+  }
+  @include e(header) {
+    display: flex;
+    padding: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  @include e(content) {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  @include e(title) {
+    flex: 1;
+  }
+  @include e(arrow) {
+    transition: all 0.3s;
+    color: #667dac;
+    @include m(active) {
+      transform: rotate(90deg);
+    }
+  }
+}
