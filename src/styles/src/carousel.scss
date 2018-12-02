@@ -27,7 +27,7 @@
       @include m(inside) {
         height: 100%;
       }
-      @include m(outside){
+      @include m(outside) {
         height: 95%;
       }
       display: block;
@@ -41,7 +41,7 @@
       }
     }
 
-    @include e(slide-current-item){
+    @include e(slide-current-item) {
       list-style-type:none;
       width: 100%;
       height: 100%;
@@ -50,7 +50,7 @@
     }
   }
 
-  @include e(arrow){
+  @include e(arrow) {
     border: none;
     outline: none;
     padding: 0;
@@ -113,29 +113,29 @@
     position: relative;
     text-align: center;
 
-    @include e(positions-inside){
+    @include e(positions-inside) {
       position: absolute;
       bottom: 4px;
     }
 
-    @include e(positions-outside){
+    @include e(positions-outside) {
       margin-top: 5px;
       width: 100%;
       position: relative;
     }
 
-    @include e(positions-none){
+    @include e(positions-none) {
       display: none;
     }
 
-    @include e(positions-left){
+    @include e(positions-left) {
       position: absolute;
       bottom: 4px;
       text-align: left;
       padding-left: 10px;
     }
 
-    @include e(positions-right){
+    @include e(positions-right) {
       position: absolute;
       bottom: 4px;
       text-align: right;
