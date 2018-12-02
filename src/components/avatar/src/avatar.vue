@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" @click="handleClick">
+  <div :class="classes" :style="colors" @click="handleClick">
     <img :src="src" v-if="src" />
     <py-icon v-else-if="icon" :type="icon" class="py-avatar__icon"></py-icon>
     <i v-else-if="customIcon.length > 0" class="py-avatar__icon" :class="customIcon"></i>
@@ -42,16 +42,33 @@ export default {
       },
       default: sizeOptions[0],
     },
+    // 图片类头像的资源地址。
     src: {
       type: String,
     },
+    // 设置头像图标类型，具体类型参考PyIcon组件
     icon: {
       type: String,
     },
+    // 自定义图标，需要传入class数组
     customIcon: {
       type: Array,
       default() {
         return [];
+      },
+    },
+    // 自定义字体、图标颜色
+    color: {
+      type: String,
+      default() {
+        return '#fff';
+      },
+    },
+    // 自定义背景颜色
+    backgroundColor: {
+      type: String,
+      default() {
+        return '#ccc';
       },
     },
   },
@@ -74,6 +91,12 @@ export default {
           [`${prefixCls}__icon`]: !!this.icon || this.customIcon.length > 0,
         },
       ];
+    },
+    colors() {
+      return {
+        color: this.color,
+        backgroundColor: this.backgroundColor,
+      };
     },
     childrenStyle() {
       let style = {};

@@ -58,7 +58,7 @@
 
 ### 可引入类型 
 
-支持三种类型：图片、Icon图标 以及字符串，Icon可以为py-icon库中的图标，也可以传入自定义icon类，以数组方式传入class类，其中 Icon 和字符型也可以自定义图标颜色及背景色。
+支持三种类型：图片、Icon图标 以及字符串，Icon可以为py-icon库中的图标，也可以传入自定义icon类，以数组方式传入class类，其中 Icon 和字符型也可以自定义颜色及背景色。
 
 :::demo
 
@@ -69,8 +69,8 @@
         <py-avatar>A</py-avatar>
         <py-avatar>Long</py-avatar>
         <py-avatar src="https://cn.vuejs.org/images/logo.png"></py-avatar>
-        <py-avatar style="color: #f56a00;background-color: #fde3cf" icon="frown"></py-avatar>
-        <py-avatar style="color: #f56a00;background-color: #fde3cf">U</py-avatar>
+        <py-avatar color="#f56a00" background-color="#fde3cf" icon="frown"></py-avatar>
+        <py-avatar color="#f56a00" background-color="#fde3cf">U</py-avatar>
         <py-avatar :custom-icon="customIconClass"></py-avatar>
     </div>
 </template>
@@ -95,7 +95,7 @@
 ```html
 <template>
     <div class="row">
-        <py-avatar :style="{background: color}" @click="handleChange">{{ string }}</py-avatar>
+        <py-avatar :background-color="color" @click="handleChange">{{ string }}</py-avatar>
         <div>点击头像自动切换不同长度字符串</div>
     </div>
 </template>
@@ -130,11 +130,11 @@
 | size        | 设置头像的大小  | string  | large、small、default                               | default |
 | src         | 图片类头像的资源地址  | string | —                                              | —       |
 | icon        | 设置头像图标类型，具体类型参考PyIcon组件   | string | —                          | —       |
-| custom-icon | 自定义图标      | string[ ] | —                                                | —      |
+| custom-icon | 自定义图标      | string[ ] | —                                                | —       |
+| color       | 自定义字体或图标颜色   | string | —                                             |  #fff   |
+| background-color | 自定义背景颜色      | string | —                                           | #ccc    |
 
 ### Event
-
-调用 Notification 或 this.$notify 会返回当前 Notification 的实例。如果需要手动关闭实例，可以调用它的 close 方法。
 
 | 方法名       | 说明          | 类型       | 可选值     | 默认值  | 
 | ----------- | --------------  | -------   | -------   | ------- | 
