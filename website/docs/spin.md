@@ -5,7 +5,7 @@
 :::demo
 
 ```html
-<style lang="scss">
+<style lang="scss" scoped>
 .demo-1{
   width:200px;height:200px;
   display:inline-block;text-align:center;
@@ -13,6 +13,7 @@
 }
 .pyui-icons{
   margin-bottom:10px;
+  animation:rate infinite 0.8s linear;
 }
 .demo-1 p{
   position: absolute;
@@ -47,6 +48,14 @@ button {
     transform: scale(3)
   }
 }
+@keyframes rate{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
 </style>
 <template>
   <div class='demo-1'>
@@ -70,7 +79,7 @@ button {
   <div class='demo-1'>
     <py-spin fix>
       <div>
-        <py-icon size="20" type="load"/>
+        <py-icon size="20" type="load" />
       </div>
       加载中...
     </py-spin>
