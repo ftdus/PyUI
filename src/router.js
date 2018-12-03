@@ -120,5 +120,10 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "layout" */ './testsDemo/colorPicker/colorPicker.vue'),
     },
+    {
+      path: '/radio',
+      name: 'Radio',
+      component: () => import(/* webpackChunkName: "radio" */ './testsDemo/radio/radio.vue'),
+    },
   ],
 });

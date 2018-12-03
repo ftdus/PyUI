@@ -54,6 +54,10 @@ const navData = [
             name: 'Upload 文件上传',
             path: 'upload',
           },
+          {
+            name: 'Radio 单选框',
+            path: 'radio',
+          },
         ],
       },
       {
