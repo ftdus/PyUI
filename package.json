@@ -20,7 +20,9 @@
     "eslint-plugin-vue": "^4.7.1",
     "highlight.js": "^9.13.1",
     "lodash.throttle": "^4.1.1",
+    "popper.js": "^1.14.6",
     "tinycolor2": "^1.4.1",
+    "v-click-outside-x": "^3.5.5",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },

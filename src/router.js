@@ -120,5 +120,10 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "layout" */ './testsDemo/colorPicker/colorPicker.vue'),
     },
+    {
+      path: '/poptip',
+      name: 'Poptip',
+      component: () => import(/* webpackChunkName: "layout" */ './testsDemo/poptip/poptip.vue'),
+    },
   ],
 });
