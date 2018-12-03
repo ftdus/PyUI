@@ -5,6 +5,8 @@ import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
 import Cascader from './components/cascader/index';
 import Col from './components/col/index';
+import Collapse from './components/collapse/index';
+import CollapseItem from './components/collapse-item/index';
 import ColorPicker from './components/color-picker/index';
 import Content from './components/content/index';
 import Divider from './components/divider/index';
@@ -19,6 +21,8 @@ import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
 import Message from './components/message/index';
 import Notification from './components/notification/index';
+import Radio from './components/radio/index';
+import RadioGroup from './components/radio-group/index';
 import Rate from './components/rate/index';
 import Row from './components/row/index';
 import Sider from './components/sider/index';
@@ -30,8 +34,6 @@ import Spin from './components/spin/index';
 import Select from './components/select/index';
 import Pagination from './components/pagination/index';
 import Progress from './components/progress/index';
-import Collapse from './components/collapse/index';
-import CollapseItem from './components/collapse-item/index';
 import Carousel from './components/carousel/index';
 
 const components = [
@@ -42,6 +44,8 @@ const components = [
   ButtonGroup,
   Cascader,
   Col,
+  Collapse,
+  CollapseItem,
   ColorPicker,
   Content,
   Divider,
@@ -53,6 +57,8 @@ const components = [
   Menu,
   MenuGroup,
   MenuItem,
+  Radio,
+  RadioGroup,
   Rate,
   Row,
   Sider,
@@ -94,6 +100,8 @@ export default {
   ButtonGroup,
   Cascader,
   Col,
+  Collapse,
+  CollapseItem,
   ColorPicker,
   Content,
   Divider,
@@ -108,6 +116,8 @@ export default {
   MenuItem,
   Message,
   Notification,
+  Radio,
+  RadioGroup,
   Rate,
   Row,
   Sider,
