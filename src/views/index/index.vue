@@ -18,6 +18,7 @@
     <router-link to="/alert">alert</router-link>
     <router-link to="/colorPicker">colorPicker</router-link>
     <router-link to="/progress">progress</router-link>
+    <router-link to="/radio">radio</router-link>
   </div>
 </template>
 <script>
