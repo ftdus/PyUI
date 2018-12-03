@@ -1,4 +1,5 @@
 import Alert from './components/alert/index';
+import Avatar from './components/avatar/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
@@ -25,12 +26,17 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
+import Spin from './components/spin/index';
 import Select from './components/select/index';
 import Pagination from './components/pagination/index';
 import Tag from './components/tag/index';
+import Collapse from './components/collapse/index';
+import CollapseItem from './components/collapse-item/index';
+import Carousel from './components/carousel/index';
 
 const components = [
   Alert,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
@@ -54,9 +60,13 @@ const components = [
   Switch,
   TabPane,
   Upload,
+  Spin,
   Select,
   Pagination,
   Tag,
+  Collapse,
+  CollapseItem,
+  Carousel,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -105,7 +115,9 @@ export default {
   Switch,
   TabPane,
   Upload,
+  Spin,
   Select,
   Pagination,
   Tag,
+  Carousel,
 };

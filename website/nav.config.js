@@ -25,6 +25,10 @@ const navData = [
             name: 'Grid 栅格',
             path: 'grid',
           },
+          {
+            name: 'Collapse 折叠面板',
+            path: 'collapse',
+          },
         ],
       },
       {
@@ -64,6 +68,10 @@ const navData = [
             path: 'badge',
           },
           {
+            name: 'Avatar 头像',
+            path: 'avatar',
+          },
+          {
             name: 'loadingBar 加载进度条',
             path: 'loading-bar',
           },
@@ -92,6 +100,19 @@ const navData = [
           {
             name: 'Tabs 标签页',
             path: 'tabs',
+          },
+          {
+            name: 'carousel 跑马灯',
+            path: 'carousel',
+          },
+        ],
+      },
+      {
+        group: 'Other',
+        children: [
+          {
+            name: 'Spin 加载中',
+            path: 'spin',
           },
         ],
       },
