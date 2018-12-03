@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+@include b(radio-group) {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* 水平radio */
+  @include m(horizontal) {
+    /* 此处为容器对容器内元素影响，需要css嵌套结构 */
+    .py-radio-btn + .py-radio-btn {
+      border-left: 0px;
+    }
+    .py-radio-btn:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+    .py-radio-btn:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  /* 垂直radio */
+  @include m(vertical) {
+    flex-direction: column;
+    /* 此处为容器对容器内元素影响，需要css嵌套结构 */
+    .py-radio {
+      height: 30px;
+      line-height: 30px;
+    }
+    .py-radio-btn + .py-radio-btn {
+      border-top: 0px;
+    }
+    .py-radio-btn:first-child {
+      border-radius: 4px 4px 0px 0px;
+    }
+    .py-radio-btn:last-child {
+      border-radius: 0 0 4px 4px;
+    }
+  }
+}
