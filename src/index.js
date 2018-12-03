@@ -29,6 +29,7 @@ import Upload from './components/upload/index';
 import Spin from './components/spin/index';
 import Select from './components/select/index';
 import Pagination from './components/pagination/index';
+import Progress from './components/progress/index';
 import Collapse from './components/collapse/index';
 import CollapseItem from './components/collapse-item/index';
 import Carousel from './components/carousel/index';
@@ -62,6 +63,7 @@ const components = [
   Spin,
   Select,
   Pagination,
+  Progress,
   Collapse,
   CollapseItem,
   Carousel,
@@ -116,5 +118,6 @@ export default {
   Spin,
   Select,
   Pagination,
+  Progress,
   Carousel,
 };

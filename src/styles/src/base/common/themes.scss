@@ -227,3 +227,14 @@ $--message-success-background-color: #f0f9eb;
 $--message-success-border-color: #e1f3d8;
 $--message-success-color: $--color-success;
 $--message-close-color: #c2c6ce;
+
+/*
+  Progress
+-------------------- */
+$--progress-default-text-color: $--color-text-regular;
+$--progress-success-text-color: $--color-success;
+$--progress-warning-text-color: $--color-warning;
+$--progress-danger-text-color: $--color-danger;
+$--progress-success-background-color: $--color-success;
+$--progress-warning-background-color: $--color-warning;
+$--progress-danger-background-color: $--color-danger;
