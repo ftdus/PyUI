@@ -120,5 +120,11 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "layout" */ './testsDemo/colorPicker/colorPicker.vue'),
     },
+    {
+      path: '/progress',
+      name: 'Progress',
+      component: () =>
+        import(/* webpackChunkName: "progress" */ './testsDemo/progress/progress.vue'),
+    },
   ],
 });

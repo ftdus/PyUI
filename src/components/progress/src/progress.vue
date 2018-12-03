@@ -14,7 +14,7 @@
     ]"
   >
     <div class="py-progress-bar">
-      <div class="py-progress-bar__outer" :style="{ height: width + 'px' }">
+      <div class="py-progress-bar__outer" :style="{ height: barHeight + 'px' }">
         <div class="py-progress-bar__inner" :style="barStyle">
           <div class="py-progress-bar__innerText" v-if="showText && textInside">
             {{ percentage }}%
@@ -25,7 +25,7 @@
     <div
       class="py-progress__text"
       v-if="showText && !textInside"
-      :style="{ fontSize: 12 + this.width * 0.4 + 'px' }"
+      :style="{ fontSize: 12 + this.barHeight * 0.4 + 'px' }"
     >
       <template v-if="!status"
         >{{ percentage }}%
@@ -45,7 +45,7 @@ const prefixCls = 'py-progress';
 export default {
   name: 'PyProgress',
   props: {
-    procentage: {
+    percentage: {
       type: Number,
       default: 0,
       required: true,
@@ -53,11 +53,11 @@ export default {
     },
     status: {
       type: String,
-      validator: s => s === 'success' || s === 'exception',
+      validator: s => s === 'success' || s === 'warning' || s === 'danger',
     },
-    width: {
+    barHeight: {
       type: Number,
-      default: 6,
+      default: 10,
     },
     showText: {
       type: Boolean,
@@ -78,12 +78,18 @@ export default {
     },
     barStyle() {
       const style = {};
-      style.width = `${this.procentage}%`;
+      style.width = `${this.percentage}%`;
       style.backgroundColor = this.backgroundColor;
       return style;
     },
     iconClass() {
-      return this.status === 'success' ? 'py-icon-circle-check' : 'py-icon-circle-close';
+      if (this.status === 'success') {
+        return 'pyui-icons py-icon-check-circle-fill';
+      } else if (this.status === 'warning') {
+        return 'pyui-icons py-icon-warning-circle-fill';
+      }
+      return 'pyui-icons py-icon-close-circle-fill';
+
     },
   },
 };

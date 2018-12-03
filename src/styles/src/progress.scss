@@ -1,4 +1,121 @@
 @charset "UTF-8";
 
 @include b(progress) {
+  position: relative;
+  line-height: 1;
+
+  @include e(text) {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    vertical-align: middle;
+    line-height: 1;
+    color: $--progress-default-text-color;
+    i {
+      display: block;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+
+  @include m(without-text) {
+    .py-progress__text {
+      display: none;
+    }
+
+    .py-progress-bar {
+      display: block;
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+
+  @include m(text-inside) {
+    .py-progress-bar {
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+
+  @at-root {
+    &.#{$state-prefix + success} {
+      .py-progress-bar__inner {
+        background-color: $--progress-success-background-color;
+      }
+
+      .py-progress__text {
+        color: $--progress-success-text-color;
+      }
+    }
+  }
+
+  @at-root {
+    &.#{$state-prefix + warning} {
+      .py-progress-bar__inner {
+        background-color: $--progress-warning-background-color;
+      }
+
+      .py-progress__text {
+        color: $--progress-warning-text-color;
+      }
+    }
+  }
+
+  @at-root {
+    &.#{$state-prefix + danger} {
+      .py-progress-bar__inner {
+        background-color: $--progress-danger-background-color;
+      }
+
+      .py-progress__text {
+        color: $--progress-danger-text-color;
+      }
+    }
+  }
+}
+
+@include b(progress-bar) {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  margin-right: -55px;
+  padding-right: 50px;
+  vertical-align: middle;
+
+  @include e(outer) {
+    position: relative;
+    overflow: hidden;
+    height: 10px;
+    border-radius: 100px;
+    vertical-align: middle;
+    background-color: $--border-color-base;
+  }
+
+  @include e(inner) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 100px;
+    line-height: 1;
+    text-align: right;
+    white-space: nowrap;
+    background-color: $--color-primary;
+    transition: width 0.6s ease;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  @include e(innerText) {
+    display: inline-block;
+    vertical-align: middle;
+    color: $--color-white;
+    font-size: 12px;
+    margin: 0 5px;
+  }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class='contains'>
+  <div class="contains">
     <h3>常见布局1 —— Header + Content</h3>
     <div class="py-layout-box">
       <py-layout>
@@ -55,7 +55,7 @@ import PySider from '../../components/sider';
 
 export default {
   components: {
-    'py-card': PyLayout,
+    'py-layout': PyLayout,
     'py-header': PyHeader,
     'py-footer': PyFooter,
     'py-content': PyContent,
@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 $prefixCls: 'layout';
 .contains {
   padding: 10px;
