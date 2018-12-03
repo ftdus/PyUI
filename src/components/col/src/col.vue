@@ -48,21 +48,21 @@ export default {
       const classses = [
         `${prefixCls}`,
         {
-          [`${prefixCls}__span-${this.span}`]: this.span,
-          [`${prefixCls}__push-${this.push}`]: this.push,
-          [`${prefixCls}__pull-${this.pull}`]: this.pull,
-          [`${prefixCls}__offset-${this.offset}`]: this.offset,
+          [`${prefixCls}__span--${this.span}`]: this.span,
+          [`${prefixCls}__push--${this.push}`]: this.push,
+          [`${prefixCls}__pull--${this.pull}`]: this.pull,
+          [`${prefixCls}__offset--${this.offset}`]: this.offset,
         },
       ];
       this.sizes.forEach(size => {
         if (typeof this[size] === 'number') {
-          classses.push(`${prefixCls}__span-${size}-${this[size]}`);
+          classses.push(`${prefixCls}__span--${size}-${this[size]}`);
         } else if (typeof this[size] === 'object') {
           const props = this[size];
           Object.keys(props).forEach(prop => {
             classses.push(prop !== 'span'
-              ? `${prefixCls}__${size}-${prop}-${props[prop]}`
-              : `${prefixCls}__span-${size}-${props[prop]}`);
+              ? `${prefixCls}__${prop}--${size}-${props[prop]}`
+              : `${prefixCls}__span--${size}-${props[prop]}`);
           });
         }
       });
