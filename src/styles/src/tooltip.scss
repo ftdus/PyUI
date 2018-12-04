@@ -1,0 +1,218 @@
+@charset "UTF-8";
+
+$tooltip-arrow: 'py-tooltip__arrow';
+$--tooltip-arrow-size: 6px !default;
+$border-radius-small: 4px;
+$tooltip-max-width: 250px;
+$tooltip-bg: rgba(70, 76, 91, 0.9);
+$shadow-color: rgba(0, 0, 0, 0.2);
+$shadow-base: 0 1px 6px $shadow-color;
+$tooltip-color: #fff;
+$text-color: #515a6e;
+$tooltip-arrow-color: hsla(0, 0%, 85%, 0.5);
+
+$tooltip-arrow-width: 5px;
+$tooltip-distance: $tooltip-arrow-width - 1 + 4;
+
+$tooltip-arrow-width-light: 7px !default;
+$tooltip-distance-light: $tooltip-arrow-width-light - 1 + 4;
+$tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
+
+@mixin popper($arrow, $arrow-width, $arrow-distance, $bg) {
+  display: block;
+  visibility: visible;
+  font-size: $font-size;
+  line-height: 1.5;
+  position: absolute;
+  z-index: 1060;
+
+  &[x-placement^='top'] {
+    padding: $arrow-width 0 $arrow-distance 0;
+  }
+  &[x-placement^='right'] {
+    padding: 0 $arrow-width 0 $arrow-distance;
+  }
+  &[x-placement^='bottom'] {
+    padding: $arrow-distance 0 $arrow-width 0;
+  }
+  &[x-placement^='left'] {
+    padding: 0 $arrow-distance 0 $arrow-width;
+  }
+
+  &[x-placement^='top'] .#{$arrow} {
+    bottom: $arrow-distance - $arrow-width;
+    border-width: $arrow-width $arrow-width 0;
+    border-top-color: $bg;
+  }
+  &[x-placement='top'] .#{$arrow} {
+    left: 50%;
+    margin-left: -$arrow-width;
+  }
+  &[x-placement='top-start'] .#{$arrow} {
+    left: 16px;
+  }
+  &[x-placement='top-end'] .#{$arrow} {
+    right: 16px;
+  }
+
+  &[x-placement^='right'] .#{$arrow} {
+    left: $arrow-distance - $arrow-width;
+    border-width: $arrow-width $arrow-width $arrow-width 0;
+    border-right-color: $bg;
+  }
+  &[x-placement='right'] .#{$arrow} {
+    top: 50%;
+    margin-top: -$arrow-width;
+  }
+  &[x-placement='right-start'] .#{$arrow} {
+    top: 8px;
+  }
+  &[x-placement='right-end'] .#{$arrow} {
+    bottom: 8px;
+  }
+
+  &[x-placement^='left'] .#{$arrow} {
+    right: $arrow-distance - $arrow-width;
+    border-width: $arrow-width 0 $arrow-width $arrow-width;
+    border-left-color: $bg;
+  }
+  &[x-placement='left'] .#{$arrow} {
+    top: 50%;
+    margin-top: -$arrow-width;
+  }
+  &[x-placement='left-start'] .#{$arrow} {
+    top: 8px;
+  }
+  &[x-placement='left-end'] .#{$arrow} {
+    bottom: 8px;
+  }
+
+  &[x-placement^='bottom'] .#{$arrow} {
+    top: $arrow-distance - $arrow-width;
+    border-width: 0 $arrow-width $arrow-width;
+    border-bottom-color: $bg;
+  }
+  &[x-placement='bottom'] .#{$arrow} {
+    left: 50%;
+    margin-left: -$arrow-width;
+  }
+  &[x-placement='bottom-start'] .#{$arrow} {
+    left: 16px;
+  }
+  &[x-placement='bottom-end'] .#{$arrow} {
+    right: 16px;
+  }
+}
+
+@include b(tooltip) {
+  display: inline-block;
+
+  @include e(rel) {
+    display: inline-block;
+    position: relative;
+    width: inherit;
+  }
+  @include e(popper) {
+    @include popper($tooltip-arrow, $tooltip-arrow-width, $tooltip-distance, $tooltip-bg);
+  }
+  @include e(light) {
+    @include popper(
+      $tooltip-arrow,
+      $tooltip-arrow-width-light,
+      $tooltip-distance-light,
+      $tooltip-arrow-color
+    );
+    &[x-placement^='top'] .#{$tooltip-arrow}:after {
+      content: ' ';
+      bottom: 1px;
+      margin-left: -$tooltip-arrow-width-light;
+      border-bottom-width: 0;
+      border-top-width: $tooltip-arrow-width-light;
+      border-top-color: #fff;
+    }
+
+    &[x-placement^='right'] .#{$tooltip-arrow}:after {
+      content: ' ';
+      left: 1px;
+      bottom: -$tooltip-arrow-width-light;
+      border-left-width: 0;
+      border-right-width: $tooltip-arrow-width-light;
+      border-right-color: #fff;
+    }
+
+    &[x-placement^='bottom'] .#{$tooltip-arrow}:after {
+      content: ' ';
+      top: 1px;
+      margin-left: -$tooltip-arrow-width-light;
+      border-top-width: 0;
+      border-bottom-width: $tooltip-arrow-width-light;
+      border-bottom-color: #fff;
+    }
+
+    &[x-placement^='left'] .#{$tooltip-arrow}:after {
+      content: ' ';
+      right: 1px;
+      border-right-width: 0;
+      border-left-width: $tooltip-arrow-width-light;
+      border-left-color: #fff;
+      bottom: -$tooltip-arrow-width-light;
+    }
+  }
+
+  @include e(inner) {
+    max-width: $tooltip-max-width;
+    min-height: 34px;
+    padding: 8px 12px;
+    color: $tooltip-color;
+    text-align: left;
+    text-decoration: none;
+    background-color: $tooltip-bg;
+    border-radius: $border-radius-small;
+    box-shadow: $shadow-base;
+    white-space: nowrap;
+
+    &-with-width {
+      white-space: pre-wrap;
+      text-align: justify;
+    }
+  }
+
+  &__light &__inner {
+    background-color: $tooltip-color;
+    color: $text-color;
+  }
+
+  @include e(arrow) {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  &__light {
+    .#{$tooltip-arrow} {
+      &:after {
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-color: transparent;
+        border-style: solid;
+        content: '';
+        border-width: $tooltip-arrow-width-light;
+      }
+      border-width: $tooltip-arrow-outer-width-light;
+    }
+  }
+}
+
+.py-tooltip-enter-active,
+.py-tooltip-leave-active {
+  transition: all 0.3s ease;
+}
+.py-tooltip-enter,
+.py-tooltip-leave,
+.py-tooltip-leave-active {
+  opacity: 0;
+}
