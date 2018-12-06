@@ -182,10 +182,9 @@ $prefixCls: 'py-select';
   }
 
   &.disabled {
-    opacity: 0.5;
     .#{$prefixCls}__suffix {
       cursor: not-allowed;
-      background: $--input-bg-color-disabled;
+      background: $bg-box-shadow;
     }
 
     .#{$prefixCls}__input {
@@ -201,7 +200,7 @@ $prefixCls: 'py-select';
     .input-single,
     input {
       cursor: not-allowed;
-      background: $--input-bg-color-disabled;
+      background: $bg-box-shadow;
       color: $border-color;
     }
   }
@@ -230,6 +229,40 @@ $prefixCls: 'py-select';
     padding-left: 0;
     margin: 0;
 
+    @include e(dropdown--item) {
+      position: relative;
+      padding: 10px;
+      list-style: none;
+      font-size: 14px;
+      color: $color;
+      line-height: 1.2em;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &.selected {
+        color: $primary-color;
+        font-weight: 700;
+      }
+
+      &:hover,
+      &.actived {
+        background: #f5f7fa;
+      }
+
+      &.disabled {
+        opacity: 0.5;
+
+        &:hover {
+          cursor: no-drop;
+        }
+
+        &:hover,
+        &.selected {
+          color: $color;
+          font-weight: 400;
+        }
+      }
+    }
     @include e(dropdown--groupitem) {
       @include e(dropdown--grouplabel) {
         padding: 0 10px;

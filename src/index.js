@@ -28,6 +28,7 @@ import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
 import Spin from './components/spin/index';
 import Select from './components/select/index';
+import Option from './components/select/src/option.vue';
 import Pagination from './components/pagination/index';
 import Tag from './components/tag/index';
 import Collapse from './components/collapse/index';
@@ -62,6 +63,7 @@ const components = [
   Upload,
   Spin,
   Select,
+  Option,
   Pagination,
   Tag,
   Collapse,
@@ -117,6 +119,7 @@ export default {
   Upload,
   Spin,
   Select,
+  Option,
   Pagination,
   Tag,
   Carousel,

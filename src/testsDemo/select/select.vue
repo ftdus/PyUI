@@ -1,5 +1,58 @@
 <template>
   <div class="page">
+    <section>
+      <py-select v-model="value" placeholder="请选择">
+        <py-option
+          v-for="(option, key) in selectData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <py-select v-model="value" placeholder="请选择">
+        <py-option
+          v-for="(option, key) in selectDisabledData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <py-select v-model="value" disabled placeholder="请选择">
+        <py-option
+          v-for="(option, key) in selectDisabledData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <py-select v-model="value" clearable placeholder="请选择">
+        <py-option
+          v-for="(option, key) in selectDisabledData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <py-select v-model="value" multiple placeholder="请选择">
+        <py-option
+          v-for="(option, key) in selectData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
     <!-- <h2>分组</h2>
     <p>可分组</p>
     <section>
@@ -17,7 +70,7 @@
         :data="groupOptions"></py-select>
     </section> -->
 
-    <h2>选择器不可用状态</h2>
+    <!-- <h2>选择器不可用状态</h2>
     <p>为py-select设置disabled属性，则整个选择器不可用</p>
     <section>
       <py-select
@@ -125,7 +178,7 @@
         loading-text="加载中"
         :remote-method="remoteMethod"
         :data="remoteData"></py-select>
-    </section>
+    </section> -->
   </div>
 </template>
 

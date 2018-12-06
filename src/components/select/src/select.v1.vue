@@ -76,7 +76,23 @@
         v-show="showDropDown"
         ref="dropDown">
         <ul class="py-select__dropdown--grouplist" v-if="!loading">
-          <slot></slot>
+          <li
+            v-show="option.show !== false"
+            class="py-select__dropdown--item"
+            :class="{
+              'selected': option.selected,
+              'disabled': option.disabled || option.multipleDisabled,
+              'actived': index === activedIndex,
+            }"
+            v-for="(option, index) in options"
+            :key="index"
+            @click="selectDropDownItem(option, $event)">
+            {{ option.label }}
+            <i
+              v-show="option.selected && multiple"
+              class="py-select__selected pyui-icons py-icon-check">
+            </i>
+          </li>
         </ul>
         <div class="py-select__dropdown--loading" v-if="loading">
           {{ loadingText }}
@@ -96,19 +112,14 @@ import Vue from 'vue';
 
 export default {
   name: 'py-select',
-  provide() {
-    return {
-      $select: this,
-    };
-  },
   data() {
     return {
       showDropDown: false, // 下拉框显示/隐藏
       direction: 'slide-down', // 下拉框出现在input上方/下方
       selectValue: this.multiple ? [] : {}, // 被选择的选项
+      options: JSON.parse(JSON.stringify(this.data)), // data组件内备份
       queryText: '', // input的value值
       activedIndex: -1, // 下拉框option被激活的index
-      options: this.$children,
     };
   },
   props: {
@@ -191,26 +202,56 @@ export default {
     },
     data: {
       handler(val) {
-        console.log(val);
+        this.options = JSON.parse(JSON.stringify(val));
+        this.options.forEach(option => {
+          const item = option;
+          if (this.multiple) {
+            this.selectValue.forEach(tag => {
+              if (tag.label === option.label && tag.value === option.value) {
+                item.selected = true;
+              }
+            });
+          } else if (
+            this.selectValue.label === option.label &&
+            this.selectValue.value === option.value
+          ) {
+            item.selected = true;
+          }
+        });
+        this.$nextTick(() => {
+          this.setDirection();
+        });
       },
       deep: true,
     },
     selectValue: {
-      handler(val) {
+      handler(val, oldVal) {
         if (this.multiple) {
           const multipleSelectValue = [];
           val.forEach(selectItem => {
             multipleSelectValue.push(selectItem.value);
+            this.options.forEach(item => {
+              if (item.value === selectItem.value && item.label === selectItem.label) {
+                Vue.set(item, 'selected', true);
+              }
+            });
           });
-          // if (val.length === 0) {
-          //   this.options.forEach(item => {
-          //     const itemTemp = item;
-          //     itemTemp.selected = false;
-          //   });
-          // }
+          if (val.length === 0) {
+            this.options.forEach(item => {
+              const itemTemp = item;
+              itemTemp.selected = false;
+            });
+          }
           this.$emit('change', multipleSelectValue);
           this.$emit('input', multipleSelectValue);
-        } else {
+        } else if (oldVal.value !== val.value) {
+          this.options.forEach(item => {
+            if (item.value === val.value && item.label === val.label) {
+              Vue.set(item, 'selected', true);
+            } else {
+              Vue.set(item, 'selected', false);
+            }
+          });
           this.$emit('change', this.selectValue.value ? this.selectValue.value : '');
           this.$emit('input', this.selectValue.value ? this.selectValue.value : '');
         }
@@ -222,7 +263,31 @@ export default {
       deep: true,
     },
     queryText(val) {
-      console.log(val);
+      this.$nextTick(() => {
+        const width =
+          this.$refs.multiText.clientWidth > 6 ? this.$refs.multiText.clientWidth + 1 : 6;
+        this.$refs.multiInput.style.width = `${width}px`;
+        this.setPosition();
+        this.setDirection();
+        if (!this.filterable) return;
+        this.activedIndex = -1;
+        if (this.remote) {
+          this.remoteMethod(val);
+        } else {
+          this.options.forEach(option => {
+            if (!option.created) {
+              if (val === '') {
+                Vue.set(option, 'show', true);
+              } else if (!this.filterMethod(val, option)) {
+                Vue.set(option, 'show', false);
+              } else if (this.filterMethod(val, option)) {
+                Vue.set(option, 'show', true);
+              }
+            }
+          });
+        }
+      });
+      this.inputQuery();
     },
   },
   computed: {
@@ -251,22 +316,50 @@ export default {
       this.$emit('clear');
     },
     // 输入查询内容
-    inputQuery() {},
+    inputQuery() {
+      if (this.allowCreate && !this.remote) {
+        if (this.queryText !== '') {
+          const option = {
+            label: this.queryText,
+            value: this.queryText,
+            created: true,
+            show: true,
+          };
+          if (this.options[0].created) {
+            this.options.shift();
+          }
+          this.options.unshift(option);
+          this.activedIndex = 0;
+        } else {
+          this.activedIndex = -1;
+          this.options.shift();
+        }
+      }
+    },
     // 通过键盘删除tag
     deleteTagByKeyboard() {
-      // if (this.queryText !== '') {
-      //   if (this.filterable && !this.multiple) {
-      //     this.options.forEach(option => {
-      //       const item = option;
-      //       delete item.selected;
-      //     });
-      //   }
-      //   return;
-      // }
+      if (this.queryText !== '') {
+        if (this.filterable && !this.multiple) {
+          this.options.forEach(option => {
+            const item = option;
+            delete item.selected;
+          });
+        }
+        return;
+      }
       if (this.multiple) {
         if (this.selectValue.length === 0) return;
         const lastIndex = this.selectValue.length - 1;
         if (this.selectValue[lastIndex].deleteSelected) {
+          this.options.forEach(option => {
+            const optionItem = option;
+            if (
+              optionItem.value === this.selectValue[lastIndex].value &&
+              optionItem.label === this.selectValue[lastIndex].label
+            ) {
+              delete optionItem.selected;
+            }
+          });
           this.deleteTag(lastIndex);
           return;
         }
@@ -330,14 +423,15 @@ export default {
     },
     // 键盘enter点击后选择某个option
     selectOption() {
-      this.$children.forEach((child, index) => {
+      this.options.forEach((option, index) => {
+        const item = option;
         if (index === this.activedIndex) {
-          this.selectDropDownItem(child);
-          // if (option.created && this.multiple) {
-          //   item.show = false;
-          //   item.selected = true;
-          //   this.queryText = '';
-          // }
+          this.selectDropDownItem(option);
+          if (option.created && this.multiple) {
+            item.show = false;
+            item.selected = true;
+            this.queryText = '';
+          }
         }
       });
     },
@@ -362,11 +456,19 @@ export default {
     // 删除某个tag
     deleteTag(index, selectItem) {
       this.selectValue.splice(index, 1);
-      this.$emit('remove-tag', selectItem);
+      if (selectItem) {
+        this.options.forEach(option => {
+          const optionItem = option;
+          if (optionItem.value === selectItem.value && optionItem.label === selectItem.label) {
+            delete optionItem.selected;
+          }
+        });
+        this.$emit('remove-tag', selectItem);
+      }
     },
     // 选择下拉菜单的option
     selectDropDownItem(option, e) {
-      const index = this.$children.indexOf(option);
+      let optionItem = option;
       if (option.disabled || option.multipleDisabled) {
         if (e) {
           e.preventDefault();
@@ -375,39 +477,49 @@ export default {
         return;
       }
       if (option.selected && this.multiple) {
-        console.log(1);
-      }
-      if (this.multiple) {
-        if (option.selected) return;
-        this.selectValue.push({
-          value: option.value,
-          label: option.label,
-          optionIndex: index,
+        this.$refs.multiInput.focus();
+        this.selectValue.forEach((item, index) => {
+          const selectValueItem = item;
+          if (option.value === selectValueItem.value && option.label === selectValueItem.label) {
+            this.deleteTag(index);
+            optionItem.selected = false;
+          }
+          // 恢复option的multipleDisabled
+          if (this.multipleLimit && this.selectValue.length < this.multipleLimit) {
+            this.options.forEach(optionTemp => {
+              optionItem = optionTemp;
+              Vue.set(optionItem, 'multipleDisabled', false);
+            });
+          }
         });
+        return;
+      }
+      const objOption = Object.assign({}, option);
+      if (this.multiple) {
+        if (objOption.show === false) return;
+        this.selectValue.push(objOption);
         // 判断multipleLimit限制
-        // if (this.multipleLimit && this.selectValue.length >= this.multipleLimit) {
-        //   this.options.forEach(optionTemp => {
-        //     optionItem = optionTemp;
-        //     if (
-        //       !optionItem.selected &&
-        //       optionItem.value !== option.value &&
-        //       optionItem.label !== option.label
-        //     ) {
-        //       Vue.set(optionItem, 'multipleDisabled', true);
-        //     }
-        //   });
-        //   return;
-        // }
+        if (this.multipleLimit && this.selectValue.length >= this.multipleLimit) {
+          this.options.forEach(optionTemp => {
+            optionItem = optionTemp;
+            if (
+              !optionItem.selected &&
+              optionItem.value !== option.value &&
+              optionItem.label !== option.label
+            ) {
+              Vue.set(optionItem, 'multipleDisabled', true);
+            }
+          });
+          return;
+        }
         this.$refs.multiInput.focus();
       } else {
-        this.selectValue = {
-          value: option.value,
-          label: option.label,
-          optionIndex: index,
-        };
+        this.selectValue = objOption;
         this.showDropDown = false;
         if (this.filterable) {
-          console.log(1);
+          this.queryText = objOption.label;
+          this.$refs.multiInput.blur();
+          this.activedIndex = -1;
         }
       }
     },
