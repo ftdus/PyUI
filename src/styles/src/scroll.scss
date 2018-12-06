@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+$prefixCls: 'py-scroll';
+
+@include b(scroll) {
+  width: auto;
+  margin: 0 auto;
+  position: relative;
+  outline: none;
+  @include e(container) {
+    overflow-y: scroll;
+  }
+}
+.py-scroll__load--icon {
+  animation: loadAnimationOnScroll infinite 0.8s linear;
+}
+
+@keyframes loadAnimationOnScroll {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
