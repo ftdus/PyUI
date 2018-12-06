@@ -1,4 +1,26 @@
 @charset "UTF-8";
 
-@include b(circle) {
+// @include b(circle) {
+
+// }
+
+$prefixCls: 'py-circle';
+
+// .#{$prefixCls}__content {
+
+// @circle-prefix-cls: ~"@{css-prefix}chart-circle";
+
+.#{$prefixCls} {
+  display: inline-block;
+  position: relative;
+
+  &-inner {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+  }
 }

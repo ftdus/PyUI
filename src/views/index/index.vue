@@ -19,6 +19,7 @@
     <router-link to="/colorPicker">colorPicker</router-link>
     <router-link to="/progress">progress</router-link>
     <router-link to="/radio">radio</router-link>
+    <router-link to="/circle">circle</router-link>
   </div>
 </template>
 <script>

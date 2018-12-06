@@ -35,6 +35,7 @@ import Select from './components/select/index';
 import Pagination from './components/pagination/index';
 import Progress from './components/progress/index';
 import Carousel from './components/carousel/index';
+import Circle from './components/circle/index';
 
 const components = [
   Alert,
@@ -73,6 +74,7 @@ const components = [
   Collapse,
   CollapseItem,
   Carousel,
+  Circle,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -130,4 +132,5 @@ export default {
   Pagination,
   Progress,
   Carousel,
+  Circle,
 };
