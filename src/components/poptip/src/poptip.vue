@@ -18,12 +18,11 @@
         :data-transfer="transfer"
         v-transfer-dom
       >
-        <div :class="[prefixCls + '-content']">
-          <div :class="[prefixCls + '-arrow']"></div>
-          <div :class="[prefixCls + '-inner']" v-if="confirm">
-            <div :class="[prefixCls + '-body']">
-              <i class="ivu-icon ivu-icon-ios-help-circle"></i>
-              <div :class="[prefixCls + '-body-message']">
+        <div :class="[prefixCls + '__content']">
+          <div :class="[prefixCls + '__arrow']"></div>
+          <div :class="[prefixCls + '__inner']" v-if="confirm">
+            <div :class="[prefixCls + '__body']">
+              <div :class="[prefixCls + '__body-message']">
                 <slot name="title">{{ title }}</slot>
               </div>
             </div>
@@ -36,21 +35,21 @@
               </py-button>
             </div>
           </div>
-          <div :class="[prefixCls + '-inner']" v-if="!confirm">
+          <div :class="[prefixCls + '__inner']" v-if="!confirm">
             <div
-              :class="[prefixCls + '-title']"
+              :class="[prefixCls + '__title']"
               :style="contentPaddingStyle"
               v-if="showTitle"
               ref="title"
             >
               <slot name="title">
-                <div :class="[prefixCls + '-title-inner']">{{ title }}</div>
+                <div :class="[prefixCls + '__title-inner']">{{ title }}</div>
               </slot>
             </div>
-            <div :class="[prefixCls + '-body']" :style="contentPaddingStyle">
+            <div :class="[prefixCls + '__body']" :style="contentPaddingStyle">
               <div :class="contentClasses">
                 <slot name="content">
-                  <div :class="[prefixCls + '-body-content-inner']">{{ content }}</div>
+                  <div :class="[prefixCls + '__body-content-inner']">{{ content }}</div>
                 </slot>
               </div>
             </div>
@@ -66,7 +65,7 @@ import { directive as clickOutside } from 'v-click-outside-x';
 import Popper from '../mixins/popper';
 import PyButton from '../../button';
 import TransferDom from '../directives/transfer-dom';
-import { transferIndex, transferIncrease } from '../utils/transfer-queue';
+import { transferIndex, transferIncrease } from '../../../utils/transfer-queue';
 
 const prefixCls = 'py-poptip';
 /* eslint-disable consistent-return */
@@ -189,9 +188,9 @@ export default {
     },
     contentClasses() {
       return [
-        `${prefixCls}-body-content`,
+        `${prefixCls}__body-content`,
         {
-          [`${prefixCls}-body-content-word-wrap`]: this.wordWrap,
+          [`${prefixCls}__body-content-word-wrap`]: this.wordWrap,
         },
       ];
     },
