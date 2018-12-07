@@ -114,6 +114,10 @@ const navData = [
             name: 'Spin 加载中',
             path: 'spin',
           },
+          {
+            name: 'Scroll 无限滚动',
+            path: 'scroll',
+          },
         ],
       },
     ],
