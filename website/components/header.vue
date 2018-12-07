@@ -4,18 +4,25 @@
       <h1>PyUI</h1>
       <ul class="nav">
         <!-- <li>home</li> -->
-        <li>
-          <router-link active-class="active" to="/component">组件</router-link>
-        </li>
+        <li><router-link active-class="active" to="/component">组件</router-link></li>
         <li class="lang-item">中文</li>
-        <li class="theme-item">主题</li>
+        <li class="theme-item">
+          主题
+          <theme-control></theme-control>
+        </li>
       </ul>
     </div>
   </py-header>
 </template>
 
 <script>
-export default {};
+import ThemeControl from './theme-control.vue';
+
+export default {
+  components: {
+    ThemeControl,
+  },
+};
 </script>
 
 <style lang="scss">
