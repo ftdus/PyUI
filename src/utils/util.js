@@ -87,3 +87,13 @@ export function findComponentsUpward(context, componentName) {
   }
   return [];
 }
+
+export function throttle(time, callback) {
+  let timer = null;
+  return function() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      callback();
+    }, time);
+  };
+}

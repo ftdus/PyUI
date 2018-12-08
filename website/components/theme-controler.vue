@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { throttle } from '@/utils/util';
+
 export default {
   data() {
     return {
@@ -15,11 +17,12 @@ export default {
 
   watch: {
     themeColor() {
-      this.changeTheme();
+      this.throttleChangeTheme();
     },
   },
 
   created() {
+    this.throttleChangeTheme = throttle(300, this.changeTheme);
     this.getOriginStyleSheet();
   },
 
@@ -28,7 +31,6 @@ export default {
       const styleText = this.originCss.replace(/(#ff9800)/g, this.themeColor.hex);
       const styleTag = document.createElement('style');
       styleTag.innerText = styleText;
-
       document.head.appendChild(styleTag);
     },
 
