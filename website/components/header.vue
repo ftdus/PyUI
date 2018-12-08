@@ -8,19 +8,19 @@
         <li class="lang-item">中文</li>
         <li class="theme-item">
           主题
-          <theme-control></theme-control>
         </li>
+        <li><theme-controler></theme-controler></li>
       </ul>
     </div>
   </py-header>
 </template>
 
 <script>
-import ThemeControl from './theme-control.vue';
+import ThemeControler from './theme-controler.vue';
 
 export default {
   components: {
-    ThemeControl,
+    ThemeControler,
   },
 };
 </script>

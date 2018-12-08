@@ -1,5 +1,7 @@
 <template>
-  <py-color-picker v-model="themeColor"></py-color-picker>
+  <div class="theme-block">
+    <py-color-picker class="color-picker" v-model="themeColor"></py-color-picker>
+  </div>
 </template>
 
 <script>
@@ -48,4 +50,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.theme-block {
+  .color-picker {
+    width: 50px;
+  }
+}
+</style>
