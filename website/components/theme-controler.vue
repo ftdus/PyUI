@@ -55,7 +55,7 @@ export default {
 <style lang="scss">
 .theme-block {
   .color-picker {
-    width: 50px;
+    width: 200px;
   }
 }
 </style>
