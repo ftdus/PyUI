@@ -34,6 +34,8 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
+import Form from './components/form/src/form.vue';
+import FormItem from './components/form-item/src/form-item.vue';
 
 const components = [
   Alert,
@@ -69,6 +71,8 @@ const components = [
   Switch,
   TabPane,
   Upload,
+  Form,
+  FormItem,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -126,4 +130,6 @@ export default {
   Switch,
   TabPane,
   Upload,
+  Form,
+  FormItem,
 };

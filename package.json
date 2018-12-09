@@ -13,7 +13,8 @@
     "new:comp": "node scripts/new-comp.js",
     "serve:main": "cross-env BUILD_TYPE=main vue-cli-service serve website/main.js",
     "styles:update": "node scripts/styles-update.js",
-    "test:unit": "vue-cli-service test:unit -r ./tests/unit/setup"
+    "test:unit": "vue-cli-service test:unit -r ./tests/unit/setup",
+    "async-validator": "^1.10.0"
   },
   "dependencies": {
     "clamp": "^1.0.1",

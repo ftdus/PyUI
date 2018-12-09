@@ -58,6 +58,10 @@ const navData = [
             name: 'Radio 单选框',
             path: 'radio',
           },
+          {
+            name: 'Form 表单',
+            path: 'form',
+          },
         ],
       },
       {
