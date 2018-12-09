@@ -36,8 +36,8 @@
   <div class="demo-box">
     <py-pagination
       :page-count="100"
-      :pager-count="10"
-      layout="pager"
+      :pager-count="11"
+      layout="pager,sizes"
       simple
     ></py-pagination>
   </div>
@@ -87,9 +87,9 @@
     <div class="demo-box demo-box1">
       <span class="demo-label">完整功能:</span>
       <py-pagination
-        :page-count="10"
-        :pager-count="7"
-        layout="total, pager, jumper"
+        :page-count="5"
+        :pager-count="5"
+        layout="total, pager, sizes, jumper"
         simple
         :total="100"
       ></py-pagination>
@@ -171,6 +171,8 @@
 | prev-text | 替代图标显示的上一页文字 | string | — | — |
 | next-text | 替代图标显示的下一页文字 | string | — | — |
 | disabled | 是否禁用 | boolean | — | false |
+| page-size | 每页显示条目个数 | number | - | 10 |
+| page-sizes | 每页显示个数选择器的选项设置 | number[] | - | [10, 20, 30, 40, 50, 100] |
 
 ### Events
 | 事件名称 | 说明 | 回调参数 |
@@ -178,6 +180,7 @@
 | current-change | currentPage 改变时会触发 | 当前页 |
 | prev-click | 用户点击上一页按钮改变当前页后触发 | 当前页 |
 | next-click | 用户点击下一页按钮改变当前页后触发 | 当前页 |
+| size-change | pageSize 改变时会触发 | 每页条数以及当前页码 |
 
 ### Slot
 | name | 说明 |

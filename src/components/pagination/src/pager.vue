@@ -7,7 +7,8 @@
         (disabled || current === 1) ? 'py-pager--disabled' : ''
       ]"
     >
-      {{ prevText }}
+      <py-icon v-if="prevText==='left'" class="py-pager__prev__icon" type="left"></py-icon>
+      <span v-else class="py-pager__prev__icon">{{ prevText }}</span>
     </li>
     <li
       :class="[
@@ -22,13 +23,13 @@
       :class="[
         'py-pager--prev',
         simple ? 'py-pager--simple' : 'py-pager--notsimple',
-        leftFlag === '<<' ? 'py-pager--active' : '',
+        leftFlag === 'doubleleft' ? 'py-pager--active' : '',
         disabled ? 'py-pager--disabled' : ''
       ]"
       @mouseenter="onMouseenter('left')"
       @mouseleave="onMouseleave('left')"
     >
-      {{ leftFlag }}
+      <py-icon class="py-pager--prev__icon" :type="leftFlag"></py-icon>
     </li>
     <li
       v-for="(page, index) in pageList"
@@ -47,13 +48,13 @@
       :class="[
         'py-pager--next',
         simple ? 'py-pager--simple' : 'py-pager--notsimple',
-        rightFlag === '>>' ? 'py-pager--active' : '',
+        rightFlag === 'doubleright' ? 'py-pager--active' : '',
         disabled ? 'py-pager--disabled' : '',
       ]"
       @mouseenter="onMouseenter('right')"
       @mouseleave="onMouseleave('right')"
     >
-      {{ rightFlag }}
+      <py-icon class="py-pager--next__icon" :type="rightFlag"></py-icon>
     </li>
     <li
       :class="[
@@ -72,7 +73,8 @@
         (disabled || current === pageCount) ? 'py-pager--disabled' : ''
       ]"
     >
-      {{ nextText }}
+      <py-icon v-if="nextText==='right'" class="py-pager__next__icon" type="right"></py-icon>
+      <span v-else class="py-pager__next__icon">{{ nextText }}</span>
     </li>
   </ul>
 </template>
@@ -94,8 +96,8 @@ export default {
       showPrev: false,
       showNext: false,
       current: null,
-      leftFlag: '...',
-      rightFlag: '...',
+      leftFlag: 'ellipsis',
+      rightFlag: 'ellipsis',
     };
   },
   computed: {
@@ -113,11 +115,7 @@ export default {
           const maxPage = Number(currentNum + halfPagerNum);
           const minPage = Number(pageNum - (pagerNum - 2));
           if (maxPage < pageNum) {
-            for (
-              let i = currentNum - halfPagerNum;
-              i <= currentNum + halfPagerNum;
-              i += 1
-            ) {
+            for (let i = currentNum - halfPagerNum; i <= currentNum + halfPagerNum; i += 1) {
               middleArray.push(i);
             }
           } else {
@@ -209,16 +207,16 @@ export default {
         return;
       }
       if (_type === 'left') {
-        this.leftFlag = '<<';
+        this.leftFlag = 'doubleleft';
       } else if (_type === 'right') {
-        this.rightFlag = '>>';
+        this.rightFlag = 'doubleright';
       }
     },
     onMouseleave(_type) {
       if (_type === 'left') {
-        this.leftFlag = '...';
+        this.leftFlag = 'ellipsis';
       } else if (_type === 'right') {
-        this.rightFlag = '...';
+        this.rightFlag = 'ellipsis';
       }
     },
   },
