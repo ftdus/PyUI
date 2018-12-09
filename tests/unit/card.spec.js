@@ -4,13 +4,14 @@ import {
 }
 from '@vue/test-utils'
 describe('PYCard', () => {
+  let wrapper;
   afterEach(() => {
     setTimeout(() => {
-      wrapper.destory();
+      wrapper.destroy();
     }, 100);
   });
   it('card头部具名插槽', () => {
-    const wrapper = mount(PYCard, {
+    wrapper = mount(PYCard, {
       slots: {
         header: '<div> mountainc44 </div>'
       }
@@ -19,7 +20,7 @@ describe('PYCard', () => {
   });
 
   it('card自定义头部', () => {
-    const wrapper = mount(PYCard, {
+    wrapper = mount(PYCard, {
       propsData: {
         header: 'mountainc44'
       }
@@ -28,7 +29,7 @@ describe('PYCard', () => {
   });
 
   it('card自定义bodyStyle', () => {
-    const wrapper = mount(PYCard, {
+    wrapper = mount(PYCard, {
       propsData: {
         bodyStyle: {
           padding: '10px'
@@ -39,7 +40,7 @@ describe('PYCard', () => {
   });
 
   it('card总是显示阴影', () => {
-    const wrapper = mount(PYCard, {
+    wrapper = mount(PYCard, {
       propsData: {
         shadow: 'always'
       }
@@ -48,7 +49,7 @@ describe('PYCard', () => {
   });
 
   it('card鼠标触碰显示阴影', () => {
-    const wrapper = mount(PYCard, {
+    wrapper = mount(PYCard, {
       propsData: {
         shadow: 'hover'
       }
@@ -57,7 +58,7 @@ describe('PYCard', () => {
   });
 
   it('card永不显示阴影', () => {
-    const wrapper = mount(PYCard, {
+    wrapper = mount(PYCard, {
       propsData: {
         shadow: 'never'
       }
