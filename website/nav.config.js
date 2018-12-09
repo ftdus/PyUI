@@ -72,6 +72,10 @@ const navData = [
             path: 'badge',
           },
           {
+            name: 'Progress 进度条',
+            path: 'progress',
+          },
+          {
             name: 'Avatar 头像',
             path: 'avatar',
           },
@@ -114,6 +118,10 @@ const navData = [
       {
         group: 'Other',
         children: [
+          {
+            name: 'Card 卡片',
+            path: 'card',
+          },
           {
             name: 'Spin 加载中',
             path: 'spin',
