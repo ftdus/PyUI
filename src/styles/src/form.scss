@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+@include b(form) {
+  @include m(label-left) {
+    & .py-form-item__label {
+      text-align: left;
+    }
+  }
+  @include m(label-top) {
+    & .py-form-item__label {
+      float: none;
+      display: inline-block;
+      text-align: left;
+      padding: 0 0 10px 0;
+    }
+  }
+  @include m(inline) {
+    & .py-form-item {
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top;
+    }
+    & .py-form-item__label {
+      float: none;
+      display: inline-block;
+    }
+    & .py-form-item__content {
+      display: inline-block;
+      vertical-align: top;
+    }
+    &.py-form--label-top .py-form-item__content {
+      display: block;
+    }
+  }
+}
