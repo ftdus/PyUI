@@ -29,23 +29,25 @@ $textColor: #606266;
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.92);
-  display: flex;
-  align-items: center;
   z-index: 1000;
 
   .container {
     width: 1140px;
+    display: flex;
+    justify-content: space-between;
     margin: 0 auto;
 
     h1 {
-      float: left;
-      font-size: 24px;
-      color: $primaryColor;
+      width: 80px;
+      height: 60px;
+      text-indent: -1000px;
+      background: url('../assets/images/logo.png') no-repeat center;
+      background-size: 100%;
     }
   }
   .nav {
-    float: right;
     display: flex;
+    align-items: center;
     li {
       padding: 0 20px;
       color: $textColor;

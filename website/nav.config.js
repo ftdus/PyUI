@@ -54,6 +54,14 @@ const navData = [
             name: 'Upload 文件上传',
             path: 'upload',
           },
+          {
+            name: 'Radio 单选框',
+            path: 'radio',
+          },
+          {
+            name: 'Form 表单',
+            path: 'form',
+          },
         ],
       },
       {
@@ -62,6 +70,10 @@ const navData = [
           {
             name: 'Badge 标记',
             path: 'badge',
+          },
+          {
+            name: 'Avatar 头像',
+            path: 'avatar',
           },
           {
             name: 'loadingBar 加载进度条',
@@ -96,6 +108,19 @@ const navData = [
           {
             name: 'carousel 跑马灯',
             path: 'carousel',
+          },
+        ],
+      },
+      {
+        group: 'Other',
+        children: [
+          {
+            name: 'Spin 加载中',
+            path: 'spin',
+          },
+          {
+            name: 'Scroll 无限滚动',
+            path: 'scroll',
           },
         ],
       },

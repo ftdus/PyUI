@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+@include b(form-item) {
+  margin-bottom: 22px;
+  line-height: 40px;
+  @include e(content) {
+    //padding-left: 10px;
+    line-height: 40px;
+  }
+  @include e(label) {
+    float: left;
+    text-align: right;
+    font-size: 14px;
+    padding-right: 10px;
+  }
+  @include when(required) {
+    & > .py-form-item__label:before {
+      content: '*';
+      color: red;
+      margin-right: 4px;
+    }
+  }
+  
+  @include e(error) {
+    color: $--color-danger;
+    font-size: 12px;
+    line-height: 1;
+    padding-top: 4px;
+    //position: absolute;
+    //top: 100%;
+    //left: 0;
+    //
+    //@include m(inline) {
+    //  position: relative;
+    //  top: auto;
+    //  left: auto;
+    //  display: inline-block;
+    //  margin-left: 10px;
+    //}
+  }
+  @include when(error) {
+    & .py-input__inner,
+    & .py-textarea__inner {
+      &,
+      &:focus {
+        border-color: $--color-danger;
+      }
+    }
+    & .py-input-group__append,
+    & .py-input-group__prepend {
+      & .py-input__inner {
+        border-color: transparent;
+      }
+    }
+    .py-input__validateIcon {
+      color: $--color-danger;
+    }
+  }
+  @include when(success) {
+    & .py-input__inner,
+    & .py-textarea__inner {
+      &,
+      &:focus {
+        border-color: $--color-success;
+      }
+    }
+    & .py-input-group__append,
+    & .py-input-group__prepend {
+      & .py-input__inner {
+        border-color: transparent;
+      }
+    }
+    .py-input__validateIcon {
+      color: $--color-success;
+    }
+  }
+  
+  @include m(medium) {
+    .py-form-item__label {
+      line-height: 36px;
+    }
+    .py-form-item__content {
+      line-height: 36px;
+    }
+  }
+  @include m(small) {
+    .py-form-item__label {
+      line-height: 32px;
+    }
+    .py-form-item__content {
+      line-height: 32px;
+    }
+    &.py-form-item {
+      margin-bottom: 18px;
+    }
+    .py-form-item__error {
+      padding-top: 2px;
+    }
+  }
+  
+  @include m(mini) {
+    .py-form-item__label {
+      line-height: 28px;
+    }
+    .py-form-item__content {
+      line-height: 28px;
+    }
+    &.py-form-item {
+      margin-bottom: 18px;
+    }
+    .py-form-item__error {
+      padding-top: 1px;
+    }
+  }
+}

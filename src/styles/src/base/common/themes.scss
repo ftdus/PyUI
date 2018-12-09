@@ -98,7 +98,7 @@ $--color-black: #000 !default;
 
 $--color-primary: #ff9800 !default;
 $--color-success: #3ac2b7 !default;
-$--color-warning: #e68d3c !default;
+$--color-warning: #2cb9f2 !default;
 $--color-danger: #e85757 !default;
 
 $--color-text-primary: #303133 !default;
@@ -177,6 +177,15 @@ $--upload-font-size-large: $--font-size-large !default;
 $--upload-color: $--color-primary !default;
 $--upload-radius: $border-radius !default;
 
+/* spin
+--------------------------*/
+$--spin-font-size-small: $--font-size-small !default;
+$--spin-font-size: $--font-size-base !default;
+$--spin-font-size-large: $--font-size-large !default;
+$--spin-color: rgba(255, 255, 255, 0.712) !default;
+$--spin-font-color: $--color-primary !default;
+$--spin-radius: $border-radius !default;
+
 /* Header
   --------------------------*/
 $--header-padding: 0 20px !default;
@@ -218,3 +227,14 @@ $--message-success-background-color: #f0f9eb;
 $--message-success-border-color: #e1f3d8;
 $--message-success-color: $--color-success;
 $--message-close-color: #c2c6ce;
+
+/*
+  Progress
+-------------------- */
+$--progress-default-text-color: $--color-text-regular;
+$--progress-success-text-color: $--color-success;
+$--progress-warning-text-color: $--color-warning;
+$--progress-danger-text-color: $--color-danger;
+$--progress-success-background-color: $--color-success;
+$--progress-warning-background-color: $--color-warning;
+$--progress-danger-background-color: $--color-danger;
