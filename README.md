@@ -83,7 +83,7 @@ yarn install || cnpm install || npm install
 ```
 
 > 💡 提示：
-> 因为各自的本地开发环境具有差异性，`Node`、`Npm` 版本不一，尤其是最近 `Node` 发布了 `10+ lts` 版本，`10+` 版本对于之前版本的 `NPM` 包支持不好，安装依赖后运行项目可能出现异常报错，所以请先删除 `node_modules` 目录和 `yarn.lock` 文件(使用 `npm` 安装的删除 `package-lock.json` 文件) 然后重新安装。
+> 因为各自的本地开发环境具有差异性，`Node`、`Npm` 版本不一，尤其是最近 `Node` 发布了 `10+ lts` 版本，`10+` 版本对于之前版本的 `NPM` 包支持不好，安装依赖后运行项目可能出现异常报错，所以请先删除 `node_modules` 目录和 `yarn.lock` 文件(使用 `npm` 安装的删除 `package-lock.json` 文件) 然后重新安装。
 
 ### run 组件服务
 

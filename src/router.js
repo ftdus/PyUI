@@ -120,5 +120,16 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "layout" */ './testsDemo/colorPicker/colorPicker.vue'),
     },
+    {
+      path: '/progress',
+      name: 'Progress',
+      component: () =>
+        import(/* webpackChunkName: "progress" */ './testsDemo/progress/progress.vue'),
+    },
+    {
+      path: '/radio',
+      name: 'Radio',
+      component: () => import(/* webpackChunkName: "radio" */ './testsDemo/radio/radio.vue'),
+    },
   ],
 });

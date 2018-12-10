@@ -54,6 +54,14 @@ const navData = [
             name: 'Upload 文件上传',
             path: 'upload',
           },
+          {
+            name: 'Radio 单选框',
+            path: 'radio',
+          },
+          {
+            name: 'Form 表单',
+            path: 'form',
+          },
         ],
       },
       {
@@ -64,12 +72,20 @@ const navData = [
             path: 'badge',
           },
           {
+            name: 'Progress 进度条',
+            path: 'progress',
+          },
+          {
             name: 'Avatar 头像',
             path: 'avatar',
           },
           {
             name: 'loadingBar 加载进度条',
             path: 'loading-bar',
+          },
+          {
+            name: 'Pagination 分页',
+            path: 'pagination',
           },
         ],
       },
@@ -107,8 +123,16 @@ const navData = [
         group: 'Other',
         children: [
           {
+            name: 'Card 卡片',
+            path: 'card',
+          },
+          {
             name: 'Spin 加载中',
             path: 'spin',
+          },
+          {
+            name: 'Scroll 无限滚动',
+            path: 'scroll',
           },
         ],
       },

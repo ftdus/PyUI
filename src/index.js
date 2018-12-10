@@ -3,8 +3,11 @@ import Avatar from './components/avatar/index';
 import Badge from './components/badge/index';
 import Button from './components/button/index';
 import ButtonGroup from './components/button-group/index';
+import Carousel from './components/carousel/index';
 import Cascader from './components/cascader/index';
 import Col from './components/col/index';
+import Collapse from './components/collapse/index';
+import CollapseItem from './components/collapse-item/index';
 import ColorPicker from './components/color-picker/index';
 import Content from './components/content/index';
 import Divider from './components/divider/index';
@@ -19,19 +22,23 @@ import MenuGroup from './components/menu-group/index';
 import MenuItem from './components/menu-item/index';
 import Message from './components/message/index';
 import Notification from './components/notification/index';
+import Pagination from './components/pagination/index';
+import Progress from './components/progress/index';
+import Radio from './components/radio/index';
+import RadioGroup from './components/radio-group/index';
 import Rate from './components/rate/index';
 import Row from './components/row/index';
+import Select from './components/select/index';
+import Scroll from './components/scroll/index';
 import Sider from './components/sider/index';
+import Spin from './components/spin/index';
 import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
-import Spin from './components/spin/index';
-import Select from './components/select/index';
-import Pagination from './components/pagination/index';
-import Collapse from './components/collapse/index';
-import CollapseItem from './components/collapse-item/index';
-import Carousel from './components/carousel/index';
+import Form from './components/form/src/form.vue';
+import FormItem from './components/form-item/src/form-item.vue';
+import Select from './components/select/src/select.vue';
 
 const components = [
   Alert,
@@ -39,8 +46,11 @@ const components = [
   Badge,
   Button,
   ButtonGroup,
+  Carousel,
   Cascader,
   Col,
+  Collapse,
+  CollapseItem,
   ColorPicker,
   Content,
   Divider,
@@ -52,19 +62,23 @@ const components = [
   Menu,
   MenuGroup,
   MenuItem,
+  Pagination,
+  Progress,
+  Radio,
+  RadioGroup,
   Rate,
   Row,
+  Select,
+  Scroll,
   Sider,
+  Spin,
   Submenu,
   Switch,
   TabPane,
   Upload,
-  Spin,
+  Form,
+  FormItem,
   Select,
-  Pagination,
-  Collapse,
-  CollapseItem,
-  Carousel,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -87,11 +101,15 @@ export default {
   version: '0.1.0',
   install,
   Alert,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
+  Carousel,
   Cascader,
   Col,
+  Collapse,
+  CollapseItem,
   ColorPicker,
   Content,
   Divider,
@@ -106,15 +124,21 @@ export default {
   MenuItem,
   Message,
   Notification,
+  Pagination,
+  Progress,
+  Radio,
+  RadioGroup,
   Rate,
   Row,
+  Select,
+  Scroll,
   Sider,
+  Spin,
   Submenu,
   Switch,
   TabPane,
   Upload,
-  Spin,
+  Form,
+  FormItem,
   Select,
-  Pagination,
-  Carousel,
 };

@@ -1,13 +1,13 @@
 <style>
 .test-carousel{
-  line-height: 200px;
+  line-height: 220px;
   text-align: center;
   color: #fff;
   font-size: 20px;
   background: #65c9bb;
 }
 .test{
-  height: 200px;
+  height: 220px;
   width: 100%;
 }
 section{
@@ -27,8 +27,8 @@ section{
     <span slot="close">Off</span>
   </py-switch>
 </section>
-<div class="test">
 <py-carousel
+  class="test"
   v-model="value"
   :autoloop="setting.autoloop"
   :loop="setting.loop"
@@ -43,7 +43,7 @@ section{
   <div class="test-carousel">第三张轮播图</div>
   <div class="test-carousel">第四张轮播图</div>
 </py-carousel>
-</div>
+
 <script>
 
 export default {
@@ -94,7 +94,7 @@ export default {
 <p>轮播图放映速度（毫秒级）</p>
 <section>
   <div style="width:100px">
-  <input v-model="setting.speed" type="number">
+  <py-input v-model.number="setting.speed"></py-input>
 </div>
 </section>
 <p>圆形指示器</p>
@@ -142,27 +142,37 @@ export default {
 
 ## 组件插槽位置
 
-`<py-carousel>`的宽度与高度向外自适应，所以你应该给`<py-carousel>`的父节点指定高度与宽度
+`<py-carousel>`的宽度与高度向外自适应，所以你应该给`<py-carousel>`指定高度与宽度
 
 你可以在`<py-carousel>`节点下插入任意的代码块用来展示轮播图
 
 ::: demo
 
 ```html
-<div style="height:200px; text-align:center;">
-  <py-carousel>
-    <div>第一个轮播图</div>
-    <p> 第二个轮播图 </p>
-    <div>
-      <h1>第三个轮播图</h1>
-      <p> 这是一个演示</p>
-    </div>
-  </py-carousel>
-</div>
+<py-carousel style="height:230px; text-align:center;">
+  <div>
+    <h1>《预感》</h1>
+    <p>我像一面旗包围在辽阔的空间。</p>
+    <p>我觉得风从四方吹来，我必须忍耐，</p>
+    <p>我下面的一切都还没有动静</p>
+    <p>门依然轻轻关闭，烟囱里还没有声音；</p> 
+    <p>窗子还没有颤动，尘土还很重。</p>
+  </div>
+  <section>
+    <p>我认出了风暴而且激动如大海</p>
+    <p>我舒展开又跌回我自己，</p>
+    <p>又把自己抛出去，并且独个儿</p> 
+    <p>置身在伟大的风暴里。</p>
+  </section>
+  <div>
+    <h1>这是一个h1标题标签</h1>
+    <p> 当然，你也可以在这里插一张图片</p>
+  </div>
+</py-carousel>
 ```
 :::
 
-轮播展示的是py-carousel节点的下一级所有同层子节点，所以如果你单页轮播展示的内容代码较多，建议用一个`<div>`块包起来
+轮播展示的是`py-carousel`节点的下一级所有同层子节点，所以如果你单页轮播展示的内容代码较多，建议用一个`<div>`块包起来
 
 **比如这样**
 
@@ -176,4 +186,4 @@ export default {
   </div>
 </py-carousel>
 ```
-> carousel组件内轮播的代码块宽高应该与carousel组件外部父节点宽高相同，以确保展示的内容不会变形
+> carousel组件内轮播的代码块宽高应该与carousel组件宽高相同，以确保展示的内容不会变形

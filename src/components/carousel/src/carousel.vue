@@ -7,8 +7,7 @@
     </button>
     <button :class="arrowClasses" class="rights" @click="change(currentIndex+1)">
     </button>
-    <transition-group tag="div"  name="list"
-    :class="['py-carousel__slide-current', 'py-carousel__slide-current--'+position]">
+    <transition-group tag="div"  name="list" class="py-carousel__slide-current">
         <li v-for="(list,index) in slideList.length"
           class="py-carousel__slide-current-item"
           :key="index"
