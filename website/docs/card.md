@@ -1,19 +1,5 @@
 <style lang='scss' scoped>
   $prefixCls: "card";
-  .contains {
-    padding: 10px;
-    margin-bottom: 20px;
-    h3 {
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-  }
-  .py-card {
-    &-box {
-      padding: 10px;
-      border: 1px solid #eee;
-    }
-  }
   .box-card {
     width: 480px;
     .#{$prefixCls}-text {
@@ -46,6 +32,91 @@
   }
 </style>
 
+## Card 卡片
+
+Card组件由两部分组成：
+
+**header** : 卡片头部（可选）。需要有显示具名 *slot* 。
+
+**body** : 卡片内容。
+
+### 简单卡片
+
+只有内容部分
+
+::: demo 
+
+```html
+  <py-card class="box-card">
+    <div v-for="item in 4" :key="item" class="card-text card-item">
+      {{'卡片内容 ' + item }}
+    </div>
+  </py-card>
+
+  <style>
+    .card-text {
+      font-size: 14px;
+    }
+
+    .card-item {
+      padding: 18px 0;
+    }
+
+    .box-card {
+      width: 480px;
+    }
+  </style>
+```
+
+:::
+
+### 基础用法
+
+包含标题，按钮和内容
+
+::: demo *header* 部分使用具名 `slot` 。
+
+```html
+  <py-card class="box-card">
+    <div slot="header" class="clearfix">
+      <span style="position: relative;top: 10px;">卡片名称</span>
+      <py-button class="card-button" shape="circle">按 钮</py-button>
+    </div>
+    <div v-for="item in 4" :key="item" class="card-text card-item">
+      {{'卡片内容 ' + item }}
+    </div>
+  </py-card>
+
+  <style>
+    .card-text {
+      font-size: 14px;
+    }
+
+    .card-item {
+      padding: 18px 0;
+    }
+
+    .card-button {
+      float: right;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+      display: table;
+      content: "";
+    }
+    .clearfix:after {
+      clear: both
+    }
+
+    .box-card {
+      width: 480px;
+    }
+  </style>
+```
+
+:::
+
 ### Card基础用法
 
 基础用法。
@@ -53,14 +124,35 @@
 ::: demo 使用 `type`、`plain` 和 `round` 属性来定义 `Button` 的样式。
 
 ```html
-  <div class="py-card-box">
-      <py-card class="box-card">
-        <div v-for="item in 4" :key="item" class="card-text card-item">
-          {{'卡片内容 ' + item }}
-        </div>
-      </py-card>
-  </div>
+  <py-card class="box-card">
+    <div v-for="item in 4" :key="item" class="card-text card-item">
+      {{'卡片内容 ' + item }}
+    </div>
+  </py-card>
 ```
 
 :::
 
+### Card基础用法
+
+基础用法。
+
+::: demo 使用 `type`、`plain` 和 `round` 属性来定义 `Button` 的样式。
+
+```html
+  <py-card class="box-card">
+    <div v-for="item in 4" :key="item" class="card-text card-item">
+      {{'卡片内容 ' + item }}
+    </div>
+  </py-card>
+```
+
+:::
+
+### Attributes
+
+| 参数        | 说明           | 类型     | 可选值    | 默认值 |
+| ----------- | -------------- | ------- | -------- | ------ |
+| **height**  | 顶部区域高度    | string  |    —  | 60px   |
+| **height**  | 顶部区域高度    | string  |    —  | 60px   |
+| **height**  | 顶部区域高度    | string  |    —  | 60px   |
