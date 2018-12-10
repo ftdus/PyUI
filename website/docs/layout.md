@@ -26,15 +26,15 @@
 
 此组件用于对页面进行布局，对页面进行快速布局搭建。
 
-**`<py-layout>`** : 外层容器。当子元素中包含 *`<py-header>`* 或 *`<py-footer>`* 时，全部子元素会垂直上下排列，否则子元素会水平左右排列
+**`<py-layout>`** : 外层父容器。当子元素中包含 *`<py-header>`* 或 *`<py-footer>`* 时，全部子元素会垂直上下排列，否则子元素会水平左右排列
 
-**`<py-header>`** : 顶栏容器。
+**`<py-header>`** : 顶部区域子容器。
 
-**`<py-sider>`** : 侧边栏容器。
+**`<py-sider>`** : 侧边区域子容器。
 
-**`<py-content>`** : 内容区域容器。
+**`<py-content>`** : 内容区域子容器。
 
-**`<py-header>`** : 顶部容器。
+**`<py-footer>`** : 底部区域子容器。
 
 <py-alert type="warning" title="提示" :title-icon="true" :closable="false">
 注意：该组件采用 flex 布局实现，请注意  <a data-v-11a02437="" href="https://caniuse.com/#search=flex" target="_blank" title="can i use">浏览器兼容性</a>  问题。
@@ -136,3 +136,30 @@
 ```
 
 :::
+
+### Layout Attributes
+
+| 参数        | 说明           | 类型     | 可选值                                             | 默认值 |
+| ----------- | -------------- | ------- | -------------------------------------------------- | ------ |
+| **direction**| 子元素的排列方向 | string  |horizontal / vertical| 子元素中有 *py-header* 或 *py-footer* 时为 vertical，否则为 horizontal     |
+
+
+### Header Attributes
+
+| 参数        | 说明           | 类型     | 可选值    | 默认值 |
+| ----------- | -------------- | ------- | -------- | ------ |
+| **height**  | 顶部区域高度    | string  |    —  | 60px   |
+
+### Sider Attributes
+
+| 参数        | 说明           | 类型     | 可选值    | 默认值 |
+| ----------- | -------------- | ------- | -------- | ------ |
+| **width**  | 侧边区域宽度    | string  |    —  | 300px   |
+
+
+### Footer Attributes
+
+| 参数        | 说明           | 类型     | 可选值    | 默认值 |
+| ----------- | -------------- | ------- | -------- | ------ |
+| **height**  | 底部区域高度    | string  |    —  | 60px   |
+
