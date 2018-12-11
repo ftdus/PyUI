@@ -4,11 +4,12 @@ $prefixCls: 'py-select';
 
 @include e(dropdown--item) {
   position: relative;
-  padding: 10px;
+  padding: 0 15px;
+  height: 34px;
   list-style: none;
   font-size: 14px;
   color: $color;
-  line-height: 1.2em;
+  line-height: 34px;
   cursor: pointer;
   transition: all 0.2s;
 

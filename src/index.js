@@ -29,6 +29,7 @@ import Upload from './components/upload/index';
 import Spin from './components/spin/index';
 import Select from './components/select/index';
 import Option from './components/select/src/option.vue';
+import OptionGroup from './components/select/src/option-group.vue';
 import Pagination from './components/pagination/index';
 import Tag from './components/tag/index';
 import Collapse from './components/collapse/index';
@@ -64,6 +65,7 @@ const components = [
   Spin,
   Select,
   Option,
+  OptionGroup,
   Pagination,
   Tag,
   Collapse,
@@ -120,6 +122,7 @@ export default {
   Spin,
   Select,
   Option,
+  OptionGroup,
   Pagination,
   Tag,
   Carousel,

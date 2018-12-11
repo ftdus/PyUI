@@ -24,15 +24,17 @@
           @keydown.tab="showDropDown = false">
       </div>
       <div class="input-multiInput input" v-if="multiple || filterable">
-        <div
+        <py-tag
           v-if="multiple"
-          class="tag"
-          :class="{'deleteSelected': selectItem.deleteSelected}"
+          type="info"
+          size="small"
+          closable
+          :hit="selectItem.deleteSelected"
+          @close.stop="deleteTag(index, selectItem)"
           v-for="(selectItem, index) in selectValue"
           :key="index">
-          <span>{{ selectItem.label }}</span>
-          <i class="pyui-icons py-icon-close" @click.stop="deleteTag(index, selectItem)"></i>
-        </div>
+          {{ selectItem.label }}
+        </py-tag>
         <div class="input-box">
           <input
             type="text"
@@ -76,6 +78,12 @@
         v-show="showDropDown"
         ref="dropDown">
         <ul class="py-select__dropdown--grouplist" v-if="!loading">
+          <py-option
+            :label="queryText"
+            :key="queryText"
+            :value="queryText"
+            created
+            v-if="createdOptionVisible"></py-option>
           <slot></slot>
         </ul>
         <div class="py-select__dropdown--loading" v-if="loading">
@@ -93,6 +101,8 @@
 
 <script>
 import Vue from 'vue';
+import PyOption from './option.vue';
+import PyTag from '../../tag/src/Tag.vue';
 
 export default {
   name: 'py-select',
@@ -159,7 +169,7 @@ export default {
     filterMethod: {
       type: Function,
       default(value, item) {
-        if (item.label.indexOf(value) > -1) {
+        if (item.label.toLowerCase().indexOf(value.toLowerCase()) > -1) {
           return true;
         }
         return false;
@@ -188,12 +198,14 @@ export default {
   watch: {
     showDropDown(val) {
       this.$emit('visible-change', val);
-    },
-    data: {
-      handler(val) {
-        console.log(val);
-      },
-      deep: true,
+      if (!val && this.filterable) {
+        if (!this.multiple) {
+          if (this.selectValue.label) {
+            this.queryText = this.selectValue.label;
+            this.$refs.multiInput.blur();
+          }
+        }
+      }
     },
     selectValue: {
       handler(val) {
@@ -202,12 +214,6 @@ export default {
           val.forEach(selectItem => {
             multipleSelectValue.push(selectItem.value);
           });
-          // if (val.length === 0) {
-          //   this.options.forEach(item => {
-          //     const itemTemp = item;
-          //     itemTemp.selected = false;
-          //   });
-          // }
           this.$emit('change', multipleSelectValue);
           this.$emit('input', multipleSelectValue);
         } else {
@@ -222,7 +228,31 @@ export default {
       deep: true,
     },
     queryText(val) {
-      console.log(val);
+      this.$nextTick(() => {
+        const width =
+          this.$refs.multiText.clientWidth > 6 ? this.$refs.multiText.clientWidth + 1 : 6;
+        this.$refs.multiInput.style.width = `${width}px`;
+        this.setPosition();
+        this.setDirection();
+        if (!this.filterable) return;
+        this.activedIndex = -1;
+        if (this.remote) {
+          this.remoteMethod(val);
+        } else {
+          this.options.forEach(option => {
+            if (!option.created) {
+              if (val === '') {
+                Vue.set(option, 'show', true);
+              } else if (!this.filterMethod(val, option)) {
+                Vue.set(option, 'show', false);
+              } else if (this.filterMethod(val, option)) {
+                Vue.set(option, 'show', true);
+              }
+            }
+          });
+        }
+      });
+      this.inputQuery();
     },
   },
   computed: {
@@ -230,6 +260,34 @@ export default {
       return this.multiple
         ? this.selectValue.length === 0 && this.queryText === ''
         : !this.selectValue.label && this.queryText === '';
+    },
+    createdOptionVisible() {
+      let visible = true;
+      if (!this.allowCreate || this.queryText === '') {
+        visible = false;
+      } else {
+        Object.values(this.$slots.default).forEach(option => {
+          if (
+            option.componentOptions &&
+            option.componentOptions.propsData.label === this.queryText
+          ) {
+            visible = false;
+          }
+        });
+      }
+      return visible;
+    },
+    showOptions() {
+      const options = [];
+      this.options.forEach(option => {
+        if (option.show && option.$el && !option.created) {
+          options.push(option);
+        }
+      });
+      if (this.createdOptionVisible) {
+        options.unshift(this.$children[this.$children.length - 1]);
+      }
+      return options;
     },
   },
   mounted() {
@@ -251,26 +309,39 @@ export default {
       this.$emit('clear');
     },
     // 输入查询内容
-    inputQuery() {},
+    inputQuery() {
+      if (this.allowCreate && !this.remote) {
+        if (this.queryText !== '') {
+          const option = {
+            label: this.queryText,
+            value: this.queryText,
+            created: true,
+            show: true,
+          };
+          if (this.options[0].created) {
+            this.options.shift();
+          }
+          this.options.unshift(option);
+          this.activedIndex = 0;
+        } else {
+          this.activedIndex = -1;
+          this.options.shift();
+        }
+      }
+    },
     // 通过键盘删除tag
     deleteTagByKeyboard() {
-      // if (this.queryText !== '') {
-      //   if (this.filterable && !this.multiple) {
-      //     this.options.forEach(option => {
-      //       const item = option;
-      //       delete item.selected;
-      //     });
-      //   }
-      //   return;
-      // }
+      if (this.queryText !== '') {
+        return;
+      }
       if (this.multiple) {
         if (this.selectValue.length === 0) return;
         const lastIndex = this.selectValue.length - 1;
         if (this.selectValue[lastIndex].deleteSelected) {
           this.deleteTag(lastIndex);
-          return;
+        } else {
+          Vue.set(this.selectValue[lastIndex], 'deleteSelected', true);
         }
-        Vue.set(this.selectValue[lastIndex], 'deleteSelected', true);
       }
     },
     // 点击键盘上下键，option需上下选择
@@ -279,10 +350,15 @@ export default {
         this.showDropDown = true;
         return;
       }
+      this.showOptions.forEach((option, index) => {
+        if (option.actived) {
+          this.activedIndex = index;
+        }
+      });
       if (this.options.length > 0) {
         if (direction === 'next') {
           this.activedIndex += 1;
-          this.options.forEach((option, index) => {
+          this.showOptions.forEach((option, index) => {
             if (option.disabled && index === this.activedIndex) {
               this.activedIndex += 1;
             }
@@ -293,19 +369,23 @@ export default {
               this.activedIndex += 1;
             }
           });
-          if (this.activedIndex === this.options.length) {
+          if (this.activedIndex === this.showOptions.length) {
             let firstShowOption = 0;
-            let option = this.options[firstShowOption];
-            while (option.show === false) {
+            let option = this.showOptions[firstShowOption];
+            while (option.disabled) {
               firstShowOption += 1;
-              option = this.options[firstShowOption];
+              option = this.showOptions[firstShowOption];
             }
             this.activedIndex = firstShowOption;
           }
+          this.$children.forEach(option => {
+            option.actived = false;
+          });
+          this.showOptions[this.activedIndex].actived = true;
         } else if (direction === 'prev') {
           this.activedIndex -= 1;
           for (let i = this.activedIndex; i >= 0; i -= 1) {
-            const option = this.options[this.activedIndex];
+            const option = this.showOptions[this.activedIndex];
             if (option.disabled && i === this.activedIndex) {
               this.activedIndex -= 1;
             }
@@ -316,22 +396,26 @@ export default {
               this.activedIndex -= 1;
             }
           }
-          if (this.activedIndex <= -1) {
-            let lastShowOption = 0;
-            this.options.forEach((option, index) => {
-              if (option.show !== false) {
-                lastShowOption = index;
-              }
-            });
-            this.activedIndex = lastShowOption;
+          if (this.activedIndex < 0) {
+            let firstShowOption = this.showOptions.length - 1;
+            let option = this.showOptions[firstShowOption];
+            while (option.disabled) {
+              firstShowOption -= 1;
+              option = this.showOptions[firstShowOption];
+            }
+            this.activedIndex = firstShowOption;
           }
+          this.$children.forEach(option => {
+            option.actived = false;
+          });
+          this.showOptions[this.activedIndex].actived = true;
         }
       }
     },
     // 键盘enter点击后选择某个option
     selectOption() {
-      this.$children.forEach((child, index) => {
-        if (index === this.activedIndex) {
+      this.$children.forEach(child => {
+        if (child.actived) {
           this.selectDropDownItem(child);
           // if (option.created && this.multiple) {
           //   item.show = false;
@@ -366,7 +450,6 @@ export default {
     },
     // 选择下拉菜单的option
     selectDropDownItem(option, e) {
-      const index = this.$children.indexOf(option);
       if (option.disabled || option.multipleDisabled) {
         if (e) {
           e.preventDefault();
@@ -374,30 +457,25 @@ export default {
         }
         return;
       }
+      if (option.created && this.multiple) {
+        this.queryText = '';
+      }
+
+      const index = this.$children.indexOf(option);
       if (option.selected && this.multiple) {
-        console.log(1);
+        this.selectValue.forEach((selectItem, selectIndex) => {
+          if (selectItem.value === option.value && selectItem.label === option.label) {
+            this.deleteTag(selectIndex, selectItem);
+          }
+        });
+        return;
       }
       if (this.multiple) {
-        if (option.selected) return;
         this.selectValue.push({
           value: option.value,
           label: option.label,
           optionIndex: index,
         });
-        // 判断multipleLimit限制
-        // if (this.multipleLimit && this.selectValue.length >= this.multipleLimit) {
-        //   this.options.forEach(optionTemp => {
-        //     optionItem = optionTemp;
-        //     if (
-        //       !optionItem.selected &&
-        //       optionItem.value !== option.value &&
-        //       optionItem.label !== option.label
-        //     ) {
-        //       Vue.set(optionItem, 'multipleDisabled', true);
-        //     }
-        //   });
-        //   return;
-        // }
         this.$refs.multiInput.focus();
       } else {
         this.selectValue = {
@@ -407,7 +485,9 @@ export default {
         };
         this.showDropDown = false;
         if (this.filterable) {
-          console.log(1);
+          this.queryText = option.label;
+          this.$refs.multiInput.blur();
+          this.activedIndex = -1;
         }
       }
     },
@@ -509,6 +589,10 @@ export default {
         delete ele.handleDocumentClick;
       },
     },
+  },
+  components: {
+    PyOption,
+    PyTag,
   },
 };
 </script>

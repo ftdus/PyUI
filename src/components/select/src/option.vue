@@ -4,8 +4,8 @@
     class="py-select__dropdown--item"
     :class="{
       'selected': selected,
-      'disabled': disabled,
-      'actived': index === activedIndex,
+      'disabled': disabled || multipleDisabled,
+      'actived': actived,
     }"
     @click="selectDropDownItem($event)">
     <slot>{{ label }}</slot>
@@ -21,18 +21,25 @@ export default {
   inject: ['$select'],
   data() {
     return {
-      index: this.$select.$children.indexOf(this),
-      groupDisabled: false,
-      visible: true,
       hitState: false,
       option: {},
       show: true,
+      actived: false,
+      index: this.$select.$children.indexOf(this),
     };
   },
-  mounted() {},
   computed: {
-    activedIndex() {
-      return this.$select.activedIndex;
+    multipleDisabled() {
+      let multipleDisabled = false;
+      if (
+        this.$select.multiple &&
+        this.$select.multipleLimit > 0 &&
+        this.$select.selectValue.length >= this.$select.multipleLimit &&
+        !this.selected
+      ) {
+        multipleDisabled = true;
+      }
+      return multipleDisabled;
     },
     selected() {
       let selected = false;
@@ -43,7 +50,10 @@ export default {
           }
         });
       } else {
-        selected = this.$select.selectValue.optionIndex === this.index;
+        selected =
+          this.$select.selectValue.optionIndex === this.index &&
+          this.$select.selectValue.value === this.value &&
+          this.$select.selectValue.label === this.label;
       }
       return selected;
     },
@@ -66,5 +76,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-</style>

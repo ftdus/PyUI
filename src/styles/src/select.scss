@@ -114,41 +114,10 @@ $prefixCls: 'py-select';
       align-items: center;
       flex-wrap: wrap;
 
-      .tag {
-        display: inline-block;
-        padding: 0px 5px;
-        border-radius: 3px;
-        background: #f3f3f3;
+      .py-tag {
         margin-right: 5px;
         margin-bottom: 2px;
         margin-top: 2px;
-        height: 24px;
-        line-height: 22px;
-
-        &.deleteSelected {
-          border: 1px solid $border-color;
-        }
-
-        span {
-          vertical-align: middle;
-          margin-right: 10px;
-        }
-
-        i {
-          vertical-align: middle;
-          display: inline-block;
-          width: 12px;
-          height: 12px;
-          background: $border-color;
-          border-radius: 50%;
-          line-height: 12px;
-          text-align: center;
-          font-size: 10px;
-          color: #eee;
-          &:hover {
-            background: #bbb;
-          }
-        }
       }
 
       .input-box {

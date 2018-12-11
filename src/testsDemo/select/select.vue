@@ -1,6 +1,130 @@
 <template>
   <div class="page">
     <section>
+      <h2>分组</h2>
+      <py-select
+        v-model="value"
+        filterable
+        allow-create
+        multiple
+        :multipleLimit="3"
+        placeholder="请选择">
+        <py-option-group
+        v-for="(optionGroup, key) in groupOptions"
+        :label="optionGroup.label"
+        :key="key">
+          <py-option
+            v-for="(option, key) in optionGroup.options"
+            :key="key"
+            :value="option.value"
+            :label="option.label"
+            :disabled="option.disabled">
+              <span class="option-label" style="float: left;">{{ option.label }}</span>
+              <span class="option-value" style="float: right;">{{ option.value }}</span>
+            </py-option>
+        </py-option-group>
+      </py-select>
+    </section>
+
+    <section>
+      <h2>自定义模板option</h2>
+      <py-select
+        v-model="value"
+        filterable
+        allow-create
+        multiple
+        :multipleLimit="3"
+        placeholder="请选择">
+        <py-option
+          v-for="(option, key) in selectData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled">
+            <span class="option-label" style="float: left;">{{ option.label }}</span>
+            <span class="option-value" style="float: right;">{{ option.value }}</span>
+          </py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <h2>多选时创建条目</h2>
+      <py-select
+        v-model="value"
+        filterable
+        allow-create
+        multiple
+        :multipleLimit="3"
+        placeholder="请选择">
+        <py-option
+          v-for="(option, key) in filterData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <h2>单选时创建条目</h2>
+      <py-select
+        v-model="value"
+        filterable
+        allow-create
+        placeholder="请选择">
+        <py-option
+          v-for="(option, key) in filterData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <h2>远程数据</h2>
+      <py-select
+        v-model="value"
+        filterable
+        remote
+        :remote-method="remoteMethod"
+        :loading="remoteLoading"
+        placeholder="请选择">
+        <py-option
+          v-for="(option, key) in remoteData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <h2>可提供搜索方法</h2>
+      <py-select v-model="value" filterable :filter-method="filterMethod" placeholder="请选择">
+        <py-option
+          v-for="(option, key) in filterData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <h2>可搜索</h2>
+      <py-select v-model="value" filterable placeholder="请选择">
+        <py-option
+          v-for="(option, key) in filterData"
+          :key="key"
+          :value="option.value"
+          :label="option.label"
+          :disabled="option.disabled"></py-option>
+      </py-select>
+    </section>
+
+    <section>
+      <h2>普通</h2>
       <py-select v-model="value" placeholder="请选择">
         <py-option
           v-for="(option, key) in selectData"
@@ -11,6 +135,7 @@
     </section>
 
     <section>
+      <h2>选项被禁用</h2>
       <py-select v-model="value" placeholder="请选择">
         <py-option
           v-for="(option, key) in selectDisabledData"
@@ -22,6 +147,7 @@
     </section>
 
     <section>
+      <h2>select被禁用</h2>
       <py-select v-model="value" disabled placeholder="请选择">
         <py-option
           v-for="(option, key) in selectDisabledData"
@@ -33,6 +159,7 @@
     </section>
 
     <section>
+      <h2>可清空</h2>
       <py-select v-model="value" clearable placeholder="请选择">
         <py-option
           v-for="(option, key) in selectDisabledData"
@@ -44,6 +171,7 @@
     </section>
 
     <section>
+      <h2>可多选</h2>
       <py-select v-model="value" multiple placeholder="请选择">
         <py-option
           v-for="(option, key) in selectData"
@@ -53,132 +181,6 @@
           :disabled="option.disabled"></py-option>
       </py-select>
     </section>
-    <!-- <h2>分组</h2>
-    <p>可分组</p>
-    <section>
-      <py-select
-        v-model="value"
-        :data="groupOptions"></py-select>
-    </section>
-
-    <h2>分组,且多选</h2>
-    <p>可分组</p>
-    <section>
-      <py-select
-        v-model="multipleValue"
-        :multiple="true"
-        :data="groupOptions"></py-select>
-    </section> -->
-
-    <!-- <h2>选择器不可用状态</h2>
-    <p>为py-select设置disabled属性，则整个选择器不可用</p>
-    <section>
-      <py-select
-        v-model="value"
-        disabled
-        :popper-append-to-body="false"
-        :data="selectData"></py-select>
-    </section>
-
-    <h2>普通的select</h2>
-    <p>适用广泛的基础单选</p>
-    <section>
-      <py-select
-        v-model="value"
-        @change="change"
-        @blur="blur"
-        :popper-append-to-body="false"
-        @visible-change="visibleChange"
-        :data="selectData"></py-select>
-    </section>
-
-    <h2>单选时可清空的select</h2>
-    <p>适用广泛的基础单选,且可清空</p>
-    <section>
-      <py-select
-        v-model="value"
-        @change="change"
-        clearable
-        @clear="clear"
-        :data="selectData"></py-select>
-    </section>
-
-    <h2>有禁用选项</h2>
-    <p>在py-option中，设定disabled值为 true，即可禁用该选项</p>
-    <section>
-      <py-select
-        v-model="value"
-        @change="change"
-        @blur="blur"
-        :data="selectDisabledData"></py-select>
-    </section>
-
-    <h2>可搜索</h2>
-    <p>可以利用搜索功能快速查找选项</p>
-    <section>
-      <py-select
-        v-model="value"
-        :filterable="true"
-        :data="selectData"></py-select>
-    </section>
-
-    <h2>可搜索，且自定义搜索函数</h2>
-    <p>适用于可以搜索，搜索函数可自定义</p>
-    <section>
-      <py-select
-        v-model="value"
-        :filterable="true"
-        :filter-method="filterMethod"
-        :data="filterData"></py-select>
-    </section>
-
-    <h2>基础多选</h2>
-    <p>适用性较广的基础多选,v-model值需为数组</p>
-    <section>
-      <py-select
-        v-model="multipleValue"
-        :multiple="true"
-        :data="selectData"></py-select>
-    </section>
-
-    <h2>可多选，可创建</h2>
-    <p>适用于需要多选，且可以创建选项，创建的选项，该项value和输入的内容一致</p>
-    <section>
-      <py-select
-        v-model="multipleValue"
-        :multiple="true"
-        :multipleLimit="3"
-        :allow-create="true"
-        :filterable="true"
-        :data="filterData"></py-select>
-    </section>
-
-    <h2>可多选，可创建，可搜索，且搜索函数自定义</h2>
-    <p>适用于需要多选，且可以创建选项，创建的选校，value和输入的内容一致，可搜索，搜索函数自定义</p>
-    <section>
-      <py-select
-        v-model="multipleValue"
-        :multiple="true"
-        :allow-create="true"
-        :filterable="true"
-        :filter-method="filterMethod"
-        :data="filterData"></py-select>
-    </section>
-
-    <h2>可多选，可创建，自定义远程搜索方法</h2>
-    <p>适用于可多选，可创建选项，选校内容由远程获取；为了启用远程搜索，需要将filterable和remote设置为true</p>
-    <section>
-      <py-select
-        v-model="multipleValue"
-        :multiple="true"
-        :allow-create="true"
-        :filterable="true"
-        :loading="remoteLoading"
-        remote
-        loading-text="加载中"
-        :remote-method="remoteMethod"
-        :data="remoteData"></py-select>
-    </section> -->
   </div>
 </template>
 
