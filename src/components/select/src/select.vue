@@ -1,13 +1,11 @@
 <template>
-    <div
+  <div
     class="py-select"
-    :class="{'disabled': disabled}"
+    :class="{ disabled: disabled }"
     ref="pySelect"
-    v-ClickOutSide="closeDropDown">
-    <div
-      class="py-select__input"
-      ref="inputEleBox"
-      @click="handleClickLabel">
+    v-ClickOutSide="closeDropDown"
+  >
+    <div class="py-select__input" ref="inputEleBox" @click="handleClickLabel">
       <div class="input input-single-box" v-if="!multiple && !filterable">
         <input
           class="input-single"
@@ -15,91 +13,83 @@
           readonly="readyonly"
           :placeholder="placeholder"
           v-model="selectValue.label"
-          @blur="$emit('blur', $event)"
-          @focus="$emit('blur', $event)"
-          @keydown.up.stop.prevent="switchOptions('prev')"
-          @keydown.down.stop.prevent="switchOptions('next')"
+          @blur="$emit('blur', $event);"
+          @focus="$emit('blur', $event);"
+          @keydown.up.stop.prevent="switchOptions('prev');"
+          @keydown.down.stop.prevent="switchOptions('next');"
           @keydown.enter.stop.prevent="selectOption"
-          @keydown.esc.stop.prevent="showDropDown = false"
-          @keydown.tab="showDropDown = false">
+          @keydown.esc.stop.prevent="showDropDown = false;"
+          @keydown.tab="showDropDown = false;"
+        />
       </div>
       <div class="input-multiInput input" v-if="multiple || filterable">
-        <div
+        <py-tag
           v-if="multiple"
-          class="tag"
-          :class="{'deleteSelected': selectItem.deleteSelected}"
+          type="info"
+          size="small"
+          closable
+          :hit="selectItem.deleteSelected"
+          @close.stop="deleteTag(index, selectItem);"
           v-for="(selectItem, index) in selectValue"
-          :key="index">
-          <span>{{ selectItem.label }}</span>
-          <i class="pyui-icons py-icon-close" @click.stop="deleteTag(index, selectItem)"></i>
-        </div>
+          :key="index"
+        >
+          {{ selectItem.label }}
+        </py-tag>
         <div class="input-box">
           <input
             type="text"
             v-model="queryText"
             :readonly="!filterable"
-            @blur="$emit('blur', $event)"
-            @focus="$emit('blur', $event)"
-            @keydown.up.stop.prevent="switchOptions('prev')"
-            @keydown.down.stop.prevent="switchOptions('next')"
+            @blur="$emit('blur', $event);"
+            @focus="$emit('blur', $event);"
+            @keydown.up.stop.prevent="switchOptions('prev');"
+            @keydown.down.stop.prevent="switchOptions('next');"
             @keydown.enter.stop.prevent="selectOption"
-            @keydown.esc.stop.prevent="showDropDown = false"
-            @keydown.tab="showDropDown = false"
+            @keydown.esc.stop.prevent="showDropDown = false;"
+            @keydown.tab="showDropDown = false;"
             @keydown.delete="deleteTagByKeyboard"
-            ref="multiInput">
+            ref="multiInput"
+          />
         </div>
         <span class="input-text" ref="multiText">{{ queryText }}</span>
-        <span
-          class="input-placeholder"
-          v-show="placeholderShow">
-          {{ placeholder }}
-        </span>
+        <span class="input-placeholder" v-show="placeholderShow"> {{ placeholder }} </span>
       </div>
       <div
         class="py-select__suffix"
-        :class="{ 'is-clearable': !multiple && selectValue.label && clearable }">
+        :class="{ 'is-clearable': !multiple && selectValue.label && clearable }"
+      >
         <i
           class="py-select__caret pyui-icons py-icon-up"
-          :class="[direction, showDropDown ? 'actived' : '']">
+          :class="[direction, showDropDown ? 'actived' : '']"
+        >
         </i>
-        <i
-          class="py-select__close pyui-icons py-icon-close"
-          @click.stop="clearSelectValue">
-        </i>
+        <i class="py-select__close pyui-icons py-icon-close" @click.stop="clearSelectValue"> </i>
       </div>
     </div>
     <transition name="slide-up">
       <div
         :class="[
           'py-select__dropdown',
-          direction === 'slide-down'? 'py-select__dropdown--down' : 'py-select__dropdown--up']"
+          direction === 'slide-down' ? 'py-select__dropdown--down' : 'py-select__dropdown--up',
+        ]"
         v-show="showDropDown"
-        ref="dropDown">
+        ref="dropDown"
+      >
         <ul class="py-select__dropdown--grouplist" v-if="!loading">
-          <li
-            v-show="option.show !== false"
-            class="py-select__dropdown--item"
-            :class="{
-              'selected': option.selected,
-              'disabled': option.disabled || option.multipleDisabled,
-              'actived': index === activedIndex,
-            }"
-            v-for="(option, index) in options"
-            :key="index"
-            @click="selectDropDownItem(option, $event)">
-            {{ option.label }}
-            <i
-              v-show="option.selected && multiple"
-              class="py-select__selected pyui-icons py-icon-check">
-            </i>
-          </li>
+          <py-option
+            :label="queryText"
+            :key="queryText"
+            :value="queryText"
+            created
+            v-if="createdOptionVisible"
+          ></py-option>
+          <slot></slot>
         </ul>
-        <div class="py-select__dropdown--loading" v-if="loading">
-          {{ loadingText }}
-        </div>
+        <div class="py-select__dropdown--loading" v-if="loading">{{ loadingText }}</div>
         <div
           class="py-select__dropdown--none"
-          v-if="!loading && options.length === 0 && queryText !== ''">
+          v-if="!loading && options.length === 0 && queryText !== ''"
+        >
           {{ noDataText }}
         </div>
       </div>
@@ -109,17 +99,24 @@
 
 <script>
 import Vue from 'vue';
+import PyOption from './option.vue';
+import PyTag from '../../tag/src/Tag.vue';
 
 export default {
   name: 'py-select',
+  provide() {
+    return {
+      $select: this,
+    };
+  },
   data() {
     return {
       showDropDown: false, // 下拉框显示/隐藏
       direction: 'slide-down', // 下拉框出现在input上方/下方
       selectValue: this.multiple ? [] : {}, // 被选择的选项
-      options: JSON.parse(JSON.stringify(this.data)), // data组件内备份
       queryText: '', // input的value值
       activedIndex: -1, // 下拉框option被激活的index
+      options: this.$children,
     };
   },
   props: {
@@ -170,7 +167,7 @@ export default {
     filterMethod: {
       type: Function,
       default(value, item) {
-        if (item.label.indexOf(value) > -1) {
+        if (item.label.toLowerCase().indexOf(value.toLowerCase()) > -1) {
           return true;
         }
         return false;
@@ -199,59 +196,25 @@ export default {
   watch: {
     showDropDown(val) {
       this.$emit('visible-change', val);
-    },
-    data: {
-      handler(val) {
-        this.options = JSON.parse(JSON.stringify(val));
-        this.options.forEach(option => {
-          const item = option;
-          if (this.multiple) {
-            this.selectValue.forEach(tag => {
-              if (tag.label === option.label && tag.value === option.value) {
-                item.selected = true;
-              }
-            });
-          } else if (
-            this.selectValue.label === option.label &&
-            this.selectValue.value === option.value
-          ) {
-            item.selected = true;
+      if (!val && this.filterable) {
+        if (!this.multiple) {
+          if (this.selectValue.label) {
+            this.queryText = this.selectValue.label;
+            this.$refs.multiInput.blur();
           }
-        });
-        this.$nextTick(() => {
-          this.setDirection();
-        });
-      },
-      deep: true,
+        }
+      }
     },
     selectValue: {
-      handler(val, oldVal) {
+      handler(val) {
         if (this.multiple) {
           const multipleSelectValue = [];
           val.forEach(selectItem => {
             multipleSelectValue.push(selectItem.value);
-            this.options.forEach(item => {
-              if (item.value === selectItem.value && item.label === selectItem.label) {
-                Vue.set(item, 'selected', true);
-              }
-            });
           });
-          if (val.length === 0) {
-            this.options.forEach(item => {
-              const itemTemp = item;
-              itemTemp.selected = false;
-            });
-          }
           this.$emit('change', multipleSelectValue);
           this.$emit('input', multipleSelectValue);
-        } else if (oldVal.value !== val.value) {
-          this.options.forEach(item => {
-            if (item.value === val.value && item.label === val.label) {
-              Vue.set(item, 'selected', true);
-            } else {
-              Vue.set(item, 'selected', false);
-            }
-          });
+        } else {
           this.$emit('change', this.selectValue.value ? this.selectValue.value : '');
           this.$emit('input', this.selectValue.value ? this.selectValue.value : '');
         }
@@ -296,6 +259,34 @@ export default {
         ? this.selectValue.length === 0 && this.queryText === ''
         : !this.selectValue.label && this.queryText === '';
     },
+    createdOptionVisible() {
+      let visible = true;
+      if (!this.allowCreate || this.queryText === '') {
+        visible = false;
+      } else {
+        Object.values(this.$slots.default).forEach(option => {
+          if (
+            option.componentOptions &&
+            option.componentOptions.propsData.label === this.queryText
+          ) {
+            visible = false;
+          }
+        });
+      }
+      return visible;
+    },
+    showOptions() {
+      const options = [];
+      this.options.forEach(option => {
+        if (option.show && option.$el && !option.created) {
+          options.push(option);
+        }
+      });
+      if (this.createdOptionVisible) {
+        options.unshift(this.$children[this.$children.length - 1]);
+      }
+      return options;
+    },
   },
   mounted() {
     this.$refs.dropDown.style.position = this.position;
@@ -339,31 +330,16 @@ export default {
     // 通过键盘删除tag
     deleteTagByKeyboard() {
       if (this.queryText !== '') {
-        if (this.filterable && !this.multiple) {
-          this.options.forEach(option => {
-            const item = option;
-            delete item.selected;
-          });
-        }
         return;
       }
       if (this.multiple) {
         if (this.selectValue.length === 0) return;
         const lastIndex = this.selectValue.length - 1;
         if (this.selectValue[lastIndex].deleteSelected) {
-          this.options.forEach(option => {
-            const optionItem = option;
-            if (
-              optionItem.value === this.selectValue[lastIndex].value &&
-              optionItem.label === this.selectValue[lastIndex].label
-            ) {
-              delete optionItem.selected;
-            }
-          });
           this.deleteTag(lastIndex);
-          return;
+        } else {
+          Vue.set(this.selectValue[lastIndex], 'deleteSelected', true);
         }
-        Vue.set(this.selectValue[lastIndex], 'deleteSelected', true);
       }
     },
     // 点击键盘上下键，option需上下选择
@@ -372,10 +348,15 @@ export default {
         this.showDropDown = true;
         return;
       }
+      this.showOptions.forEach((option, index) => {
+        if (option.actived) {
+          this.activedIndex = index;
+        }
+      });
       if (this.options.length > 0) {
         if (direction === 'next') {
           this.activedIndex += 1;
-          this.options.forEach((option, index) => {
+          this.showOptions.forEach((option, index) => {
             if (option.disabled && index === this.activedIndex) {
               this.activedIndex += 1;
             }
@@ -386,19 +367,23 @@ export default {
               this.activedIndex += 1;
             }
           });
-          if (this.activedIndex === this.options.length) {
+          if (this.activedIndex === this.showOptions.length) {
             let firstShowOption = 0;
-            let option = this.options[firstShowOption];
-            while (option.show === false) {
+            let option = this.showOptions[firstShowOption];
+            while (option.disabled) {
               firstShowOption += 1;
-              option = this.options[firstShowOption];
+              option = this.showOptions[firstShowOption];
             }
             this.activedIndex = firstShowOption;
           }
+          this.$children.forEach(option => {
+            option.actived = false;
+          });
+          this.showOptions[this.activedIndex].actived = true;
         } else if (direction === 'prev') {
           this.activedIndex -= 1;
           for (let i = this.activedIndex; i >= 0; i -= 1) {
-            const option = this.options[this.activedIndex];
+            const option = this.showOptions[this.activedIndex];
             if (option.disabled && i === this.activedIndex) {
               this.activedIndex -= 1;
             }
@@ -409,29 +394,32 @@ export default {
               this.activedIndex -= 1;
             }
           }
-          if (this.activedIndex <= -1) {
-            let lastShowOption = 0;
-            this.options.forEach((option, index) => {
-              if (option.show !== false) {
-                lastShowOption = index;
-              }
-            });
-            this.activedIndex = lastShowOption;
+          if (this.activedIndex < 0) {
+            let firstShowOption = this.showOptions.length - 1;
+            let option = this.showOptions[firstShowOption];
+            while (option.disabled) {
+              firstShowOption -= 1;
+              option = this.showOptions[firstShowOption];
+            }
+            this.activedIndex = firstShowOption;
           }
+          this.$children.forEach(option => {
+            option.actived = false;
+          });
+          this.showOptions[this.activedIndex].actived = true;
         }
       }
     },
     // 键盘enter点击后选择某个option
     selectOption() {
-      this.options.forEach((option, index) => {
-        const item = option;
-        if (index === this.activedIndex) {
-          this.selectDropDownItem(option);
-          if (option.created && this.multiple) {
-            item.show = false;
-            item.selected = true;
-            this.queryText = '';
-          }
+      this.$children.forEach(child => {
+        if (child.actived) {
+          this.selectDropDownItem(child);
+          // if (option.created && this.multiple) {
+          //   item.show = false;
+          //   item.selected = true;
+          //   this.queryText = '';
+          // }
         }
       });
     },
@@ -456,19 +444,10 @@ export default {
     // 删除某个tag
     deleteTag(index, selectItem) {
       this.selectValue.splice(index, 1);
-      if (selectItem) {
-        this.options.forEach(option => {
-          const optionItem = option;
-          if (optionItem.value === selectItem.value && optionItem.label === selectItem.label) {
-            delete optionItem.selected;
-          }
-        });
-        this.$emit('remove-tag', selectItem);
-      }
+      this.$emit('remove-tag', selectItem);
     },
     // 选择下拉菜单的option
     selectDropDownItem(option, e) {
-      let optionItem = option;
       if (option.disabled || option.multipleDisabled) {
         if (e) {
           e.preventDefault();
@@ -476,48 +455,35 @@ export default {
         }
         return;
       }
+      if (option.created && this.multiple) {
+        this.queryText = '';
+      }
+
+      const index = this.$children.indexOf(option);
       if (option.selected && this.multiple) {
-        this.$refs.multiInput.focus();
-        this.selectValue.forEach((item, index) => {
-          const selectValueItem = item;
-          if (option.value === selectValueItem.value && option.label === selectValueItem.label) {
-            this.deleteTag(index);
-            optionItem.selected = false;
-          }
-          // 恢复option的multipleDisabled
-          if (this.multipleLimit && this.selectValue.length < this.multipleLimit) {
-            this.options.forEach(optionTemp => {
-              optionItem = optionTemp;
-              Vue.set(optionItem, 'multipleDisabled', false);
-            });
+        this.selectValue.forEach((selectItem, selectIndex) => {
+          if (selectItem.value === option.value && selectItem.label === option.label) {
+            this.deleteTag(selectIndex, selectItem);
           }
         });
         return;
       }
-      const objOption = Object.assign({}, option);
       if (this.multiple) {
-        if (objOption.show === false) return;
-        this.selectValue.push(objOption);
-        // 判断multipleLimit限制
-        if (this.multipleLimit && this.selectValue.length >= this.multipleLimit) {
-          this.options.forEach(optionTemp => {
-            optionItem = optionTemp;
-            if (
-              !optionItem.selected &&
-              optionItem.value !== option.value &&
-              optionItem.label !== option.label
-            ) {
-              Vue.set(optionItem, 'multipleDisabled', true);
-            }
-          });
-          return;
-        }
+        this.selectValue.push({
+          value: option.value,
+          label: option.label,
+          optionIndex: index,
+        });
         this.$refs.multiInput.focus();
       } else {
-        this.selectValue = objOption;
+        this.selectValue = {
+          value: option.value,
+          label: option.label,
+          optionIndex: index,
+        };
         this.showDropDown = false;
         if (this.filterable) {
-          this.queryText = objOption.label;
+          this.queryText = option.label;
           this.$refs.multiInput.blur();
           this.activedIndex = -1;
         }
@@ -621,6 +587,10 @@ export default {
         delete ele.handleDocumentClick;
       },
     },
+  },
+  components: {
+    PyOption,
+    PyTag,
   },
 };
 </script>

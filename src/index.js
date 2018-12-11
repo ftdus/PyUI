@@ -31,12 +31,15 @@ import Rate from './components/rate/index';
 import Row from './components/row/index';
 import Scroll from './components/scroll/index';
 import Select from './components/select/index';
+import Option from './components/select/src/option.vue';
+import OptionGroup from './components/select/src/option-group.vue';
 import Sider from './components/sider/index';
 import Spin from './components/spin/index';
 import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
+import Tag from './components/tag/index';
 
 const components = [
   Alert,
@@ -69,12 +72,15 @@ const components = [
   Row,
   Scroll,
   Select,
+  Option,
+  OptionGroup,
   Sider,
   Spin,
   Submenu,
   Switch,
   TabPane,
   Upload,
+  Tag,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -129,10 +135,13 @@ export default {
   Row,
   Scroll,
   Select,
+  Option,
+  OptionGroup,
   Sider,
   Spin,
   Submenu,
   Switch,
   TabPane,
   Upload,
+  Tag,
 };
