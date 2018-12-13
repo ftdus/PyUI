@@ -68,7 +68,7 @@ export default {
     arrow: {
       type: String,
       default: 'hover',
-      validator (value) {
+      validator(value) {
         return Props.arrow.has(value);
       },
     },
@@ -76,7 +76,7 @@ export default {
     position: {
       type: String,
       default: 'outside',
-      validator (value) {
+      validator(value) {
         return Props.position.has(value);
       },
     },
@@ -91,7 +91,7 @@ export default {
       default: true,
     },
   },
-  data () {
+  data() {
     return {
       slideList: [],
       currentIndex: 0,
@@ -102,11 +102,8 @@ export default {
     classes() {
       return `${prefixCls}`;
     },
-    arrowClasses () {
-      return [
-        `py-carousel__arrow`,
-        `py-carousel__arrow-${this.arrow}`,
-      ];
+    arrowClasses() {
+      return [`py-carousel__arrow`, `py-carousel__arrow-${this.arrow}`];
     },
   },
   methods: {
