@@ -211,22 +211,22 @@ $--pagination-background: #f4f4f5 !default;
 /*
   Message
 -------------------- */
-$--message-min-width: 380px;
-$--message-border-color: $--color-line-secondary;
-$--message-background-color: #edf2fc;
-$--message-info-background-color: #edf2fc;
-$--message-info-border-color: $--color-line-secondary;
-$--message-info-color: $--color-text-secondary;
-$--message-warning-background-color: #fdf6ec;
-$--message-warning-border-color: #faecd8;
+$--message-min-width: 240px;
+$--message-height: 40px;
+
+$--message-info-background-color: $--color-white;
+$--message-info-color: $--color-primary;
+
+$--message-warning-background-color: $--color-white;
 $--message-warning-color: $--color-warning;
-$--message-error-background-color: #fef0f0;
-$--message-error-border-color: #fde2e2;
+
+$--message-error-background-color: $--color-white;
 $--message-error-color: $--color-danger;
-$--message-success-background-color: #f0f9eb;
-$--message-success-border-color: #e1f3d8;
+
+$--message-success-background-color: $--color-white;
 $--message-success-color: $--color-success;
-$--message-close-color: #c2c6ce;
+
+$--message-close-color: $--color-text-secondary;
 
 /*
   Progress

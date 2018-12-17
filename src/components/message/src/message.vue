@@ -1,20 +1,25 @@
 <template>
   <transition name="py-message-slide-fade">
-    <div :class="[
-            'py-message',
-            customClass,
-            type && !iconClass ? `py-message--${ type }` : '',
-            {'is-center': center},
-            {'is-closable': showClose}
-          ]" v-show="visible" @mouseenter="clearTimer" @mouseleave="startTimer" role="alert">
-      <py-icon :class="['py-message__icon', iconClass]" v-if="iconClass">
-      </py-icon>
-      <py-icon :class="typeClass" v-else>
-      </py-icon>
-      <p v-if="!useHTMLString" class="py-message__content">{{ message }}</p>
-      <p v-else class="py-message__content" v-html="message"></p>
-      <py-icon class="py-message__close pyui-icons" type="close" v-if="showClose" @click="close">
-      </py-icon>
+    <div class="py-message" v-if="visible">
+      <div
+        :class="[
+          'py-message__box',
+          customClass,
+          type && !iconClass ? `py-message--${type}` : '',
+          { 'is-center': center },
+          { 'is-closable': showClose },
+        ]"
+        @mouseenter="clearTimer"
+        @mouseleave="startTimer"
+        role="alert"
+      >
+        <py-icon :class="['py-message__icon', iconClass]" v-if="iconClass"> </py-icon>
+        <py-icon :class="typeClass" v-else> </py-icon>
+        <p v-if="!useHTMLString" class="py-message__content">{{ message }}</p>
+        <p v-else class="py-message__content" v-html="message"></p>
+        <py-icon class="py-message__close pyui-icons" type="close" v-if="showClose" @click="close">
+        </py-icon>
+      </div>
     </div>
   </transition>
 </template>
@@ -57,16 +62,11 @@ export default {
     closed(newVal) {
       if (newVal) {
         this.visible = false;
-        this.$el.addEventListener('transitionend', this.destroyElement);
       }
     },
   },
 
   methods: {
-    destroyElement() {
-      this.$el.removeEventListener('transitionend', this.destroyElement);
-      this.$el.parentNode.removeChild(this.$el);
-    },
     /**
      * 关闭
      */
