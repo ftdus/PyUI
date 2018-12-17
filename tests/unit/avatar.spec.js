@@ -1,16 +1,19 @@
+/* eslint-disable no-unused-expressions */
 import PyAvatar from '@/components/avatar/index';
 // import PyIcon from '@/components/icon/index';
 import { mount } from '@vue/test-utils';
+import { expect } from "chai";
+import Vue from 'vue';
 
 describe('PyAvatar', () => {
-  // afterEach(() => {
-  //   setTimeout(() => {
-  //     wrapper.destory();
-  //   }, 100);
-  // });
+
+  let wrapper;
+  afterEach(() => {
+    wrapper.destroy();
+  });
 
   it('默认情况下的avatar', () => {
-    const wrapper = mount(PyAvatar, {
+    wrapper = mount(PyAvatar, {
       propsData: {
         slot: 'ABC',
       },
@@ -20,7 +23,7 @@ describe('PyAvatar', () => {
   });
 
   it('avatar自定义形状和大小', () => {
-    const wrapper = mount(PyAvatar, {
+    wrapper = mount(PyAvatar, {
       propsData: {
         slot: 'ABC',
         shape: 'square',
@@ -31,7 +34,7 @@ describe('PyAvatar', () => {
   });
 
   it('图片类型的avatar', () => {
-    const wrapper = mount(PyAvatar, {
+    wrapper = mount(PyAvatar, {
       propsData: {
         src: 'https://cn.vuejs.org/images/logo.png',
       },
@@ -41,7 +44,7 @@ describe('PyAvatar', () => {
   });
 
   it('icon类型的avatar', () => {
-    const wrapper = mount(PyAvatar, {
+    wrapper = mount(PyAvatar, {
       propsData: {
         icon: 'frown',
       },
@@ -52,7 +55,7 @@ describe('PyAvatar', () => {
   });
 
   it('自定义icon类型的avatar', () => {
-    const wrapper = mount(PyAvatar, {
+    wrapper = mount(PyAvatar, {
       propsData: {
         customIcon: ['pyui-icons', 'py-icon-heart-fill'],
       },
@@ -61,42 +64,52 @@ describe('PyAvatar', () => {
   });
 
   it('自定义背景和颜色的avatar', () => {
-    const wrapper = mount(PyAvatar, {
+    wrapper = mount(PyAvatar, {
       propsData: {
         color: '#f56a00',
         backgroundColor: '#fde3cf',
         slot: 'ABC',
       },
     });
-    expect(wrapper.find('.py-avatar').hasStyle('color', '#f56a00')).to.be.true;
-    expect(wrapper.find('.py-avatar').hasStyle('background-color', '#fde3cf')).to.be.true;
+    expect(wrapper.find('.py-avatar').element.style.color).to.equal('rgb(245, 106, 0)');
+    expect(wrapper.find('.py-avatar').element.style.backgroundColor).to.equal('rgb(253, 227, 207)');
   });
 
-  it('avatar 文本大小自适应', () => {
-    const wrapper = mount(PyAvatar, {
+  // TODO: 未解决，待查看是什么问题导致transform 的属性一直为空
+  it('avatar 文本大小自适应', done => {
+    wrapper = mount(PyAvatar, {
       propsData: {
         slot: 'A',
       },
     });
 
-    expect(wrapper.vm.scale).to.equal(1);
-    // expect(wrapper.find('.py-avatar-string').hasStyle('transform', 'scale(1)')).to.be.true;
+    expect(wrapper.find('.py-avatar-string').element.style.transform).to.equal('scale(1)');
 
-    // wrapper.setProps({ slot: 'longlonglong' });    
-    // expect(wrapper.find('.py-avatar-string').hasStyle('transform', `scale(${wrapper.vm.scale})`)).to.be.true;
+    wrapper.setProps({ slot: 'Short' });
+    Vue.nextTick(() => {
+      expect(wrapper.find('.py-avatar-string').element.style.transform).to.equal(`scale(0.5)`);
+      done();
+    });
   });
 
-  // TODO: 待测试自定义方法
-  // it('avatar自定义点击事件和文本自适应缩放', () => {
-  //   const clickHandler = sinon.stub();
-  //   const wrapper = mount(PyAvatar, {
-  //     propsData: {
-  //       slot: 'A',
-  //       clickHandler,
-  //     },
-  //   });
-  //   wrapper.trigger('click');
-  //   expect(clickHandler.called).to.be.true;
-  // });
+  it('avatar自定义点击事件', () => {
+    // const clickHandler = sinon.stub();
+    wrapper = mount(PyAvatar, {
+      propsData: {
+        slot: 'A',
+      },
+      data() {
+        return { testID: 1 };
+      },
+      methods: {
+        handleClick(event) {
+          this.testID = 2;
+        },
+      },
+    });
+
+    wrapper.trigger('click');
+    expect(wrapper.vm.testID).to.equal(2);
+  });
 
 });
