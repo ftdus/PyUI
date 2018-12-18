@@ -104,6 +104,10 @@ const navData = [
             name: 'Message 通知',
             path: 'message',
           },
+          {
+            name: 'Tooltip 文字提示',
+            path: 'tooltip',
+          },
         ],
       },
       {
