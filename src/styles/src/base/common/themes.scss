@@ -238,3 +238,13 @@ $--progress-danger-text-color: $--color-danger;
 $--progress-success-background-color: $--color-success;
 $--progress-warning-background-color: $--color-warning;
 $--progress-danger-background-color: $--color-danger;
+
+/*
+  Tooltip
+-------------------- */
+$--tooltip-arrow-size: 6px !default;
+$tooltip-bg: rgba(70, 76, 91, 0.9);
+$shadow-color: rgba(0, 0, 0, 0.2);
+$text-color: #515a6e;
+$tooltip-arrow-color: hsla(0, 0%, 85%, 0.5);
+$tooltip-arrow-width: 5px;

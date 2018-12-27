@@ -37,7 +37,9 @@ import Submenu from './components/submenu/index';
 import Switch from './components/switch/index';
 import TabPane from './components/tab-pane/index';
 import Upload from './components/upload/index';
-import Tag from './components/tag/index';
+import Tooltip from './components/tooltip/index';
+import Option from './components/select/src/option.vue';
+import OptionGroup from './components/select/src/option-group.vue';
 
 const components = [
   Alert,
@@ -76,7 +78,9 @@ const components = [
   Switch,
   TabPane,
   Upload,
-  Tag,
+  Tooltip,
+  Option,
+  OptionGroup,
 ];
 const install = function(Vue) {
   const vue = Vue;
@@ -137,5 +141,7 @@ export default {
   Switch,
   TabPane,
   Upload,
-  Tag,
+  Tooltip,
+  Option,
+  OptionGroup,
 };
