@@ -75,7 +75,7 @@
         v-show="showDropDown"
         ref="dropDown"
       >
-        <ul class="py-select__dropdown--grouplist" v-if="!loading">
+        <ul class="py-select__dropdown-grouplist" v-if="!loading">
           <py-option
             :label="queryText"
             :key="queryText"

@@ -192,26 +192,12 @@ $prefixCls: 'py-select';
   border-radius: 3px;
   overflow-y: auto;
 
-  @include e(dropdown--grouplist) {
+  @include e(dropdown-grouplist) {
     position: relative;
     z-index: 2;
     overflow-y: auto;
     padding-left: 0;
     margin: 0;
-
-    @include e(dropdown--groupitem) {
-      @include e(dropdown--grouplabel) {
-        padding: 0 10px;
-        height: 36px;
-        line-height: 36px;
-        color: $--color-text-secondary;
-        font-size: 12px;
-      }
-
-      @include e(dropdown--item) {
-        padding-left: 20px;
-      }
-    }
   }
 
   @include e(dropdown--none dropdown--loading) {

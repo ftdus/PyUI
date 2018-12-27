@@ -2,7 +2,7 @@
 
 $prefixCls: 'py-select';
 
-@include e(dropdown--item) {
+@include e(dropdown-item) {
   position: relative;
   padding: 0 15px;
   height: 34px;

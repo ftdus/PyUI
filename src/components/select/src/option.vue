@@ -1,7 +1,7 @@
 <template>
   <li
     v-show="show !== false"
-    class="py-select__dropdown--item"
+    class="py-select__dropdown-item"
     :class="{
       selected: selected,
       disabled: disabled || multipleDisabled,
@@ -10,7 +10,7 @@
     @click="selectDropDownItem($event);"
   >
     <slot>{{ label }}</slot>
-    <i v-show="option.selected && multiple" class="py-select__selected pyui-icons py-icon-check">
+    <i v-show="option.selected && multiple" class="py-select--selected pyui-icons py-icon-check">
     </i>
   </li>
 </template>

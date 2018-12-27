@@ -2,7 +2,7 @@
 
 $prefixCls: 'py-select';
 
-@include e(dropdown--group) {
+@include e(dropdown-group) {
   position: relative;
   list-style: none;
   border-bottom: 1px solid $--color-line-regular;
@@ -10,7 +10,7 @@ $prefixCls: 'py-select';
     border-bottom: 0;
   }
 
-  @include e(dropdown--group--label) {
+  @include e(dropdown-group-label) {
     height: 34px;
     padding: 0 15px;
     line-height: 34px;

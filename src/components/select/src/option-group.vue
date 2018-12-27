@@ -1,7 +1,7 @@
 <template>
-  <li class="py-select__dropdown--group">
-    <p class="py-select__dropdown--group--label">{{ label }}</p>
-    <ul class="py-select__dropdown--group--list">
+  <li class="py-select__dropdown-group">
+    <p class="py-select__dropdown-group-label">{{ label }}</p>
+    <ul class="py-select__dropdown-group-list">
       <slot></slot>
     </ul>
   </li>
