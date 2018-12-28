@@ -121,7 +121,6 @@ $tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
       border-top-width: $tooltip-arrow-width-light;
       border-top-color: #fff;
     }
-
     &[x-placement^='right'] .#{$tooltip-arrow}:after {
       content: ' ';
       left: 1px;
@@ -130,7 +129,6 @@ $tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
       border-right-width: $tooltip-arrow-width-light;
       border-right-color: #fff;
     }
-
     &[x-placement^='bottom'] .#{$tooltip-arrow}:after {
       content: ' ';
       top: 1px;
@@ -139,7 +137,6 @@ $tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
       border-bottom-width: $tooltip-arrow-width-light;
       border-bottom-color: #fff;
     }
-
     &[x-placement^='left'] .#{$tooltip-arrow}:after {
       content: ' ';
       right: 1px;
@@ -149,7 +146,6 @@ $tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
       bottom: -$tooltip-arrow-width-light;
     }
   }
-
   @include e(inner) {
     max-width: $tooltip-max-width;
     min-height: 34px;
@@ -161,13 +157,11 @@ $tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
     border-radius: $border-radius-small;
     box-shadow: $shadow-base;
     white-space: nowrap;
-
     &-with-width {
       white-space: pre-wrap;
       text-align: justify;
     }
   }
-
   &__light &__inner {
     background-color: $tooltip-color;
     color: $text-color;
@@ -180,7 +174,6 @@ $tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
     border-color: transparent;
     border-style: solid;
   }
-
   &__light {
     .#{$tooltip-arrow} {
       &:after {
@@ -197,11 +190,11 @@ $tooltip-arrow-outer-width-light: ($tooltip-arrow-width-light + 1);
     }
   }
 }
-
 .py-tooltip-enter-active,
 .py-tooltip-leave-active {
   transition: all 0.3s ease;
 }
+
 .py-tooltip-enter,
 .py-tooltip-leave,
 .py-tooltip-leave-active {

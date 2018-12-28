@@ -1,72 +1,80 @@
 @charset "UTF-8";
 
-@include b(message) {
-  min-width: $--message-min-width;
-  box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  border-color: $--message-border-color;
+@include b(message__container) {
   position: fixed;
   left: 50%;
   top: 20px;
-  z-index: 2000;
   transform: translateX(-50%);
-  background-color: $--message-background-color;
-  transition: opacity 0.3s, -webkit-transform 0.4s;
-  transition: opacity 0.3s, transform 0.4s;
-  transition: opacity 0.3s, transform 0.4s, -webkit-transform 0.4s;
-  padding: 15px 15px 15px 20px;
-  display: flex;
-  align-items: center;
+  z-index: 2002;
+  width: 100%;
+  padding: 0 40px;
+  text-align: center;
+}
+@include b(message) {
+  margin-bottom: 12px;
+  transition: all 0.3s;
+  @include e(box) {
+    position: relative;
+    display: inline-block;
+    height: $--message-height;
+    padding: 0 20px 0 12px;
+    line-height: $--message-height;
+    min-width: $--message-min-width;
+    box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: 0.07);
+    border-radius: 2px;
+    font-size: 12px;
+    text-align: left;
+  }
   @include e(content) {
-    line-height: 1.3;
+    display: inline-block;
+    line-height: $--message-height;
     padding-right: 16px;
-  }
-  @include m(info) {
-    background-color: $--message-info-background-color;
-    border-color: $--message-info-border-color;
-    color: $--message-info-color;
-  }
-  @include m(warning) {
-    background-color: $--message-warning-background-color;
-    border-color: $--message-warning-border-color;
-    color: $--message-warning-color;
-  }
-  @include m(error) {
-    background-color: $--message-error-background-color;
-    border-color: $--message-error-border-color;
-    color: $--message-error-color;
-  }
-  @include m(success) {
-    background-color: $--message-success-background-color;
-    border-color: $--message-success-border-color;
-    color: $--message-success-color;
+    vertical-align: middle;
   }
   @include e(icon) {
-    margin-right: 10px;
+    vertical-align: middle;
+    margin-right: 4px;
   }
   @include e(close) {
     position: absolute;
     right: 15px;
-    color: $--message-close-color;
+    top: 15px;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    text-align: center;
+    line-height: 12px;
+    font-style: initial;
+    font-size: 12px;
     cursor: pointer;
+  }
+  @include m(info) {
+    background-color: $--message-info-background-color;
+    color: $--message-info-color;
+  }
+  @include m(warning) {
+    background-color: $--message-warning-background-color;
+    color: $--message-warning-color;
+  }
+  @include m(error) {
+    background-color: $--message-error-background-color;
+    color: $--message-error-color;
+  }
+  @include m(success) {
+    background-color: $--message-success-background-color;
+    color: $--message-success-color;
   }
   &.#{$state-prefix}center {
     justify-content: center;
   }
 }
-
-.py-message-slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
+.py-message-slide-fade-enter-active,
 .py-message-slide-fade-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.py-message-slide-fade-enter-to .py-message-slide-fade-leave {
-  top: -50px;
+  opacity: 1;
+  transition: all 0.3s;
 }
 .py-message-slide-fade-enter,
 .py-message-slide-fade-leave-to {
-  top: -50px;
+  margin-top: -52px;
   opacity: 0;
 }

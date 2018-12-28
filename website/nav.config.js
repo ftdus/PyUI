@@ -87,6 +87,10 @@ const navData = [
             name: 'Pagination 分页',
             path: 'pagination',
           },
+          {
+            name: 'Tag 标签',
+            path: 'tag',
+          },
         ],
       },
       {

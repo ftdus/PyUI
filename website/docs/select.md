@@ -111,7 +111,13 @@ export default {
 ::: demo v-model的值为当前被选中的py-option的 value 属性值
 
 ```html
-<py-select v-model="value" :data="selectData"></py-select>
+<py-select v-model="value" placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"></py-option>
+</py-select>
 
 <script>
 export default {
@@ -153,7 +159,14 @@ export default {
 ::: demo 在py-option中，设定disabled值为 true，即可禁用该选项
 
 ```html
-<py-select v-model="value" :data="disabledData"></py-select>
+<py-select v-model="value" placeholder="请选择">
+  <py-option
+    v-for="(option, key) in disabledData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
+</py-select>
 
 <script>
 export default {
@@ -199,7 +212,14 @@ export default {
 ::: demo 为py-select设置disabled属性，则整个选择器不可用
 
 ```html
-<py-select v-model="value" :data="selectData" disabled></py-select>
+<py-select v-model="value" disabled placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
+</py-select>
 
 <script>
 export default {
@@ -243,11 +263,13 @@ export default {
 ::: demo 为py-select设置clearable属性，则可将选择器清空。需要注意的是，clearable属性仅适用于单选。
 
 ```html
-<py-select
-  v-model="value"
-  :data="selectData"
-  clearable
-  @clear="clearHandler">
+<py-select v-model="value" clearable placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
 </py-select>
 
 <script>
@@ -295,10 +317,73 @@ export default {
 ::: demo 为py-select设置multiple属性即可启用多选，此时v-model的值为当前选中值所组成的数组。默认情况下选中值会以 Tag 的形式展现，同时可删除每个Tag，也可使用键盘的delete键逐个删除。
 
 ```html
+<py-select v-model="value" multiple placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
+</py-select>
+
+<script>
+export default {
+  data() {
+    return {
+      multipleValue: [],
+      selectData: [
+        {
+          value: '选项1',
+          label: '黄金糕',
+        },
+        {
+          value: '选项2',
+          label: '双皮奶',
+        },
+        {
+          value: '选项3',
+          label: '蚵仔煎',
+        },
+        {
+          value: '选项4',
+          label: '龙须面',
+        },
+        {
+          value: '选项5',
+          label: '北京烤鸭',
+        },
+      ],
+    };
+  },
+};
+</script>
+```
+
+:::
+
+### 自定义模板
+
+可以自定义option展示内容
+
+::: demo 将自定义的 HTML 模板插入py-option的 slot 中即可。
+
+```html
 <py-select
   v-model="multipleValue"
+  filterable
+  allow-create
   multiple
-  :data="selectData">
+  :multipleLimit="3"
+  placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled">
+      <span class="option-label" style="float: left;">{{ option.label }}</span>
+      <span class="option-value" style="float: right;">{{ option.value }}</span>
+    </py-option>
 </py-select>
 
 <script>
@@ -343,10 +428,13 @@ export default {
 ::: demo 为py-select添加filterable属性即可启用搜索功能。默认情况下，Select 会找出所有label属性包含输入值的选项。如果希望使用其他的搜索逻辑，可以通过传入一个filter-method来实现。filter-method为一个Function，它会在输入值发生变化时调用，参数为当前输入值
 
 ```html
-<py-select
-  v-model="value"
-  filterable
-  :data="selectData">
+<py-select v-model="value" filterable placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
 </py-select>
 
 <script>
@@ -362,6 +450,7 @@ export default {
         {
           value: '选项2',
           label: '双皮奶',
+          disabled: true,
         },
         {
           value: '选项3',
@@ -392,13 +481,18 @@ export default {
 
 ```html
 <py-select
-    v-model="value"
-    filterable
-    remote
-    :loading="remoteLoading"
-    loading-text="加载中"
-    :remote-method="remoteMethod"
-    :data="remoteData">
+  v-model="value"
+  filterable
+  remote
+  :remote-method="remoteMethod"
+  :loading="remoteLoading"
+  placeholder="请选择">
+  <py-option
+    v-for="(option, key) in remoteData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
 </py-select>
 
 <script>
@@ -459,16 +553,30 @@ export default {
 ```html
 <py-select
   v-model="value"
-  :allow-create="true"
   filterable
-  :data="selectData">
+  allow-create
+  placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
 </py-select>
+
 <py-select
   v-model="multipleValue"
-  multiple
-  :allow-create="true"
   filterable
-  :data="selectData">
+  allow-create
+  multiple
+  :multipleLimit="3"
+  placeholder="请选择">
+  <py-option
+    v-for="(option, key) in selectData"
+    :key="key"
+    :value="option.value"
+    :label="option.label"
+    :disabled="option.disabled"></py-option>
 </py-select>
 
 <script>
@@ -547,7 +655,6 @@ export default {
 | maxHeight           |  select下拉框的最大高度                 | number                | —                      | 260        |
 | loading             | 是否正在从远程获取数据                   | boolean               | —                      | false      |
 
-:::
 
 ### Select Events
 

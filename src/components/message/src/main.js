@@ -25,8 +25,19 @@ const Message = function(option = {}) {
   };
   me.vm = me.$mount();
   me.vm.visible = true;
-  document.body.appendChild(me.vm.$el);
-  messages.push(me.vm);
+  let hasMessageBox = false;
+  let messageBoxEle = document.getElementsByClassName('py-message__container');
+  if (messageBoxEle.length > 0) {
+    hasMessageBox = true;
+  }
+  if (hasMessageBox) {
+    messageBoxEle[0].appendChild(me.vm.$el);
+  } else {
+    messageBoxEle = document.createElement('div');
+    messageBoxEle.className = 'py-message__container';
+    messageBoxEle.appendChild(me.vm.$el);
+    document.body.appendChild(messageBoxEle);
+  }
   return me.vm;
 };
 

@@ -1,8 +1,6 @@
 <template>
   <div class="py-tooltip" @mouseenter="handleShowPopper" @mouseleave="handleClosePopper">
-    <div class="py-tooltip__rel" ref="reference">
-      <slot></slot>
-    </div>
+    <div class="py-tooltip__rel" ref="reference"><slot></slot></div>
     <transition name="py-tooltip">
       <div
         :class="['py-tooltip__popper', themeClass]"
